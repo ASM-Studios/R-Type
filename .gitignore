@@ -1,7 +1,8 @@
 ### PROJECT ###
 
 # Executables
-rtype
+r-type_server
+r-type_client
 
 # Secrets
 note
