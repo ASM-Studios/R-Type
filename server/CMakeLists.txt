@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28.1)
+cmake_minimum_required(VERSION 3.27.4)
 project(r-type_server)
 
 set(CMAKE_CXX_STANDARD 23)

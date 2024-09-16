@@ -1,0 +1,35 @@
+name: r-type workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+
+env:
+  EXECUTABLES: r-type_client, r-type_server
+
+jobs:
+  check_program_compilation:
+    name: Checking that the program compiles correctly
+    runs-on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Compilation
+        timeout-minutes: 2
+        run: |
+          ./release.sh
+      - name: Verify is files exists and is executable
+        run: |
+          for exe in $(echo $EXECUTABLES | tr ',' ' ');
+            do
+            if [ ! -x $exe ];
+              then exit 1;
+            fi;
+            done;
+            exit 0;
