@@ -13,15 +13,14 @@ env:
 
 jobs:
   check_program_compilation:
-    name: Checking that the program compiles correctly
+    name: Check compilation
     runs-on: ubuntu-latest
     container:
+      image: mathieubrl/rtype
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Compilation
-        timeout-minutes: 2
         run: |
           ./release.sh
       - name: Verify is files exists and is executable

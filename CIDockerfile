@@ -14,9 +14,3 @@ WORKDIR /root/vcpkg
 ENV VCPKG_ROOT=/root/vcpkg
 
 RUN ./bootstrap-vcpkg.sh
-
-WORKDIR /project
-
-COPY . .
-
-RUN ./release.sh
