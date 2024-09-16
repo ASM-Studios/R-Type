@@ -18,6 +18,7 @@ note
 
 # CMake
 
+.cache
 build
 cmake-build-debug
 cmake-build-release
@@ -114,6 +115,7 @@ dkms.conf
 *.app
 
 ### IDE ###
+.obsidian
 compile_flags.txt
 *.lock
 .idea
