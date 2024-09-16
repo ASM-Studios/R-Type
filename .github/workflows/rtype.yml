@@ -16,10 +16,10 @@ jobs:
     name: Checking that the program compiles correctly
     runs-on: ubuntu-latest
     container:
-      image: epitechcontent/epitest-docker
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Compilation
         timeout-minutes: 2
         run: |
