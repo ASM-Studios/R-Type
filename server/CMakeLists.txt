@@ -3,6 +3,12 @@ project(r-type_server)
 
 include_directories(include)
 
-set(SOURCE_FILE src/main.cpp)
+find_package(Boost COMPONENTS asio CONFIG REQUIRED)
+
+set(SOURCE_FILE src/main.cpp
+    src/socket/Query.cpp
+    src/socket/Server.cpp)
 
 add_executable(r-type_server ${SOURCE_FILE})
+
+target_link_libraries(r-type_server Boost::asio)
