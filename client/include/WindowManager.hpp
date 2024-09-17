@@ -8,6 +8,8 @@
 #include <utility>
 
 #include "GuiException.hpp"
+#include "SpriteManager.hpp"
+#include "Logger.hpp"
 
 constexpr auto FONT_FILENAME = "client/assets/fonts/arial.ttf";
 
@@ -21,10 +23,10 @@ constexpr std::size_t FONT_SIZE = 24;
 constexpr std::size_t TEXT_POS = 10;
 
 namespace GUI {
-    class WindowManager : public std::enable_shared_from_this<WindowManager>
-    {
+    class WindowManager : public std::enable_shared_from_this<WindowManager> {
         private:
             std::unique_ptr<sf::RenderWindow> _window;
+            SpriteManager _spriteManager;
             sf::Font _font;
 
         public:
