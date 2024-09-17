@@ -1,7 +1,9 @@
 #include <iostream>
+#include "classes/WindowManager.hpp"
 
-int main(int ac, char **av)
+int main()
 {
-    std::cout << "Hello world!" << std::endl;
+    const GUI::WindowManager windowManager;
+    windowManager.run();
     return 0;
 }
