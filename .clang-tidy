@@ -2,4 +2,6 @@ Checks: "bugprone-*,cppcoreguidelines-*,clang-analyzer-*,readability-*,misc-*,mo
   -cppcoreguidelines-special-member-functions,
   -modernize-use-trailing-return-type,
   -readability-identifier-length,
-  -cppcoreguidelines-pro-type-union-access"
+  -cppcoreguidelines-pro-type-union-access,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers"

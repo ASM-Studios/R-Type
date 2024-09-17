@@ -91,7 +91,7 @@ cmake --preset=debug -DCMAKE_BUILD_TYPE=Debug
 cmake --build cmake-build-debug
 ```
 
-or run the [debug.sh](../debug.sh) script
+or run the [debug.sh](../../debug.sh) script
 ```sh
 ./debug.sh
 ```
@@ -105,7 +105,7 @@ cmake --preset=release -DCMAKE_BUILD_TYPE=Release
 cmake --build cmake-build-release
 ```
 
-or run the [release.sh](../release.sh) script
+or run the [release.sh](../../release.sh) script
 ```sh
 ./release.sh
 ```
