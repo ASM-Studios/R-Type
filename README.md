@@ -8,6 +8,10 @@ The server will be developed has a game engine, and the client will be a simple 
 
 The project is made solely in C++.
 
+## Requirements
+
+- Doxygen: [see documentation](https://www.doxygen.nl/manual/install.html)
+
 ## Installation
 
 ```sh

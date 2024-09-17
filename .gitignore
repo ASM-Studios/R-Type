@@ -16,8 +16,13 @@ note
 # Debug files
 *.log
 
+# Documentation
+
+docs/html/*
+
 # CMake
 
+.cache
 build
 cmake-build-debug
 cmake-build-release
@@ -114,6 +119,7 @@ dkms.conf
 *.app
 
 ### IDE ###
+.obsidian
 compile_flags.txt
 *.lock
 .idea
