@@ -16,6 +16,10 @@ note
 # Debug files
 *.log
 
+# Documentation
+
+docs/html/*
+
 # CMake
 
 .cache
