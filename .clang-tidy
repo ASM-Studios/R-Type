@@ -1,4 +1,5 @@
 Checks: "bugprone-*,cppcoreguidelines-*,clang-analyzer-*,readability-*,misc-*,modernize-*,
   -cppcoreguidelines-special-member-functions,
   -modernize-use-trailing-return-type,
-  -readability-identifier-length"
+  -readability-identifier-length,
+  -cppcoreguidelines-pro-type-union-access"
