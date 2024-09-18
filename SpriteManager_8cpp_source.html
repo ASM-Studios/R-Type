@@ -159,7 +159,7 @@ $(document).ready(function(){initNavTree('SpriteManager_8cpp_source.html',''); i
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                }</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            }</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">throw</span> GuiException(name + <span class="stringliteral">&quot; settings are incomplete.&quot;</span>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="keywordflow">throw</span> GuiException(name + <span class="stringliteral">&quot; missing key or wrong typed value in configuration file.&quot;</span>);</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        }</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <a class="code hl_function" href="classLogger.html#aa1d47d3f25b157451cf8d1925a1c300f">Logger::log</a>(LogLevel::WARNING, name + <span class="stringliteral">&quot; not found in configuration, skipping.&quot;</span>);</div>
