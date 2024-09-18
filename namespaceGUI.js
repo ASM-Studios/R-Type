@@ -5,5 +5,5 @@ var namespaceGUI =
     [ "MessagePopup", "classGUI_1_1MessagePopup.html", "classGUI_1_1MessagePopup" ],
     [ "SpriteManager", "classGUI_1_1SpriteManager.html", "classGUI_1_1SpriteManager" ],
     [ "WindowManager", "classGUI_1_1WindowManager.html", "classGUI_1_1WindowManager" ],
-    [ "SPRITES_CONFIG", "namespaceGUI.html#a92e306190262f320470c60ed1ec99828", null ]
+    [ "DEFAULT_SPRITES_CONFIG", "namespaceGUI.html#a4bfb6130fc3e2f005691b51fa42f56f3", null ]
 ];

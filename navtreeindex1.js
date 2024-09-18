@@ -92,7 +92,7 @@ var NAVTREEINDEX1 =
 "mux_8vhdl.html":[6,0,1,0,23],
 "mux_8vhdl_source.html":[6,0,1,0,23],
 "namespaceGUI.html":[4,0,1],
-"namespaceGUI.html#a92e306190262f320470c60ed1ec99828":[4,0,1,5],
+"namespaceGUI.html#a4bfb6130fc3e2f005691b51fa42f56f3":[4,0,1,5],
 "namespacedocstring.html":[4,0,0],
 "namespacedocstring.html#aec1a168f6e16b33f87fe6a37b9208957":[4,0,0,1],
 "namespacemembers.html":[4,1,0],

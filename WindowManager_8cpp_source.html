@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('WindowManager_8cpp_source.html',''); i
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keywordtype">float</span> x = 50;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordtype">float</span> y = 50;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [<span class="keywordtype">id</span>, snd] : _spriteManager.getSprites(<span class="stringliteral">&quot;turret&quot;</span>)) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [<span class="keywordtype">id</span>, snd] : _spriteManager.getSprites(<span class="stringliteral">&quot;enemies/sphere&quot;</span>)) {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keyword">constexpr</span> <span class="keywordtype">float</span> spriteWidth = 75;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keywordflow">if</span> (<span class="keyword">const</span> <span class="keywordtype">float</span> windowWidth = _window-&gt;getSize().x; x + spriteWidth &gt; windowWidth) {</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                x = 50;</div>
@@ -130,17 +130,9 @@ $(document).ready(function(){initNavTree('WindowManager_8cpp_source.html',''); i
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            x += spriteWidth;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        }</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">const</span> <span class="keyword">auto</span> tu0 = _spriteManager.getSprite(<span class="stringliteral">&quot;turret&quot;</span>, 0);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        tu0-&gt;setPosition(300, 300);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        _window-&gt;draw(*tu0);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keyword">const</span> <span class="keyword">auto</span> tu11 = _spriteManager.getSprite(<span class="stringliteral">&quot;turret&quot;</span>, 11);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        tu11-&gt;setPosition(400, 400);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        _window-&gt;draw(*tu11);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        _window-&gt;display();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        _window-&gt;display();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
 <div class="ttc" id="aWindowManager_8hpp_html"><div class="ttname"><a href="WindowManager_8hpp.html">WindowManager.hpp</a></div></div>
 <div class="ttc" id="aclassConfig_html"><div class="ttname"><a href="classConfig.html">Config</a></div><div class="ttdef"><b>Definition:</b> <a href="Config_8hpp_source.html#l00015">Config.hpp:15</a></div></div>
 <div class="ttc" id="aclassConfig_html_a0ec197927cb51eb7e79771e3cafe4e8c"><div class="ttname"><a href="classConfig.html#a0ec197927cb51eb7e79771e3cafe4e8c">Config::get</a></div><div class="ttdeci">std::optional&lt; std::string &gt; get(const std::string &amp;field) const</div><div class="ttdef"><b>Definition:</b> <a href="Config_8cpp_source.html#l00025">Config.cpp:25</a></div></div>

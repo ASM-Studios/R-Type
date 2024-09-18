@@ -27,7 +27,7 @@ var NAVTREEINDEX0 =
 "SpriteManager_8cpp.html":[6,0,0,1,2],
 "SpriteManager_8cpp_source.html":[6,0,0,1,2],
 "SpriteManager_8hpp.html":[6,0,0,0,3],
-"SpriteManager_8hpp.html#a92e306190262f320470c60ed1ec99828":[6,0,0,0,3,1],
+"SpriteManager_8hpp.html#a4bfb6130fc3e2f005691b51fa42f56f3":[6,0,0,0,3,1],
 "SpriteManager_8hpp_source.html":[6,0,0,0,3],
 "WindowManager_8cpp.html":[6,0,0,1,3],
 "WindowManager_8cpp_source.html":[6,0,0,1,3],
