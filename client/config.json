@@ -1,0 +1,5 @@
+{
+  "sprites_path": "client/assets/sprites/",
+  "fullscreen": false,
+  "logLevel": "ERROR"
+}
