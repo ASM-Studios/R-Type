@@ -20,15 +20,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Cache vcpkg
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/vcpkg/
+          key: ${{ hashFiles('vcpkg.json') }}
+
+      - name: Setup vcpkg
+        run: |
+          if [ ! -d "vcpkg" ]; then
+            git clone https://github.com/microsoft/vcpkg.git
+            ./vcpkg/bootstrap-vcpkg.sh
+          fi
+          ./vcpkg/vcpkg install
+
       - name: Compilation
         run: |
           ./release.sh
-      - name: Verify is files exists and is executable
+
+      - name: Verify if files exist and are executable
         run: |
           for exe in $(echo $EXECUTABLES | tr ',' ' ');
             do
-            if [ ! -x $exe ];
-              then exit 1;
-            fi;
+            if [ ! -x $exe ]; then exit 1; fi;
             done;
-            exit 0;
+          exit 0;
