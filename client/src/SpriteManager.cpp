@@ -65,7 +65,7 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
                 }
             }
         } else {
-            throw GuiException(name + " settings are incomplete.");
+            throw GuiException(name + " missing key or wrong typed value in configuration file.");
         }
     } else {
         Logger::log(LogLevel::WARNING, name + " not found in configuration, skipping.");

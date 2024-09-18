@@ -25,7 +25,7 @@ void GUI::WindowManager::run() const {
 
         float x = 50;
         float y = 50;
-        for (const auto& [id, snd] : _spriteManager.getSprites("enemies/sphere")) {
+        for (const auto& [id, snd] : _spriteManager.getSprites("enemies/enemy_1")) {
             constexpr float spriteWidth = 75;
             if (const float windowWidth = _window->getSize().x; x + spriteWidth > windowWidth) {
                 x = 50;

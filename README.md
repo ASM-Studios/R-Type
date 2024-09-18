@@ -12,8 +12,9 @@ The project is made solely in C++.
 
 - Doxygen: [see documentation](https://www.doxygen.nl/manual/install.html)
 - CMake: [see documentation](https://cmake.org/install/)
-- VCPKG: [see documentation](https://vcpkg.io/en/)
 - C++ Compiler: [see documentation](https://gcc.gnu.org/install/)
+- Ninja: [see documentation](https://ninja-build.org/)
+- VCPKG: [see documentation](Misc/VCPKG.md)
 
 ## Installation
 
