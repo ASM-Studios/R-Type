@@ -2,25 +2,36 @@
 
 GUI::SpriteManager::SpriteManager() {
     Config& config = Config::getInstance(DEFAULT_CONFIG);
+    _spritesConfigPath = config.get("sprites_config_path").value_or(DEFAULT_SPRITES_CONFIG);
     const auto spritePath = config.get("sprites_path").value_or("");
     if (spritePath.empty()) {
         throw GuiException("No sprites path found in config file");
     }
+    loopDirectory(spritePath, "");
+}
 
-    if (boost::filesystem::path const path(spritePath); boost::filesystem::exists(path) && boost::filesystem::is_directory(path)) {
+void GUI::SpriteManager::loopDirectory(const std::string &spritePath, const std::string &relativePath) {
+    boost::filesystem::path const path(spritePath + relativePath);
+    if (exists(path) && is_directory(path)) {
         for (const auto& entry : boost::filesystem::directory_iterator(path)) {
-            importSprites(spritePath, boost::algorithm::erase_all_copy(entry.path().string().substr(spritePath.length()), ".png"));
+            if (is_regular_file(entry) && entry.path().extension() == ".png") {
+                std::string name = relativePath + boost::algorithm::erase_all_copy(entry.path().filename().string(), ".png");
+                importSprites(spritePath, name);
+            } else if (is_directory(entry)) {
+                std::string newRelativePath = relativePath + entry.path().filename().string() + "/";
+                loopDirectory(spritePath, newRelativePath);
+            }
         }
     } else {
         std::cerr << "Directory does not exist or is not a directory: " << spritePath << std::endl;
     }
-};
+}
 
 void GUI::SpriteManager::importSprites(const std::string& spritePath, const std::string& name) {
     libconfig::Config cfg;
     try {
-        cfg.readFile(SPRITES_CONFIG);
-    } catch (const libconfig::FileIOException &fioex) {
+        cfg.readFile(_spritesConfigPath);
+    } catch ([[maybe_unused]] const libconfig::FileIOException &fioex) {
         throw GuiException("I/O error while reading file.");
     } catch (const libconfig::ParseException &pex) {
         throw GuiException("Parse error at " + std::string(pex.getFile()) + ":" + std::to_string(pex.getLine()) + " - " + pex.getError());
@@ -59,6 +70,6 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
     } else {
         Logger::log(LogLevel::WARNING, name + " not found in configuration, skipping.");
     }
-};
+}
 
 GUI::SpriteManager::~SpriteManager() = default;

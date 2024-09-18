@@ -25,7 +25,7 @@ void GUI::WindowManager::run() const {
 
         float x = 50;
         float y = 50;
-        for (const auto& [id, snd] : _spriteManager.getSprites("turret")) {
+        for (const auto& [id, snd] : _spriteManager.getSprites("enemies/sphere")) {
             constexpr float spriteWidth = 75;
             if (const float windowWidth = _window->getSize().x; x + spriteWidth > windowWidth) {
                 x = 50;
@@ -35,14 +35,6 @@ void GUI::WindowManager::run() const {
             _window->draw(*snd);
             x += spriteWidth;
         }
-
-        const auto tu0 = _spriteManager.getSprite("turret", 0);
-        tu0->setPosition(300, 300);
-        _window->draw(*tu0);
-
-        const auto tu11 = _spriteManager.getSprite("turret", 11);
-        tu11->setPosition(400, 400);
-        _window->draw(*tu11);
 
         _window->display();
     }

@@ -1,10 +1,12 @@
 # Config
 
-The client configuration is stored by default in the `client/config.json` file.
+The client configuration is stored in the [`client/config.json`](../../client/config.json) file.
 
 Fields aren't enforced, but the following fields are used by the client:
 
 - "sprites_path": The path to the sprites' directory.
+- "sprites_config_path": The path to the sprites' configuration file.
+  - By default: `client/assets/sprites_config.cfg`.
 - "fullscreen":
   - `true` | `false`
 - "logLevel":
@@ -15,6 +17,7 @@ Fields aren't enforced, but the following fields are used by the client:
 ```json
 {
   "sprites_path": "client/assets/sprites/",
+  "sprites_config_path": "client/assets/sprites_config.cfg",
   "fullscreen": false,
   "logLevel": "ERROR"
 }
