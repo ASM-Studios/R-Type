@@ -12,7 +12,7 @@
 #include "Logger.hpp"
 
 namespace GUI {
-    constexpr auto SPRITES_CONFIG = "client/assets/sprites_config.cfg";
+    constexpr auto DEFAULT_SPRITES_CONFIG = "client/assets/sprites_config.cfg";
 
     class SpriteManager : public std::enable_shared_from_this<SpriteManager> {
         private:
@@ -20,6 +20,9 @@ namespace GUI {
             std::unordered_map<std::string, std::map<std::size_t, std::shared_ptr<sf::Sprite> >> _sprites;
 
             void importSprites(const std::string& spritePath, const std::string& name);
+            void loopDirectory(const std::string &spritePath, const std::string &relativePath);
+
+            std::string _spritesConfigPath;
 
         public:
             SpriteManager();

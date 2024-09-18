@@ -32,9 +32,32 @@ The sprite manager loads the sprites from the `sprites_path` field in the config
 Importing only the sprites sheets in the folder will result in an error.<br>
 Alongside the sprite, a configuration file is required.
 
-### File Format
+The only supported sprite format is `.png`.
+
+## Folder Structure
+
+You can create folders inside the sprites folder to organize the sprites.
+
+Beware that the configuration file must explicit this with the following format:
+
+```cfg
+folder_name: {
+  sprite_name: {
+    row = 1
+    col = 1
+    scale = 1.0
+  };
+}
+```
+
+### Configuration File
 
 The configuration file is a `.cfg` file with the following fields:
+
+By default, the configuration file is located at `client/assets/sprites_config.cfg`.<br>
+This path can be changed in the [user configuration file](Config.md).
+
+#### example
 
 ```cfg
 turret: {
@@ -42,6 +65,14 @@ turret: {
   col = 6
   scale = 5.0
 };
+enemies: {
+    sphere: {
+        row = 1
+        col = 12
+        scale = 3.0
+    };
+}
+
 ```
 
 Failure to provide the configuration file will result in an error.
