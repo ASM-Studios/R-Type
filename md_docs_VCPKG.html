@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('md_docs_VCPKG.html',''); initResizable
   <div class="headertitle"><div class="title">How to handle 3rd party dependency ? </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md2"></a>
 Download and install VCPKG</h1>
 <p>Download vcpkg</p>
 <div class="fragment"><div class="line">git clone https://github.com/microsoft/vcpkg.git</div>
@@ -100,11 +100,11 @@ Download and install VCPKG</h1>
 </div><!-- fragment --><p>Now setup your .zshrc</p>
 <div class="fragment"><div class="line">export VCPKG_ROOT=/path/to/vcpkg</div>
 <div class="line">export PATH=$VCPKG_ROOT:$PATH</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
 Setup a project with VCPKG</h1>
 <p>Create a new project</p>
 <div class="fragment"><div class="line">vcpkg new --application</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
 Add dependencies with VCPKG (example with SFML)</h1>
 <p>First dependency in vcpkg</p>
 <div class="fragment"><div class="line">vcpkg add port sfml</div>
@@ -125,7 +125,7 @@ Add dependencies with VCPKG (example with SFML)</h1>
 <div class="line"># -&gt;</div>
 <div class="line">target_link_libraries(r-type_client sfml-system sfml-window sfml-graphics sfml-network sfml-audio)</div>
 <div class="line"># &lt;-</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 Build and run the project</h1>
 <p>Create a CMakePresets.json file</p>
 <div class="fragment"><div class="line">{</div>
@@ -149,13 +149,13 @@ Build and run the project</h1>
 <div class="line">    }</div>
 <div class="line">  ]</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
 To create a debug build:</h2>
 <p>You can either...</p>
 <p>run these two commands </p><div class="fragment"><div class="line">cmake --preset=debug -DCMAKE_BUILD_TYPE=Debug</div>
 <div class="line">cmake --build cmake-build-debug</div>
 </div><!-- fragment --><p>or run the <a href="../debug.sh">debug.sh</a> script </p><div class="fragment"><div class="line">./debug.sh</div>
-</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md6"></a>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md7"></a>
 To create a release build:</h2>
 <p>You can either...</p>
 <p>run these two commands </p><div class="fragment"><div class="line">cmake --preset=release -DCMAKE_BUILD_TYPE=Release</div>

@@ -44,6 +44,8 @@ var hierarchy =
     [ "docstring.PyClass", "classdocstring_1_1PyClass.html", null ],
     [ "pyexample.PyClass", "classpyexample_1_1PyClass.html", null ],
     [ "QTstyle_Test", "classQTstyle__Test.html", null ],
+    [ "udp_socket::Query", "classudp__socket_1_1Query.html", null ],
+    [ "udp_socket::Server", "classudp__socket_1_1Server.html", null ],
     [ "SomeNiceClass", "classSomeNiceClass.html", null ],
     [ "String", "classString.html", null ],
     [ "Test< T, i >", "classTest.html", null ],

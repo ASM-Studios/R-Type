@@ -12,6 +12,10 @@ var annotated_dup =
     [ "pyexample", "namespacepyexample.html", [
       [ "PyClass", "classpyexample_1_1PyClass.html", "classpyexample_1_1PyClass" ]
     ] ],
+    [ "udp_socket", "namespaceudp__socket.html", [
+      [ "Query", "classudp__socket_1_1Query.html", "classudp__socket_1_1Query" ],
+      [ "Server", "classudp__socket_1_1Server.html", "classudp__socket_1_1Server" ]
+    ] ],
     [ "A", "classA.html", "classA" ],
     [ "Afterdoc_Test", "classAfterdoc__Test.html", "classAfterdoc__Test" ],
     [ "Autolink_Test", "classAutolink__Test.html", "classAutolink__Test" ],
