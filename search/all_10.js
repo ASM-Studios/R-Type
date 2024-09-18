@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['r_2dtype_0',['R-Type',['../md_README.html',1,'']]],
-  ['read_1',['read',['../structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90',1,'structcmd.h']]],
-  ['readme_2emd_2',['README.md',['../README_8md.html',1,'']]],
-  ['recv_3',['recv',['../classudp__socket_1_1Server.html#acafc8402f6c4a94dd682aadb48f2b3d7',1,'udp_socket::Server']]],
-  ['relates_2ecpp_4',['relates.cpp',['../relates_8cpp.html',1,'']]],
-  ['restypedef_2ecpp_5',['restypedef.cpp',['../restypedef_8cpp.html',1,'']]],
-  ['run_6',['run',['../classGUI_1_1WindowManager.html#a75957ce5612434883f64417ca6a0c3aa',1,'GUI::WindowManager::run()'],['../classGUI_1_1MessagePopup.html#a63c63f02a54e34a27978d1f6c9e2b5c2',1,'GUI::MessagePopup::run()']]]
+  ['qtstyle_2ecpp_0',['qtstyle.cpp',['../qtstyle_8cpp.html',1,'']]],
+  ['qtstyle_5ftest_1',['QTstyle_Test',['../classQTstyle__Test.html',1,'QTstyle_Test'],['../classQTstyle__Test.html#a14a296ea4e2ad446712f2310bec60766',1,'QTstyle_Test::QTstyle_Test()']]],
+  ['query_2',['Query',['../classudp__socket_1_1Query.html#ae0ce4374dbff4546d70645f2e0e0eb68',1,'udp_socket::Query::Query()'],['../classudp__socket_1_1Query.html',1,'udp_socket::Query']]],
+  ['query_2ecpp_3',['Query.cpp',['../Query_8cpp.html',1,'']]],
+  ['query_2ehpp_4',['Query.hpp',['../Query_8hpp.html',1,'']]]
 ];

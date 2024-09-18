@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['how_20to_20handle_203rd_20party_20dependency_20_3f_0',['How to handle 3rd party dependency ?',['../md_docs_VCPKG.html',1,'']]]
+  ['pag_5fexample_0',['pag_example',['../pag_example.html',1,'']]]
 ];

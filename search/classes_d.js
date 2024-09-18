@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['server_0',['Server',['../classudp__socket_1_1Server.html',1,'udp_socket']]],
-  ['someniceclass_1',['SomeNiceClass',['../classSomeNiceClass.html',1,'']]],
-  ['string_2',['String',['../classString.html',1,'']]]
+  ['qtstyle_5ftest_0',['QTstyle_Test',['../classQTstyle__Test.html',1,'']]],
+  ['query_1',['Query',['../classudp__socket_1_1Query.html',1,'udp_socket']]]
 ];

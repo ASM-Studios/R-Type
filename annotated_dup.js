@@ -7,6 +7,7 @@ var annotated_dup =
       [ "guiActionException", "classGUI_1_1guiActionException.html", "classGUI_1_1guiActionException" ],
       [ "GuiException", "classGUI_1_1GuiException.html", "classGUI_1_1GuiException" ],
       [ "MessagePopup", "classGUI_1_1MessagePopup.html", "classGUI_1_1MessagePopup" ],
+      [ "SpriteManager", "classGUI_1_1SpriteManager.html", "classGUI_1_1SpriteManager" ],
       [ "WindowManager", "classGUI_1_1WindowManager.html", "classGUI_1_1WindowManager" ]
     ] ],
     [ "pyexample", "namespacepyexample.html", [
@@ -27,6 +28,7 @@ var annotated_dup =
     [ "C4", "classC4.html", null ],
     [ "C5", "classC5.html", null ],
     [ "Car", "structCar.html", "structCar" ],
+    [ "Config", "classConfig.html", "classConfig" ],
     [ "CoordStruct", "structCoordStruct.html", "structCoordStruct" ],
     [ "D", "classD.html", "classD" ],
     [ "E", "classE.html", null ],
@@ -35,6 +37,7 @@ var annotated_dup =
     [ "Fn_Test", "classFn__Test.html", "classFn__Test" ],
     [ "Include_Test", "classInclude__Test.html", "classInclude__Test" ],
     [ "Javadoc_Test", "classJavadoc__Test.html", "classJavadoc__Test" ],
+    [ "Logger", "classLogger.html", null ],
     [ "Memgrp_Test", "classMemgrp__Test.html", "classMemgrp__Test" ],
     [ "mux_using_with", "classmux__using__with.html", "classmux__using__with" ],
     [ "Object", "structObject.html", null ],

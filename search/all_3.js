@@ -10,7 +10,10 @@ var searchData=
   ['class_2eh_7',['class.h',['../class_8h.html',1,'']]],
   ['classvar_8',['classVar',['../classpyexample_1_1PyClass.html#abd17aff54e5b0ca194020c796c733546',1,'pyexample::PyClass']]],
   ['close_9',['close',['../structcmd_8h.html#ae152484c890a24e4d9b4980e7b965be0',1,'structcmd.h']]],
-  ['coord_10',['Coord',['../restypedef_8cpp.html#a013489fb99c6a5b012db8ec66544a507',1,'restypedef.cpp']]],
-  ['coordstruct_11',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['cstyle_12',['cstyle',['../javadoc-banner_8h.html#a6ec4bf0132201719721e103451590a9e',1,'javadoc-banner.h']]]
+  ['config_10',['Config',['../classConfig.html',1,'Config'],['../classConfig.html#a5e86c8ae138119f3cbc73776027bff8b',1,'Config::Config()']]],
+  ['config_2ecpp_11',['Config.cpp',['../Config_8cpp.html',1,'']]],
+  ['config_2ehpp_12',['Config.hpp',['../Config_8hpp.html',1,'']]],
+  ['coord_13',['Coord',['../restypedef_8cpp.html#a013489fb99c6a5b012db8ec66544a507',1,'restypedef.cpp']]],
+  ['coordstruct_14',['CoordStruct',['../structCoordStruct.html',1,'']]],
+  ['cstyle_15',['cstyle',['../javadoc-banner_8h.html#a6ec4bf0132201719721e103451590a9e',1,'javadoc-banner.h']]]
 ];

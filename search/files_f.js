@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vcpkg_2emd_0',['VCPKG.md',['../VCPKG_8md.html',1,'']]]
+  ['tag_2ecpp_0',['tag.cpp',['../tag_8cpp.html',1,'']]],
+  ['templ_2ecpp_1',['templ.cpp',['../templ_8cpp.html',1,'']]]
 ];

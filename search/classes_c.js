@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['qtstyle_5ftest_0',['QTstyle_Test',['../classQTstyle__Test.html',1,'']]],
-  ['query_1',['Query',['../classudp__socket_1_1Query.html',1,'udp_socket']]]
+  ['par_5ftest_0',['Par_Test',['../classPar__Test.html',1,'']]],
+  ['pyclass_1',['PyClass',['../classdocstring_1_1PyClass.html',1,'docstring.PyClass'],['../classpyexample_1_1PyClass.html',1,'pyexample.PyClass']]]
 ];

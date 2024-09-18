@@ -16,8 +16,10 @@ var hierarchy =
     [ "C3", "classC3.html", null ],
     [ "C4", "classC4.html", null ],
     [ "C5", "classC5.html", null ],
+    [ "Config", "classConfig.html", null ],
     [ "CoordStruct", "structCoordStruct.html", null ],
     [ "std::enable_shared_from_this", null, [
+      [ "GUI::SpriteManager", "classGUI_1_1SpriteManager.html", null ],
       [ "GUI::WindowManager", "classGUI_1_1WindowManager.html", null ]
     ] ],
     [ "Enum_Test", "classEnum__Test.html", null ],
@@ -31,6 +33,7 @@ var hierarchy =
     [ "Fn_Test", "classFn__Test.html", null ],
     [ "Include_Test", "classInclude__Test.html", null ],
     [ "Javadoc_Test", "classJavadoc__Test.html", null ],
+    [ "Logger", "classLogger.html", null ],
     [ "Memgrp_Test", "classMemgrp__Test.html", null ],
     [ "GUI::MessagePopup", "classGUI_1_1MessagePopup.html", null ],
     [ "Object", "structObject.html", [

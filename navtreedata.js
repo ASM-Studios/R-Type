@@ -25,26 +25,16 @@
 var NAVTREE =
 [
   [ "R-Type", "index.html", [
-    [ "Server", "md_docs_Architecture.html", null ],
-    [ "How to handle 3rd party dependency ?", "md_docs_VCPKG.html", [
-      [ "Download and install VCPKG", "md_docs_VCPKG.html#autotoc_md2", null ],
-      [ "Setup a project with VCPKG", "md_docs_VCPKG.html#autotoc_md3", null ],
-      [ "Add dependencies with VCPKG (example with SFML)", "md_docs_VCPKG.html#autotoc_md4", null ],
-      [ "Build and run the project", "md_docs_VCPKG.html#autotoc_md5", [
-        [ "To create a debug build:", "md_docs_VCPKG.html#autotoc_md6", null ],
-        [ "To create a release build:", "md_docs_VCPKG.html#autotoc_md7", null ]
-      ] ]
-    ] ],
     [ "pag_example", "pag_example.html", null ],
     [ "R-Type", "md_README.html", [
-      [ "Requirements", "md_README.html#autotoc_md9", null ],
-      [ "Installation", "md_README.html#autotoc_md10", null ],
-      [ "Build", "md_README.html#autotoc_md11", [
-        [ "Debug", "md_README.html#autotoc_md12", null ],
-        [ "Release", "md_README.html#autotoc_md13", null ]
+      [ "Requirements", "md_README.html#autotoc_md1", null ],
+      [ "Installation", "md_README.html#autotoc_md2", null ],
+      [ "Build", "md_README.html#autotoc_md3", [
+        [ "Debug", "md_README.html#autotoc_md4", null ],
+        [ "Release", "md_README.html#autotoc_md5", null ]
       ] ],
-      [ "Documentation", "md_README.html#autotoc_md14", null ],
-      [ "Authors", "md_README.html#autotoc_md15", null ]
+      [ "Documentation", "md_README.html#autotoc_md6", null ],
+      [ "Authors", "md_README.html#autotoc_md7", null ]
     ] ],
     [ "Bug List", "bug.html", null ],
     [ "Modules", "modules.html", "modules" ],
@@ -87,8 +77,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"GuiException_8hpp.html",
-"functions_enum.html"
+"Config_8cpp.html",
+"diagrams__e_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
