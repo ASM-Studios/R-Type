@@ -1,9 +1,9 @@
 #include "socket/Server.hpp"
 #include <boost/array.hpp>
 
-namespace udp_socket {
+namespace network::socket::udp {
     Server::Server(int port) :
-        _endpoint(udp::endpoint(udp::endpoint(udp::v4(), port))),
+        _endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port))),
         _socket(this->_ioService, this->_endpoint) {}
 
     bool Server::availableRequest() {
