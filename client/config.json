@@ -1,6 +1,5 @@
 {
-  "sprites_path": "client/assets/sprites/",
-  "sprites_config_path": "client/assets/sprites_config.cfg",
+  "sprites_path": "client/assets/textures/",
   "fullscreen": false,
   "logLevel": "ERROR"
 }
