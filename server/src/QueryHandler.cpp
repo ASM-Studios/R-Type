@@ -1,13 +1,7 @@
 #include "QueryHandler.hpp"
 #include "Logging.hpp"
 #include <algorithm>
-#include <chrono>
-#include <future>
-#include <iostream>
 #include <mutex>
-#include <thread>
-
-using namespace std::chrono_literals;
 
 namespace network {
     QueryHandler::~QueryHandler() {
@@ -46,12 +40,14 @@ namespace network {
     }
 
     void QueryHandler::checkWorkers() {
-        for (auto &worker : this->_workers) {
+        for (auto it = this->_workers.begin(); it != this->_workers.end();) {
+            auto worker = *it;
             if (worker->isReady()) {
                 Logging::info("End of worker");
                 worker->join();
-                auto it = std::find(this->_workers.begin(), this->_workers.end(), worker);
-                this->_workers.erase(it);
+                it = this->_workers.erase(it);
+            } else {
+                it++;
             }
         }
     }
