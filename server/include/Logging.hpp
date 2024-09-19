@@ -1,9 +1,12 @@
 #pragma once
 
+#include <mutex>
 #include <string>
 
 class Logging {
 private:
+    static std::mutex _mutex;
+
     static std::string _getTimestamp();
 
 public:
