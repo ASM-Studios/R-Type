@@ -4,13 +4,26 @@
 #include <string>
 
 class Logging {
+public:
+    enum Level {
+        ERROR,
+        WARN,
+        INFO,
+        DEBUG,
+        ALL
+    };
+
 private:
+    static Level _logLevel;
     static std::mutex _mutex;
 
     static std::string _getTimestamp();
 
 public:
-    static void info(std::string message);
-    static void warn(std::string message);
-    static void error(std::string message);
+    static void debug(const std::string& message);
+    static void info(const std::string& message);
+    static void warn(const std::string& message);
+    static void error(const std::string& message);
+
+    static void setLogLevel(const Logging::Level& level);
 };

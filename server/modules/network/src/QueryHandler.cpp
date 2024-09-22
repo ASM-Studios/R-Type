@@ -1,6 +1,5 @@
 #include "QueryHandler.hpp"
 #include "Logging.hpp"
-#include <algorithm>
 #include <mutex>
 
 namespace network {
@@ -8,7 +7,7 @@ namespace network {
         if (this->_workers.size() > 0) {
             Logging::info(std::string("Waiting for ") + std::to_string(this->_workers.size()) + " worker(s)");
         }
-        for (auto &worker : this->_workers) {
+        for (auto& worker : this->_workers) {
             worker->join();
         }
     }
@@ -21,7 +20,7 @@ namespace network {
         return _instance;
     }
 
-    void QueryHandler::addQuery(Query &query) {
+    void QueryHandler::addQuery(Query& query) {
         this->_pendingQueries.push(query);
     }
 

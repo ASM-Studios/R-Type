@@ -2,11 +2,9 @@
 
 #include "Query.hpp"
 #include "Worker.hpp"
-#include <future>
 #include <memory>
 #include <mutex>
 #include <queue>
-#include <thread>
 
 namespace network {
     class QueryHandler {
@@ -20,14 +18,14 @@ namespace network {
         QueryHandler() = default;
 
     public:
-        QueryHandler(const QueryHandler &other) = delete;
+        QueryHandler(const QueryHandler& other) = delete;
         ~QueryHandler();
 
-        QueryHandler &operator=(const QueryHandler &other) = delete;
+        QueryHandler& operator=(const QueryHandler& other) = delete;
 
         static std::shared_ptr<QueryHandler> getInstance();
 
-        void addQuery(Query &query);
+        void addQuery(Query& query);
         void executeQuery(Query query);
         void executeQueries();
         void checkWorkers();
