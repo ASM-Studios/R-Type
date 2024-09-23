@@ -4,5 +4,6 @@
   "fullscreen": false,
   "width": 1920,
   "height": 1080,
-  "logLevel": "ERROR"
+  "logLevel": "ERROR",
+  "frameRateLimit": 60
 }

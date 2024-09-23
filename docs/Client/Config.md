@@ -15,6 +15,8 @@ Fields aren't enforced, but the following fields are used by the client:
   - By default: Screen height.
 - "logLevel":
   - `NONE` | `INFO` | `WARNING` | `ERROR`
+- "frameRateLimit": The frame rate limit.
+  - By default: 60
 
 ## JSON Example
 
@@ -25,7 +27,8 @@ Fields aren't enforced, but the following fields are used by the client:
   "fullscreen": false,
   "width": 1920,
   "height": 1080,
-  "logLevel": "ERROR"
+  "logLevel": "ERROR",
+  "frameRateLimit": 60
 }
 ```
 

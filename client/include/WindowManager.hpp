@@ -16,11 +16,10 @@ constexpr auto FONT_FILENAME = "client/assets/fonts/arial.ttf";
 constexpr std::size_t POPUP_WIDTH = 200;
 constexpr std::size_t POPUP_HEIGHT = 100;
 
-constexpr std::size_t WINDOW_WIDTH = 800;
-constexpr std::size_t WINDOW_HEIGHT = 600;
-
 constexpr std::size_t FONT_SIZE = 24;
 constexpr std::size_t TEXT_POS = 10;
+
+constexpr auto MAIN_MENU_BACKGROUND = "backgrounds/main_menu";
 
 namespace GUI {
     class WindowManager : public std::enable_shared_from_this<WindowManager> {
@@ -28,12 +27,21 @@ namespace GUI {
             std::unique_ptr<sf::RenderWindow> _window;
             SpriteManager _spriteManager;
             sf::Font _font;
+            std::string _currentBackground = MAIN_MENU_BACKGROUND;
+            std::map<std::string, std::shared_ptr<sf::Text>> _texts;
+
+            void _addText(const std::string& id, const std::string& text, const sf::Vector2f& position);
+            std::shared_ptr<sf::Text> _getText(const std::string& id) const;
+            void _deleteText(const std::string& id);
+
+            void _displayBackground() const;
+            void _fpsCounter();
 
         public:
             WindowManager();
             ~WindowManager();
 
-            void run() const;
+            void run();
     };
 
     class MessagePopup {
