@@ -1,13 +1,19 @@
 #include "WindowManager.hpp"
 
 GUI::WindowManager::WindowManager() {
-    Config& config = Config::getInstance("client/config.json");
+    Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
+    const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
+    const std::size_t height = std::stoul(config.get("height").value_or(std::to_string(desktop.height)));
     _window = std::make_unique<sf::RenderWindow>(
-        sf::VideoMode(desktop.width, desktop.height),
+        sf::VideoMode(width, height),
         "R-Type",
-        config.get("fullscreen").value_or("false") == "true" ? sf::Style::Fullscreen : sf::Style::Default
-    );
+        config.get("fullscreen").value_or("false") == "true"
+            ? sf::Style::Fullscreen
+            : (sf::Style::Titlebar | sf::Style::Close)
+        );
+    _spriteManager.updateWindowSize(width, height);
+    _spriteManager.init();
 }
 
 GUI::WindowManager::~WindowManager() = default;
@@ -22,6 +28,8 @@ void GUI::WindowManager::run() const {
         }
 
         _window->clear();
+
+        if (const auto background = _spriteManager.getSprite("backgrounds/main_menu", 0)) { _window->draw(*background); }
 
         float x = 50;
         float y = 50;

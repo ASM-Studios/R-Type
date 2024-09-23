@@ -16,6 +16,9 @@ namespace GUI {
 
     class SpriteManager : public std::enable_shared_from_this<SpriteManager> {
         private:
+            std::size_t _width;
+            std::size_t _height;
+
             std::unordered_map<std::string, std::shared_ptr<sf::Texture>> _textures;
             std::unordered_map<std::string, std::map<std::size_t, std::shared_ptr<sf::Sprite> >> _sprites;
 
@@ -25,8 +28,14 @@ namespace GUI {
             std::string _spritesConfigPath;
 
         public:
-            SpriteManager();
+            SpriteManager() = default;
             ~SpriteManager();
+            void init();
+
+            void updateWindowSize(const std::size_t width, const std::size_t height) {
+                _width = width;
+                _height = height;
+            }
 
             std::shared_ptr<sf::Texture> getTexture(const std::string& name) const {
                 if (const auto it = _textures.find(name); it != _textures.end()) {

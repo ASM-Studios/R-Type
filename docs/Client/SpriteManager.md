@@ -46,9 +46,33 @@ folder_name: {
     row = 1
     col = 1
     scale = 1.0
+    autoscale = true
+    center = false
   };
 }
 ```
+
+### Autoscale
+
+`autoscale` is a boolean field that scales the sprite to the size of the window.<br>
+This field isn't mandatory.<br>
+
+**Warning:**
+- If `autoscale` is set to `true`, the `scale` field will be ignored.
+- By default, the `autoscale` field is set to `false`.
+
+### Center
+
+`center` is a boolean field that enable the centering of the sprite in it's middle.<br>
+This field isn't mandatory.<br>
+
+**Warning:**
+- If the `center` field is set to false, the sprite will be placed in the top-left corner of the window.
+- By default, the `center` field is set to `true`.
+
+### Backgrounds
+
+For background sprites, it is recommended to set `autoscale` to `true` and `center` to `false`.
 
 ### Configuration File
 
