@@ -3,34 +3,34 @@ var annotated_dup =
     [ "docstring", "namespacedocstring.html", [
       [ "PyClass", "classdocstring_1_1PyClass.html", "classdocstring_1_1PyClass" ]
     ] ],
-    [ "GUI", "namespaceGUI.html", [
-      [ "guiActionException", "classGUI_1_1guiActionException.html", "classGUI_1_1guiActionException" ],
-      [ "GuiException", "classGUI_1_1GuiException.html", "classGUI_1_1GuiException" ],
-      [ "MessagePopup", "classGUI_1_1MessagePopup.html", "classGUI_1_1MessagePopup" ],
-      [ "SpriteManager", "classGUI_1_1SpriteManager.html", "classGUI_1_1SpriteManager" ],
-      [ "WindowManager", "classGUI_1_1WindowManager.html", "classGUI_1_1WindowManager" ]
+    [ "GUI", null, [
+      [ "guiActionException", "classGUI_1_1guiActionException.html", null ],
+      [ "GuiException", "classGUI_1_1GuiException.html", null ],
+      [ "MessagePopup", "classGUI_1_1MessagePopup.html", null ],
+      [ "SpriteManager", "classGUI_1_1SpriteManager.html", null ],
+      [ "WindowManager", "classGUI_1_1WindowManager.html", null ]
     ] ],
     [ "pyexample", "namespacepyexample.html", [
       [ "PyClass", "classpyexample_1_1PyClass.html", "classpyexample_1_1PyClass" ]
     ] ],
-    [ "udp_socket", "namespaceudp__socket.html", [
-      [ "Query", "classudp__socket_1_1Query.html", "classudp__socket_1_1Query" ],
-      [ "Server", "classudp__socket_1_1Server.html", "classudp__socket_1_1Server" ]
+    [ "udp_socket", null, [
+      [ "Query", "classudp__socket_1_1Query.html", null ],
+      [ "Server", "classudp__socket_1_1Server.html", null ]
     ] ],
-    [ "A", "classA.html", "classA" ],
+    [ "A", "classA.html", null ],
     [ "Afterdoc_Test", "classAfterdoc__Test.html", "classAfterdoc__Test" ],
     [ "Autolink_Test", "classAutolink__Test.html", "classAutolink__Test" ],
-    [ "B", "classB.html", "classB" ],
-    [ "C", "classC.html", "classC" ],
+    [ "B", "classB.html", null ],
+    [ "C", "classC.html", null ],
     [ "C1", "classC1.html", null ],
     [ "C2", "classC2.html", null ],
     [ "C3", "classC3.html", null ],
     [ "C4", "classC4.html", null ],
     [ "C5", "classC5.html", null ],
     [ "Car", "structCar.html", "structCar" ],
-    [ "Config", "classConfig.html", "classConfig" ],
+    [ "Config", "classConfig.html", null ],
     [ "CoordStruct", "structCoordStruct.html", "structCoordStruct" ],
-    [ "D", "classD.html", "classD" ],
+    [ "D", "classD.html", null ],
     [ "E", "classE.html", null ],
     [ "Enum_Test", "classEnum__Test.html", "classEnum__Test" ],
     [ "Example_Test", "classExample__Test.html", "classExample__Test" ],

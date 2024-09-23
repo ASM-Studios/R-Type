@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
   <div class="headertitle"><div class="title">Logger.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="Logger_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="Config_8hpp.html">Config.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Config.hpp&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9">    8</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9">LogLevel</a> {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_enumvalue" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9ab50339a10e1de285ac99d4c3990b8693">NONE</a> = -1,</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_enumvalue" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9a551b723eafd6a31d444fcb2f5920fbd3">INFO</a> = 0,</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_enumvalue" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9a059e9861e0400dfbe05c98a841f3f96b">WARNING</a> = 1,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_enumvalue" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a> = 2</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">enum class</span> LogLevel {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    NONE = -1,</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    INFO = 0,</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    WARNING = 1,</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    ERROR = 2</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>};</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classLogger.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classLogger.html">Logger</a> {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">static</span> <a class="code hl_enumeration" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9">LogLevel</a> getLevel(<span class="keyword">const</span> std::string&amp; level) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keyword">static</span> LogLevel getLevel(<span class="keyword">const</span> std::string&amp; level) {</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="keywordflow">if</span> (level == <span class="stringliteral">&quot;INFO&quot;</span>) {</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                <span class="keywordflow">return</span> LogLevel::INFO;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (level == <span class="stringliteral">&quot;WARNING&quot;</span>) {</div>
@@ -120,9 +120,9 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        }</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classLogger.html#aa1d47d3f25b157451cf8d1925a1c300f">   29</a></span>        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLogger.html#aa1d47d3f25b157451cf8d1925a1c300f">log</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9">LogLevel</a> logLevel, <span class="keyword">const</span> std::string&amp; message) {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <a class="code hl_class" href="classConfig.html">Config</a>&amp; config = <a class="code hl_function" href="classConfig.html#a30ba80b9814c1b3203d9a0a6827b3fef">Config::getInstance</a>(<span class="stringliteral">&quot;client/config.json&quot;</span>);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            std::string configLogLevel = config.<a class="code hl_function" href="classConfig.html#a0ec197927cb51eb7e79771e3cafe4e8c">get</a>(<span class="stringliteral">&quot;logLevel&quot;</span>).value_or(<span class="stringliteral">&quot;NONE&quot;</span>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">static</span> <span class="keywordtype">void</span> log(<span class="keyword">const</span> LogLevel logLevel, <span class="keyword">const</span> std::string&amp; message) {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <a class="code hl_class" href="classConfig.html">Config</a>&amp; config = Config::getInstance(<span class="stringliteral">&quot;client/config.json&quot;</span>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            std::string configLogLevel = config.get(<span class="stringliteral">&quot;logLevel&quot;</span>).value_or(<span class="stringliteral">&quot;NONE&quot;</span>);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordflow">if</span> (logLevel &lt;= getLevel(configLogLevel)) {</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                <span class="keywordflow">switch</span> (logLevel) {</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                <span class="keywordflow">case</span> LogLevel::INFO:</div>
@@ -140,23 +140,14 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            }</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        }</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
-<div class="ttc" id="aConfig_8hpp_html"><div class="ttname"><a href="Config_8hpp.html">Config.hpp</a></div></div>
-<div class="ttc" id="aLogger_8hpp_html_aca1fd1d8935433e6ba2e3918214e07f9"><div class="ttname"><a href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9">LogLevel</a></div><div class="ttdeci">LogLevel</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8hpp_source.html#l00008">Logger.hpp:8</a></div></div>
-<div class="ttc" id="aLogger_8hpp_html_aca1fd1d8935433e6ba2e3918214e07f9a059e9861e0400dfbe05c98a841f3f96b"><div class="ttname"><a href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9a059e9861e0400dfbe05c98a841f3f96b">LogLevel::WARNING</a></div><div class="ttdeci">@ WARNING</div></div>
-<div class="ttc" id="aLogger_8hpp_html_aca1fd1d8935433e6ba2e3918214e07f9a551b723eafd6a31d444fcb2f5920fbd3"><div class="ttname"><a href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9a551b723eafd6a31d444fcb2f5920fbd3">LogLevel::INFO</a></div><div class="ttdeci">@ INFO</div></div>
-<div class="ttc" id="aLogger_8hpp_html_aca1fd1d8935433e6ba2e3918214e07f9ab50339a10e1de285ac99d4c3990b8693"><div class="ttname"><a href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9ab50339a10e1de285ac99d4c3990b8693">LogLevel::NONE</a></div><div class="ttdeci">@ NONE</div></div>
-<div class="ttc" id="aLogger_8hpp_html_aca1fd1d8935433e6ba2e3918214e07f9abb1ca97ec761fc37101737ba0aa2e7c5"><div class="ttname"><a href="Logger_8hpp.html#aca1fd1d8935433e6ba2e3918214e07f9abb1ca97ec761fc37101737ba0aa2e7c5">LogLevel::ERROR</a></div><div class="ttdeci">@ ERROR</div></div>
 <div class="ttc" id="aclassConfig_html"><div class="ttname"><a href="classConfig.html">Config</a></div><div class="ttdef"><b>Definition:</b> <a href="Config_8hpp_source.html#l00015">Config.hpp:15</a></div></div>
-<div class="ttc" id="aclassConfig_html_a0ec197927cb51eb7e79771e3cafe4e8c"><div class="ttname"><a href="classConfig.html#a0ec197927cb51eb7e79771e3cafe4e8c">Config::get</a></div><div class="ttdeci">std::optional&lt; std::string &gt; get(const std::string &amp;field) const</div><div class="ttdef"><b>Definition:</b> <a href="Config_8cpp_source.html#l00025">Config.cpp:25</a></div></div>
-<div class="ttc" id="aclassConfig_html_a30ba80b9814c1b3203d9a0a6827b3fef"><div class="ttname"><a href="classConfig.html#a30ba80b9814c1b3203d9a0a6827b3fef">Config::getInstance</a></div><div class="ttdeci">static Config &amp; getInstance(const std::string &amp;filePath)</div><div class="ttdef"><b>Definition:</b> <a href="Config_8cpp_source.html#l00017">Config.cpp:17</a></div></div>
 <div class="ttc" id="aclassLogger_html"><div class="ttname"><a href="classLogger.html">Logger</a></div><div class="ttdef"><b>Definition:</b> <a href="Logger_8hpp_source.html#l00015">Logger.hpp:15</a></div></div>
-<div class="ttc" id="aclassLogger_html_aa1d47d3f25b157451cf8d1925a1c300f"><div class="ttname"><a href="classLogger.html#aa1d47d3f25b157451cf8d1925a1c300f">Logger::log</a></div><div class="ttdeci">static void log(const LogLevel logLevel, const std::string &amp;message)</div><div class="ttdef"><b>Definition:</b> <a href="Logger_8hpp_source.html#l00029">Logger.hpp:29</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li><li class="navelem"><a class="el" href="dir_5c23080e296bbe846f4ed2d01d7b595d.html">include</a></li><li class="navelem"><a class="el" href="Logger_8hpp.html">Logger.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li><li class="navelem"><a class="el" href="dir_5c23080e296bbe846f4ed2d01d7b595d.html">include</a></li><li class="navelem"><b>Logger.hpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

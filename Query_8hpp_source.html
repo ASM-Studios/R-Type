@@ -92,13 +92,13 @@ $(document).ready(function(){initNavTree('Query_8hpp_source.html',''); initResiz
   <div class="headertitle"><div class="title">Query.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="Query_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="Query_8hpp.html#a0570268b81812886c715938d3b4e1e51">    5</a></span><span class="keyword">using </span><a class="code hl_typedef" href="Query_8hpp.html#a0570268b81812886c715938d3b4e1e51">udp</a> = boost::asio::ip::udp;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>udp = boost::asio::ip::udp;</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespaceudp__socket.html">    7</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceudp__socket.html">udp_socket</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span>udp_socket {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classudp__socket_1_1Query.html">    8</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classudp__socket_1_1Query.html">Query</a> {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        std::string _hostname;</div>
@@ -111,19 +111,16 @@ $(document).ready(function(){initNavTree('Query_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="classudp__socket_1_1Query.html">Query</a>(std::string hostname, <span class="keywordtype">int</span> port, std::string message);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classudp__socket_1_1Query.html#a7ce2f9657e2d84bbfec1812f2e07ea51">   20</a></span>        <a class="code hl_function" href="classudp__socket_1_1Query.html#a7ce2f9657e2d84bbfec1812f2e07ea51">~Query</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <a class="code hl_class" href="classudp__socket_1_1Query.html">~Query</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    };</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
-<div class="ttc" id="aQuery_8hpp_html_a0570268b81812886c715938d3b4e1e51"><div class="ttname"><a href="Query_8hpp.html#a0570268b81812886c715938d3b4e1e51">udp</a></div><div class="ttdeci">boost::asio::ip::udp udp</div><div class="ttdef"><b>Definition:</b> <a href="Query_8hpp_source.html#l00005">Query.hpp:5</a></div></div>
 <div class="ttc" id="aclassudp__socket_1_1Query_html"><div class="ttname"><a href="classudp__socket_1_1Query.html">udp_socket::Query</a></div><div class="ttdef"><b>Definition:</b> <a href="Query_8hpp_source.html#l00008">Query.hpp:8</a></div></div>
-<div class="ttc" id="aclassudp__socket_1_1Query_html_a7ce2f9657e2d84bbfec1812f2e07ea51"><div class="ttname"><a href="classudp__socket_1_1Query.html#a7ce2f9657e2d84bbfec1812f2e07ea51">udp_socket::Query::~Query</a></div><div class="ttdeci">~Query()=default</div></div>
-<div class="ttc" id="anamespaceudp__socket_html"><div class="ttname"><a href="namespaceudp__socket.html">udp_socket</a></div><div class="ttdef"><b>Definition:</b> <a href="Query_8hpp_source.html#l00007">Query.hpp:7</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_41e1742e44e2de38b3bc91f993fed282.html">server</a></li><li class="navelem"><a class="el" href="dir_2b32f7736d6a65027d17676f6279053c.html">include</a></li><li class="navelem"><a class="el" href="dir_c0fa6923c92243b5e295883684a61e86.html">socket</a></li><li class="navelem"><a class="el" href="Query_8hpp.html">Query.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_41e1742e44e2de38b3bc91f993fed282.html">server</a></li><li class="navelem"><a class="el" href="dir_2b32f7736d6a65027d17676f6279053c.html">include</a></li><li class="navelem"><a class="el" href="dir_c0fa6923c92243b5e295883684a61e86.html">socket</a></li><li class="navelem"><b>Query.hpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('WindowManager_8hpp_source.html',''); i
   <div class="headertitle"><div class="title">WindowManager.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="WindowManager_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
@@ -101,22 +101,22 @@ $(document).ready(function(){initNavTree('WindowManager_8hpp_source.html',''); i
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;SFML/Window.hpp&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="GuiException_8hpp.html">GuiException.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="SpriteManager_8hpp.html">SpriteManager.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">Logger.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;GuiException.hpp&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;SpriteManager.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;Logger.hpp&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="WindowManager_8hpp.html#ae7445d7fbe340bf4da6960404590bc23">   14</a></span><span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_variable" href="WindowManager_8hpp.html#ae7445d7fbe340bf4da6960404590bc23">FONT_FILENAME</a> = <span class="stringliteral">&quot;client/assets/fonts/arial.ttf&quot;</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">constexpr</span> <span class="keyword">auto</span> FONT_FILENAME = <span class="stringliteral">&quot;client/assets/fonts/arial.ttf&quot;</span>;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="WindowManager_8hpp.html#a50b265ebf998eab457e2fb237b357ed7">   16</a></span><span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="WindowManager_8hpp.html#a50b265ebf998eab457e2fb237b357ed7">POPUP_WIDTH</a> = 200;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="WindowManager_8hpp.html#a4394f2bd28e0725062d74b6fc6b43f18">   17</a></span><span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="WindowManager_8hpp.html#a4394f2bd28e0725062d74b6fc6b43f18">POPUP_HEIGHT</a> = 100;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">constexpr</span> std::size_t POPUP_WIDTH = 200;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">constexpr</span> std::size_t POPUP_HEIGHT = 100;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="WindowManager_8hpp.html#afd6336ff4705738897310d597b4450d9">   19</a></span><span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="WindowManager_8hpp.html#afd6336ff4705738897310d597b4450d9">WINDOW_WIDTH</a> = 800;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="WindowManager_8hpp.html#a163a8dcc68b30cde795df94b303ef11d">   20</a></span><span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="WindowManager_8hpp.html#a163a8dcc68b30cde795df94b303ef11d">WINDOW_HEIGHT</a> = 600;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">constexpr</span> std::size_t WINDOW_WIDTH = 800;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">constexpr</span> std::size_t WINDOW_HEIGHT = 600;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="WindowManager_8hpp.html#aaa0a2ec59de50ba1e732285a38895dda">   22</a></span><span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="WindowManager_8hpp.html#aaa0a2ec59de50ba1e732285a38895dda">FONT_SIZE</a> = 24;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="WindowManager_8hpp.html#a0b16cc51789b5bfd553abb50e41bb8f7">   23</a></span><span class="keyword">constexpr</span> std::size_t <a class="code hl_variable" href="WindowManager_8hpp.html#a0b16cc51789b5bfd553abb50e41bb8f7">TEXT_POS</a> = 10;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">constexpr</span> std::size_t FONT_SIZE = 24;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">constexpr</span> std::size_t TEXT_POS = 10;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGUI.html">GUI</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span>GUI {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classGUI_1_1WindowManager.html">   26</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classGUI_1_1WindowManager.html">WindowManager</a> : <span class="keyword">public</span> std::enable_shared_from_this&lt;WindowManager&gt; {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            std::unique_ptr&lt;sf::RenderWindow&gt; _window;</div>
@@ -124,10 +124,10 @@ $(document).ready(function(){initNavTree('WindowManager_8hpp_source.html',''); i
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            sf::Font _font;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_function" href="classGUI_1_1WindowManager.html#a820ad725d2a2264f93e56b6a5460a726">WindowManager</a>();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classGUI_1_1WindowManager.html#a49d1dd1b4f708757262f676464326453">   34</a></span>            <a class="code hl_function" href="classGUI_1_1WindowManager.html#a49d1dd1b4f708757262f676464326453">~WindowManager</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_class" href="classGUI_1_1WindowManager.html">WindowManager</a>();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <a class="code hl_class" href="classGUI_1_1WindowManager.html">~WindowManager</a>();</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="keywordtype">void</span> <a class="code hl_function" href="classGUI_1_1WindowManager.html#a75957ce5612434883f64417ca6a0c3aa">run</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="keywordtype">void</span> run() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    };</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classGUI_1_1MessagePopup.html">   39</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classGUI_1_1MessagePopup.html">MessagePopup</a> {</div>
@@ -136,23 +136,23 @@ $(document).ready(function(){initNavTree('WindowManager_8hpp_source.html',''); i
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            std::thread _thread;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classGUI_1_1MessagePopup.html#ae5a9b38dfc9b5afe43f5320dde2317f9">   45</a></span>            <span class="keyword">explicit</span> <a class="code hl_function" href="classGUI_1_1MessagePopup.html#ae5a9b38dfc9b5afe43f5320dde2317f9">MessagePopup</a>(std::string message) : _message(std::move(message)) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                _thread = std::thread(&amp;<a class="code hl_function" href="classGUI_1_1MessagePopup.html#a63c63f02a54e34a27978d1f6c9e2b5c2">MessagePopup::run</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keyword">explicit</span> <a class="code hl_class" href="classGUI_1_1MessagePopup.html">MessagePopup</a>(std::string message) : _message(std::move(message)) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>                _thread = std::thread(&amp;MessagePopup::run, <span class="keyword">this</span>);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                _thread.detach();</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            }</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classGUI_1_1MessagePopup.html#a63c63f02a54e34a27978d1f6c9e2b5c2">   50</a></span>            <span class="keywordtype">void</span> <a class="code hl_function" href="classGUI_1_1MessagePopup.html#a63c63f02a54e34a27978d1f6c9e2b5c2">run</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                sf::RenderWindow window(sf::VideoMode(<a class="code hl_variable" href="WindowManager_8hpp.html#a50b265ebf998eab457e2fb237b357ed7">POPUP_WIDTH</a>, <a class="code hl_variable" href="WindowManager_8hpp.html#a4394f2bd28e0725062d74b6fc6b43f18">POPUP_HEIGHT</a>), <span class="stringliteral">&quot;Message&quot;</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            <span class="keywordtype">void</span> run()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                sf::RenderWindow window(sf::VideoMode(POPUP_WIDTH, POPUP_HEIGHT), <span class="stringliteral">&quot;Message&quot;</span>);</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                sf::Font font;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                <span class="keywordflow">if</span> (!font.loadFromFile(<a class="code hl_variable" href="WindowManager_8hpp.html#ae7445d7fbe340bf4da6960404590bc23">FONT_FILENAME</a>)) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                <span class="keywordflow">if</span> (!font.loadFromFile(FONT_FILENAME)) {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                    <span class="keywordflow">throw</span> <a class="code hl_class" href="classGUI_1_1GuiException.html">GuiException</a>(<span class="stringliteral">&quot;Cannot load font&quot;</span>);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                sf::Text text;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                text.setFont(font);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                text.setString(_message);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                text.setCharacterSize(<a class="code hl_variable" href="WindowManager_8hpp.html#aaa0a2ec59de50ba1e732285a38895dda">FONT_SIZE</a>);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                text.setPosition(<a class="code hl_variable" href="WindowManager_8hpp.html#a0b16cc51789b5bfd553abb50e41bb8f7">TEXT_POS</a>, <a class="code hl_variable" href="WindowManager_8hpp.html#a0b16cc51789b5bfd553abb50e41bb8f7">TEXT_POS</a>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                text.setCharacterSize(FONT_SIZE);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                text.setPosition(TEXT_POS, TEXT_POS);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                text.setFillColor(sf::Color::White);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                <span class="keywordflow">while</span> (window.isOpen()) {</div>
@@ -175,32 +175,16 @@ $(document).ready(function(){initNavTree('WindowManager_8hpp_source.html',''); i
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            }</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    };</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
-<div class="ttc" id="aGuiException_8hpp_html"><div class="ttname"><a href="GuiException_8hpp.html">GuiException.hpp</a></div></div>
-<div class="ttc" id="aLogger_8hpp_html"><div class="ttname"><a href="Logger_8hpp.html">Logger.hpp</a></div></div>
-<div class="ttc" id="aSpriteManager_8hpp_html"><div class="ttname"><a href="SpriteManager_8hpp.html">SpriteManager.hpp</a></div></div>
-<div class="ttc" id="aWindowManager_8hpp_html_a0b16cc51789b5bfd553abb50e41bb8f7"><div class="ttname"><a href="WindowManager_8hpp.html#a0b16cc51789b5bfd553abb50e41bb8f7">TEXT_POS</a></div><div class="ttdeci">constexpr std::size_t TEXT_POS</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00023">WindowManager.hpp:23</a></div></div>
-<div class="ttc" id="aWindowManager_8hpp_html_a163a8dcc68b30cde795df94b303ef11d"><div class="ttname"><a href="WindowManager_8hpp.html#a163a8dcc68b30cde795df94b303ef11d">WINDOW_HEIGHT</a></div><div class="ttdeci">constexpr std::size_t WINDOW_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00020">WindowManager.hpp:20</a></div></div>
-<div class="ttc" id="aWindowManager_8hpp_html_a4394f2bd28e0725062d74b6fc6b43f18"><div class="ttname"><a href="WindowManager_8hpp.html#a4394f2bd28e0725062d74b6fc6b43f18">POPUP_HEIGHT</a></div><div class="ttdeci">constexpr std::size_t POPUP_HEIGHT</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00017">WindowManager.hpp:17</a></div></div>
-<div class="ttc" id="aWindowManager_8hpp_html_a50b265ebf998eab457e2fb237b357ed7"><div class="ttname"><a href="WindowManager_8hpp.html#a50b265ebf998eab457e2fb237b357ed7">POPUP_WIDTH</a></div><div class="ttdeci">constexpr std::size_t POPUP_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00016">WindowManager.hpp:16</a></div></div>
-<div class="ttc" id="aWindowManager_8hpp_html_aaa0a2ec59de50ba1e732285a38895dda"><div class="ttname"><a href="WindowManager_8hpp.html#aaa0a2ec59de50ba1e732285a38895dda">FONT_SIZE</a></div><div class="ttdeci">constexpr std::size_t FONT_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00022">WindowManager.hpp:22</a></div></div>
-<div class="ttc" id="aWindowManager_8hpp_html_ae7445d7fbe340bf4da6960404590bc23"><div class="ttname"><a href="WindowManager_8hpp.html#ae7445d7fbe340bf4da6960404590bc23">FONT_FILENAME</a></div><div class="ttdeci">constexpr auto FONT_FILENAME</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00014">WindowManager.hpp:14</a></div></div>
-<div class="ttc" id="aWindowManager_8hpp_html_afd6336ff4705738897310d597b4450d9"><div class="ttname"><a href="WindowManager_8hpp.html#afd6336ff4705738897310d597b4450d9">WINDOW_WIDTH</a></div><div class="ttdeci">constexpr std::size_t WINDOW_WIDTH</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00019">WindowManager.hpp:19</a></div></div>
 <div class="ttc" id="aclassGUI_1_1GuiException_html"><div class="ttname"><a href="classGUI_1_1GuiException.html">GUI::GuiException</a></div><div class="ttdef"><b>Definition:</b> <a href="GuiException_8hpp_source.html#l00007">GuiException.hpp:7</a></div></div>
 <div class="ttc" id="aclassGUI_1_1MessagePopup_html"><div class="ttname"><a href="classGUI_1_1MessagePopup.html">GUI::MessagePopup</a></div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00039">WindowManager.hpp:39</a></div></div>
-<div class="ttc" id="aclassGUI_1_1MessagePopup_html_a63c63f02a54e34a27978d1f6c9e2b5c2"><div class="ttname"><a href="classGUI_1_1MessagePopup.html#a63c63f02a54e34a27978d1f6c9e2b5c2">GUI::MessagePopup::run</a></div><div class="ttdeci">void run() const</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00050">WindowManager.hpp:50</a></div></div>
-<div class="ttc" id="aclassGUI_1_1MessagePopup_html_ae5a9b38dfc9b5afe43f5320dde2317f9"><div class="ttname"><a href="classGUI_1_1MessagePopup.html#ae5a9b38dfc9b5afe43f5320dde2317f9">GUI::MessagePopup::MessagePopup</a></div><div class="ttdeci">MessagePopup(std::string message)</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00045">WindowManager.hpp:45</a></div></div>
 <div class="ttc" id="aclassGUI_1_1SpriteManager_html"><div class="ttname"><a href="classGUI_1_1SpriteManager.html">GUI::SpriteManager</a></div><div class="ttdef"><b>Definition:</b> <a href="SpriteManager_8hpp_source.html#l00017">SpriteManager.hpp:17</a></div></div>
 <div class="ttc" id="aclassGUI_1_1WindowManager_html"><div class="ttname"><a href="classGUI_1_1WindowManager.html">GUI::WindowManager</a></div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00026">WindowManager.hpp:26</a></div></div>
-<div class="ttc" id="aclassGUI_1_1WindowManager_html_a49d1dd1b4f708757262f676464326453"><div class="ttname"><a href="classGUI_1_1WindowManager.html#a49d1dd1b4f708757262f676464326453">GUI::WindowManager::~WindowManager</a></div><div class="ttdeci">~WindowManager()</div></div>
-<div class="ttc" id="aclassGUI_1_1WindowManager_html_a75957ce5612434883f64417ca6a0c3aa"><div class="ttname"><a href="classGUI_1_1WindowManager.html#a75957ce5612434883f64417ca6a0c3aa">GUI::WindowManager::run</a></div><div class="ttdeci">void run() const</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8cpp_source.html#l00015">WindowManager.cpp:15</a></div></div>
-<div class="ttc" id="aclassGUI_1_1WindowManager_html_a820ad725d2a2264f93e56b6a5460a726"><div class="ttname"><a href="classGUI_1_1WindowManager.html#a820ad725d2a2264f93e56b6a5460a726">GUI::WindowManager::WindowManager</a></div><div class="ttdeci">WindowManager()</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8cpp_source.html#l00003">WindowManager.cpp:3</a></div></div>
-<div class="ttc" id="anamespaceGUI_html"><div class="ttname"><a href="namespaceGUI.html">GUI</a></div><div class="ttdef"><b>Definition:</b> <a href="GuiException_8hpp_source.html#l00006">GuiException.hpp:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li><li class="navelem"><a class="el" href="dir_5c23080e296bbe846f4ed2d01d7b595d.html">include</a></li><li class="navelem"><a class="el" href="WindowManager_8hpp.html">WindowManager.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li><li class="navelem"><a class="el" href="dir_5c23080e296bbe846f4ed2d01d7b595d.html">include</a></li><li class="navelem"><b>WindowManager.hpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

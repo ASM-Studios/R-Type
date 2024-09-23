@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('Config_8hpp_source.html',''); initResi
   <div class="headertitle"><div class="title">Config.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="Config_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;boost/property_tree/ptree.hpp&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;boost/property_tree/json_parser.hpp&gt;</span></div>
@@ -104,7 +104,7 @@ $(document).ready(function(){initNavTree('Config_8hpp_source.html',''); initResi
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;libconfig.h++&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="Config_8hpp.html#a5330b9a19dadbf252fadaae2624abc4b">   13</a></span><span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_variable" href="Config_8hpp.html#a5330b9a19dadbf252fadaae2624abc4b">DEFAULT_CONFIG</a> = <span class="stringliteral">&quot;client/config.json&quot;</span>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">constexpr</span> <span class="keyword">auto</span> DEFAULT_CONFIG = <span class="stringliteral">&quot;client/config.json&quot;</span>;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classConfig.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classConfig.html">Config</a> {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">private</span>:</div>
@@ -116,24 +116,19 @@ $(document).ready(function(){initNavTree('Config_8hpp_source.html',''); initResi
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="classConfig.html">Config</a>(<span class="keyword">const</span> std::string&amp; filePath);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classConfig.html#a5e86c8ae138119f3cbc73776027bff8b">   25</a></span>        <a class="code hl_function" href="classConfig.html#a5e86c8ae138119f3cbc73776027bff8b">Config</a>(<span class="keyword">const</span> <a class="code hl_class" href="classConfig.html">Config</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classConfig.html#a78070eaf2635872c50d6ab6c389f6114">   26</a></span>        <a class="code hl_class" href="classConfig.html">Config</a>&amp; <a class="code hl_function" href="classConfig.html#a78070eaf2635872c50d6ab6c389f6114">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classConfig.html">Config</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_class" href="classConfig.html">Config</a>(<span class="keyword">const</span> <a class="code hl_class" href="classConfig.html">Config</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_class" href="classConfig.html">Config</a>&amp; operator=(<span class="keyword">const</span> <a class="code hl_class" href="classConfig.html">Config</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">static</span> <a class="code hl_class" href="classConfig.html">Config</a>&amp; <a class="code hl_function" href="classConfig.html#a30ba80b9814c1b3203d9a0a6827b3fef">getInstance</a>(<span class="keyword">const</span> std::string&amp; filePath);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        std::optional&lt;std::string&gt; <a class="code hl_function" href="classConfig.html#a0ec197927cb51eb7e79771e3cafe4e8c">get</a>(<span class="keyword">const</span> std::string&amp; field) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">static</span> <a class="code hl_class" href="classConfig.html">Config</a>&amp; getInstance(<span class="keyword">const</span> std::string&amp; filePath);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        std::optional&lt;std::string&gt; get(<span class="keyword">const</span> std::string&amp; field) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
-<div class="ttc" id="aConfig_8hpp_html_a5330b9a19dadbf252fadaae2624abc4b"><div class="ttname"><a href="Config_8hpp.html#a5330b9a19dadbf252fadaae2624abc4b">DEFAULT_CONFIG</a></div><div class="ttdeci">constexpr auto DEFAULT_CONFIG</div><div class="ttdef"><b>Definition:</b> <a href="Config_8hpp_source.html#l00013">Config.hpp:13</a></div></div>
 <div class="ttc" id="aclassConfig_html"><div class="ttname"><a href="classConfig.html">Config</a></div><div class="ttdef"><b>Definition:</b> <a href="Config_8hpp_source.html#l00015">Config.hpp:15</a></div></div>
-<div class="ttc" id="aclassConfig_html_a0ec197927cb51eb7e79771e3cafe4e8c"><div class="ttname"><a href="classConfig.html#a0ec197927cb51eb7e79771e3cafe4e8c">Config::get</a></div><div class="ttdeci">std::optional&lt; std::string &gt; get(const std::string &amp;field) const</div><div class="ttdef"><b>Definition:</b> <a href="Config_8cpp_source.html#l00025">Config.cpp:25</a></div></div>
-<div class="ttc" id="aclassConfig_html_a30ba80b9814c1b3203d9a0a6827b3fef"><div class="ttname"><a href="classConfig.html#a30ba80b9814c1b3203d9a0a6827b3fef">Config::getInstance</a></div><div class="ttdeci">static Config &amp; getInstance(const std::string &amp;filePath)</div><div class="ttdef"><b>Definition:</b> <a href="Config_8cpp_source.html#l00017">Config.cpp:17</a></div></div>
-<div class="ttc" id="aclassConfig_html_a5e86c8ae138119f3cbc73776027bff8b"><div class="ttname"><a href="classConfig.html#a5e86c8ae138119f3cbc73776027bff8b">Config::Config</a></div><div class="ttdeci">Config(const Config &amp;)=delete</div></div>
-<div class="ttc" id="aclassConfig_html_a78070eaf2635872c50d6ab6c389f6114"><div class="ttname"><a href="classConfig.html#a78070eaf2635872c50d6ab6c389f6114">Config::operator=</a></div><div class="ttdeci">Config &amp; operator=(const Config &amp;)=delete</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li><li class="navelem"><a class="el" href="dir_5c23080e296bbe846f4ed2d01d7b595d.html">include</a></li><li class="navelem"><a class="el" href="Config_8hpp.html">Config.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li><li class="navelem"><a class="el" href="dir_5c23080e296bbe846f4ed2d01d7b595d.html">include</a></li><li class="navelem"><b>Config.hpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

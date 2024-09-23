@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['objref_0',['objRef',['../structObject.html#a71225073d06a793b9a6ea9263ed37b12',1,'Object']]],
-  ['objunref_1',['objUnref',['../structObject.html#a924ee0cecc906d148022b3f0d6325cfb',1,'Object']]],
-  ['open_2',['open',['../structcmd_8h.html#a2c4414339f388561554c2deab11a1a07',1,'structcmd.h']]],
-  ['operator_3d_3',['operator=',['../classConfig.html#a78070eaf2635872c50d6ab6c389f6114',1,'Config']]]
+  ['qtstyle_5ftest_0',['QTstyle_Test',['../classQTstyle__Test.html#a14a296ea4e2ad446712f2310bec60766',1,'QTstyle_Test']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['font_5ffilename_0',['FONT_FILENAME',['../WindowManager_8hpp.html#ae7445d7fbe340bf4da6960404590bc23',1,'WindowManager.hpp']]],
-  ['font_5fsize_1',['FONT_SIZE',['../WindowManager_8hpp.html#aaa0a2ec59de50ba1e732285a38895dda',1,'WindowManager.hpp']]]
+  ['globalvalue_0',['globalValue',['../file_8h.html#a4a86bef4b6181cb3f53bd0461a9a511b',1,'file.h']]],
+  ['globvar_1',['globVar',['../autolink_8cpp.html#a88d0bae800d600a11d7bd60f0bc4b858',1,'autolink.cpp']]]
 ];
