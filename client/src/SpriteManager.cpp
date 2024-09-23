@@ -39,6 +39,11 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
 
     if (cfg.exists(name)) {
         const libconfig::Setting& setting = cfg.lookup(name);
+        for (const auto& [fst, _] : _textures) {
+            if (fst == name) {
+                throw GuiException("Sprite sheet '" + name + "' already loaded.");
+            }
+        }
         int row, col;
         if (float scale; setting.lookupValue("row", row) && setting.lookupValue("col", col) && setting.lookupValue("scale", scale)) {
             const auto texture = std::make_shared<sf::Texture>();
