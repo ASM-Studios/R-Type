@@ -10,6 +10,7 @@ The documentation is divided into the following sections:
 - [Logger](Client/Logger.md)
 - [WindowManager](Client/WindowManager.md)
 - [SpriteManager](Client/SpriteManager.md)
+- [TextHandler](Client/TextHandler.md)
 
 ## Server
 
