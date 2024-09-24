@@ -11,6 +11,7 @@ The documentation is divided into the following sections:
 - [WindowManager](Client/WindowManager.md)
 - [SpriteManager](Client/SpriteManager.md)
 - [TextHandler](Client/TextHandler.md)
+- [Button](Client/Button.md)
 
 ## Server
 
