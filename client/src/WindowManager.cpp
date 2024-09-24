@@ -16,41 +16,55 @@ GUI::WindowManager::WindowManager() {
     _window->setFramerateLimit(frameRateLimit);
     _spriteManager.updateWindowSize(width, height);
     _spriteManager.init();
+    _event = sf::Event();
 
     _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 100, 10));
 }
 
-GUI::WindowManager::~WindowManager() = default;
-
 void GUI::WindowManager::run() {
-    while (_window->isOpen()) {
-        sf::Event event{};
-        while (_window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                _window->close();
-            }
-        }
-
+    while (_window->isOpen() && _gameState != gameState::QUITING) {
         _window->clear();
+        _eventsHandler();
         _displayBackground();
+        _displayMenu();
         _fpsCounter();
-
-        float x = 50;
-        float y = 50;
-        for (const auto& [id, snd] : _spriteManager.getSprites("enemies/enemy_1")) {
-            constexpr float spriteWidth = 75;
-            if (const float windowWidth = _window->getSize().x; x + spriteWidth > windowWidth) {
-                x = 50;
-                y += spriteWidth;
-            }
-            snd->setPosition(x, y);
-            _window->draw(*snd);
-            x += spriteWidth;
-        }
 
         _window->display();
     }
 }
+
+void GUI::WindowManager::_eventsHandler() {
+    while (_window->pollEvent(_event)) {
+        if (_event.type == sf::Event::Closed) {
+            _window->close();
+        }
+
+        if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Q) {
+            setGameState(gameState::QUITING);
+        }
+        if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Escape) {
+            if (_gameState == gameState::MENUS) continue;
+            _menuState = _menuState == menuState::NO_MENU ? menuState::PAUSE_MENU : menuState::NO_MENU;
+        }
+
+        for (auto& [_, button] : _buttons) {
+            button.update(*_window, _event);
+        }
+    }
+}
+
+void GUI::WindowManager::_displayBackground() const {
+    if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
+        _window->draw(*background);
+    }
+    if (_menuState == menuState::PAUSE_MENU) {
+        if (const auto popup = _spriteManager.getSprite("backgrounds/gray_mask", 0)) {
+            _window->draw(*popup);
+        }
+    }
+}
+
+/* Text */
 
 void GUI::WindowManager::_addText(const std::string& id, const std::string& text, const sf::Vector2f& position) {
     const auto sfText = std::make_shared<sf::Text>();
@@ -76,12 +90,6 @@ void GUI::WindowManager::_deleteText(const std::string& id) {
     _texts.erase(id);
 }
 
-void GUI::WindowManager::_displayBackground() const {
-    if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
-        _window->draw(*background);
-    }
-}
-
 void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
     static sf::Clock clock;
     static int frameCount = 0;
@@ -105,4 +113,100 @@ void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
     if (const auto fpsText = _getText("fps")) {
         _window->draw(*fpsText);
     }
+}
+
+/* Button */
+
+void GUI::WindowManager::_addButton(const std::string &id, const Button<> &button) {
+    if (_buttons.contains(id)) {
+        throw GuiException("Button with id " + id + " already exists");
+    }
+    _buttons.emplace(id, button);
+}
+
+GUI::Button<> GUI::WindowManager::_getButton(const std::string &id) const {
+    if (const auto it = _buttons.find(id); it != _buttons.end()) {
+        return it->second;
+    }
+    throw GuiException("Button with id " + id + " not found");
+}
+
+void GUI::WindowManager::_deleteButton(const std::string &id) {
+    if (const auto it = _buttons.find(id); it != _buttons.end()) {
+        _buttons.erase(it);
+    }
+}
+
+/* Menu */
+
+void GUI::WindowManager::_displayMenu() {
+    switch (_menuState) {
+        case NO_MENU:
+            return;
+        case MAIN_MENU:
+            _displayMainMenu();
+            break;
+        case SETTINGS_MENU:
+            _displaySettingsMenu();
+            break;
+        case PAUSE_MENU:
+            _displayPauseMenu();
+            break;
+    }
+}
+
+void GUI::WindowManager::_mainMenuInit() {
+    constexpr float buttonSpacing = 150.0f;
+    const float startY = _window->getSize().y / 2 - buttonSpacing;
+
+    auto playButtonSprites = _spriteManager.getSprites("buttons/play");
+    Button<> playButton(playButtonSprites, [this]() {
+        this->setGameState(gameState::GAMES);
+        this->setMenuState(menuState::NO_MENU);
+    }, {_window->getSize().x / 2, startY});
+    _addButton("play", playButton);
+
+    auto settingsButtonSprites = _spriteManager.getSprites("buttons/settings");
+    Button<> settingsButton(settingsButtonSprites, [this]() {
+        this->setGameState(gameState::MENUS);
+        this->setMenuState(menuState::SETTINGS_MENU);
+    }, {_window->getSize().x / 2, startY + buttonSpacing});
+    _addButton("settings", settingsButton);
+
+    auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
+    Button<> quitButton(quitButtonSprites, [this]() {
+        this->setGameState(gameState::QUITING);
+        _window->close();
+    }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
+    _addButton("quit", quitButton);
+}
+
+void GUI::WindowManager::_displayMainMenu() {
+    if (_buttons.empty()) {
+        _mainMenuInit();
+    }
+
+    try {
+        _getButton("play").draw(*_window);
+        _getButton("settings").draw(*_window);
+        _getButton("quit").draw(*_window);
+    } catch (const GuiException& e) {
+        Logger::log(LogLevel::ERROR, e.what());
+    }
+}
+
+void GUI::WindowManager::_settingsMenuInit() {
+
+}
+
+void GUI::WindowManager::_displaySettingsMenu() {
+
+}
+
+void GUI::WindowManager::_pauseMenuInit() {
+
+}
+
+void GUI::WindowManager::_displayPauseMenu() {
+
 }

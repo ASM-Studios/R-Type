@@ -9,7 +9,7 @@
 
 #include "GuiException.hpp"
 #include "SpriteManager.hpp"
-#include "Logger.hpp"
+#include "Button.hpp"
 
 constexpr auto FONT_FILENAME = "client/assets/fonts/arial.ttf";
 
@@ -22,26 +22,61 @@ constexpr std::size_t TEXT_POS = 10;
 constexpr auto MAIN_MENU_BACKGROUND = "backgrounds/main_menu";
 
 namespace GUI {
+    enum gameState {
+        NONE,
+        QUITING,
+        MENUS,
+        GAMES,
+    };
+    enum menuState {
+        NO_MENU,
+        MAIN_MENU,
+        SETTINGS_MENU,
+        PAUSE_MENU,
+    };
     class WindowManager : public std::enable_shared_from_this<WindowManager> {
         private:
             std::unique_ptr<sf::RenderWindow> _window;
+            sf::Event _event;
             SpriteManager _spriteManager;
             sf::Font _font;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
-            std::map<std::string, std::shared_ptr<sf::Text>> _texts;
+            gameState _gameState = gameState::MENUS;
+            menuState _menuState = MAIN_MENU;
+            std::unordered_map<std::string, std::shared_ptr<sf::Text>> _texts;
+            std::unordered_map<std::string, Button<>> _buttons;
+
+            void _eventsHandler();
 
             void _addText(const std::string& id, const std::string& text, const sf::Vector2f& position);
             std::shared_ptr<sf::Text> _getText(const std::string& id) const;
             void _deleteText(const std::string& id);
 
+            void _addButton(const std::string& id, const Button<>& button);
+            GUI::Button<> _getButton(const std::string& id) const;
+            void _deleteButton(const std::string& id);
+
             void _displayBackground() const;
             void _fpsCounter();
 
+            void _displayMenu();
+            void _mainMenuInit();
+            void _displayMainMenu();
+            void _settingsMenuInit();
+            void _displaySettingsMenu();
+            void _pauseMenuInit();
+            void _displayPauseMenu();
+
         public:
             WindowManager();
-            ~WindowManager();
+            ~WindowManager() = default;
 
             void run();
+
+            void setGameState(const gameState state) { _gameState = state; }
+            gameState getGameState() const { return _gameState; }
+            void setMenuState(const menuState state) { _menuState = state; }
+            menuState getMenuState() const { return _menuState; }
     };
 
     class MessagePopup {
