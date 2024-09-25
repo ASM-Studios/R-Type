@@ -1,7 +1,7 @@
 #include "Logging.hpp"
 #include <ctime>
-#include <iostream>
 #include <format>
+#include <iostream>
 
 std::string Logging::_getTimestamp() {
     struct tm *timeinfo = nullptr;
