@@ -2,7 +2,7 @@
 
 int main() {
     try {
-        GUI::WindowManager const windowManager;
+        GUI::WindowManager windowManager;
         windowManager.run();
     } catch (const GUI::GuiException& e) {
         Logger::log(LogLevel::ERROR, e.what());

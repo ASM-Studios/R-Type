@@ -1,6 +1,8 @@
 #include "SpriteManager.hpp"
 
-GUI::SpriteManager::SpriteManager() {
+#include <Config.hpp>
+
+void GUI::SpriteManager::init() {
     Config& config = Config::getInstance(DEFAULT_CONFIG);
     _spritesConfigPath = config.get("sprites_config_path").value_or(DEFAULT_SPRITES_CONFIG);
     const auto spritePath = config.get("sprites_path").value_or("");
@@ -46,6 +48,8 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
         }
         int row, col;
         if (float scale; setting.lookupValue("row", row) && setting.lookupValue("col", col) && setting.lookupValue("scale", scale)) {
+            bool autoscale = setting.lookupValue("autoscale", autoscale) ? autoscale : false;
+            bool center = setting.lookupValue("center", center) ? center : true;
             const auto texture = std::make_shared<sf::Texture>();
             if (!texture->loadFromFile(spritePath + "/" + name + ".png")) {
                 throw GuiException("Failed to load texture: " + spritePath + "/" + name + ".png");
@@ -64,8 +68,12 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
                     const auto sprite = std::make_shared<sf::Sprite>();
                     sprite->setTexture(*texture);
                     sprite->setTextureRect(sf::IntRect(c * spriteWidth, r * spriteHeight, spriteWidth, spriteHeight));
-                    sprite->setScale(scale, scale);
-                    sprite->setOrigin(spriteWidth / 2, spriteHeight / 2);
+                    if (autoscale) {
+                        const float scaleFactorX = _width / sprite->getGlobalBounds().width;
+                        const float scaleFactorY = _height / sprite->getGlobalBounds().height;
+                        sprite->setScale(scaleFactorX, scaleFactorY);
+                    } else { sprite->setScale(scale, scale); }
+                    if (center) { sprite->setOrigin(spriteWidth / 2, spriteHeight / 2); }
                     _sprites[name][id++] = sprite;
                 }
             }

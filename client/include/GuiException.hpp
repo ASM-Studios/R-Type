@@ -2,6 +2,7 @@
 
 #include <string>
 #include <exception>
+#include "Logger.hpp"
 
 namespace GUI {
     class GuiException : public std::exception {
