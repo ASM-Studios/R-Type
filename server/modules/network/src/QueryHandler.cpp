@@ -7,7 +7,7 @@ namespace network {
         if (this->_workers.size() > 0) {
             Logging::info(std::string("Waiting for ") + std::to_string(this->_workers.size()) + " worker(s)");
         }
-        for (auto& worker : this->_workers) {
+        for (auto& worker: this->_workers) {
             worker->join();
         }
     }

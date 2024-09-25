@@ -6,8 +6,7 @@ static void displayPID() {
     Logging::info(std::format("PID: {}", getpid()));
 }
 
-static void setLogLevel()
-{
+static void setLogLevel() {
 #ifndef NDEBUG
     Logging::setLogLevel(Logging::Level::ALL);
 #else

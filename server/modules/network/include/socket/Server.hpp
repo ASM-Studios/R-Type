@@ -1,6 +1,8 @@
 #pragma once
 
 #include <boost/asio.hpp>
+#include <boost/asio/ip/basic_endpoint.hpp>
+#include <unordered_map>
 
 namespace network::socket::udp {
     class Server {
