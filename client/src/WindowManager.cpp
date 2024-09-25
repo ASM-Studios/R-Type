@@ -32,7 +32,6 @@ void GUI::WindowManager::run() {
         if (_gameState == gameState::GAMES) {
             // TODO: Implement game display
         }
-        _displayMenu();
         _fpsCounter();
 
         _window->display();
