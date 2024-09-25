@@ -25,4 +25,4 @@ For performance reasons, do not use the `log` function in the main loop function
 
 ### User log level
 
-To set the user log level, please refer to the [Config](Config) documentation.
+To set the user log level, please refer to the [Config](Config.md) documentation.

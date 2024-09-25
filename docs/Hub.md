@@ -6,8 +6,8 @@ The documentation is divided into the following sections:
 
 ## Client
 
-- [Config](Client/Config.md)
-- [Logger](Client/Logger.md)
+- [Config](Misc/Config.md)
+- [Logger](Misc/Logger.md)
 - [WindowManager](Client/WindowManager.md)
 - [SpriteManager](Client/SpriteManager.md)
 - [TextHandler](Client/TextHandler.md)

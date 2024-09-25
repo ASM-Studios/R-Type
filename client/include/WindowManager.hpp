@@ -41,10 +41,14 @@ namespace GUI {
             SpriteManager _spriteManager;
             sf::Font _font;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
+            gameState _previousGameState = gameState::NONE;
+            menuState _previousMenuState = menuState::NO_MENU;
             gameState _gameState = gameState::MENUS;
             menuState _menuState = MAIN_MENU;
+            bool _showFps = true; //TODO: Set to false
             std::unordered_map<std::string, std::shared_ptr<sf::Text>> _texts;
             std::unordered_map<std::string, Button<>> _buttons;
+            std::unordered_map<std::string, Button<>> _currentButtons;
 
             void _eventsHandler();
 
@@ -73,9 +77,18 @@ namespace GUI {
 
             void run();
 
-            void setGameState(const gameState state) { _gameState = state; }
+            void setGameState(const gameState state) {
+                _previousGameState = _gameState;
+                _gameState = state;
+            }
+
             gameState getGameState() const { return _gameState; }
-            void setMenuState(const menuState state) { _menuState = state; }
+
+            void setMenuState(const menuState state) {
+                _previousMenuState = _menuState;
+                _menuState = state;
+            }
+
             menuState getMenuState() const { return _menuState; }
     };
 

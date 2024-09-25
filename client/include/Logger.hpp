@@ -15,30 +15,32 @@ enum class LogLevel {
 class Logger {
     private:
         static LogLevel getLevel(const std::string& level) {
-            if (level == "INFO") {
-                return LogLevel::INFO;
-            } else if (level == "WARNING") {
-                return LogLevel::WARNING;
-            } else if (level == "ERROR") {
-                return LogLevel::ERROR;
-            }
+            if (level == "INFO") { return LogLevel::INFO; }
+            if (level == "WARNING") { return LogLevel::WARNING; }
+            if (level == "ERROR") { return LogLevel::ERROR; }
             return LogLevel::NONE;
         }
 
     public:
         static void log(const LogLevel logLevel, const std::string& message) {
             Config& config = Config::getInstance("client/config.json");
-            std::string configLogLevel = config.get("logLevel").value_or("NONE");
-            if (logLevel <= getLevel(configLogLevel)) {
+            if (const std::string configLogLevel = config.get("logLevel").value_or("NONE"); logLevel <= getLevel(configLogLevel)) {
+                const auto now = std::chrono::system_clock::now();
+                const std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+                const std::tm* now_tm = std::localtime(&now_time);
+
+                std::ostringstream timeStream;
+                timeStream << std::put_time(now_tm, "%Y-%m-%d %H:%M:%S");
+
                 switch (logLevel) {
                 case LogLevel::INFO:
-                    std::cout << "\033[32m[INFO] " << message << "\033[0m" << std::endl;
+                    std::cout << "\033[32m[INFO " << timeStream.str() << "] " << message << "\033[0m" << std::endl;
                     break;
                 case LogLevel::WARNING:
-                    std::cout << "\033[33m[WARNING] " << message << "\033[0m" << std::endl;
+                    std::cout << "\033[33m[WARNING " << timeStream.str() << "] " << message << "\033[0m" << std::endl;
                     break;
                 case LogLevel::ERROR:
-                    std::cerr << "\033[31m[ERROR] " << message << "\033[0m" << std::endl;
+                    std::cerr << "\033[31m[ERROR " << timeStream.str() << "] " << message << "\033[0m" << std::endl;
                     break;
                 default:
                     break;
