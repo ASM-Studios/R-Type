@@ -97,6 +97,7 @@ void GUI::WindowManager::_deleteText(const std::string& id) {
 }
 
 void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
+    if (!_showFps) return;
     static sf::Clock clock;
     static int frameCount = 0;
 
@@ -222,11 +223,73 @@ void GUI::WindowManager::_displayMainMenu() {
 }
 
 void GUI::WindowManager::_settingsMenuInit() {
+    constexpr float buttonSpacing = 150.0f;
+    const float centerX = _window->getSize().x / 2;
+    const float startY = _window->getSize().y / 2 - buttonSpacing;
+    const auto musicButtonSpritesWidth = _spriteManager.getSprites("buttons/settings_btn/music").at(0)->getGlobalBounds().width;
 
+    const auto fpsButtonSprites = _spriteManager.getSprites("buttons/settings_btn/fps");
+    const Button<> fpsButton(fpsButtonSprites, [this]() {
+        _showFps = !_showFps;
+    }, {centerX, startY});
+    _addButton("settings:fps", fpsButton);
+
+    const auto plusButtonSprites = _spriteManager.getSprites("buttons/settings_btn/plus");
+    const Button<> plusButton(plusButtonSprites, [this]() {
+        // TODO: Implement volume increase logic here
+    }, {centerX + musicButtonSpritesWidth / 2 + 45, startY + buttonSpacing});
+    _addButton("settings:plus", plusButton);
+
+    const auto minusButtonSprites = _spriteManager.getSprites("buttons/settings_btn/minus");
+    const Button<> minusButton(minusButtonSprites, [this]() {
+        // TODO: Implement volume decrease logic here
+    }, {centerX - musicButtonSpritesWidth / 2 - 45, startY + buttonSpacing});
+    _addButton("settings:minus", minusButton);
+
+    const auto musicButtonSprites = _spriteManager.getSprites("buttons/settings_btn/music");
+    const Button<> musicButton(musicButtonSprites, []() {
+        // TODO: Implement music button logic here
+    }, {centerX, startY + buttonSpacing});
+    _addButton("settings:music", musicButton);
+
+    const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
+    const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
+            this->setGameState(gameState::MENUS);
+            this->setMenuState(menuState::MAIN_MENU);
+    }, {centerX, startY + 2 * buttonSpacing});
+    _addButton("settings:main_menu", mainMenuButton);
 }
 
 void GUI::WindowManager::_displaySettingsMenu() {
+    std::vector<std::string> buttons = {
+        "settings:fps",
+        "settings:plus",
+        "settings:minus",
+        "settings:music",
+        "settings:main_menu"
+    };
 
+    for (const auto& button : buttons) {
+        if (!_buttons.contains(button)) {
+            try {
+                for (const auto& b : buttons) {
+                    _deleteButton(b);
+                }
+            } catch (const GuiException& e) {
+                Logger::log(LogLevel::ERROR, e.what());
+            }
+            _settingsMenuInit();
+        }
+    }
+
+    try {
+        for (const auto& button : buttons) {
+            _currentButtons.emplace(button, _getButton(button));
+            _currentButtons.at(button).draw(*_window);
+        }
+    } catch (const GuiException& e) {
+        Logger::log(LogLevel::ERROR, e.what());
+    }
 }
 
 void GUI::WindowManager::_pauseMenuInit() {

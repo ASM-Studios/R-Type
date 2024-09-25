@@ -30,7 +30,7 @@ class Logger {
                 const std::tm* now_tm = std::localtime(&now_time);
 
                 std::ostringstream timeStream;
-                timeStream << std::put_time(now_tm, "%Y-%m-%d %H:%M:%S");
+                timeStream << std::put_time(now_tm, "%H:%M:%S");
 
                 switch (logLevel) {
                 case LogLevel::INFO:

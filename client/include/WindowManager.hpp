@@ -81,14 +81,11 @@ namespace GUI {
                 _previousGameState = _gameState;
                 _gameState = state;
             }
-
             gameState getGameState() const { return _gameState; }
-
             void setMenuState(const menuState state) {
                 _previousMenuState = _menuState;
                 _menuState = state;
             }
-
             menuState getMenuState() const { return _menuState; }
     };
 
