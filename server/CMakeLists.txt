@@ -11,7 +11,8 @@ find_package(Boost COMPONENTS asio CONFIG REQUIRED)
 set(SOURCE_FILE src/main.cpp
     src/Logging.cpp
     src/Clock.cpp
-    src/Core.cpp)
+    src/Core.cpp
+    src/Config.cpp)
 
 add_executable(r-type_server ${SOURCE_FILE})
 

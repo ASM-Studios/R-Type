@@ -9,6 +9,8 @@ private:
     int _tickTime;
     Clock _tpsClock;
     bool _isRunning;
+    int _port;
+    std::string _hitboxes_config_file;
 
     void _waitTPS();
 
