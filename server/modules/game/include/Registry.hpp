@@ -2,9 +2,9 @@
 
 #include <any>
 #include <cstddef>
-#include <exception>
+#include <functional>
+#include <optional>
 #include <set>
-#include <string>
 #include <typeindex>
 #include <unordered_map>
 
@@ -12,18 +12,6 @@ namespace ecs {
     class Entity;
 
     class Registry {
-    public:
-        class NoComponent : public std::exception {
-        private:
-            std::string _message;
-
-        public:
-            NoComponent(std::type_index index);
-            ~NoComponent() override = default;
-
-            [[nodiscard]] const char *what() const noexcept override;
-        };
-
     private:
         static std::size_t _maxId;
         static std::set<Entity> _entities;
@@ -39,18 +27,20 @@ namespace ecs {
         [[nodiscard]] static std::set<Entity> getEntities();
 
         template <typename Component>
-        static void addComponent(Entity entity);
-
+        static void addComponent(const Entity& entity);
         template <typename... Components>
-        static void addComponents(Entity entity);
+        static void addComponents(const Entity& entity);
 
         template <typename Component>
-        static bool contains(Entity entity);
+        static void setComponent(const Entity& entity, Component component);
 
         template <typename Component>
-        static Component& getComponent(Entity entity);
+        static bool contains(const Entity& entity);
 
-        static void reset(Entity entity);
+        template <typename Component>
+        static std::optional<std::reference_wrapper<Component>> getComponent(const Entity& entity);
+
+        static void reset(const Entity& entity);
     };
 }
 

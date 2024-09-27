@@ -2,5 +2,5 @@
   "port": 8080,
   "tps": 20,
   "hitboxes_config_file": "",
-  "logLevel": "ERROR"
+  "logLevel": "INFO"
 }

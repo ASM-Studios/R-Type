@@ -2,6 +2,7 @@
 
 #include "Entity.hpp"
 #include "Registry.hpp"
+#include <optional>
 
 namespace ecs {
     template <typename... Components>
@@ -13,24 +14,29 @@ namespace ecs {
     }
 
     template <typename Component>
-    void Registry::addComponent(Entity entity) {
+    void Registry::addComponent(const Entity& entity) {
         _components[typeid(Component)][entity] = Component();
     }
 
     template <typename... Components>
-    void Registry::addComponents(Entity entity) {
-        (addComponent<Components>(entity), ...);
+    void Registry::addComponents(const Entity& entity) {
+        (addComponent<Components>(entity, Components()), ...);
     }
 
     template <typename Component>
-    bool Registry::contains(Entity entity) {
+    void Registry::setComponent(const Entity& entity, Component component) {
+        _components[typeid(Component)][entity] = component;
+    }
+
+    template <typename Component>
+    bool Registry::contains(const Entity& entity) {
         return _components[typeid(Component)].find(entity) != _components[typeid(Component)].end();
     }
 
     template <typename Component>
-    Component& Registry::getComponent(Entity entity) {
+    std::optional<std::reference_wrapper<Component>> Registry::getComponent(const Entity& entity) {
         if (!contains<Component>(entity)) {
-            throw NoComponent(typeid(Component));
+            return std::nullopt;
         }
         return std::any_cast<Component&>(_components[typeid(Component)][entity]);
     }

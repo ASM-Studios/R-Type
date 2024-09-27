@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Client.hpp"
 #include "Query.hpp"
 #include "Worker.hpp"
 #include <memory>
@@ -9,10 +10,10 @@
 namespace network {
     class QueryHandler {
     private:
-        static std::shared_ptr<QueryHandler> _instance;
+        static std::unique_ptr<QueryHandler> _instance;
         static std::mutex _mutex;
 
-        std::queue<Query> _pendingQueries;
+        std::queue<std::pair<Client, Query>> _pendingQueries;
         std::vector<std::shared_ptr<Worker>> _workers;
 
         QueryHandler() = default;
@@ -23,10 +24,10 @@ namespace network {
 
         QueryHandler& operator=(const QueryHandler& other) = delete;
 
-        static std::shared_ptr<QueryHandler> getInstance();
+        static QueryHandler& getInstance();
 
-        void addQuery(Query& query);
-        void executeQuery(Query query);
+        void addQuery(std::pair<Client, Query> query);
+        void executeQuery(std::pair<Client, Query> query);
         void executeQueries();
         void checkWorkers();
     };

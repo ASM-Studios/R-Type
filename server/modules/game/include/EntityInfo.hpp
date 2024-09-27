@@ -4,9 +4,6 @@
 #include <cstdint>
 
 namespace ecs::component {
-    struct PlayerComponent {
-    };
-
     struct Position {
         uint16_t x;
         uint16_t y;
@@ -19,7 +16,4 @@ namespace ecs::component {
 }
 
 namespace ecs::system {
-    struct PlayerSystem {
-        static std::vector<ecs::Entity> getPlayers();
-    };
 }

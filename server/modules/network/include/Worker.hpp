@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Client.hpp"
 #include "Query.hpp"
 #include <future>
 #include <memory>
@@ -10,10 +11,10 @@ namespace network {
     private:
         std::promise<bool> _promise;
         std::future<bool> _future;
-        std::shared_ptr<std::thread> _thread;
+        std::thread _thread;
 
     public:
-        explicit Worker(Query query);
+        explicit Worker(std::pair<Client, Query> query);
         ~Worker() = default;
 
         void join();
