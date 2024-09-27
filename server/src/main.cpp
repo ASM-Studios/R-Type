@@ -1,10 +1,5 @@
 #include "Core.hpp"
 #include "Logging.hpp"
-#include <unistd.h>
-
-static void displayPID() {
-    Logging::info(std::format("PID: {}", getpid()));
-}
 
 static void setLogLevel() {
 #ifndef NDEBUG
@@ -16,7 +11,6 @@ static void setLogLevel() {
 
 int main(int ac, char **av) {
     setLogLevel();
-    displayPID();
     auto args = std::span<char *>(av, ac);
     Core core;
 

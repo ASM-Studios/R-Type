@@ -20,5 +20,10 @@ target_link_libraries(
         r-type_client
         sfml-system sfml-window sfml-graphics sfml-network sfml-audio
         Boost::filesystem Boost::property_tree Boost::algorithm
-        libconfig::config libconfig::config++
 )
+
+if (WIN32 OR MSVC)
+    target_link_libraries(r-type_client libconfig::libconfig libconfig::libconfig++)
+elseif (UNIX)
+    target_link_libraries(r-type_client libconfig::config libconfig::config++)
+endif()

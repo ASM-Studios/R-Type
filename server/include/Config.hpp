@@ -1,14 +1,14 @@
 #pragma once
 
-#include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 #include <iostream>
+#include <libconfig.h++>
+#include <memory>
+#include <mutex>
 #include <optional>
 #include <string>
 #include <unordered_map>
-#include <memory>
-#include <mutex>
-#include <libconfig.h++>
 
 constexpr auto DEFAULT_CONFIG = "server/config.json";
 

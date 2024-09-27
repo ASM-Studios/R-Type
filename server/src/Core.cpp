@@ -1,14 +1,15 @@
 #include "Core.hpp"
 #include "../modules/network/include/QueryHandler.hpp"
 #include "../modules/network/include/socket/Server.hpp"
-#include "Logging.hpp"
 #include "Config.hpp"
+#include "Logging.hpp"
 #include <cstdlib>
 
 void Core::_waitTPS() {
     double elapsed = this->_tpsClock.get();
     if (elapsed < this->_tickTime) {
-        usleep(static_cast<int>((this->_tickTime - elapsed) * 1000));
+        int time = static_cast<int>((this->_tickTime - elapsed) * 1000);
+        std::this_thread::sleep_for(std::chrono::microseconds(time));
     }
     this->_tpsClock.reset();
 }
@@ -23,6 +24,7 @@ void Core::init(const std::span<char *>& args [[maybe_unused]]) {
     _tickTime = 1000 / _tps;
     this->_port = std::atoi(config.get("port").value_or("8080").c_str());
     this->_hitboxes_config_file = config.get("hitboxes_config_file").value_or("");
+    Logging::info(std::format("Server running on port {0}", this->_port));
 }
 
 int Core::run() {

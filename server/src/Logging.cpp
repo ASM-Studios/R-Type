@@ -35,7 +35,7 @@ void Logging::warn(const std::string& message) {
 }
 
 void Logging::error(const std::string& message) {
-    if (_logLevel < ERROR) {
+    if (_logLevel < ERR) {
         return;
     }
     std::lock_guard<std::mutex> lock(_mutex);
@@ -46,5 +46,5 @@ void Logging::setLogLevel(const Logging::Level& level) {
     _logLevel = level;
 }
 
-Logging::Level Logging::_logLevel(Logging::Level::ERROR);
+Logging::Level Logging::_logLevel(Logging::Level::ERR);
 std::mutex Logging::_mutex;
