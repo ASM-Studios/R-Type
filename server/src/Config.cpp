@@ -6,7 +6,7 @@ std::mutex Config::mutex;
 Config::Config(const std::string& filePath) {
     try {
         boost::property_tree::read_json(filePath, pt);
-        for (const auto& [fst, snd] : pt) {
+        for (const auto& [fst, snd]: pt) {
             data[fst] = snd.data();
         }
     } catch (const std::exception& e) {

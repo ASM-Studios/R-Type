@@ -5,7 +5,7 @@
 #include <future>
 
 void execute(std::reference_wrapper<std::promise<bool>> promise, Query query) {
-    sleep(5);
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     Logging::info(std::string("Result:") + query.req);
     promise.get().set_value(true);
 }

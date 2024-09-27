@@ -6,7 +6,7 @@
 class Logging {
 public:
     enum Level {
-        ERROR,
+        ERR,
         WARN,
         INFO,
         DEBUG,

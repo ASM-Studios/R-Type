@@ -12,13 +12,16 @@ set(SOURCE_FILE src/main.cpp
     src/Logging.cpp
     src/Clock.cpp
     src/Core.cpp
-    src/Config.cpp)
+    src/Config.cpp
+)
 
 add_executable(r-type_server ${SOURCE_FILE})
 
-set(NETWORK_LIB ${CMAKE_CURRENT_BINARY_DIR}/modules/libnetwork.so)
-set(GAME_LIB ${CMAKE_CURRENT_BINARY_DIR}/modules/libgame.so)
-
 target_link_libraries(r-type_server Boost::asio
-    ${NETWORK_LIB}
-    ${GAME_LIB})
+    network
+    game
+)
+
+if (WIN32 OR MSVC)
+    target_link_libraries(r-type_server ws2_32)
+endif()

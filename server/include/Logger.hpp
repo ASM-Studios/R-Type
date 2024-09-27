@@ -31,7 +31,7 @@ public:
         if (const std::string configLogLevel = config.get("logLevel").value_or("NONE"); logLevel <= getLevel(configLogLevel)) {
             const auto now = std::chrono::system_clock::now();
             const std::time_t now_time = std::chrono::system_clock::to_time_t(now);
-            const std::tm* now_tm = std::localtime(&now_time);
+            const std::tm *now_tm = std::localtime(&now_time);
 
             std::ostringstream timeStream;
             timeStream << std::put_time(now_tm, "%Y-%m-%d %H:%M:%S");
