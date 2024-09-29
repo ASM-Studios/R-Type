@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <optional>
 
 namespace ecs {
     class Registry;
@@ -27,10 +28,16 @@ namespace ecs {
         void addComponents();
 
         template <typename Component>
+        void setComponent(Component component);
+
+        template <typename Component>
         [[nodiscard]] bool contains() const;
 
         template <typename Component>
-        Component& getComponent();
+        std::optional<std::reference_wrapper<Component>> getComponent();
+
+        template <typename Component>
+        [[nodiscard]] std::optional<Component> getComponent() const;
 
         void reset();
     };

@@ -3,13 +3,6 @@
 #include <set>
 
 namespace ecs {
-    Registry::NoComponent::NoComponent(std::type_index index) :
-        _message(std::format("Component {0} not found in entity.", index.name())) {}
-
-    const char *Registry::NoComponent::what() const noexcept {
-        return this->_message.c_str();
-    }
-
     std::size_t Registry::getMaxEntity() {
         return _maxId;
     }
@@ -18,7 +11,7 @@ namespace ecs {
         return _entities;
     }
 
-    void Registry::reset(Entity entity) {
+    void Registry::reset(const Entity& entity) {
         for (auto& component: _components) {
             component.second.erase(entity);
         }

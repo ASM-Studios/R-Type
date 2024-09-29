@@ -1,30 +1,31 @@
 #include "QueryHandler.hpp"
-#include "Logging.hpp"
+#include "Logger.hpp"
+#include <format>
 #include <mutex>
 
 namespace network {
     QueryHandler::~QueryHandler() {
         if (this->_workers.size() > 0) {
-            Logging::info(std::string("Waiting for ") + std::to_string(this->_workers.size()) + " worker(s)");
+            Logger::log(LogLevel::INFO, std::format("Waiting for {0} workers", this->_workers.size()));
         }
         for (auto& worker: this->_workers) {
             worker->join();
         }
     }
 
-    std::shared_ptr<QueryHandler> QueryHandler::getInstance() {
+    QueryHandler& QueryHandler::getInstance() {
         std::lock_guard<std::mutex> lock(_mutex);
         if (_instance == nullptr) {
-            _instance = std::shared_ptr<QueryHandler>(new QueryHandler());
+            _instance = std::unique_ptr<QueryHandler>(new QueryHandler());
         }
-        return _instance;
+        return *_instance;
     }
 
-    void QueryHandler::addQuery(Query& query) {
+    void QueryHandler::addQuery(std::pair<Client, Query> query) {
         this->_pendingQueries.push(query);
     }
 
-    void QueryHandler::executeQuery(Query query) {
+    void QueryHandler::executeQuery(std::pair<Client, Query> query) {
         auto worker = std::make_shared<Worker>(query);
         this->_workers.emplace_back(worker);
     }
@@ -42,7 +43,7 @@ namespace network {
         for (auto it = this->_workers.begin(); it != this->_workers.end();) {
             auto worker = *it;
             if (worker->isReady()) {
-                Logging::info("End of worker");
+                Logger::log(LogLevel::INFO, "End of worker");
                 worker->join();
                 it = this->_workers.erase(it);
             } else {
@@ -51,6 +52,6 @@ namespace network {
         }
     }
 
-    std::shared_ptr<QueryHandler> QueryHandler::_instance(nullptr);
+    std::unique_ptr<QueryHandler> QueryHandler::_instance(nullptr);
     std::mutex QueryHandler::_mutex;
 }
