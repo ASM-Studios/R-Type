@@ -27,7 +27,7 @@ _spriteManager.getSprites("name");
 
 ## Sprite Loading
 
-The sprite manager loads the sprites from the `sprites_path` field in the configuration file. (see [Config](Config.md))
+The sprite manager loads the sprites from the `sprites_path` field in the configuration file. (see [Config](../Misc/Config.md))
 
 Importing only the sprites sheets in the folder will result in an error.<br>
 Alongside the sprite, a configuration file is required.
@@ -46,16 +46,40 @@ folder_name: {
     row = 1
     col = 1
     scale = 1.0
+    autoscale = true
+    center = false
   };
 }
 ```
+
+### Autoscale
+
+`autoscale` is a boolean field that scales the sprite to the size of the window.<br>
+This field isn't mandatory.<br>
+
+**Warning:**
+- If `autoscale` is set to `true`, the `scale` field will be ignored.
+- By default, the `autoscale` field is set to `false`.
+
+### Center
+
+`center` is a boolean field that enable the centering of the sprite in it's middle.<br>
+This field isn't mandatory.<br>
+
+**Warning:**
+- If the `center` field is set to false, the sprite will be placed in the top-left corner of the window.
+- By default, the `center` field is set to `true`.
+
+### Backgrounds
+
+For background sprites, it is recommended to set `autoscale` to `true` and `center` to `false`.
 
 ### Configuration File
 
 The configuration file is a `.cfg` file with the following fields:
 
 By default, the configuration file is located at `client/assets/sprites_config.cfg`.<br>
-This path can be changed in the [user configuration file](Config.md).
+This path can be changed in the [user configuration file](../Misc/Config.md).
 
 #### example
 
