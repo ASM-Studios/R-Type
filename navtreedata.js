@@ -76,8 +76,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"Config_8cpp_source.html",
-"structObject.html"
+"Client_8cpp_source.html",
+"md_README.html#autotoc_md5"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

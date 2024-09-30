@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: server/src/socket/Server.cpp Source File</title>
+<title>R-Type: server/modules/network/src/socket/Server.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -95,21 +95,27 @@ $(document).ready(function(){initNavTree('Server_8cpp_source.html',''); initResi
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;socket/Server.hpp&quot;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;boost/array.hpp&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span>udp_socket {</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    Server::Server(<span class="keywordtype">int</span> port) :</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        _endpoint(udp::endpoint(udp::endpoint(udp::v4(), port))),</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>        _socket(this-&gt;_ioService, this-&gt;_endpoint) {}</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordtype">bool</span> Server::availableRequest() {</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        <span class="keywordflow">return</span> this-&gt;_socket.available() &gt; 0;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    }</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>}</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span>network::socket::udp {</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    Client Server::_registerClient(boost::asio::ip::udp::endpoint endpoint) {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        Client client(endpoint.address().to_v4(), endpoint.port());</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>        this-&gt;_clients.insert(client);</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        <span class="keywordflow">return</span> client;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    }</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    Server::Server(<span class="keywordtype">int</span> port) :</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        _endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port))),</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        _socket(this-&gt;_ioService, this-&gt;_endpoint) {}</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">bool</span> Server::availableRequest() {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordflow">return</span> this-&gt;_socket.available() &gt; 0;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_41e1742e44e2de38b3bc91f993fed282.html">server</a></li><li class="navelem"><a class="el" href="dir_a063914ab482288b7b0e1b2fca86158c.html">src</a></li><li class="navelem"><a class="el" href="dir_eff666974b9d67123228e9931e523eed.html">socket</a></li><li class="navelem"><b>Server.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_41e1742e44e2de38b3bc91f993fed282.html">server</a></li><li class="navelem"><a class="el" href="dir_010f395244c646c826c2ede382a13d69.html">modules</a></li><li class="navelem"><a class="el" href="dir_95dea7bdffdddc35ca11582b5fcc51e7.html">network</a></li><li class="navelem"><a class="el" href="dir_35682624817f1420e589f313d422a0e0.html">src</a></li><li class="navelem"><a class="el" href="dir_ace46aeb2f5a526d5943d44ab28a4f13.html">socket</a></li><li class="navelem"><b>Server.cpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
