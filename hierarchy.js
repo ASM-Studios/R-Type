@@ -11,6 +11,7 @@ var hierarchy =
     [ "B", "classB.html", [
       [ "D", "classD.html", null ]
     ] ],
+    [ "GUI::Button< Args >", "classGUI_1_1Button.html", null ],
     [ "C1", "classC1.html", null ],
     [ "C2", "classC2.html", null ],
     [ "C3", "classC3.html", null ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: client/src/main.cpp Source File</title>
+<title>R-Type: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('client_2src_2main_8cpp_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classGUI_1_1Button.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -89,29 +89,23 @@ $(document).ready(function(){initNavTree('client_2src_2main_8cpp_source.html',''
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">main.cpp</div></div>
+  <div class="headertitle"><div class="title">GUI::Button&lt; Args &gt; Member List</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;WindowManager.hpp&quot;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keywordtype">int</span> main() {</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>        <a class="code hl_class" href="classGUI_1_1WindowManager.html">GUI::WindowManager</a> windowManager;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        windowManager.run();</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code hl_class" href="classGUI_1_1GuiException.html">GUI::GuiException</a>&amp; e) {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        Logger::log(LogLevel::ERROR, e.what());</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    }</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>}</div>
-<div class="ttc" id="aclassGUI_1_1GuiException_html"><div class="ttname"><a href="classGUI_1_1GuiException.html">GUI::GuiException</a></div><div class="ttdef"><b>Definition:</b> <a href="GuiException_8hpp_source.html#l00008">GuiException.hpp:8</a></div></div>
-<div class="ttc" id="aclassGUI_1_1WindowManager_html"><div class="ttname"><a href="classGUI_1_1WindowManager.html">GUI::WindowManager</a></div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00037">WindowManager.hpp:37</a></div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>This is the complete list of members for <a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a>, including all inherited members.</p>
+<table class="directory">
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Button</b>(const std::map&lt; std::size_t, std::shared_ptr&lt; sf::Sprite &gt; &gt; &amp;buttonSprites, std::function&lt; void(Args...)&gt; onClick, std::pair&lt; std::size_t, std::size_t &gt; position, const bool isStatic=false) (defined in <a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a>)</td><td class="entry"><a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>click</b>(Args... args) (defined in <a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a>)</td><td class="entry"><a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>draw</b>(sf::RenderWindow &amp;window) (defined in <a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a>)</td><td class="entry"><a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>setOnClick</b>(std::function&lt; void(Args...)&gt; onClick) (defined in <a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a>)</td><td class="entry"><a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>update</b>(const sf::RenderWindow &amp;window, const sf::Event &amp;event) (defined in <a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a>)</td><td class="entry"><a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~Button</b>()=default (defined in <a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a>)</td><td class="entry"><a class="el" href="classGUI_1_1Button.html">GUI::Button&lt; Args &gt;</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_db3a54907829b36871118d03417739cd.html">client</a></li><li class="navelem"><a class="el" href="dir_b565d458ba0ce2faccd0ea2cd60c04eb.html">src</a></li><li class="navelem"><b>main.cpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
