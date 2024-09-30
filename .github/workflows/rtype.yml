@@ -6,6 +6,8 @@ on:
     branches:
       - master
       - dev
+      - server
+      - client
   pull_request:
 
 env:
@@ -26,7 +28,6 @@ jobs:
         with:
           path: ~/.cache/vcpkg/
           key: ${{ hashFiles('vcpkg.json') }}
-          save-always: true
 
       - name: Setup vcpkg
         run: |
