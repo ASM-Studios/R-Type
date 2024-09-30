@@ -1,5 +1,7 @@
 {
   "dependencies": [
-    "sfml"
+    "boost",
+    "sfml",
+    "libconfig"
   ]
 }

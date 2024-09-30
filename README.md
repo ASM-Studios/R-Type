@@ -11,6 +11,10 @@ The project is made solely in C++.
 ## Requirements
 
 - Doxygen: [see documentation](https://www.doxygen.nl/manual/install.html)
+- CMake: [see documentation](https://cmake.org/install/)
+- C++ Compiler: [see documentation](https://gcc.gnu.org/install/)
+- Ninja: [see documentation](https://ninja-build.org/)
+- VCPKG: [see documentation](Misc/VCPKG.md)
 
 ## Installation
 
@@ -43,7 +47,7 @@ Use release.sh script to create a release build.
 
 This project is documented using Doxygen.
 
-You can find additional information in the `docs` folder.
+You can find additional information in the [`docs`](docs/Hub.md) folder.
 
 ## Authors
 
