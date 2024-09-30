@@ -123,6 +123,7 @@ dkms.conf
 compile_flags.txt
 *.lock
 .idea
+.vs
 
 ### Python ###
 __pycache__

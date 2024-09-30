@@ -129,7 +129,7 @@ IncludeIsMainRegex: '(Test)?$'
 IncludeIsMainSourceRegex: ''
 IndentAccessModifiers: false
 IndentCaseBlocks: false
-IndentCaseLabels: false
+IndentCaseLabels: true
 IndentExternBlock: AfterExternBlock
 IndentGotoLabels: true
 IndentPPDirectives: None
@@ -176,7 +176,7 @@ PenaltyReturnTypeOnItsOwnLine: 60
 PointerAlignment: Right
 PPIndentWidth:   -1
 QualifierAlignment: Leave
-ReferenceAlignment: Pointer
+ReferenceAlignment: Left
 ReflowComments:  true
 RemoveBracesLLVM: false
 RemoveParentheses: Leave
@@ -211,7 +211,7 @@ SpaceBeforeParensOptions:
   AfterRequiresInClause: false
   AfterRequiresInExpression: false
   BeforeNonEmptyParentheses: false
-SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeRangeBasedForLoopColon: false
 SpaceBeforeSquareBrackets: false
 SpaceInEmptyBlock: false
 SpacesBeforeTrailingComments: 1

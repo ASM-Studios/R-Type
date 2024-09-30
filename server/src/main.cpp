@@ -1,18 +1,9 @@
-#include "socket/Server.hpp"
-#include <fcntl.h>
-#include <iostream>
-#include <span>
-#include <unistd.h>
+#include "Core.hpp"
 
 int main(int ac, char **av) {
     auto args = std::span<char *>(av, ac);
-    udp_socket::Server server(8080);
+    Core core;
 
-    while (true) {
-        if (server.availableRequest()) {
-            auto query = server.recv<char>();
-            std::cout << "Receiving data" << std::endl;
-        }
-    }
-    return 0;
+    core.init(args);
+    return core.run();
 }
