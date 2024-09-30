@@ -19,6 +19,8 @@ GUI::WindowManager::WindowManager() {
     _event = sf::Event();
 
     _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 100, 10));
+
+    _musicManager.setMusic(MAIN_THEME_MUSIC);
 }
 
 void GUI::WindowManager::run() {
@@ -235,22 +237,23 @@ void GUI::WindowManager::_settingsMenuInit() {
 
     const auto plusButtonSprites = _spriteManager.getSprites("buttons/settings_btn/plus");
     const Button<> plusButton(plusButtonSprites, [this]() {
-        // TODO: Implement volume increase logic here
+        const float volume = _musicManager.getVolume();
+        _musicManager.setVolume(volume + 10.0f);
     }, {centerX + musicButtonSpritesWidth / 2 + 45, startY + buttonSpacing});
     _addButton("settings:plus", plusButton);
 
     const auto minusButtonSprites = _spriteManager.getSprites("buttons/settings_btn/minus");
     const Button<> minusButton(minusButtonSprites, [this]() {
-        // TODO: Implement volume decrease logic here
+        const float volume = _musicManager.getVolume();
+        _musicManager.setVolume(volume - 10.0f);
     }, {centerX - musicButtonSpritesWidth / 2 - 45, startY + buttonSpacing});
     _addButton("settings:minus", minusButton);
 
     const auto musicButtonSprites = _spriteManager.getSprites("buttons/settings_btn/music");
-    const Button<> musicButton(musicButtonSprites, []() {
-        // TODO: Implement music button logic here
+    const Button<> musicButton(musicButtonSprites, [this]() {
+        _musicManager.toggleMute();
     }, {centerX, startY + buttonSpacing});
-    _addButton("settings:music", musicButton);
-
+    _addButton("settings:musics", musicButton);
     const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
     const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
             this->setGameState(gameState::MENUS);
@@ -264,7 +267,7 @@ void GUI::WindowManager::_displaySettingsMenu() {
         "settings:fps",
         "settings:plus",
         "settings:minus",
-        "settings:music",
+        "settings:musics",
         "settings:main_menu"
     };
 

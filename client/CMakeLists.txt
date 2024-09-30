@@ -12,6 +12,7 @@ set(SOURCE_FILE
         src/WindowManager.cpp
         src/SpriteManager.cpp
         src/Config.cpp
+        src/MusicManager.cpp
 )
 
 add_executable(r-type_client ${SOURCE_FILE})
