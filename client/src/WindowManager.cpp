@@ -207,7 +207,7 @@ void GUI::WindowManager::_displayMainMenu() {
                     _deleteButton(b);
                 }
             } catch (const GuiException& e) {
-                Logger::log(LogLevel::ERROR, e.what());
+                Logger::log(LogLevel::ERR, e.what());
             }
             _mainMenuInit();
         }
@@ -219,7 +219,7 @@ void GUI::WindowManager::_displayMainMenu() {
             _currentButtons.at(button).draw(*_window);
         }
     } catch (const GuiException& e) {
-        Logger::log(LogLevel::ERROR, e.what());
+        Logger::log(LogLevel::ERR, e.what());
     }
 }
 
@@ -278,7 +278,7 @@ void GUI::WindowManager::_displaySettingsMenu() {
                     _deleteButton(b);
                 }
             } catch (const GuiException& e) {
-                Logger::log(LogLevel::ERROR, e.what());
+                Logger::log(LogLevel::ERR, e.what());
             }
             _settingsMenuInit();
         }
@@ -290,7 +290,7 @@ void GUI::WindowManager::_displaySettingsMenu() {
             _currentButtons.at(button).draw(*_window);
         }
     } catch (const GuiException& e) {
-        Logger::log(LogLevel::ERROR, e.what());
+        Logger::log(LogLevel::ERR, e.what());
     }
 }
 
@@ -327,7 +327,7 @@ void GUI::WindowManager::_displayPauseMenu() {
                     _deleteButton(b);
                 }
             } catch (const GuiException& e) {
-                Logger::log(LogLevel::ERROR, e.what());
+                Logger::log(LogLevel::ERR, e.what());
             }
             _pauseMenuInit();
         }
@@ -339,6 +339,6 @@ void GUI::WindowManager::_displayPauseMenu() {
             _currentButtons.at(button).draw(*_window);
         }
     } catch (const GuiException& e) {
-        Logger::log(LogLevel::ERROR, e.what());
+        Logger::log(LogLevel::ERR, e.what());
     }
 }

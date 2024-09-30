@@ -14,5 +14,3 @@ namespace ecs::component {
 
 namespace ecs::system {
 }
-
-std::optional<ecs::Entity> getEntityByClient(const network::Client& client);

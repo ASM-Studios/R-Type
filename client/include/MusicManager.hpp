@@ -8,10 +8,11 @@
 #include <libconfig.h++>
 
 #include "Logger.hpp"
+#include "Config.hpp"
 
 namespace GUI {
-    constexpr auto DEFAULT_MUSIC_CONFIG = "client/assets/musics_config.cfg";
-    constexpr auto DEFAULT_MUSIC_PATH = "client/assets/musics/";
+    constexpr auto DEFAULT_MUSIC_CONFIG = "assets/musics_config.cfg";
+    constexpr auto DEFAULT_MUSIC_PATH = "assets/musics/";
 
     class MusicManager {
         private:

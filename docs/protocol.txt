@@ -1,0 +1,164 @@
+RFC 9999 et des brouettes - RType Binary Data Transfer Procol (RBDTP)
+
+1. Introduction
+
+    This document describes the RType Binary Data Transfer Protocol (RBDTP),
+    which is a protocol for transferring binary data between a server and a
+    client.  The protocol is designed to be simple and efficient.
+
+2. Overview
+
+    The RBDTP protocol is a simple protocol that allows a client to request
+    data from a server.  The server responds with the requested data if
+    needed.
+
+3. Header
+
+    Used to send any type of message (movement, chat, etc.) over the network,
+    with the `id` identifying the type of request, and `payload` containing the
+    data (such as player movement or chat content).
+    
+    To ensure no extra memory padding is added, all structures are packed.
+    To ensure packet integrity, a CRC32 checksum is included in the header.
+
+    struct Header {
+        uint16_t requestType;
+    };
+    
+    template <typename Payload>
+    struct Query {
+        Header header;
+        uint32_t payloadSize;
+        Payload payload;
+    };
+    
+
+    template <typename Payload>
+    struct Request {
+        uint32_t checksum;
+        Query<Payload> query;
+    };
+
+4. Protocol
+
+    ID are to be defined.
+
+    4.1. Client to Server
+
+        4.1.1. Movement
+
+            Key pressed:
+                - ID: 0x0000
+                - Request: Query<KeyPressedRequest>
+
+            Key released:
+                - ID: 0x0000
+                - Request: Query<KeyReleasedRequest>
+
+        4.1.2. Chat
+
+            Send a message:
+                - ID: 0x0000
+                - Request: Query<SendMessageRequest>
+
+        4.1.3. Ping
+
+            Ping:
+                - ID: 0x0000
+                - Request: Query<Empty>
+
+    4.2. Server to Client
+
+        4.2.1. Entity
+
+            Entity created:
+                - ID: 0x0000
+                - Request: Query<EntityCreatedRequest>
+
+            Entity destroyed:
+                - ID: 0x0000
+                - Request: Query<EntityDestroyedRequest>
+            
+            Entity updated:
+                - ID: 0x0000
+                - Request: Query<EntityUpdatedRequest>
+
+        4.2.2. Event
+
+            Projectile fired:
+                - ID: 0x0000
+                - Request: Query<ProjectileFiredRequest>
+
+            Collision:
+                - ID: 0x0000
+                - Request: Query<CollisionRequest>
+
+            Powerup spawned:
+                - ID: 0x0000
+                - Request: Query<PowerupSpawnedRequest>
+
+            Powerup collected:
+                - ID: 0x0000
+                - Request: Query<PowerupCollectedRequest>
+            
+            Explosion:
+                - ID: 0x0000
+                - Request: Query<ExplosionRequest>
+
+            Receive a message:
+                - ID: 0x0000
+                - Request: Query<ReceiveMessageRequest>
+
+5. Structures
+
+struct Empty {};
+
+enum StatusCode {
+    OK,
+    KO
+};
+
+struct CreateLobbyRequest {
+    char username[128];
+};
+
+struct CreateLobbyResponse {
+    uint32_t lobbyId;
+};
+
+struct JoinLobbyRequest {
+    char username[128];
+    uint32_t lobbyId;
+};
+
+struct KeyPressedRequest {
+    char key;
+};
+
+using KeyReleasedRequest = KeyPressedRequest;
+
+struct SendMessageRequest {
+    char message[256];
+};
+
+struct PingResponse {
+    uint64_t timestamp;
+};
+
+struct EntityCreatedRequest {
+    uint32_t entityId;
+    uint32_t x;
+    uint32_t y;
+};
+
+struct EntityDestroyedRequest {
+    uint32_t entityId;
+};
+
+struct EntityUpdatedRequest {
+    uint32_t entityId;
+    uint32_t x;
+    uint32_t y;
+};
+
+// TO BE CONTINUED

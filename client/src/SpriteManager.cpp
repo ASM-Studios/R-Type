@@ -1,9 +1,9 @@
 #include "SpriteManager.hpp"
 
-#include <Config.hpp>
+#include "Config.hpp"
 
 void GUI::SpriteManager::init() {
-    Config& config = Config::getInstance(DEFAULT_CONFIG);
+    Config& config = Config::getInstance("client/config.json");
     _spritesConfigPath = config.get("sprites_config_path").value_or(DEFAULT_SPRITES_CONFIG);
     const auto spritePath = config.get("sprites_path").value_or("");
     if (spritePath.empty()) {

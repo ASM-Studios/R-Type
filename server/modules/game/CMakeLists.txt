@@ -6,9 +6,7 @@ include_directories(../../include)
 
 find_package(Boost COMPONENTS asio CONFIG REQUIRED)
 
-set(SOURCE_FILE src/Registry.cpp
-    src/Entity.cpp
-    src/EntityInfo.cpp
+set(SOURCE_FILE src/EntityInfo.cpp
     src/Player.cpp)
 
 add_library(game ${SOURCE_FILE})

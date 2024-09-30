@@ -26,7 +26,7 @@ void GUI::MusicManager::loadMusic(const std::string& configPath) {
                 auto musicPtr = std::make_shared<sf::Music>();
                 std::string fullPath = _musicsPath + path;
                 if (!musicPtr->openFromFile(fullPath)) {
-                    Logger::log(LogLevel::ERROR, "Failed to load music: " + fullPath);
+                    Logger::log(LogLevel::ERR, "Failed to load music: " + fullPath);
                 }
                 _musicMap[name] = musicPtr;
                 Logger::log(LogLevel::INFO, "Loaded music: " + name + " from " + fullPath);

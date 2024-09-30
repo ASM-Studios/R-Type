@@ -11,7 +11,7 @@
 #include "GuiException.hpp"
 
 namespace GUI {
-    constexpr auto DEFAULT_SPRITES_CONFIG = "client/assets/sprites_config.cfg";
+    constexpr auto DEFAULT_SPRITES_CONFIG = "assets/texture_config.cfg";
 
     class SpriteManager : public std::enable_shared_from_this<SpriteManager> {
         private:
@@ -40,7 +40,7 @@ namespace GUI {
                 if (const auto it = _textures.find(name); it != _textures.end()) {
                     return it->second;
                 }
-                Logger::log(LogLevel::ERROR, "Texture not found for name: " + name);
+                Logger::log(LogLevel::ERR, "Texture not found for name: " + name);
                 return {};
             }
 
@@ -49,10 +49,10 @@ namespace GUI {
                     if (const auto spriteIt = it->second.find(id); spriteIt != it->second.end()) {
                         return spriteIt->second;
                     }
-                    Logger::log(LogLevel::ERROR, "Sprite ID not found for name: " + name);
+                    Logger::log(LogLevel::ERR, "Sprite ID not found for name: " + name);
                     return {};
                 }
-                Logger::log(LogLevel::ERROR, "Sprite not found for name: " + name + " and id: " + std::to_string(id));
+                Logger::log(LogLevel::ERR, "Sprite not found for name: " + name + " and id: " + std::to_string(id));
                 return {};
             }
 
@@ -60,7 +60,7 @@ namespace GUI {
                 if (const auto it = _sprites.find(name); it != _sprites.end()) {
                     return it->second;
                 }
-                Logger::log(LogLevel::ERROR, "Sprite not found for name: " + name);
+                Logger::log(LogLevel::ERR, "Sprite not found for name: " + name);
                 return {};
             }
     };

@@ -11,7 +11,7 @@
 #include "MusicManager.hpp"
 #include "Button.hpp"
 
-constexpr auto FONT_FILENAME = "client/assets/fonts/arial.ttf";
+constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
 
 constexpr std::size_t POPUP_WIDTH = 200;
