@@ -44,6 +44,7 @@ var hierarchy =
     [ "Logger", "classLogger.html", null ],
     [ "Memgrp_Test", "classMemgrp__Test.html", null ],
     [ "GUI::MessagePopup", "classGUI_1_1MessagePopup.html", null ],
+    [ "GUI::MusicManager", "classGUI_1_1MusicManager.html", null ],
     [ "Object", "structObject.html", [
       [ "Vehicle", "structVehicle.html", [
         [ "Car", "structCar.html", null ],

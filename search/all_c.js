@@ -8,7 +8,8 @@ var searchData=
   ['memgrp_5ftest_5',['Memgrp_Test',['../classMemgrp__Test.html',1,'']]],
   ['messagepopup_6',['MessagePopup',['../classGUI_1_1MessagePopup.html',1,'GUI']]],
   ['min_7',['MIN',['../define_8h.html#a74e75242132eaabbc1c512488a135926',1,'define.h']]],
-  ['mux_2evhdl_8',['mux.vhdl',['../mux_8vhdl.html',1,'']]],
-  ['mux_5fout_9',['mux_out',['../classmux__using__with.html#a6258515f40573285292fdb0b9663c422',1,'mux_using_with']]],
-  ['mux_5fusing_5fwith_10',['mux_using_with',['../classmux__using__with.html',1,'']]]
+  ['musicmanager_8',['MusicManager',['../classGUI_1_1MusicManager.html',1,'GUI']]],
+  ['mux_2evhdl_9',['mux.vhdl',['../mux_8vhdl.html',1,'']]],
+  ['mux_5fout_10',['mux_out',['../classmux__using__with.html#a6258515f40573285292fdb0b9663c422',1,'mux_using_with']]],
+  ['mux_5fusing_5fwith_11',['mux_using_with',['../classmux__using__with.html',1,'']]]
 ];
