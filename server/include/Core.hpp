@@ -16,14 +16,14 @@ private:
     int _port;
     std::string _hitboxes_config_file;
 
+    void _initTextures();
+
     void _stop();
     void _waitTPS();
     void _readStdin();
     void _loop(network::socket::udp::Server& server);
 
-    static constexpr std::array<std::pair<std::string_view, void (Core::*)()>, 1> _stdinMap = {{
-        {"/exit", &Core::_stop}
-    }};
+    static constexpr std::array<std::pair<std::string_view, void (Core::*)()>, 1> _stdinMap = {{{"/exit", &Core::_stop}}};
 
 public:
     explicit Core();

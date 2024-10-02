@@ -10,6 +10,7 @@ The documentation is divided into the following sections:
 - [Logger](Misc/Logger.md)
 - [WindowManager](Client/WindowManager.md)
 - [SpriteManager](Client/SpriteManager.md)
+- [MusicManager](Client/MusicManager.md)
 - [TextHandler](Client/TextHandler.md)
 - [Button](Client/Button.md)
 

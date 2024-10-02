@@ -5,13 +5,14 @@
 #include <thread>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <utility>
 
 #include "GuiException.hpp"
 #include "SpriteManager.hpp"
+#include "MusicManager.hpp"
 #include "Button.hpp"
 
-constexpr auto FONT_FILENAME = "client/assets/fonts/arial.ttf";
+constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
+constexpr auto MAIN_THEME_MUSIC = "main_theme";
 
 constexpr std::size_t POPUP_WIDTH = 200;
 constexpr std::size_t POPUP_HEIGHT = 100;
@@ -39,6 +40,7 @@ namespace GUI {
             std::unique_ptr<sf::RenderWindow> _window;
             sf::Event _event;
             SpriteManager _spriteManager;
+            MusicManager _musicManager;
             sf::Font _font;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
             gameState _previousGameState = gameState::NONE;

@@ -1,7 +1,8 @@
 {
   "dependencies": [
     "boost",
-    "sfml",
-    "libconfig"
+    "libconfig",
+    "libpng",
+    "sfml"
   ]
 }

@@ -7,6 +7,9 @@ Fields aren't enforced, but the following fields are used by the client:
 - "sprites_path": The path to the sprites' directory.
 - "sprites_config_path": The path to the sprites' configuration file.
   - By default: `client/assets/sprites_config.cfg`.
+- "musics_path": The path to the musics' directory.
+- "musics_config_path": The path to the musics' configuration file.
+  - By default: `client/assets/musics_config.cfg`.
 - "fullscreen":
   - `true` | `false`
 - "width": The window's width.
@@ -24,12 +27,15 @@ Fields aren't enforced, but the following fields are used by the client:
 {
   "sprites_path": "client/assets/textures/",
   "sprites_config_path": "client/assets/sprites_config.cfg",
+  "musics_path": "client/assets/musics/",
+  "musics_config_path": "client/assets/musics_config.cfg",
   "fullscreen": false,
   "width": 1920,
   "height": 1080,
   "logLevel": "ERROR",
   "frameRateLimit": 60
 }
+
 ```
 
 ## Usage
