@@ -48,10 +48,12 @@ namespace ecs {
         static void setComponent(const Entity& entity, Component component);
 
         template <typename Component>
-        static bool contains(const Entity& entity);
+        [[nodiscard]] static bool contains(const Entity& entity);
+        template <typename Component>
+        [[nodiscard]] static bool contains(const Entity& entity, const Component& component);
 
         template <typename Component>
-        [[nodiscard]] static std::reference_wrapper<Component> getComponent(const Entity& entity);
+        [[nodiscard]] static Component& getComponent(const Entity& entity);
 
         static void reset(const Entity& entity);
     };
