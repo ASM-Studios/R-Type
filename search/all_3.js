@@ -11,8 +11,11 @@ var searchData=
   ['client_8',['Client',['../classnetwork_1_1Client.html',1,'network']]],
   ['clock_9',['Clock',['../classClock.html',1,'']]],
   ['close_10',['close',['../structcmd_8h.html#ae152484c890a24e4d9b4980e7b965be0',1,'structcmd.h']]],
-  ['config_11',['Config',['../classConfig.html',1,'']]],
-  ['coord_12',['Coord',['../restypedef_8cpp.html#a013489fb99c6a5b012db8ec66544a507',1,'restypedef.cpp']]],
-  ['coordstruct_13',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['core_14',['Core',['../classCore.html',1,'']]]
+  ['componentnotfound_11',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
+  ['config_12',['Config',['../classConfig.html',1,'']]],
+  ['coord_13',['Coord',['../restypedef_8cpp.html#a013489fb99c6a5b012db8ec66544a507',1,'restypedef.cpp']]],
+  ['coordstruct_14',['CoordStruct',['../structCoordStruct.html',1,'']]],
+  ['core_15',['Core',['../classCore.html',1,'']]],
+  ['createlobbyrequest_16',['CreateLobbyRequest',['../structCreateLobbyRequest.html',1,'']]],
+  ['createlobbyresponse_17',['CreateLobbyResponse',['../structCreateLobbyResponse.html',1,'']]]
 ];

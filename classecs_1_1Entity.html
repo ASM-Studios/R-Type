@@ -104,26 +104,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a55416a1529abd345f0acb4ebf0e2a920"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d0d64f3e6b2f2a6755304d05a136089"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a7d0d64f3e6b2f2a6755304d05a136089">operator==</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;other) const</td></tr>
 <tr class="separator:a7d0d64f3e6b2f2a6755304d05a136089"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14dd55f9f8f616e5db8be413d7bf1b40"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
-<tr class="memitem:a14dd55f9f8f616e5db8be413d7bf1b40"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a14dd55f9f8f616e5db8be413d7bf1b40">addComponent</a> ()</td></tr>
-<tr class="separator:a14dd55f9f8f616e5db8be413d7bf1b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69337ba4dc0579c0ab17897ec4a030e1"><td class="memTemplParams" colspan="2">template&lt;typename... Components&gt; </td></tr>
-<tr class="memitem:a69337ba4dc0579c0ab17897ec4a030e1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a69337ba4dc0579c0ab17897ec4a030e1">addComponents</a> ()</td></tr>
-<tr class="separator:a69337ba4dc0579c0ab17897ec4a030e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae406d250ec26cc8dbddadf48b2487caa"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
-<tr class="memitem:ae406d250ec26cc8dbddadf48b2487caa"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#ae406d250ec26cc8dbddadf48b2487caa">setComponent</a> (Component component)</td></tr>
-<tr class="separator:ae406d250ec26cc8dbddadf48b2487caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5a0cad68b185a9b8a685dd64f3de14a"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
-<tr class="memitem:ae5a0cad68b185a9b8a685dd64f3de14a"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#ae5a0cad68b185a9b8a685dd64f3de14a">contains</a> () const</td></tr>
-<tr class="separator:ae5a0cad68b185a9b8a685dd64f3de14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2d85fe4a2626cb1c02226ccbd1c65e1"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
-<tr class="memitem:ae2d85fe4a2626cb1c02226ccbd1c65e1"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; std::reference_wrapper&lt; Component &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#ae2d85fe4a2626cb1c02226ccbd1c65e1">getComponent</a> ()</td></tr>
-<tr class="separator:ae2d85fe4a2626cb1c02226ccbd1c65e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa44308ae271d6a708d2f99499030dad5"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
-<tr class="memitem:aa44308ae271d6a708d2f99499030dad5"><td class="memTemplItemLeft" align="right" valign="top">std::optional&lt; Component &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#aa44308ae271d6a708d2f99499030dad5">getComponent</a> () const</td></tr>
-<tr class="separator:aa44308ae271d6a708d2f99499030dad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0623644d1a321fde1791468060077d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#ad0623644d1a321fde1791468060077d0">reset</a> ()</td></tr>
-<tr class="separator:ad0623644d1a321fde1791468060077d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -158,104 +138,11 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a14dd55f9f8f616e5db8be413d7bf1b40" name="a14dd55f9f8f616e5db8be413d7bf1b40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14dd55f9f8f616e5db8be413d7bf1b40">&#9670;&#160;</a></span>addComponent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Component &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void ecs::Entity::addComponent</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Entity_8inl_source.html#l00008">8</a> of file <a class="el" href="Entity_8inl_source.html">Entity.inl</a>.</p>
-
-</div>
-</div>
-<a id="a69337ba4dc0579c0ab17897ec4a030e1" name="a69337ba4dc0579c0ab17897ec4a030e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69337ba4dc0579c0ab17897ec4a030e1">&#9670;&#160;</a></span>addComponents()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename... Components&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void ecs::Entity::addComponents</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Entity_8inl_source.html#l00013">13</a> of file <a class="el" href="Entity_8inl_source.html">Entity.inl</a>.</p>
-
-</div>
-</div>
-<a id="ae5a0cad68b185a9b8a685dd64f3de14a" name="ae5a0cad68b185a9b8a685dd64f3de14a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5a0cad68b185a9b8a685dd64f3de14a">&#9670;&#160;</a></span>contains()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Component &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ecs::Entity::contains</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Entity_8inl_source.html#l00023">23</a> of file <a class="el" href="Entity_8inl_source.html">Entity.inl</a>.</p>
-
-</div>
-</div>
-<a id="ae2d85fe4a2626cb1c02226ccbd1c65e1" name="ae2d85fe4a2626cb1c02226ccbd1c65e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2d85fe4a2626cb1c02226ccbd1c65e1">&#9670;&#160;</a></span>getComponent() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Component &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::optional&lt; std::reference_wrapper&lt; Component &gt; &gt; ecs::Entity::getComponent</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Entity_8inl_source.html#l00028">28</a> of file <a class="el" href="Entity_8inl_source.html">Entity.inl</a>.</p>
-
-</div>
-</div>
-<a id="aa44308ae271d6a708d2f99499030dad5" name="aa44308ae271d6a708d2f99499030dad5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa44308ae271d6a708d2f99499030dad5">&#9670;&#160;</a></span>getComponent() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Component &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::optional&lt; Component &gt; ecs::Entity::getComponent</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Entity_8inl_source.html#l00033">33</a> of file <a class="el" href="Entity_8inl_source.html">Entity.inl</a>.</p>
-
-</div>
-</div>
 <a id="a55416a1529abd345f0acb4ebf0e2a920" name="a55416a1529abd345f0acb4ebf0e2a920"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a55416a1529abd345f0acb4ebf0e2a920">&#9670;&#160;</a></span>getID()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::size_t ecs::Entity::getID </td>
@@ -264,14 +151,9 @@ template&lt;typename Component &gt; </div>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Entity_8hpp_source.html#l00016">16</a> of file <a class="el" href="Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00008">8</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
 
 </div>
 </div>
@@ -280,9 +162,6 @@ template&lt;typename Component &gt; </div>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool ecs::Entity::operator== </td>
@@ -292,62 +171,15 @@ template&lt;typename Component &gt; </div>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Entity_8hpp_source.html#l00020">20</a> of file <a class="el" href="Entity_8hpp_source.html">Entity.hpp</a>.</p>
-
-</div>
-</div>
-<a id="ad0623644d1a321fde1791468060077d0" name="ad0623644d1a321fde1791468060077d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0623644d1a321fde1791468060077d0">&#9670;&#160;</a></span>reset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ecs::Entity::reset </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00008">8</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
-
-</div>
-</div>
-<a id="ae406d250ec26cc8dbddadf48b2487caa" name="ae406d250ec26cc8dbddadf48b2487caa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae406d250ec26cc8dbddadf48b2487caa">&#9670;&#160;</a></span>setComponent()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Component &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void ecs::Entity::setComponent </td>
-          <td>(</td>
-          <td class="paramtype">Component&#160;</td>
-          <td class="paramname"><em>component</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Entity_8inl_source.html#l00018">18</a> of file <a class="el" href="Entity_8inl_source.html">Entity.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00012">12</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>server/modules/game/include/<a class="el" href="Entity_8hpp_source.html">Entity.hpp</a></li>
-<li>server/modules/game/include/<a class="el" href="Entity_8inl_source.html">Entity.inl</a></li>
-<li>server/modules/game/src/<a class="el" href="Entity_8cpp_source.html">Entity.cpp</a></li>
+<li>shared/ECS/include/<a class="el" href="Entity_8hpp_source.html">Entity.hpp</a></li>
+<li>shared/ECS/src/<a class="el" href="Entity_8cpp_source.html">Entity.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

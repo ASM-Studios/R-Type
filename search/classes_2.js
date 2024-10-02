@@ -9,7 +9,10 @@ var searchData=
   ['car_6',['Car',['../structCar.html',1,'']]],
   ['client_7',['Client',['../classnetwork_1_1Client.html',1,'network']]],
   ['clock_8',['Clock',['../classClock.html',1,'']]],
-  ['config_9',['Config',['../classConfig.html',1,'']]],
-  ['coordstruct_10',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['core_11',['Core',['../classCore.html',1,'']]]
+  ['componentnotfound_9',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
+  ['config_10',['Config',['../classConfig.html',1,'']]],
+  ['coordstruct_11',['CoordStruct',['../structCoordStruct.html',1,'']]],
+  ['core_12',['Core',['../classCore.html',1,'']]],
+  ['createlobbyrequest_13',['CreateLobbyRequest',['../structCreateLobbyRequest.html',1,'']]],
+  ['createlobbyresponse_14',['CreateLobbyResponse',['../structCreateLobbyResponse.html',1,'']]]
 ];

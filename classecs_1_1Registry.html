@@ -90,12 +90,18 @@ $(document).ready(function(){initNavTree('classecs_1_1Registry.html',''); initRe
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classecs_1_1Registry-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ecs::Registry Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry_1_1ComponentNotFound.html">ComponentNotFound</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa204a3f8f58b7961089b6c183f59b88d"><td class="memTemplParams" colspan="2">template&lt;typename... Components&gt; </td></tr>
@@ -117,15 +123,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3b99491cbecd467e4e3dc27043674614"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
 <tr class="memitem:a3b99491cbecd467e4e3dc27043674614"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a3b99491cbecd467e4e3dc27043674614">contains</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
 <tr class="separator:a3b99491cbecd467e4e3dc27043674614"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c96052d80d140f76cdea4c2ffaa33a3"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
-<tr class="memitem:a6c96052d80d140f76cdea4c2ffaa33a3"><td class="memTemplItemLeft" align="right" valign="top">static std::optional&lt; std::reference_wrapper&lt; Component &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a6c96052d80d140f76cdea4c2ffaa33a3">getComponent</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
-<tr class="separator:a6c96052d80d140f76cdea4c2ffaa33a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0492f0b0dc0f777771c58526c2939f51"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
+<tr class="memitem:a0492f0b0dc0f777771c58526c2939f51"><td class="memTemplItemLeft" align="right" valign="top">static std::reference_wrapper&lt; Component &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a0492f0b0dc0f777771c58526c2939f51">getComponent</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
+<tr class="separator:a0492f0b0dc0f777771c58526c2939f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e03dff5835cba39b7e20269427d8b1e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a7e03dff5835cba39b7e20269427d8b1e">reset</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
 <tr class="separator:a7e03dff5835cba39b7e20269427d8b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Registry_8hpp_source.html#l00014">14</a> of file <a class="el" href="Registry_8hpp_source.html">Registry.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8hpp_source.html#l00015">15</a> of file <a class="el" href="Registry_8hpp_source.html">Registry.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa4a9072fc93ef12d4489eb5ac33813cf" name="aa4a9072fc93ef12d4489eb5ac33813cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa4a9072fc93ef12d4489eb5ac33813cf">&#9670;&#160;</a></span>addComponent()</h2>
@@ -243,8 +249,8 @@ template&lt;typename... Components&gt; </div>
 
 </div>
 </div>
-<a id="a6c96052d80d140f76cdea4c2ffaa33a3" name="a6c96052d80d140f76cdea4c2ffaa33a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c96052d80d140f76cdea4c2ffaa33a3">&#9670;&#160;</a></span>getComponent()</h2>
+<a id="a0492f0b0dc0f777771c58526c2939f51" name="a0492f0b0dc0f777771c58526c2939f51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0492f0b0dc0f777771c58526c2939f51">&#9670;&#160;</a></span>getComponent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,7 +261,7 @@ template&lt;typename Component &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::optional&lt; std::reference_wrapper&lt; Component &gt; &gt; ecs::Registry::getComponent </td>
+          <td class="memname">std::reference_wrapper&lt; Component &gt; ecs::Registry::getComponent </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>entity</em></td><td>)</td>
@@ -296,7 +302,7 @@ template&lt;typename Component &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Registry_8cpp_source.html#l00010">10</a> of file <a class="el" href="Registry_8cpp_source.html">Registry.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8cpp_source.html#l00018">18</a> of file <a class="el" href="Registry_8cpp_source.html">Registry.cpp</a>.</p>
 
 </div>
 </div>
@@ -323,7 +329,7 @@ template&lt;typename Component &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Registry_8cpp_source.html#l00006">6</a> of file <a class="el" href="Registry_8cpp_source.html">Registry.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8cpp_source.html#l00014">14</a> of file <a class="el" href="Registry_8cpp_source.html">Registry.cpp</a>.</p>
 
 </div>
 </div>
@@ -351,7 +357,7 @@ template&lt;typename Component &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Registry_8cpp_source.html#l00014">14</a> of file <a class="el" href="Registry_8cpp_source.html">Registry.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8cpp_source.html#l00022">22</a> of file <a class="el" href="Registry_8cpp_source.html">Registry.cpp</a>.</p>
 
 </div>
 </div>
@@ -396,9 +402,9 @@ template&lt;typename Component &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>server/modules/game/include/<a class="el" href="Registry_8hpp_source.html">Registry.hpp</a></li>
-<li>server/modules/game/include/<a class="el" href="Registry_8inl_source.html">Registry.inl</a></li>
-<li>server/modules/game/src/<a class="el" href="Registry_8cpp_source.html">Registry.cpp</a></li>
+<li>shared/ECS/include/<a class="el" href="Registry_8hpp_source.html">Registry.hpp</a></li>
+<li>shared/ECS/include/<a class="el" href="Registry_8inl_source.html">Registry.inl</a></li>
+<li>shared/ECS/src/<a class="el" href="Registry_8cpp_source.html">Registry.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

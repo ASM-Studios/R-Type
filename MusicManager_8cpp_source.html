@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('MusicManager_8cpp_source.html',''); in
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                <span class="keyword">auto</span> musicPtr = std::make_shared&lt;sf::Music&gt;();</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                std::string fullPath = _musicsPath + path;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                <span class="keywordflow">if</span> (!musicPtr-&gt;openFromFile(fullPath)) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                    Logger::log(LogLevel::ERROR, <span class="stringliteral">&quot;Failed to load music: &quot;</span> + fullPath);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                    Logger::log(LogLevel::ERR, <span class="stringliteral">&quot;Failed to load music: &quot;</span> + fullPath);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>                }</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                _musicMap[name] = musicPtr;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                Logger::log(LogLevel::INFO, <span class="stringliteral">&quot;Loaded music: &quot;</span> + name + <span class="stringliteral">&quot; from &quot;</span> + fullPath);</div>
@@ -178,7 +178,7 @@ $(document).ready(function(){initNavTree('MusicManager_8cpp_source.html',''); in
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        _currentMusic-&gt;setVolume(_isMuted ? 0.0f : _volume);</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
-<div class="ttc" id="aclassConfig_html"><div class="ttname"><a href="classConfig.html">Config</a></div><div class="ttdef"><b>Definition:</b> <a href="client_2include_2Config_8hpp_source.html#l00015">Config.hpp:15</a></div></div>
+<div class="ttc" id="aclassConfig_html"><div class="ttname"><a href="classConfig.html">Config</a></div><div class="ttdef"><b>Definition:</b> <a href="Config_8hpp_source.html#l00012">Config.hpp:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

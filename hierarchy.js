@@ -22,6 +22,9 @@ var hierarchy =
     [ "Config", "classConfig.html", null ],
     [ "CoordStruct", "structCoordStruct.html", null ],
     [ "Core", "classCore.html", null ],
+    [ "CreateLobbyRequest", "structCreateLobbyRequest.html", null ],
+    [ "CreateLobbyResponse", "structCreateLobbyResponse.html", null ],
+    [ "Empty", "structEmpty.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "GUI::SpriteManager", "classGUI_1_1SpriteManager.html", null ],
       [ "GUI::WindowManager", "classGUI_1_1WindowManager.html", null ]
@@ -33,12 +36,16 @@ var hierarchy =
     ] ],
     [ "std::exception", null, [
       [ "GUI::GuiException", "classGUI_1_1GuiException.html", null ],
-      [ "GUI::guiActionException", "classGUI_1_1guiActionException.html", null ]
+      [ "GUI::guiActionException", "classGUI_1_1guiActionException.html", null ],
+      [ "Texture::LoadFailed", "classTexture_1_1LoadFailed.html", null ],
+      [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ]
     ] ],
     [ "Fn_Test", "classFn__Test.html", null ],
     [ "std::hash< ecs::Entity >", "structstd_1_1hash_3_01ecs_1_1Entity_01_4.html", null ],
+    [ "Header", "structHeader.html", null ],
     [ "Include_Test", "classInclude__Test.html", null ],
     [ "Javadoc_Test", "classJavadoc__Test.html", null ],
+    [ "JoinLobbyRequest", "structJoinLobbyRequest.html", null ],
     [ "std::less< ecs::Entity >", "structstd_1_1less_3_01ecs_1_1Entity_01_4.html", null ],
     [ "std::less< network::Client >", "structstd_1_1less_3_01network_1_1Client_01_4.html", null ],
     [ "Logger", "classLogger.html", null ],
@@ -59,9 +66,11 @@ var hierarchy =
     [ "pyexample.PyClass", "classpyexample_1_1PyClass.html", null ],
     [ "QTstyle_Test", "classQTstyle__Test.html", null ],
     [ "network::socket::udp::Query", "classnetwork_1_1socket_1_1udp_1_1Query.html", null ],
-    [ "Query", "structQuery.html", null ],
+    [ "Query< Payload >", "structQuery.html", null ],
+    [ "Query< Empty >", "structQuery.html", null ],
     [ "network::QueryHandler", "classnetwork_1_1QueryHandler.html", null ],
     [ "ecs::Registry", "classecs_1_1Registry.html", null ],
+    [ "Request< Payload >", "structRequest.html", null ],
     [ "network::socket::udp::Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ],
     [ "SomeNiceClass", "classSomeNiceClass.html", null ],
     [ "String", "classString.html", null ],
@@ -69,6 +78,8 @@ var hierarchy =
     [ "Test< void *, 200 >", "classTest_3_01void_01_5_00_01200_01_4.html", [
       [ "Test< T * >", "classTest_3_01T_01_5_01_4.html", null ]
     ] ],
+    [ "Texture", "classTexture.html", null ],
+    [ "TextureLoader", "classTextureLoader.html", null ],
     [ "ecs::component::Velocity", "structecs_1_1component_1_1Velocity.html", null ],
     [ "network::Worker", "classnetwork_1_1Worker.html", null ]
 ];

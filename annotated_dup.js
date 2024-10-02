@@ -10,7 +10,7 @@ var annotated_dup =
         [ "Velocity", "structecs_1_1component_1_1Velocity.html", null ]
       ] ],
       [ "Entity", "classecs_1_1Entity.html", null ],
-      [ "Registry", "classecs_1_1Registry.html", null ]
+      [ "Registry", "classecs_1_1Registry.html", "classecs_1_1Registry" ]
     ] ],
     [ "GUI", null, [
       [ "Button", "classGUI_1_1Button.html", null ],
@@ -55,13 +55,18 @@ var annotated_dup =
     [ "Config", "classConfig.html", null ],
     [ "CoordStruct", "structCoordStruct.html", "structCoordStruct" ],
     [ "Core", "classCore.html", null ],
+    [ "CreateLobbyRequest", "structCreateLobbyRequest.html", null ],
+    [ "CreateLobbyResponse", "structCreateLobbyResponse.html", null ],
     [ "D", "classD.html", null ],
     [ "E", "classE.html", null ],
+    [ "Empty", "structEmpty.html", null ],
     [ "Enum_Test", "classEnum__Test.html", "classEnum__Test" ],
     [ "Example_Test", "classExample__Test.html", "classExample__Test" ],
     [ "Fn_Test", "classFn__Test.html", "classFn__Test" ],
+    [ "Header", "structHeader.html", null ],
     [ "Include_Test", "classInclude__Test.html", "classInclude__Test" ],
     [ "Javadoc_Test", "classJavadoc__Test.html", "classJavadoc__Test" ],
+    [ "JoinLobbyRequest", "structJoinLobbyRequest.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "Memgrp_Test", "classMemgrp__Test.html", "classMemgrp__Test" ],
     [ "mux_using_with", "classmux__using__with.html", "classmux__using__with" ],
@@ -70,12 +75,15 @@ var annotated_dup =
     [ "Par_Test", "classPar__Test.html", null ],
     [ "QTstyle_Test", "classQTstyle__Test.html", "classQTstyle__Test" ],
     [ "Query", "structQuery.html", null ],
+    [ "Request", "structRequest.html", null ],
     [ "SomeNiceClass", "classSomeNiceClass.html", null ],
     [ "String", "classString.html", "classString" ],
     [ "Tag", "classTag.html", "classTag" ],
     [ "Test", "classTest.html", "classTest" ],
     [ "Test< T * >", "classTest_3_01T_01_5_01_4.html", "classTest_3_01T_01_5_01_4" ],
     [ "Test< void *, 200 >", "classTest_3_01void_01_5_00_01200_01_4.html", "classTest_3_01void_01_5_00_01200_01_4" ],
+    [ "Texture", "classTexture.html", "classTexture" ],
+    [ "TextureLoader", "classTextureLoader.html", null ],
     [ "Truck", "structTruck.html", "structTruck" ],
     [ "Vehicle", "structVehicle.html", "structVehicle" ]
 ];
