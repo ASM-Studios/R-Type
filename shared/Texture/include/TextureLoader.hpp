@@ -24,7 +24,7 @@ private:
     explicit TextureLoader() = default;
 
     libconfig::Config _cfg;
-    std::unordered_map<int, std::pair<Type, ecs::component::Texture>> _textures;
+    std::unordered_map<int, std::pair<Type, Texture>> _textures;
 
 public:
     TextureLoader(const TextureLoader& other) = delete;
@@ -37,6 +37,7 @@ public:
     void loadTexture(const std::string& path, Type type);
     void loadTextures(std::string path, Type type);
 
-    ecs::component::Texture& getTexture(int id);
+    Texture& getTexture(int id);
     std::size_t getNoTexture() const;
 };
+
