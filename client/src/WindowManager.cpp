@@ -54,6 +54,18 @@ void GUI::WindowManager::_eventsHandler() {
             _menuState = _menuState == menuState::NO_MENU ? menuState::PAUSE_MENU : menuState::NO_MENU;
         }
 
+        /* Movement */
+
+        if (_gameState == gameState::GAMES) {
+            if (_event.type == sf::Event::KeyPressed) {
+                if (_event.key.code == sf::Keyboard::Up) {}
+                if (_event.key.code == sf::Keyboard::Down) {}
+                if (_event.key.code == sf::Keyboard::Left) {}
+                if (_event.key.code == sf::Keyboard::Right) {}
+            }
+        }
+
+
         for (auto& [id, button] : _currentButtons) {
             button.update(*_window, _event);
         }

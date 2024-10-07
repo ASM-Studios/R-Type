@@ -10,6 +10,7 @@
 #include "SpriteManager.hpp"
 #include "MusicManager.hpp"
 #include "Button.hpp"
+#include "Registry.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -41,6 +42,7 @@ namespace GUI {
             sf::Event _event;
             SpriteManager _spriteManager;
             MusicManager _musicManager;
+            ecs::Registry _registry;
             sf::Font _font;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
             gameState _previousGameState = gameState::NONE;
