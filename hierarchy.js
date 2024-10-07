@@ -41,7 +41,6 @@ var hierarchy =
     [ "std::hash< ecs::Entity >", "structstd_1_1hash_3_01ecs_1_1Entity_01_4.html", null ],
     [ "Include_Test", "classInclude__Test.html", null ],
     [ "Javadoc_Test", "classJavadoc__Test.html", null ],
-    [ "std::less< ecs::Entity >", "structstd_1_1less_3_01ecs_1_1Entity_01_4.html", null ],
     [ "std::less< network::Client >", "structstd_1_1less_3_01network_1_1Client_01_4.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "Memgrp_Test", "classMemgrp__Test.html", null ],
