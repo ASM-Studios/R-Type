@@ -13,11 +13,11 @@ TextureLoader& TextureLoader::getInstance() {
     return *_instance;
 }
 
-void TextureLoader::loadFile(const std::string &path) {
+void TextureLoader::loadFile(const std::string& path) {
     this->_cfg.readFile(path);
 }
 
-void TextureLoader::loadTexture(const std::string &path, Type type) {
+void TextureLoader::loadTexture(const std::string& path, Type type) {
     const libconfig::Setting& element = this->_cfg.lookup(path);
     int id = 0;
     int row = 1;

@@ -1,5 +1,5 @@
-#include "Entity.hpp"
 #include "Registry.hpp"
+#include "Entity.hpp"
 #include <format>
 #include <set>
 
@@ -11,7 +11,11 @@ namespace ecs {
         return this->_message.c_str();
     }
 
-    std::size_t Registry::getMaxEntity() {
+    Registry::Registry(uint8_t id) :
+        _id(id),
+        _maxId(0) {}
+
+    std::size_t Registry::getMaxEntity() const {
         return _maxId;
     }
 

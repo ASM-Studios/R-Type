@@ -2,15 +2,13 @@
 
 #include <any>
 #include <cstddef>
-#include <functional>
-#include <optional>
+#include <cstdint>
 #include <set>
 #include <string>
 #include <typeindex>
 #include <unordered_map>
 
 #include "Position.hpp"
-#include "Texture.hpp"
 
 namespace ecs {
     class Entity;
@@ -29,17 +27,18 @@ namespace ecs {
         };
 
     private:
-        std::size_t _maxId;
+        uint8_t _id;
+        uint32_t _maxId;
         std::set<Entity> _entities;
         std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> _components;
 
     public:
-        explicit Registry() : _maxId(0) {};
+        explicit Registry(uint8_t id = 0);
 
         template <typename... Components>
         Entity createEntity();
 
-        [[nodiscard]] std::size_t getMaxEntity();
+        [[nodiscard]] std::size_t getMaxEntity() const;
         [[nodiscard]] std::set<Entity> getEntities();
 
         template <typename Component>

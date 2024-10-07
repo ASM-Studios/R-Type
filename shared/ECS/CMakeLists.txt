@@ -4,6 +4,7 @@ project(r-type-shared)
 include_directories(include)
 
 set(SOURCE_FILE src/Registry.cpp
+    src/RegistryManager.cpp
     src/Entity.cpp
     src/Position.cpp
 )

@@ -1,11 +1,12 @@
 #include "Core.hpp"
-#include "QueryHandler.hpp"
-#include "socket/Server.hpp"
+#include "Client.hpp"
 #include "Config.hpp"
 #include "Logger.hpp"
-#include "Registry.hpp"
+#include "QueryHandler.hpp"
+#include "ScopeDuration.hpp"
 #include "TextureLoader.hpp"
-#include <boost/algorithm/string/split.hpp>
+#include "query/RawRequest.hpp"
+#include "socket/Server.hpp"
 #include <cstdlib>
 #include <iostream>
 
@@ -22,31 +23,23 @@ void Core::_stop() {
     this->_isRunning = false;
 }
 
-void Core::_waitTPS() {
-    double elapsed = this->_tpsClock.get();
-    if (elapsed < this->_tickTime) {
-        int time = static_cast<int>((this->_tickTime - elapsed) * 1000);
-        std::this_thread::sleep_for(std::chrono::microseconds(time));
-    }
-    this->_tpsClock.reset();
-}
-
 void Core::_readStdin() {
     while (this->_isRunning) {
         std::string line;
         std::getline(std::cin, line);
         line = line.substr(0, line.find('\n'));
-        for (auto command: _stdinMap) {
-            if (command.first == line) {
-                (*this.*command.second)();
-            }
+        auto pair = this->_stdinMap.find(line);
+        if (pair != this->_stdinMap.end()) {
+            (*this.*pair->second)();
+        } else {
+            Logger::log(LogLevel::ERR, std::format("Command '{0}' does not exist", line));
         }
     }
 }
 
 void Core::_loop(network::socket::udp::Server& server) {
     if (server.availableRequest()) {
-        auto query = server.recv<Query>();
+        auto query = server.recv<RawRequest>();
         network::Client client = query.first;
         network::QueryHandler::getInstance().addQuery(query);
     }
@@ -77,8 +70,8 @@ int Core::run() {
     std::thread stdinThread(&Core::_readStdin, this);
 
     while (this->_isRunning) {
+        ScopeDuration duration(this->_tickTime);
         this->_loop(server);
-        this->_waitTPS();
     }
     stdinThread.join();
     return 0;

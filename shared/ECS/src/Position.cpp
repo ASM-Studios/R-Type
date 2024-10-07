@@ -6,7 +6,7 @@ namespace ecs::component {
         this->x = position.x;
         this->y = position.y;
     }
-    
+
     void Position::move(ecs::component::Position offset) {
         this->x += offset.x;
         this->y += offset.y;

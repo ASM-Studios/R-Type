@@ -1,9 +1,10 @@
 #pragma once
 
+#include "query/RawRequest.hpp"
 #include <boost/asio.hpp>
 
 namespace network::socket::udp {
-    class Query {
+    class QuerySender {
     private:
         std::string _hostname;
         int _port;
@@ -14,7 +15,9 @@ namespace network::socket::udp {
         boost::asio::ip::udp::socket _socket;
 
     public:
-        explicit Query(std::string hostname, int port, std::string message);
-        ~Query() = default;
+        explicit QuerySender(std::string hostname, int port);
+        ~QuerySender() = default;
+
+        void send(RawRequest request);
     };
 }

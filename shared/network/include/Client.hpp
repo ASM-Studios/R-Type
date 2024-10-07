@@ -17,8 +17,12 @@ namespace network {
         bool operator==(const Client& other) const;
 
         [[nodiscard]] uint64_t getID() const;
+        [[nodiscard]] boost::asio::ip::address_v4 getIP() const;
+        [[nodiscard]] boost::asio::ip::port_type getPort() const;
     };
 }
+
+std::ostream& operator<<(std::ostream& os, const network::Client& client);
 
 template <>
 struct std::less<network::Client> {
