@@ -23,3 +23,4 @@ The documentation is divided into the following sections:
 - [ReadMe](../README.md)
 - [VCPKG](Misc/VCPKG.md)
 - [Contributing](Misc/Contributing.md)
+- [LevelFactory](Misc/LevelFactory.md)
