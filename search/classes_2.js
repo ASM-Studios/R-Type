@@ -12,7 +12,5 @@ var searchData=
   ['componentnotfound_9',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
   ['config_10',['Config',['../classConfig.html',1,'']]],
   ['coordstruct_11',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['core_12',['Core',['../classCore.html',1,'']]],
-  ['createlobbyrequest_13',['CreateLobbyRequest',['../structCreateLobbyRequest.html',1,'']]],
-  ['createlobbyresponse_14',['CreateLobbyResponse',['../structCreateLobbyResponse.html',1,'']]]
+  ['core_12',['Core',['../classCore.html',1,'']]]
 ];

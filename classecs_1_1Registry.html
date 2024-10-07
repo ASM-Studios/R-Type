@@ -123,9 +123,12 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3b99491cbecd467e4e3dc27043674614"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
 <tr class="memitem:a3b99491cbecd467e4e3dc27043674614"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a3b99491cbecd467e4e3dc27043674614">contains</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
 <tr class="separator:a3b99491cbecd467e4e3dc27043674614"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0492f0b0dc0f777771c58526c2939f51"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
-<tr class="memitem:a0492f0b0dc0f777771c58526c2939f51"><td class="memTemplItemLeft" align="right" valign="top">static std::reference_wrapper&lt; Component &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a0492f0b0dc0f777771c58526c2939f51">getComponent</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
-<tr class="separator:a0492f0b0dc0f777771c58526c2939f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca5421dcb2fc0693d19192aa6902aa0b"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
+<tr class="memitem:aca5421dcb2fc0693d19192aa6902aa0b"><td class="memTemplItemLeft" align="right" valign="top">static bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#aca5421dcb2fc0693d19192aa6902aa0b">contains</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity, const Component &amp;component)</td></tr>
+<tr class="separator:aca5421dcb2fc0693d19192aa6902aa0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59f7e4a82043ecd87a778549df87ec6"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
+<tr class="memitem:aa59f7e4a82043ecd87a778549df87ec6"><td class="memTemplItemLeft" align="right" valign="top">static Component &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#aa59f7e4a82043ecd87a778549df87ec6">getComponent</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
+<tr class="separator:aa59f7e4a82043ecd87a778549df87ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e03dff5835cba39b7e20269427d8b1e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a7e03dff5835cba39b7e20269427d8b1e">reset</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
 <tr class="separator:a7e03dff5835cba39b7e20269427d8b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -194,7 +197,7 @@ template&lt;typename... Components&gt; </div>
 </div>
 </div>
 <a id="a3b99491cbecd467e4e3dc27043674614" name="a3b99491cbecd467e4e3dc27043674614"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b99491cbecd467e4e3dc27043674614">&#9670;&#160;</a></span>contains()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b99491cbecd467e4e3dc27043674614">&#9670;&#160;</a></span>contains() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,6 +223,46 @@ template&lt;typename Component &gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00032">32</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+
+</div>
+</div>
+<a id="aca5421dcb2fc0693d19192aa6902aa0b" name="aca5421dcb2fc0693d19192aa6902aa0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca5421dcb2fc0693d19192aa6902aa0b">&#9670;&#160;</a></span>contains() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ecs::Registry::contains </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Component &amp;&#160;</td>
+          <td class="paramname"><em>component</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00037">37</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
@@ -249,8 +292,8 @@ template&lt;typename... Components&gt; </div>
 
 </div>
 </div>
-<a id="a0492f0b0dc0f777771c58526c2939f51" name="a0492f0b0dc0f777771c58526c2939f51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0492f0b0dc0f777771c58526c2939f51">&#9670;&#160;</a></span>getComponent()</h2>
+<a id="aa59f7e4a82043ecd87a778549df87ec6" name="aa59f7e4a82043ecd87a778549df87ec6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa59f7e4a82043ecd87a778549df87ec6">&#9670;&#160;</a></span>getComponent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +304,7 @@ template&lt;typename Component &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::reference_wrapper&lt; Component &gt; ecs::Registry::getComponent </td>
+          <td class="memname">Component &amp; ecs::Registry::getComponent </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>entity</em></td><td>)</td>
@@ -275,7 +318,7 @@ template&lt;typename Component &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00037">37</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00042">42</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>

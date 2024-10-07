@@ -15,7 +15,5 @@ var searchData=
   ['config_12',['Config',['../classConfig.html',1,'']]],
   ['coord_13',['Coord',['../restypedef_8cpp.html#a013489fb99c6a5b012db8ec66544a507',1,'restypedef.cpp']]],
   ['coordstruct_14',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['core_15',['Core',['../classCore.html',1,'']]],
-  ['createlobbyrequest_16',['CreateLobbyRequest',['../structCreateLobbyRequest.html',1,'']]],
-  ['createlobbyresponse_17',['CreateLobbyResponse',['../structCreateLobbyResponse.html',1,'']]]
+  ['core_15',['Core',['../classCore.html',1,'']]]
 ];

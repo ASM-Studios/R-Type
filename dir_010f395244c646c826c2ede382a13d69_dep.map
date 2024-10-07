@@ -1,7 +1,0 @@
-<map id="server/modules" name="server/modules">
-<area shape="rect" id="node2" href="dir_6e4b2d08ff492e39a2bc8f7f7dc7e07b.html" title="game" alt="" coords="235,63,293,88"/>
-<area shape="rect" id="node3" href="dir_95dea7bdffdddc35ca11582b5fcc51e7.html" title="network" alt="" coords="136,63,211,88"/>
-<area shape="rect" id="node4" href="dir_891dc2a1071b67f4f4841b3197533c7e.html" title="protocol" alt="" coords="37,63,112,88"/>
-<area shape="rect" id="clust2" href="dir_010f395244c646c826c2ede382a13d69.html" alt="" coords="27,52,408,99"/>
-<area shape="rect" id="clust1" href="dir_41e1742e44e2de38b3bc91f993fed282.html" title="server" alt="" coords="16,16,419,109"/>
-</map>

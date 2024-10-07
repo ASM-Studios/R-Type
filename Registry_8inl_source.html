@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('Registry_8inl_source.html',''); initRe
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    Entity Registry::createEntity() {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        Entity entity(_maxId++);</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        _entities.insert(entity);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        (Registry::addComponent&lt;Components&gt;(entity), ...);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        Registry::addComponents&lt;Components...&gt;(entity);</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keywordflow">return</span> entity;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
@@ -128,13 +128,18 @@ $(document).ready(function(){initNavTree('Registry_8inl_source.html',''); initRe
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Component&gt;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::reference_wrapper&lt;Component&gt; Registry::getComponent(<span class="keyword">const</span> Entity&amp; entity) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">if</span> (!contains&lt;Component&gt;(entity)) {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">throw</span> ComponentNotFound(<span class="keyword">typeid</span>(Component).name());</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">return</span> std::any_cast&lt;Component&amp;&gt;(_components[<span class="keyword">typeid</span>(Component)][entity]);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">bool</span> Registry::contains(<span class="keyword">const</span> Entity&amp; entity, <span class="keyword">const</span> Component&amp; component) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">return</span> contains&lt;Component&gt;(entity) &amp;&amp; getComponent&lt;Component&gt;(entity) == component;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Component&gt;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    Component&amp; Registry::getComponent(<span class="keyword">const</span> Entity&amp; entity) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (!contains&lt;Component&gt;(entity)) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">throw</span> ComponentNotFound(<span class="keyword">typeid</span>(Component).name());</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> std::any_cast&lt;Component&amp;&gt;(_components[<span class="keyword">typeid</span>(Component)][entity]);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
