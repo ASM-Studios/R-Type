@@ -5,8 +5,7 @@ var annotated_dup =
     ] ],
     [ "ecs", null, [
       [ "component", null, [
-        [ "Position", "structecs_1_1component_1_1Position.html", null ],
-        [ "Texture", "classecs_1_1component_1_1Texture.html", "classecs_1_1component_1_1Texture" ]
+        [ "Position", "structecs_1_1component_1_1Position.html", null ]
       ] ],
       [ "Entity", "classecs_1_1Entity.html", null ],
       [ "Registry", "classecs_1_1Registry.html", "classecs_1_1Registry" ]
@@ -74,6 +73,7 @@ var annotated_dup =
     [ "Test", "classTest.html", "classTest" ],
     [ "Test< T * >", "classTest_3_01T_01_5_01_4.html", "classTest_3_01T_01_5_01_4" ],
     [ "Test< void *, 200 >", "classTest_3_01void_01_5_00_01200_01_4.html", "classTest_3_01void_01_5_00_01200_01_4" ],
+    [ "Texture", "classTexture.html", "classTexture" ],
     [ "TextureLoader", "classTextureLoader.html", null ],
     [ "Truck", "structTruck.html", "structTruck" ],
     [ "Vehicle", "structVehicle.html", "structVehicle" ]

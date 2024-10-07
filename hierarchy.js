@@ -34,8 +34,8 @@ var hierarchy =
     [ "std::exception", null, [
       [ "GUI::GuiException", "classGUI_1_1GuiException.html", null ],
       [ "GUI::guiActionException", "classGUI_1_1guiActionException.html", null ],
-      [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ],
-      [ "ecs::component::Texture::LoadFailed", "classecs_1_1component_1_1Texture_1_1LoadFailed.html", null ]
+      [ "Texture::LoadFailed", "classTexture_1_1LoadFailed.html", null ],
+      [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ]
     ] ],
     [ "Fn_Test", "classFn__Test.html", null ],
     [ "std::hash< ecs::Entity >", "structstd_1_1hash_3_01ecs_1_1Entity_01_4.html", null ],
@@ -69,7 +69,7 @@ var hierarchy =
     [ "Test< void *, 200 >", "classTest_3_01void_01_5_00_01200_01_4.html", [
       [ "Test< T * >", "classTest_3_01T_01_5_01_4.html", null ]
     ] ],
-    [ "ecs::component::Texture", "classecs_1_1component_1_1Texture.html", null ],
+    [ "Texture", "classTexture.html", null ],
     [ "TextureLoader", "classTextureLoader.html", null ],
     [ "network::Worker", "classnetwork_1_1Worker.html", null ]
 ];
