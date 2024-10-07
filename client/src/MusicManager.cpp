@@ -16,14 +16,13 @@ void GUI::MusicManager::loadMusic(const std::string& configPath) {
         throw std::runtime_error("Parse error at " + std::string(pex.getFile()) + ":" + std::to_string(pex.getLine()) + " - " + pex.getError());
     }
 
-    const libconfig::Setting& root = cfg.getRoot();
-    if (root.exists("musics")) {
+    if (const libconfig::Setting& root = cfg.getRoot(); root.exists("musics")) {
         const libconfig::Setting& musicSettings = root["musics"];
         for (int i = 0; i < musicSettings.getLength(); ++i) {
             const libconfig::Setting& music = musicSettings[i];
-            std::string name, path;
-            if (music.lookupValue("name", name) && music.lookupValue("path", path)) {
-                auto musicPtr = std::make_shared<sf::Music>();
+            std::string name;
+            if (std::string path; music.lookupValue("name", name) && music.lookupValue("path", path)) {
+                const auto musicPtr = std::make_shared<sf::Music>();
                 std::string fullPath = _musicsPath + path;
                 if (!musicPtr->openFromFile(fullPath)) {
                     Logger::log(LogLevel::ERR, "Failed to load music: " + fullPath);
@@ -35,14 +34,12 @@ void GUI::MusicManager::loadMusic(const std::string& configPath) {
     }
 }
 
-void GUI::MusicManager::setVolume(float volume) {
+void GUI::MusicManager::setVolume(const float volume) {
     _volume = std::clamp(volume, 0.0f, 100.0f);
-    std::cout << "Setting volume to: " << _volume << std::endl;
     _updateVolume();
 }
 
 float GUI::MusicManager::getVolume() const {
-    std::cout << "Current volume: " << _volume << std::endl;
     return _volume;
 }
 
@@ -51,13 +48,13 @@ void GUI::MusicManager::toggleMute() {
     _updateVolume();
 }
 
-void GUI::MusicManager::setMute(bool mute) {
+void GUI::MusicManager::setMute(const bool mute) {
     _isMuted = mute;
     _updateVolume();
 }
 
-void GUI::MusicManager::setMusic(const std::string& musicName, bool loop) {
-    if (_musicMap.find(musicName) != _musicMap.end()) {
+void GUI::MusicManager::setMusic(const std::string& musicName, const bool loop) {
+    if (_musicMap.contains(musicName)) {
         if (_currentMusic) {
             _currentMusic->stop();
         }

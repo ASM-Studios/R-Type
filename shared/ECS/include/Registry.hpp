@@ -10,6 +10,7 @@
 #include <unordered_map>
 
 #include "Position.hpp"
+#include "Sprite.hpp"
 #include "Texture.hpp"
 
 namespace ecs {
