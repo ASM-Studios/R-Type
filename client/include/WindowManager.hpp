@@ -11,6 +11,7 @@
 #include "MusicManager.hpp"
 #include "Button.hpp"
 #include "Registry.hpp"
+#include "Factories/LevelFactory.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -57,8 +58,7 @@ namespace GUI {
             std::unordered_map<std::string, Button<>> _currentButtons;
             std::vector<sf::Keyboard::Key> _pressedKeys;
 
-            // TODO: Define in the ECS game logic
-            ecs::Entity _player = _registry.createEntity<ecs::component::Sprite>();
+            ecs::Entity _player = ecs::Entity(0);
 
             void _eventsHandler();
 
