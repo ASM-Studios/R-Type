@@ -25,7 +25,7 @@ GUI::WindowManager::WindowManager() {
     /* ECS Inits */
 
     const auto player = _registry.createEntity<ecs::component::Position>();
-    _registry.getComponent<ecs::component::Position>(player).move({0, 0});
+    _registry.getComponent<ecs::component::Position>(player).set({0, 0});
 }
 
 void GUI::WindowManager::run() {
