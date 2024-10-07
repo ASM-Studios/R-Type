@@ -24,8 +24,4 @@ namespace ecs {
             component.second.erase(entity);
         }
     }
-
-    std::size_t Registry::_maxId;
-    std::set<Entity> Registry::_entities;
-    std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> Registry::_components;
 }

@@ -24,10 +24,3 @@ struct std::hash<ecs::Entity> {
         return std::hash<std::size_t>()(key.getID());
     }
 };
-
-template <>
-struct std::less<ecs::Entity> {
-    bool operator()(const ecs::Entity& left, const ecs::Entity& right) const {
-        return left.getID() < right.getID();
-    }
-};

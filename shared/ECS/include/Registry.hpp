@@ -14,7 +14,7 @@ namespace ecs {
 
     class Registry {
     public:
-        class ComponentNotFound : public std::exception {
+        class ComponentNotFound final : public std::exception {
         private:
             std::string _message;
 
@@ -26,36 +26,36 @@ namespace ecs {
         };
 
     private:
-        static std::size_t _maxId;
-        static std::set<Entity> _entities;
-        static std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> _components;
+        std::size_t _maxId;
+        std::set<Entity> _entities;
+        std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> _components;
 
     public:
-        explicit Registry() = delete;
+        explicit Registry() : _maxId(0) {};
 
         template <typename... Components>
-        static Entity createEntity();
+        Entity createEntity();
 
-        [[nodiscard]] static std::size_t getMaxEntity();
-        [[nodiscard]] static std::set<Entity> getEntities();
+        [[nodiscard]] std::size_t getMaxEntity();
+        [[nodiscard]] std::set<Entity> getEntities();
 
         template <typename Component>
-        static void addComponent(const Entity& entity);
+        void addComponent(const Entity& entity);
         template <typename... Components>
-        static void addComponents(const Entity& entity);
+        void addComponents(const Entity& entity);
 
         template <typename Component>
-        static void setComponent(const Entity& entity, Component component);
+        void setComponent(const Entity& entity, Component component);
 
         template <typename Component>
-        [[nodiscard]] static bool contains(const Entity& entity);
+        [[nodiscard]] bool contains(const Entity& entity);
         template <typename Component>
-        [[nodiscard]] static bool contains(const Entity& entity, const Component& component);
+        [[nodiscard]] bool contains(const Entity& entity, const Component& component);
 
         template <typename Component>
-        [[nodiscard]] static Component& getComponent(const Entity& entity);
+        [[nodiscard]] Component& getComponent(const Entity& entity);
 
-        static void reset(const Entity& entity);
+        void reset(const Entity& entity);
     };
 }
 

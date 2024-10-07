@@ -2,12 +2,11 @@
 
 #include "Entity.hpp"
 #include "Registry.hpp"
-#include <optional>
 
 namespace ecs {
     template <typename... Components>
     Entity Registry::createEntity() {
-        Entity entity(_maxId++);
+        const Entity entity(_maxId++);
         _entities.insert(entity);
         Registry::addComponents<Components...>(entity);
         return entity;
@@ -30,7 +29,7 @@ namespace ecs {
 
     template <typename Component>
     bool Registry::contains(const Entity& entity) {
-        return _components[typeid(Component)].find(entity) != _components[typeid(Component)].end();
+        return _components[typeid(Component)].contains(entity);
     }
 
     template <typename Component>
