@@ -8,12 +8,11 @@ namespace ecs::component {
         uint16_t x;
         uint16_t y;
     };
-
-    struct Velocity {
-        int32_t x;
-        int32_t y;
-    };
 }
 
 namespace ecs::system {
+    struct Position {
+        static void set(Entity entity, ecs::component::Position position);
+        static void move(Entity entity, ecs::component::Position offset);
+    };
 }

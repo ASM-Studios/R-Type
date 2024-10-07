@@ -9,7 +9,7 @@ namespace ecs {
     Entity Registry::createEntity() {
         Entity entity(_maxId++);
         _entities.insert(entity);
-        (Registry::addComponent<Components>(entity), ...);
+        Registry::addComponents<Components...>(entity);
         return entity;
     }
 
@@ -34,7 +34,12 @@ namespace ecs {
     }
 
     template <typename Component>
-    std::reference_wrapper<Component> Registry::getComponent(const Entity& entity) {
+    bool Registry::contains(const Entity& entity, const Component& component) {
+        return contains<Component>(entity) && getComponent<Component>(entity) == component;
+    }
+
+    template <typename Component>
+    Component& Registry::getComponent(const Entity& entity) {
         if (!contains<Component>(entity)) {
             throw ComponentNotFound(typeid(Component).name());
         }
