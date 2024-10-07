@@ -7,6 +7,7 @@ set(SOURCE_FILE src/Registry.cpp
     src/RegistryManager.cpp
     src/Entity.cpp
     src/Position.cpp
+    src/Sprite.cpp
 )
 
 add_library(ECS ${SOURCE_FILE})

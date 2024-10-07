@@ -23,6 +23,8 @@ constexpr std::size_t TEXT_POS = 10;
 
 constexpr auto MAIN_MENU_BACKGROUND = "backgrounds/main_menu";
 
+constexpr auto MOVEMENT_SPEED = 5;
+
 namespace GUI {
     enum gameState {
         NONE,
@@ -49,10 +51,14 @@ namespace GUI {
             menuState _previousMenuState = menuState::NO_MENU;
             gameState _gameState = gameState::MENUS;
             menuState _menuState = MAIN_MENU;
-            bool _showFps = true; //TODO: Set to false
+            bool _showFps = false;
             std::unordered_map<std::string, std::shared_ptr<sf::Text>> _texts;
             std::unordered_map<std::string, Button<>> _buttons;
             std::unordered_map<std::string, Button<>> _currentButtons;
+            std::vector<sf::Keyboard::Key> _pressedKeys;
+
+            // TODO: Define in the ECS game logic
+            ecs::Entity _player = _registry.createEntity<ecs::component::Sprite>();
 
             void _eventsHandler();
 
@@ -67,6 +73,7 @@ namespace GUI {
             void _displayBackground() const;
             void _fpsCounter();
 
+            void _displayGame();
             void _displayMenu();
             void _mainMenuInit();
             void _displayMainMenu();

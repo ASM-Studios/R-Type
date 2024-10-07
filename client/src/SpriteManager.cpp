@@ -41,11 +41,15 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
 
     if (cfg.exists(name)) {
         const libconfig::Setting& setting = cfg.lookup(name);
-        for (const auto& [fst, _] : _textures) {
-            if (fst == name) {
-                throw GuiException("Sprite sheet '" + name + "' already loaded.");
-            }
+        int spriteID;
+        if (!setting.lookupValue("id", spriteID)) {
+            throw GuiException("ID not found for sprite: " + name);
         }
+
+        if (_textures.contains(spriteID)) {
+            throw GuiException("Sprite sheet '" + name + "' already loaded.");
+        }
+
         int row, col;
         if (float scale; setting.lookupValue("row", row) && setting.lookupValue("col", col) && setting.lookupValue("scale", scale)) {
             bool autoscale = setting.lookupValue("autoscale", autoscale) ? autoscale : false;
@@ -55,7 +59,7 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
                 throw GuiException("Failed to load texture: " + spritePath + "/" + name + ".png");
             }
 
-            _textures[name] = texture;
+            _textures[spriteID] = texture;
 
             std::size_t const spriteWidth = texture->getSize().x / col;
             std::size_t const spriteHeight = texture->getSize().y / row;
@@ -74,7 +78,7 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
                         sprite->setScale(scaleFactorX, scaleFactorY);
                     } else { sprite->setScale(scale, scale); }
                     if (center) { sprite->setOrigin(spriteWidth / 2, spriteHeight / 2); }
-                    _sprites[name][id++] = sprite;
+                    _sprites[spriteID][id++] = sprite;
                 }
             }
         } else {
