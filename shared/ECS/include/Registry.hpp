@@ -10,6 +10,7 @@
 
 #include "Position.hpp"
 #include "Sprite.hpp"
+#include "AI.hpp"
 #include "Texture.hpp"
 
 namespace ecs {
