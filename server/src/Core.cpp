@@ -1,9 +1,10 @@
 #include "Core.hpp"
-#include "TextureLoader.hpp"
-#include "../modules/network/include/QueryHandler.hpp"
-#include "../modules/network/include/socket/Server.hpp"
+#include "QueryHandler.hpp"
+#include "socket/Server.hpp"
 #include "Config.hpp"
 #include "Logger.hpp"
+#include "Registry.hpp"
+#include "TextureLoader.hpp"
 #include <boost/algorithm/string/split.hpp>
 #include <cstdlib>
 #include <iostream>

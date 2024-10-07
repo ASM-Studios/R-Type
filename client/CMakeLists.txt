@@ -20,7 +20,7 @@ target_link_libraries(
         r-type_client
         sfml-system sfml-window sfml-graphics sfml-network sfml-audio
         Boost::filesystem Boost::property_tree Boost::algorithm
-        ECS Config Logger Texture
+        network ECS Config Logger Texture
 )
 
 if (WIN32 OR MSVC)

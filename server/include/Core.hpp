@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../modules/network/include/socket/Server.hpp"
+#include "socket/Server.hpp"
 #include "Clock.hpp"
 #include <array>
 #include <atomic>

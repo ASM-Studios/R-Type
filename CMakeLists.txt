@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.27.4)
 project(rtype)
 
+include_directories(shared/network/include)
 include_directories(shared/ECS/include)
 include_directories(shared/Config/include)
 include_directories(shared/Logger/include)

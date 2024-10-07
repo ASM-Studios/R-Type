@@ -15,3 +15,7 @@ set(SOURCE_FILE src/QueryHandler.cpp
 add_library(network ${SOURCE_FILE})
 
 target_link_libraries(network Boost::asio)
+
+if (WIN32 OR MSVC)
+    target_link_libraries(r-type_server ws2_32)
+endif()
