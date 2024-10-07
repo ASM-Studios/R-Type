@@ -1,7 +1,7 @@
 #include "WindowManager.hpp"
 
 GUI::WindowManager::WindowManager() {
-    Config &config = Config::getInstance("client/config.json");
+    const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
     const std::size_t height = std::stoul(config.get("height").value_or(std::to_string(desktop.height)));
@@ -21,6 +21,11 @@ GUI::WindowManager::WindowManager() {
     _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 100, 10));
 
     _musicManager.setMusic(MAIN_THEME_MUSIC);
+
+    /* ECS Inits */
+
+    const auto player = _registry.createEntity<ecs::component::Position>();
+    _registry.getComponent<ecs::component::Position>(player).move({0, 0});
 }
 
 void GUI::WindowManager::run() {
@@ -58,10 +63,18 @@ void GUI::WindowManager::_eventsHandler() {
 
         if (_gameState == gameState::GAMES) {
             if (_event.type == sf::Event::KeyPressed) {
-                if (_event.key.code == sf::Keyboard::Up) {}
-                if (_event.key.code == sf::Keyboard::Down) {}
-                if (_event.key.code == sf::Keyboard::Left) {}
-                if (_event.key.code == sf::Keyboard::Right) {}
+                if (_event.key.code == sf::Keyboard::Up) {
+                    Logger::log(LogLevel::INFO, "Up key pressed");
+                }
+                if (_event.key.code == sf::Keyboard::Down) {
+                    Logger::log(LogLevel::INFO, "Down key pressed");
+                }
+                if (_event.key.code == sf::Keyboard::Left) {
+                    Logger::log(LogLevel::INFO, "Left key pressed");
+                }
+                if (_event.key.code == sf::Keyboard::Right) {
+                    Logger::log(LogLevel::INFO, "Right key pressed");
+                }
             }
         }
 

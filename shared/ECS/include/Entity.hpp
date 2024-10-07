@@ -15,6 +15,7 @@ namespace ecs {
         [[nodiscard]] std::size_t getID() const;
 
         bool operator==(const Entity& other) const;
+        bool operator<(const Entity& other) const;
     };
 }
 

@@ -22,7 +22,7 @@ void Texture::_loadSize() {
     }
 }
 
-Texture::Texture(const std::string& path, int row, int col, float scale) :
+Texture::Texture(const std::string& path, const int row, const int col, const float scale) :
     _initialPath(std::move(path)),
     _virtualPath(std::move(path)),
     _row(row),
@@ -63,4 +63,12 @@ void Texture::setScale(float scale) {
 
 std::pair<int, int> Texture::getSize() const {
     return this->_size;
+}
+
+int Texture::getTextureId() const {
+    return _id;
+}
+
+void Texture::setTexture(const int textureId) {
+    _id = textureId;
 }

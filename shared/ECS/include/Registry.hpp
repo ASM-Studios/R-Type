@@ -9,6 +9,9 @@
 #include <typeindex>
 #include <unordered_map>
 
+#include "Position.hpp"
+#include "Texture.hpp"
+
 namespace ecs {
     class Entity;
 

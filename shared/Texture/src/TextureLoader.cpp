@@ -13,12 +13,12 @@ TextureLoader& TextureLoader::getInstance() {
     return *_instance;
 }
 
-void TextureLoader::loadFile(std::string path) {
+void TextureLoader::loadFile(const std::string &path) {
     this->_cfg.readFile(path);
 }
 
-void TextureLoader::loadTexture(std::string path, Type type) {
-    libconfig::Setting& element = this->_cfg.lookup(path);
+void TextureLoader::loadTexture(const std::string &path, Type type) {
+    const libconfig::Setting& element = this->_cfg.lookup(path);
     int id = 0;
     int row = 1;
     int col = 1;
@@ -42,7 +42,7 @@ void TextureLoader::loadTextures(std::string path, Type type) {
     }
 }
 
-Texture& TextureLoader::getTexture(int id) {
+Texture& TextureLoader::getTexture(const int id) {
     return this->_textures.at(id).second;
 }
 

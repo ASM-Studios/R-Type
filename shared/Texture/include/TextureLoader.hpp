@@ -33,8 +33,8 @@ public:
 
     static TextureLoader& getInstance();
 
-    void loadFile(std::string path);
-    void loadTexture(std::string path, Type type);
+    void loadFile(const std::string& path);
+    void loadTexture(const std::string& path, Type type);
     void loadTextures(std::string path, Type type);
 
     Texture& getTexture(int id);

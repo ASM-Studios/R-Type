@@ -19,7 +19,7 @@ namespace ecs {
 
     template <typename... Components>
     void Registry::addComponents(const Entity& entity) {
-        (addComponent<Components>(entity, Components()), ...);
+        (addComponent<Components>(entity), ...);
     }
 
     template <typename Component>

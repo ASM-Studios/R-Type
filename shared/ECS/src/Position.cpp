@@ -1,16 +1,14 @@
 #include "Position.hpp"
 #include "Registry.hpp"
 
-namespace ecs::system {
-    void Position::set(Entity entity, ecs::component::Position position) {
-        auto& actualPosition = Registry::getComponent<component::Position>(entity);
-        actualPosition.x = position.x;
-        actualPosition.y = position.y;
+namespace ecs::component {
+    void Position::set(ecs::component::Position position) {
+        this->x = position.x;
+        this->y = position.y;
     }
     
-    void Position::move(Entity entity, ecs::component::Position offset) {
-        auto& actualPosition = Registry::getComponent<component::Position>(entity);
-        actualPosition.x += offset.x;
-        actualPosition.y += offset.y;
+    void Position::move(ecs::component::Position offset) {
+        this->x += offset.x;
+        this->y += offset.y;
     }
 }

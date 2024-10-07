@@ -12,4 +12,8 @@ namespace ecs {
     bool Entity::operator==(const Entity& other) const {
         return this->_id == other._id;
     }
+
+    bool Entity::operator<(const Entity& other) const {
+        return _id < other._id;
+    }
 }
