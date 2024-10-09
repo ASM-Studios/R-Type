@@ -46,6 +46,10 @@ void GameLogic::update() {
             && registry.contains<ecs::component::Position>(entity) ) {
             handleInput(entity);
         }
+        if (registry.contains<ecs::component::Animation>(entity) &&
+            registry.contains<ecs::component::Sprite>(entity)) {
+            updateAnimation(entity);
+        }
     }
     updateBullets();
 }
@@ -105,5 +109,26 @@ void GameLogic::updateBullets()
     }
 }
 
+void GameLogic::updateAnimation (const ecs::Entity& entity)
+{
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    auto& animation = registry.getComponent<ecs::component::Animation>(entity);
+    auto& sprite = registry.getComponent<ecs::component::Sprite>(entity);
+    animation.elapsedTime += _timePerTick;
+    if (animation.elapsedTime >= animation.frameTime) {
+        animation.elapsedTime -= animation.frameTime;
+        animation.currFrame++;
+        int const nbFrame = TextureLoader::getInstance().getTexture(sprite.getSpriteID()).getFrameCount();
+        if (animation.currFrame >= nbFrame) {
+            if (entity.getType() == ecs::EntityType::Explosion) {
+                registry.removeEntity(entity);
+                return;
+            }
+            animation.currFrame = 0;
+        }
+        sprite.setStateID(animation.currFrame);
+    }
 
+
+}
 

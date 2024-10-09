@@ -5,5 +5,6 @@ namespace ecs {
         Player,
         Bullet,
         Enemy,
+        Explosion
     };
 }

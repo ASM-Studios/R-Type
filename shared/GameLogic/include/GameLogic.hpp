@@ -9,6 +9,7 @@
 #include "LastShot.hpp"
 #include "EntitySchematic.hpp"
 #include "Collison.hpp"
+#include "Animation.hpp"
 #include <algorithm>
 #include <chrono>
 #include <thread>
@@ -29,6 +30,7 @@ class GameLogic {
         void update();
         void updateBullets();
         void handleInput(const ecs::Entity& entity);
+        void updateAnimation(const ecs::Entity& entity);
 };
 
 

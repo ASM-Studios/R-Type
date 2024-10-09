@@ -33,23 +33,24 @@ std::vector<std::pair<int16_t, ecs::Entity>> Collision::sortedEntitiesVec() {
 void Collision::checkCollisions(const std::vector<std::pair<int16_t, ecs::Entity>>& sortedEntities)
 {
     for (size_t i = 0; i < sortedEntities.size(); ++i) {
-        const auto& [x1, entity1] = sortedEntities[i];
-        if (entity1.getType() != ecs::EntityType::Bullet)
+        const auto& [x1, bullet] = sortedEntities[i];
+        if (bullet.getType() != ecs::EntityType::Bullet)
             continue;
         for (size_t j = i + 1; j < sortedEntities.size(); ++j) {
-            const auto& [x2, entity2] = sortedEntities[j];
+            const auto& [x2, enemy] = sortedEntities[j];
 
             short const MAX_BULLET_WIDTH = 50;
             if (x2 > x1 + MAX_BULLET_WIDTH)
                 break;
 
             ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-            if (entity2.getType() == ecs::EntityType::Enemy &&
-                registry.contains<ecs::component::Position>(entity2)
-                && registry.contains<ecs::component::Sprite>(entity2)) {
-                if (intersects(entity1, entity2)) {
-                    registry.removeEntity(entity1);
-                    registry.removeEntity(entity2);
+            if (enemy.getType() == ecs::EntityType::Enemy &&
+                registry.contains<ecs::component::Position>(enemy)
+                && registry.contains<ecs::component::Sprite>(enemy)) {
+                if (intersects(bullet, enemy)) {
+                    EntitySchematic::createExplosion(enemy);
+                    registry.removeEntity(bullet);
+                    registry.removeEntity(enemy);
                     break;
                 }
             }

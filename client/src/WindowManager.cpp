@@ -29,14 +29,14 @@ GUI::WindowManager::WindowManager()
 
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 0});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Animation>(_player, {.frameTime=0.5F});
 
     ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
     // Changing level:
     // ecs::RegistryManager::getInstance().getRegistry().resetAll();
     // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
-
     // Communicate with server:
     // auto query = TypedQuery<int>({NOTHING}, 5);
     // send(RawRequest(query));

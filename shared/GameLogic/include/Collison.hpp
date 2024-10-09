@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include "Position.hpp"
 #include "RegistryManager.hpp"
+#include "EntitySchematic.hpp"
 #include "TextureLoader.hpp"
 
 class Collision {

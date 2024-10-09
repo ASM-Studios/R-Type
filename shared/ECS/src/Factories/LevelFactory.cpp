@@ -94,18 +94,25 @@ namespace ecs::factory {
     }
 
     void LevelFactory::createRegistryEntity(const std::vector<FactoryEntity>& entities, const std::pair<std::size_t, std::size_t>& _screenSize) {
-        ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
         for (const auto& [name, id, components]: entities) {
-            auto newEntity = registry.createEntity<>(id, ecs::EntityType::Enemy);
-            for (const auto& [type, x, y, spriteID, stateID, model]: components) {
+            int16_t x = 0;
+            int16_t y = 0;
+            int spriteID = 0;
+            int stateID = 0;
+            std::string model;
+
+            for (const auto& [type, cx, cy, cspriteID, cstateID, cmodel] : components) {
                 if (type == "Position") {
-                    registry.setComponent<ecs::component::Position>(newEntity, {static_cast<int16_t>(x), static_cast<int16_t>(y), _screenSize.first, _screenSize.second});
+                    x = static_cast<int16_t>(cx);
+                    y = static_cast<int16_t>(cy);
                 } else if (type == "Sprite") {
-                    registry.setComponent<ecs::component::Sprite>(newEntity, {spriteID, stateID});
+                    spriteID = cspriteID;
+                    stateID = cstateID;
                 } else if (type == "AI") {
-                    registry.setComponent<ecs::component::AI>(newEntity, {ecs::component::AI::stringToAIModel(model)});
+                    model = cmodel;
                 }
             }
+            EntitySchematic::createEnemy(id, x, y, spriteID, stateID, model, _screenSize);
         }
     }
 }
