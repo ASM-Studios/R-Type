@@ -8,9 +8,11 @@ namespace ecs {
     class Entity {
     private:
         std::size_t _id;
+        std::reference_wrapper<Registry> _registry;
 
     public:
-        explicit Entity(std::size_t id);
+        explicit Entity(std::size_t id, Registry& registry);
+        Entity(const Entity& other) = default;
 
         [[nodiscard]] std::size_t getID() const;
 

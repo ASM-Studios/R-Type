@@ -21,16 +21,16 @@ namespace network::socket::udp {
 
         template <typename T>
         [[nodiscard]] std::pair<Client, T> recv() {
-            std::array<T, 1> recv_buf = {0};
+            T buffer;
             boost::asio::ip::udp::endpoint remoteEndpoint;
             boost::system::error_code error;
 
-            this->_socket.receive_from(boost::asio::buffer(recv_buf), remoteEndpoint, 0, error);
+            this->_socket.receive_from(boost::asio::buffer(&buffer, sizeof(T)), remoteEndpoint, 0, error);
             if (error) {
                 throw boost::system::system_error(error);
             }
             Client client = this->_registerClient(remoteEndpoint);
-            return {client, recv_buf[0]};
+            return {client, buffer};
         }
 
         bool availableRequest();

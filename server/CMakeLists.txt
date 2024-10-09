@@ -7,6 +7,7 @@ find_package(libconfig CONFIG REQUIRED)
 
 set(SOURCE_FILE src/main.cpp
     src/Clock.cpp
+    src/ScopeDuration.cpp
     src/Core.cpp
 )
 

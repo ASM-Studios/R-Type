@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Client.hpp"
-#include "Query.hpp"
+#include "query/RawRequest.hpp"
 #include <future>
-#include <memory>
 #include <thread>
 
 namespace network {
@@ -14,7 +13,7 @@ namespace network {
         std::thread _thread;
 
     public:
-        explicit Worker(std::pair<Client, Query> query);
+        explicit Worker(std::pair<Client, RawRequest> query);
         ~Worker() = default;
 
         void join();

@@ -6,7 +6,7 @@
 namespace ecs {
     template <typename... Components>
     Entity Registry::createEntity() {
-        const Entity entity(_maxId++);
+        const Entity entity(_maxId++, *this);
         _entities.insert(entity);
         Registry::addComponents<Components...>(entity);
         return entity;
