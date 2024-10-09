@@ -1,4 +1,5 @@
 #include "Clock.hpp"
+#include <chrono>
 
 Clock::Clock() :
     _start(std::chrono::system_clock::now()),

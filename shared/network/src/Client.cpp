@@ -1,6 +1,7 @@
 #include "Client.hpp"
 #include <boost/asio.hpp>
 #include <cstdint>
+#include <iostream>
 
 namespace network {
     Client::Client(const boost::asio::ip::address_v4& ip, const boost::asio::ip::port_type& port) :
@@ -20,4 +21,17 @@ namespace network {
         id = (id << 16) | this->_port;
         return id;
     }
+
+    boost::asio::ip::address_v4 Client::getIP() const {
+        return this->_ip;
+    }
+
+    boost::asio::ip::port_type Client::getPort() const {
+        return this->_port;
+    }
+}
+
+std::ostream& operator<<(std::ostream& os, const network::Client& client) {
+    os << client.getIP() << " - " << client.getPort();
+    return os;
 }
