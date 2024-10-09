@@ -21,6 +21,13 @@ namespace ecs::factory {
             const libconfig::Setting& entitySetting = entitiesSetting[i];
             FactoryEntity entity;
             entitySetting.lookupValue("name", entity.name);
+            int id;
+            entitySetting.lookupValue("id", id);
+            entity.id = static_cast<std::size_t>(id);
+            if (id < MIN_ALLOWED_ID) {
+                Logger::log(LogLevel::WARNING, "Entity ID is less than " + std::to_string(MIN_ALLOWED_ID) + ", skipping.");
+                continue;
+            }
 
             const libconfig::Setting& componentsSetting = entitySetting["components"];
             for (int j = 0; j < componentsSetting.getLength(); ++j) {

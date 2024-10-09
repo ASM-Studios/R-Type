@@ -13,6 +13,7 @@
 
 namespace ecs::factory {
     constexpr auto SCENARIO_PATH = "shared/Scenarios/scenarios.cfg";
+    constexpr int  MIN_ALLOWED_ID = 10;
 
     struct Component {
     	std::string type;
@@ -25,6 +26,7 @@ namespace ecs::factory {
 
     struct FactoryEntity {
         std::string name;
+        std::size_t id;
         std::vector<Component> components;
     };
 
