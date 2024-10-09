@@ -98,8 +98,11 @@ $(document).ready(function(){initNavTree('classecs_1_1Entity.html',''); initResi
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3264eb923224828c580d77643291ec4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a3264eb923224828c580d77643291ec4d">Entity</a> (std::size_t id)</td></tr>
-<tr class="separator:a3264eb923224828c580d77643291ec4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3cb72165ad388bbf79a165485656332"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#ac3cb72165ad388bbf79a165485656332">Entity</a> (std::size_t id, <a class="el" href="classecs_1_1Registry.html">Registry</a> &amp;registry)</td></tr>
+<tr class="separator:ac3cb72165ad388bbf79a165485656332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8853b32a76d840efb096593fdafc18"><td class="memItemLeft" align="right" valign="top"><a id="a0a8853b32a76d840efb096593fdafc18" name="a0a8853b32a76d840efb096593fdafc18"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;other)=default</td></tr>
+<tr class="separator:a0a8853b32a76d840efb096593fdafc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55416a1529abd345f0acb4ebf0e2a920"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a55416a1529abd345f0acb4ebf0e2a920">getID</a> () const</td></tr>
 <tr class="separator:a55416a1529abd345f0acb4ebf0e2a920"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d0d64f3e6b2f2a6755304d05a136089"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a7d0d64f3e6b2f2a6755304d05a136089">operator==</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;other) const</td></tr>
@@ -111,8 +114,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="Entity_8hpp_source.html#l00008">8</a> of file <a class="el" href="Entity_8hpp_source.html">Entity.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3264eb923224828c580d77643291ec4d" name="a3264eb923224828c580d77643291ec4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3264eb923224828c580d77643291ec4d">&#9670;&#160;</a></span>Entity()</h2>
+<a id="ac3cb72165ad388bbf79a165485656332" name="ac3cb72165ad388bbf79a165485656332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3cb72165ad388bbf79a165485656332">&#9670;&#160;</a></span>Entity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,8 +127,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">ecs::Entity::Entity </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classecs_1_1Registry.html">Registry</a> &amp;&#160;</td>
+          <td class="paramname"><em>registry</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -155,7 +168,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00008">8</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00009">9</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
 
 </div>
 </div>
@@ -175,7 +188,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00016">16</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00017">17</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
 
 </div>
 </div>
@@ -195,7 +208,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00012">12</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Entity_8cpp_source.html#l00013">13</a> of file <a class="el" href="Entity_8cpp_source.html">Entity.cpp</a>.</p>
 
 </div>
 </div>

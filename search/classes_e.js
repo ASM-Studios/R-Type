@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['qtstyle_5ftest_0',['QTstyle_Test',['../classQTstyle__Test.html',1,'']]],
-  ['query_1',['Query',['../classnetwork_1_1socket_1_1udp_1_1Query.html',1,'network::socket::udp::Query'],['../structQuery.html',1,'Query']]],
-  ['queryhandler_2',['QueryHandler',['../classnetwork_1_1QueryHandler.html',1,'network']]]
+  ['par_5ftest_0',['Par_Test',['../classPar__Test.html',1,'']]],
+  ['position_1',['Position',['../structecs_1_1component_1_1Position.html',1,'ecs::component']]],
+  ['pyclass_2',['PyClass',['../classdocstring_1_1PyClass.html',1,'docstring.PyClass'],['../classpyexample_1_1PyClass.html',1,'pyexample.PyClass']]]
 ];

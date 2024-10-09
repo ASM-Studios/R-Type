@@ -8,7 +8,8 @@ var annotated_dup =
         [ "Position", "structecs_1_1component_1_1Position.html", null ]
       ] ],
       [ "Entity", "classecs_1_1Entity.html", null ],
-      [ "Registry", "classecs_1_1Registry.html", "classecs_1_1Registry" ]
+      [ "Registry", "classecs_1_1Registry.html", "classecs_1_1Registry" ],
+      [ "RegistryManager", "classecs_1_1RegistryManager.html", null ]
     ] ],
     [ "GUI", null, [
       [ "Button", "classGUI_1_1Button.html", null ],
@@ -22,7 +23,7 @@ var annotated_dup =
     [ "network", null, [
       [ "socket", null, [
         [ "udp", null, [
-          [ "Query", "classnetwork_1_1socket_1_1udp_1_1Query.html", null ],
+          [ "QuerySender", "classnetwork_1_1socket_1_1udp_1_1QuerySender.html", null ],
           [ "Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ]
         ] ]
       ] ],
@@ -54,19 +55,23 @@ var annotated_dup =
     [ "Core", "classCore.html", null ],
     [ "D", "classD.html", null ],
     [ "E", "classE.html", null ],
+    [ "Empty", "structEmpty.html", null ],
     [ "Enum_Test", "classEnum__Test.html", "classEnum__Test" ],
     [ "Example_Test", "classExample__Test.html", "classExample__Test" ],
     [ "Fn_Test", "classFn__Test.html", "classFn__Test" ],
+    [ "Header", "structHeader.html", null ],
     [ "Include_Test", "classInclude__Test.html", "classInclude__Test" ],
     [ "Javadoc_Test", "classJavadoc__Test.html", "classJavadoc__Test" ],
     [ "Logger", "classLogger.html", null ],
     [ "Memgrp_Test", "classMemgrp__Test.html", "classMemgrp__Test" ],
     [ "mux_using_with", "classmux__using__with.html", "classmux__using__with" ],
+    [ "NonTypedQuery", "classNonTypedQuery.html", null ],
     [ "Object", "structObject.html", null ],
     [ "Overload_Test", "classOverload__Test.html", "classOverload__Test" ],
     [ "Par_Test", "classPar__Test.html", null ],
     [ "QTstyle_Test", "classQTstyle__Test.html", "classQTstyle__Test" ],
-    [ "Query", "structQuery.html", null ],
+    [ "RawRequest", "classRawRequest.html", null ],
+    [ "ScopeDuration", "classScopeDuration.html", null ],
     [ "SomeNiceClass", "classSomeNiceClass.html", null ],
     [ "String", "classString.html", "classString" ],
     [ "Tag", "classTag.html", "classTag" ],
@@ -76,5 +81,6 @@ var annotated_dup =
     [ "Texture", "classTexture.html", "classTexture" ],
     [ "TextureLoader", "classTextureLoader.html", null ],
     [ "Truck", "structTruck.html", "structTruck" ],
+    [ "TypedQuery", "classTypedQuery.html", null ],
     [ "Vehicle", "structVehicle.html", "structVehicle" ]
 ];

@@ -93,22 +93,23 @@ $(document).ready(function(){initNavTree('Clock_8cpp_source.html',''); initResiz
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;Clock.hpp&quot;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>Clock::Clock() :</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    _start(std::chrono::system_clock::now()),</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    _end(std::chrono::system_clock::now()) {}</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keywordtype">void</span> Clock::reset() {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    this-&gt;_start = std::chrono::system_clock::now();</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    this-&gt;_end = std::chrono::system_clock::now();</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>}</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">double</span> Clock::get() {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    this-&gt;_end = std::chrono::system_clock::now();</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    std::chrono::duration&lt;double&gt; elapsedTime = this-&gt;_end - this-&gt;_start;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">return</span> elapsedTime.count() * 1000;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>Clock::Clock() :</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    _start(std::chrono::system_clock::now()),</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    _end(std::chrono::system_clock::now()) {}</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keywordtype">void</span> Clock::reset() {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    this-&gt;_start = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    this-&gt;_end = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keywordtype">double</span> Clock::get() {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    this-&gt;_end = std::chrono::system_clock::now();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    std::chrono::duration&lt;double&gt; elapsedTime = this-&gt;_end - this-&gt;_start;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">return</span> elapsedTime.count() * 1000;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

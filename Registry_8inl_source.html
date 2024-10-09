@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('Registry_8inl_source.html',''); initRe
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>ecs {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Components&gt;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    Entity Registry::createEntity() {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        <span class="keyword">const</span> Entity entity(_maxId++);</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        <span class="keyword">const</span> Entity entity(_maxId++, *<span class="keyword">this</span>);</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        _entities.insert(entity);</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        Registry::addComponents&lt;Components...&gt;(entity);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <span class="keywordflow">return</span> entity;</div>
