@@ -5,6 +5,13 @@
 #include <set>
 
 namespace ecs {
+    Registry::AlreadyExist::AlreadyExist(int id) :
+        _message(std::format("Entity with id ({0}) already exist", id)) {}
+
+    const char *Registry::AlreadyExist::what() const noexcept {
+        return this->_message.c_str();
+    }
+
     Registry::ComponentNotFound::ComponentNotFound(const std::string& componentName) :
         _message(std::format("Cannot find component ({0})", componentName)) {}
 
@@ -12,13 +19,16 @@ namespace ecs {
         return this->_message.c_str();
     }
 
-    Registry::Registry(uint8_t id) :
-        _id(id),
-        _maxId(0) {}
-
-    std::size_t Registry::getMaxEntity() const {
-        return _maxId;
+    int Registry::_generateID() {
+        int id = 1;
+        while (std::ranges::any_of(this->_entities.begin(), this->_entities.end(), [id](auto& item){return item.getID() == id;})) {
+            id += 1;
+        }
+        return id;
     }
+
+    Registry::Registry(uint8_t id) :
+        _id(id) {}
 
     std::set<Entity> Registry::getEntities() {
         return _entities;

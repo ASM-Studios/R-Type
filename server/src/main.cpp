@@ -17,7 +17,7 @@ static ecs::Entity registerClientEntity(network::Client client) {
             return entity;
         }
     }
-    ecs::Entity entity = registry.createEntity<>();
+    ecs::Entity entity = registry.createEntity<>(0);
     registry.setComponent(entity, client);
     return entity;
 }
@@ -39,12 +39,6 @@ void hexDisplay(const char *ptr, std::size_t n) {
 }
 
 int main(int ac, char **av) {
-    auto e1 = ecs::RegistryManager::getInstance().getRegistry().createEntity<ecs::component::Position, Empty>();
-    auto e2 = ecs::RegistryManager::getInstance().getRegistry().createEntity<ecs::component::Player>();
-     
-    ecs::RegistryManager::getInstance().getRegistry().resetAll();
-    ecs::RegistryManager::getInstance().getRegistry().displayAll();
-    return 0;
     auto args = std::span<char *>(av, ac);
     Core core;
 

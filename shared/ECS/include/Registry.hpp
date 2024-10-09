@@ -18,6 +18,18 @@ namespace ecs {
 
     class Registry {
     public:
+
+        class AlreadyExist final : public std::exception {
+        private:
+            std::string _message;
+
+        public:
+            explicit AlreadyExist(int id);
+            ~AlreadyExist() override = default;
+
+            [[nodiscard]] const char *what() const noexcept override;
+        };
+
         class ComponentNotFound final : public std::exception {
         private:
             std::string _message;
@@ -29,9 +41,10 @@ namespace ecs {
             [[nodiscard]] const char *what() const noexcept override;
         };
 
+        int _generateID();
+
     private:
         uint8_t _id;
-        uint32_t _maxId;
         std::set<Entity> _entities;
         std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> _components;
 
@@ -41,7 +54,9 @@ namespace ecs {
         template <typename... Components>
         Entity createEntity();
 
-        [[nodiscard]] std::size_t getMaxEntity() const;
+        template <typename... Components>
+        Entity createEntity(int id);
+
         [[nodiscard]] std::set<Entity> getEntities();
 
         template <typename Component>

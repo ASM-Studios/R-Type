@@ -1,7 +1,7 @@
 #include "WindowManager.hpp"
 
 GUI::WindowManager::WindowManager()
-: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>()) {
+: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)) {
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
