@@ -78,6 +78,6 @@ namespace ecs {
     }
 
     bool Registry::isEntityValid(const Entity& entity) const {
-        return _entities.find(entity) != _entities.end();
+        return _entities.contains(entity);
     }
 }

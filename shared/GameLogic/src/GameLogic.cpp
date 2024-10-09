@@ -1,11 +1,43 @@
 #include "GameLogic.hpp"
-#include <algorithm>
+#include <thread>
+
+GameLogic::GameLogic()
+    : _timePerTick(1.0F / 60.0f) // Default values
+{
+    const Config& config = Config::getInstance("client/config.json");
+    int _tps = std::stoi(config.get("tps").value_or("60"));
+    _timePerTick = 1.0F / static_cast<float>(_tps);
+}
+
+void GameLogic::updateTimed()
+{
+    using clock = std::chrono::steady_clock;
+    static auto prevTime = clock::now();
+    static float tmp = 0.0F;
+
+    auto cur = clock::now();
+    float const deltaTime = std::chrono::duration<float>(cur - prevTime).count();
+    prevTime = cur;
+    tmp += deltaTime;
+
+    if (tmp >= _timePerTick) {
+        this->update();
+        tmp -= _timePerTick;
+    } else {
+        float const sleepTime = _timePerTick - tmp;
+        if (sleepTime > 0) {
+            std::this_thread::sleep_for(std::chrono::duration<float>(sleepTime));
+            tmp += sleepTime;
+        }
+    }
+}
 
 void GameLogic::update() {
-    for (const auto& entity : _registry.getEntities()) {
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    for (const auto& entity : registry.getEntities()) {
         if (entity.getType() == ecs::EntityType::Player
-            && _registry.contains<ecs::component::Input>(entity)
-            && _registry.contains<ecs::component::Position>(entity) ) {
+            && registry.contains<ecs::component::Input>(entity)
+            && registry.contains<ecs::component::Position>(entity) ) {
             handleInput(entity);
         }
     }
@@ -13,9 +45,12 @@ void GameLogic::update() {
 }
 
 
-void GameLogic::handleInput(const ecs::Entity& entity) {
-    auto& input = _registry.getComponent<ecs::component::Input>(entity);
-    auto& position = _registry.getComponent<ecs::component::Position>(entity);
+void GameLogic::handleInput(const ecs::Entity& entity)
+{
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    auto& input = registry.getComponent<ecs::component::Input>(entity);
+    auto& position = registry.getComponent<ecs::component::Position>(entity);
+    auto& lastShot = registry.getComponent<ecs::component::LastShot>(entity);
 
     ecs::component::Position offset(0, 0);
     if (input.isFlagSet(ecs::component::Input::MoveLeft)) {
@@ -32,32 +67,33 @@ void GameLogic::handleInput(const ecs::Entity& entity) {
     }
     position.move(offset);
 
-    if (input.isFlagSet(ecs::component::Input::ReleaseShoot)) {
-        createBullet(entity);
+    auto currentTime = std::chrono::steady_clock::now();
+    float const deltaTimeShot = std::chrono::duration<float>(currentTime - lastShot.lastShotTime).count();
+
+    if (input.isFlagSet(ecs::component::Input::PressedShoot) && deltaTimeShot >= SHOOT_COOLDOWN
+        && registry.contains<ecs::component::LastShot>(entity) ) {
+        EntitySchematic::createBullet(entity);
+        lastShot.lastShotTime = currentTime;
         input.clearFlag(ecs::component::Input::PressedShoot);
     }
 }
 
-void GameLogic::createBullet(const ecs::Entity& shooter) {
-    auto& shooterPosition = _registry.getComponent<ecs::component::Position>(shooter);
-    auto bullet = _registry.createEntity<ecs::component::Input, ecs::component::Position>(ecs::EntityType::Bullet);
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(bullet, {static_cast<int16_t>(shooterPosition.x + 50), shooterPosition.y, shooterPosition.screenWidth, shooterPosition.screenHeight});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(bullet, {13, 0});
-}
 
 
-
-void GameLogic::updateBullets() {
-    for (const auto& bullet : _registry.getEntities()) {
+void GameLogic::updateBullets()
+{
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    for (const auto& bullet : registry.getEntities()) {
         if (bullet.getType() == ecs::EntityType::Bullet
-            && _registry.contains<ecs::component::Position>(bullet)
-            && _registry.contains<ecs::component::Sprite>(bullet)) {
-            auto& position = _registry.getComponent<ecs::component::Position>(bullet);
-            ecs::component::Position const offset(SPEED, 0);
+            && registry.contains<ecs::component::Position>(bullet)
+            && registry.contains<ecs::component::Sprite>(bullet)) {
+            auto& position = registry.getComponent<ecs::component::Position>(bullet);
+            ecs::component::Position const offset(SPEED * 2, 0);
 
             position.move(offset);
-            if (position.x >= position.screenWidth - 1)
-                _registry.removeEntity(bullet);
+            if (position.x >= position.screenWidth - 1) {
+                registry.removeEntity(bullet);
+            }
         }
     }
 }

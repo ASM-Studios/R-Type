@@ -51,7 +51,7 @@ namespace ecs {
             explicit Registry(uint8_t id = 0);
 
             template <typename... Components>
-            Entity createEntity(EntityType type = EntityType::Player);
+            Entity createEntity(EntityType type);
 
             template <typename... Components>
             Entity createEntity(int id, EntityType type);

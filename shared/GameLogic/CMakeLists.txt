@@ -3,7 +3,8 @@ project(r-type-shared)
 
 include_directories(include)
 
-set(SOURCE_FILE src/GameLogic.cpp)
+set(SOURCE_FILE src/GameLogic.cpp
+        src/EntitySchematic.cpp)
 
 add_library(GameLogic ${SOURCE_FILE})
 

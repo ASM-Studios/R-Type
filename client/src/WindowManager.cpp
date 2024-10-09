@@ -1,7 +1,7 @@
 #include "WindowManager.hpp"
 
 GUI::WindowManager::WindowManager()
-: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>()){
+: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0, ecs::EntityType::Player)){
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
@@ -32,6 +32,7 @@ GUI::WindowManager::WindowManager()
     // Changing level:
     // ecs::RegistryManager::getInstance().getRegistry().resetAll();
     // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
 }
 
@@ -44,7 +45,7 @@ void GUI::WindowManager::run() {
             _displayMenu();
         }
         if (_gameState == gameState::GAMES) {
-            _gameLogic.update();
+            _gameLogic.updateTimed();
             _displayGame();
         }
         _fpsCounter();

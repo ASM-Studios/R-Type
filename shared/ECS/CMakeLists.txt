@@ -11,8 +11,6 @@ set(SOURCE_FILE src/Registry.cpp
     src/Sprite.cpp
     src/AI.cpp
     src/Factories/LevelFactory.cpp
-        include/Input.hpp
-        include/EntityType.hpp
 )
 
 add_library(ECS ${SOURCE_FILE})
