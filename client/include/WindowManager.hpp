@@ -14,6 +14,8 @@
 #include "Button.hpp"
 #include "Registry.hpp"
 #include "Factories/LevelFactory.hpp"
+#include "GameLogic.hpp"
+#include "Input.hpp"
 #include "socket/Server.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
@@ -64,6 +66,7 @@ namespace GUI {
             std::vector<sf::Keyboard::Key> _pressedKeys;
 
             ecs::Entity _player;
+            GameLogic _gameLogic;
 
             void _eventsHandler();
 

@@ -51,12 +51,15 @@ namespace ecs {
             explicit Registry(uint8_t id = 0);
 
             template <typename... Components>
-            Entity createEntity();
+            Entity createEntity(EntityType type = EntityType::Player);
 
             template <typename... Components>
-            Entity createEntity(int id);
+            Entity createEntity(int id, EntityType type);
 
             [[nodiscard]] std::set<Entity> getEntities();
+
+            void removeEntity(const Entity& entity);
+            bool isEntityValid(const Entity& entity) const;
 
             template <typename Component>
             void addComponent(const Entity& entity);

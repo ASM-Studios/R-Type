@@ -15,7 +15,7 @@ static ecs::Entity registerClientEntity(network::Client client) {
             return entity;
         }
     }
-    ecs::Entity entity = registry.createEntity<>(0);
+    ecs::Entity entity = registry.createEntity<>(0, ecs::EntityType::Player);
     registry.setComponent(entity, client);
     return entity;
 }
