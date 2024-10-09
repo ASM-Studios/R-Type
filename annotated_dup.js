@@ -5,7 +5,15 @@ var annotated_dup =
     ] ],
     [ "ecs", null, [
       [ "component", null, [
-        [ "Position", "structecs_1_1component_1_1Position.html", null ]
+        [ "AI", "structecs_1_1component_1_1AI.html", null ],
+        [ "Player", "structecs_1_1component_1_1Player.html", null ],
+        [ "Position", "structecs_1_1component_1_1Position.html", null ],
+        [ "Sprite", "structecs_1_1component_1_1Sprite.html", null ]
+      ] ],
+      [ "factory", null, [
+        [ "Component", "structecs_1_1factory_1_1Component.html", null ],
+        [ "FactoryEntity", "structecs_1_1factory_1_1FactoryEntity.html", null ],
+        [ "LevelFactory", "classecs_1_1factory_1_1LevelFactory.html", null ]
       ] ],
       [ "Entity", "classecs_1_1Entity.html", null ],
       [ "Registry", "classecs_1_1Registry.html", "classecs_1_1Registry" ],

@@ -117,12 +117,12 @@ $(document).ready(function(){initNavTree('Entity_8hpp_source.html',''); initResi
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">template</span> &lt;&gt;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structstd_1_1hash_3_01ecs_1_1Entity_01_4.html">   25</a></span><span class="keyword">struct </span>std::hash&lt;ecs::Entity&gt; {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::size_t operator()(<span class="keyword">const</span> <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a>&amp; key)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    std::size_t operator()(<span class="keyword">const</span> <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a>&amp; key) <span class="keyword">const</span> <span class="keyword">noexcept</span> {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">return</span> std::hash&lt;std::size_t&gt;()(key.getID());</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
 <div class="ttc" id="aclassecs_1_1Entity_html"><div class="ttname"><a href="classecs_1_1Entity.html">ecs::Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="Entity_8hpp_source.html#l00008">Entity.hpp:8</a></div></div>
-<div class="ttc" id="aclassecs_1_1Registry_html"><div class="ttname"><a href="classecs_1_1Registry.html">ecs::Registry</a></div><div class="ttdef"><b>Definition:</b> <a href="Registry_8hpp_source.html#l00016">Registry.hpp:16</a></div></div>
+<div class="ttc" id="aclassecs_1_1Registry_html"><div class="ttname"><a href="classecs_1_1Registry.html">ecs::Registry</a></div><div class="ttdef"><b>Definition:</b> <a href="Registry_8hpp_source.html#l00019">Registry.hpp:19</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

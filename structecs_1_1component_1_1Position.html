@@ -99,10 +99,12 @@ $(document).ready(function(){initNavTree('structecs_1_1component_1_1Position.htm
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2f992242d78c32e3795da4dad9118d06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#a2f992242d78c32e3795da4dad9118d06">set</a> (<a class="el" href="structecs_1_1component_1_1Position.html">ecs::component::Position</a> position)</td></tr>
-<tr class="separator:a2f992242d78c32e3795da4dad9118d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09646470838b1064ee0184ffe00263e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#a09646470838b1064ee0184ffe00263e5">move</a> (<a class="el" href="structecs_1_1component_1_1Position.html">ecs::component::Position</a> offset)</td></tr>
-<tr class="separator:a09646470838b1064ee0184ffe00263e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac6a77d329feb20e78014391d729099b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#aac6a77d329feb20e78014391d729099b">set</a> (const <a class="el" href="structecs_1_1component_1_1Position.html">Position</a> &amp;position)</td></tr>
+<tr class="separator:aac6a77d329feb20e78014391d729099b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9054c0fc7f852a01fab61bdc7246851"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#ac9054c0fc7f852a01fab61bdc7246851">move</a> (const <a class="el" href="structecs_1_1component_1_1Position.html">Position</a> &amp;offset)</td></tr>
+<tr class="separator:ac9054c0fc7f852a01fab61bdc7246851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b3248556fe731cb4503cfd585744caf"><td class="memItemLeft" align="right" valign="top">std::pair&lt; int16_t, int16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#a3b3248556fe731cb4503cfd585744caf">get</a> () const</td></tr>
+<tr class="separator:a3b3248556fe731cb4503cfd585744caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -110,13 +112,36 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a51cf80db4dd97082fea7ca5a27a81a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d0d046349770b8ee201d0fc7baa147e"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#a4d0d046349770b8ee201d0fc7baa147e">y</a></td></tr>
 <tr class="separator:a4d0d046349770b8ee201d0fc7baa147e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4300e763494745ec82516a8931d8f4f3"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#a4300e763494745ec82516a8931d8f4f3">screenWidth</a></td></tr>
+<tr class="separator:a4300e763494745ec82516a8931d8f4f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b26297c7ddac7b7eb929f4138c294e3"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Position.html#a9b26297c7ddac7b7eb929f4138c294e3">screenHeight</a></td></tr>
+<tr class="separator:a9b26297c7ddac7b7eb929f4138c294e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00007">7</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00008">8</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a09646470838b1064ee0184ffe00263e5" name="a09646470838b1064ee0184ffe00263e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09646470838b1064ee0184ffe00263e5">&#9670;&#160;</a></span>move()</h2>
+<a id="a3b3248556fe731cb4503cfd585744caf" name="a3b3248556fe731cb4503cfd585744caf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b3248556fe731cb4503cfd585744caf">&#9670;&#160;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; int16_t, int16_t &gt; ecs::component::Position::get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Position_8cpp_source.html#l00014">14</a> of file <a class="el" href="Position_8cpp_source.html">Position.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac9054c0fc7f852a01fab61bdc7246851" name="ac9054c0fc7f852a01fab61bdc7246851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9054c0fc7f852a01fab61bdc7246851">&#9670;&#160;</a></span>move()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,19 +149,19 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void ecs::component::Position::move </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structecs_1_1component_1_1Position.html">ecs::component::Position</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structecs_1_1component_1_1Position.html">Position</a> &amp;&#160;</td>
           <td class="paramname"><em>offset</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Position_8cpp_source.html#l00010">10</a> of file <a class="el" href="Position_8cpp_source.html">Position.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Position_8cpp_source.html#l00009">9</a> of file <a class="el" href="Position_8cpp_source.html">Position.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a2f992242d78c32e3795da4dad9118d06" name="a2f992242d78c32e3795da4dad9118d06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f992242d78c32e3795da4dad9118d06">&#9670;&#160;</a></span>set()</h2>
+<a id="aac6a77d329feb20e78014391d729099b" name="aac6a77d329feb20e78014391d729099b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6a77d329feb20e78014391d729099b">&#9670;&#160;</a></span>set()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,18 +169,50 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void ecs::component::Position::set </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structecs_1_1component_1_1Position.html">ecs::component::Position</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structecs_1_1component_1_1Position.html">Position</a> &amp;&#160;</td>
           <td class="paramname"><em>position</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Position_8cpp_source.html#l00005">5</a> of file <a class="el" href="Position_8cpp_source.html">Position.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Position_8cpp_source.html#l00004">4</a> of file <a class="el" href="Position_8cpp_source.html">Position.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9b26297c7ddac7b7eb929f4138c294e3" name="a9b26297c7ddac7b7eb929f4138c294e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b26297c7ddac7b7eb929f4138c294e3">&#9670;&#160;</a></span>screenHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::component::Position::screenHeight</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00012">12</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a4300e763494745ec82516a8931d8f4f3" name="a4300e763494745ec82516a8931d8f4f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4300e763494745ec82516a8931d8f4f3">&#9670;&#160;</a></span>screenWidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ecs::component::Position::screenWidth</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00011">11</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
+
+</div>
+</div>
 <a id="a51cf80db4dd97082fea7ca5a27a81a7a" name="a51cf80db4dd97082fea7ca5a27a81a7a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a51cf80db4dd97082fea7ca5a27a81a7a">&#9670;&#160;</a></span>x</h2>
 
@@ -168,7 +225,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00008">8</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00009">9</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
 
 </div>
 </div>
@@ -184,7 +241,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00009">9</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Position_8hpp_source.html#l00010">10</a> of file <a class="el" href="Position_8hpp_source.html">Position.hpp</a>.</p>
 
 </div>
 </div>

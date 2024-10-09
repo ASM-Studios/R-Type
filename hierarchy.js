@@ -7,6 +7,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "Afterdoc_Test", "classAfterdoc__Test.html", null ],
+    [ "ecs::component::AI", "structecs_1_1component_1_1AI.html", null ],
     [ "Autolink_Test", "classAutolink__Test.html", null ],
     [ "B", "classB.html", [
       [ "D", "classD.html", null ]
@@ -19,6 +20,7 @@ var hierarchy =
     [ "C5", "classC5.html", null ],
     [ "network::Client", "classnetwork_1_1Client.html", null ],
     [ "Clock", "classClock.html", null ],
+    [ "ecs::factory::Component", "structecs_1_1factory_1_1Component.html", null ],
     [ "Config", "classConfig.html", null ],
     [ "CoordStruct", "structCoordStruct.html", null ],
     [ "Core", "classCore.html", null ],
@@ -36,14 +38,17 @@ var hierarchy =
       [ "GUI::GuiException", "classGUI_1_1GuiException.html", null ],
       [ "GUI::guiActionException", "classGUI_1_1guiActionException.html", null ],
       [ "Texture::LoadFailed", "classTexture_1_1LoadFailed.html", null ],
+      [ "ecs::Registry::AlreadyExist", "classecs_1_1Registry_1_1AlreadyExist.html", null ],
       [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ]
     ] ],
+    [ "ecs::factory::FactoryEntity", "structecs_1_1factory_1_1FactoryEntity.html", null ],
     [ "Fn_Test", "classFn__Test.html", null ],
     [ "std::hash< ecs::Entity >", "structstd_1_1hash_3_01ecs_1_1Entity_01_4.html", null ],
     [ "Header", "structHeader.html", null ],
     [ "Include_Test", "classInclude__Test.html", null ],
     [ "Javadoc_Test", "classJavadoc__Test.html", null ],
     [ "std::less< network::Client >", "structstd_1_1less_3_01network_1_1Client_01_4.html", null ],
+    [ "ecs::factory::LevelFactory", "classecs_1_1factory_1_1LevelFactory.html", null ],
     [ "Logger", "classLogger.html", null ],
     [ "Memgrp_Test", "classMemgrp__Test.html", null ],
     [ "GUI::MessagePopup", "classGUI_1_1MessagePopup.html", null ],
@@ -57,6 +62,7 @@ var hierarchy =
     ] ],
     [ "Overload_Test", "classOverload__Test.html", null ],
     [ "Par_Test", "classPar__Test.html", null ],
+    [ "ecs::component::Player", "structecs_1_1component_1_1Player.html", null ],
     [ "ecs::component::Position", "structecs_1_1component_1_1Position.html", null ],
     [ "docstring.PyClass", "classdocstring_1_1PyClass.html", null ],
     [ "pyexample.PyClass", "classpyexample_1_1PyClass.html", null ],
@@ -69,6 +75,7 @@ var hierarchy =
     [ "ScopeDuration", "classScopeDuration.html", null ],
     [ "network::socket::udp::Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ],
     [ "SomeNiceClass", "classSomeNiceClass.html", null ],
+    [ "ecs::component::Sprite", "structecs_1_1component_1_1Sprite.html", null ],
     [ "String", "classString.html", null ],
     [ "Test< T, i >", "classTest.html", null ],
     [ "Test< void *, 200 >", "classTest_3_01void_01_5_00_01200_01_4.html", [
