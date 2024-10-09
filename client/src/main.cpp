@@ -7,8 +7,9 @@ const std::map<RequestType, void (*)(network::Client client, RawRequest rawReque
 };
 
 int main() {
+    const Config& config = Config::getInstance("client/config.json");
     try {
-        GUI::WindowManager windowManager;
+        GUI::WindowManager windowManager(config);
         windowManager.run();
     } catch (const GUI::GuiException& e) {
         Logger::log(LogLevel::ERR, e.what());

@@ -19,7 +19,13 @@ Fields aren't enforced, but the following fields are used by the client:
 - "logLevel":
   - `NONE` | `INFO` | `WARNING` | `ERROR`
 - "frameRateLimit": The frame rate limit.
-  - By default: 60
+  - By default: `60`.
+- "hostname": The server's hostname.
+  - By default: `localhost`.
+- "serverPort": The server's port.
+  - By default: `8080`.
+- "clientPort": The client's port.
+  - By default: `5000`.
 
 ## JSON Example
 
@@ -33,7 +39,10 @@ Fields aren't enforced, but the following fields are used by the client:
   "width": 1920,
   "height": 1080,
   "logLevel": "ERROR",
-  "frameRateLimit": 60
+  "frameRateLimit": 60,
+  "hostname": "localhost",
+  "serverPort": 8080,
+  "clientPort": 5000
 }
 
 ```

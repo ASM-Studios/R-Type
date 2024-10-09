@@ -13,6 +13,8 @@
 #include "Button.hpp"
 #include "Registry.hpp"
 #include "Factories/LevelFactory.hpp"
+#include "socket/Query.hpp"
+#include "socket/Server.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -46,6 +48,8 @@ namespace GUI {
             sf::Event _event;
             SpriteManager _spriteManager;
             MusicManager _musicManager;
+            network::socket::udp::QuerySender _querySender;
+            network::socket::udp::Server _server;
             sf::Font _font;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
             gameState _previousGameState = gameState::NONE;
@@ -83,7 +87,7 @@ namespace GUI {
             void _displayPauseMenu();
 
         public:
-            WindowManager();
+            WindowManager(const Config& config);
             ~WindowManager() = default;
 
             void run();

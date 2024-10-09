@@ -1,8 +1,10 @@
 #include "WindowManager.hpp"
 
-GUI::WindowManager::WindowManager()
-: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)) {
-    const Config &config = Config::getInstance("client/config.json");
+GUI::WindowManager::WindowManager(const Config& config)
+    : _querySender(config.get("hostname").value_or("localhost"), std::stoul(config.get("serverPort").value_or("8080"))),
+    _server(std::stoul(config.get("clientPort").value_or("8080"))),
+    _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0))
+{
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
     const std::size_t height = std::stoul(config.get("height").value_or(std::to_string(desktop.height)));
@@ -17,7 +19,6 @@ GUI::WindowManager::WindowManager()
     _window->setFramerateLimit(frameRateLimit);
     _spriteManager.updateWindowSize(width, height);
     _spriteManager.init();
-    _event = sf::Event();
 
     _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 100, 10));
 
