@@ -4,8 +4,9 @@ project(r-type-shared)
 include_directories(include)
 
 set(SOURCE_FILE src/GameLogic.cpp
-        src/EntitySchematic.cpp)
+        src/EntitySchematic.cpp
+        src/Collision.cpp)
 
 add_library(GameLogic ${SOURCE_FILE})
 
-target_link_libraries(GameLogic ECS Logger)
+target_link_libraries(GameLogic ECS Logger Texture)

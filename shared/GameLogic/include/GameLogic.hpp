@@ -8,8 +8,10 @@
 #include "RegistryManager.hpp"
 #include "LastShot.hpp"
 #include "EntitySchematic.hpp"
+#include "Collison.hpp"
 #include <algorithm>
 #include <chrono>
+#include <thread>
 
 constexpr auto SHOOT_COOLDOWN = 0.1F;
 constexpr auto SPEED = 5;

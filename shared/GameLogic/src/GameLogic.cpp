@@ -1,5 +1,4 @@
 #include "GameLogic.hpp"
-#include <thread>
 
 GameLogic::GameLogic()
     : _timePerTick(1.0F / 60.0f) // Default values
@@ -7,6 +6,13 @@ GameLogic::GameLogic()
     const Config& config = Config::getInstance("client/config.json");
     int _tps = std::stoi(config.get("tps").value_or("60"));
     _timePerTick = 1.0F / static_cast<float>(_tps);
+    TextureLoader::getInstance().loadFile("assets/textures_config.cfg");
+    TextureLoader::getInstance().loadTextures("backgrounds", TextureLoader::Type::BACKGROUND);
+    TextureLoader::getInstance().loadTextures("bullets", TextureLoader::Type::BULLET);
+    TextureLoader::getInstance().loadTextures("enemies", TextureLoader::Type::ENEMY);
+    TextureLoader::getInstance().loadTextures("ships", TextureLoader::Type::SHIP);
+    TextureLoader::getInstance().loadTextures("explosions", TextureLoader::Type::EXPLOSION);
+    Logger::log(LogLevel::INFO, std::format("{0} textures have been loaded", TextureLoader::getInstance().getNoTexture()));
 }
 
 void GameLogic::updateTimed()
@@ -82,6 +88,7 @@ void GameLogic::handleInput(const ecs::Entity& entity)
 
 void GameLogic::updateBullets()
 {
+    Collision::updateCollisions();
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     for (const auto& bullet : registry.getEntities()) {
         if (bullet.getType() == ecs::EntityType::Bullet
