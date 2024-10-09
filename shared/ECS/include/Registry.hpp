@@ -8,80 +8,79 @@
 #include <typeindex>
 #include <unordered_map>
 
+#include "AI.hpp"
 #include "Position.hpp"
 #include "Sprite.hpp"
-#include "AI.hpp"
 #include "Texture.hpp"
 
 namespace ecs {
     class Entity;
 
     class Registry {
-    public:
+        public:
+            class AlreadyExist final : public std::exception {
+                private:
+                    std::string _message;
 
-        class AlreadyExist final : public std::exception {
+                public:
+                    explicit AlreadyExist(int id);
+                    ~AlreadyExist() override = default;
+
+                    [[nodiscard]] const char *what() const noexcept override;
+            };
+
+            class ComponentNotFound final : public std::exception {
+                private:
+                    std::string _message;
+
+                public:
+                    explicit ComponentNotFound(const std::string& componentName);
+                    ~ComponentNotFound() override = default;
+
+                    [[nodiscard]] const char *what() const noexcept override;
+            };
+
+            int _generateID();
+
         private:
-            std::string _message;
+            uint8_t _id;
+            std::set<Entity> _entities;
+            std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> _components;
 
         public:
-            explicit AlreadyExist(int id);
-            ~AlreadyExist() override = default;
+            explicit Registry(uint8_t id = 0);
 
-            [[nodiscard]] const char *what() const noexcept override;
-        };
+            template <typename... Components>
+            Entity createEntity();
 
-        class ComponentNotFound final : public std::exception {
-        private:
-            std::string _message;
+            template <typename... Components>
+            Entity createEntity(int id);
 
-        public:
-            explicit ComponentNotFound(const std::string& componentName);
-            ~ComponentNotFound() override = default;
+            [[nodiscard]] std::set<Entity> getEntities();
 
-            [[nodiscard]] const char *what() const noexcept override;
-        };
+            template <typename Component>
+            void addComponent(const Entity& entity);
+            template <typename... Components>
+            void addComponents(const Entity& entity);
 
-        int _generateID();
+            template <typename Component>
+            void setComponent(const Entity& entity, Component component);
 
-    private:
-        uint8_t _id;
-        std::set<Entity> _entities;
-        std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> _components;
+            template <typename Component>
+            [[nodiscard]] bool contains(const Entity& entity);
+            template <typename Component>
+            [[nodiscard]] bool contains(const Entity& entity, const Component& component);
 
-    public:
-        explicit Registry(uint8_t id = 0);
+            template <typename Component>
+            [[nodiscard]] Component& getComponent(const Entity& entity);
 
-        template <typename... Components>
-        Entity createEntity();
+            [[nodiscard]] std::size_t getNoComponent(const Entity& entity);
 
-        template <typename... Components>
-        Entity createEntity(int id);
+            void display(const Entity& entity);
+            void displayAll();
 
-        [[nodiscard]] std::set<Entity> getEntities();
-
-        template <typename Component>
-        void addComponent(const Entity& entity);
-        template <typename... Components>
-        void addComponents(const Entity& entity);
-
-        template <typename Component>
-        void setComponent(const Entity& entity, Component component);
-
-        template <typename Component>
-        [[nodiscard]] bool contains(const Entity& entity);
-        template <typename Component>
-        [[nodiscard]] bool contains(const Entity& entity, const Component& component);
-
-        template <typename Component>
-        [[nodiscard]] Component& getComponent(const Entity& entity);
-
-        [[nodiscard]] std::size_t getNoComponent(const Entity& entity);
-
-        void display(const Entity& entity);
-        void displayAll();
-
-        void reset(const Entity& entity);
-        void resetAll();
+            void reset(const Entity& entity);
+            void resetAll();
     };
 }
 

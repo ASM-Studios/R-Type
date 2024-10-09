@@ -3,13 +3,13 @@
 #include <chrono>
 
 class Clock {
-private:
-    std::chrono::time_point<std::chrono::system_clock> _start;
-    std::chrono::time_point<std::chrono::system_clock> _end;
+    private:
+        std::chrono::time_point<std::chrono::system_clock> _start;
+        std::chrono::time_point<std::chrono::system_clock> _end;
 
-public:
-    explicit Clock();
+    public:
+        explicit Clock();
 
-    void reset();
-    double get();
+        void reset();
+        double get();
 };

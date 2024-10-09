@@ -7,24 +7,24 @@
 #include <map>
 
 class RawRequest {
-private:
-    uint32_t _checksum;
-    NonTypedQuery _query;
+    private:
+        uint32_t _checksum;
+        NonTypedQuery _query;
 
-    void _reloadChecksum();
+        void _reloadChecksum();
 
-public:
-    explicit RawRequest() :
-        _checksum(0) {}
-    explicit RawRequest(NonTypedQuery query);
-    ~RawRequest() = default;
+    public:
+        explicit RawRequest() :
+            _checksum(0) {}
+        explicit RawRequest(NonTypedQuery query);
+        ~RawRequest() = default;
 
-    operator boost::asio::const_buffer();
+        operator boost::asio::const_buffer();
 
-    [[nodiscard]] NonTypedQuery getQuery() const;
-    void setQuery(NonTypedQuery query);
+        [[nodiscard]] NonTypedQuery getQuery() const;
+        void setQuery(NonTypedQuery query);
 
-    [[nodiscard]] bool verifChecksum() const;
+        [[nodiscard]] bool verifChecksum() const;
 } __attribute__((packed));
 
 extern const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction;

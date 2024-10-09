@@ -13,27 +13,27 @@
 #include <string_view>
 
 class Core {
-private:
-    int _tps;
-    int _tickTime;
-    Clock _tpsClock;
-    std::atomic<bool> _isRunning;
-    int _port;
-    std::string _hitboxes_config_file;
+    private:
+        int _tps;
+        int _tickTime;
+        Clock _tpsClock;
+        std::atomic<bool> _isRunning;
+        int _port;
+        std::string _hitboxes_config_file;
 
-    void _initTextures();
+        void _initTextures();
 
-    void _stop();
-    void _readStdin();
-    void _loop(network::socket::udp::Server& server);
+        void _stop();
+        void _readStdin();
+        void _loop(network::socket::udp::Server& server);
 
-    const std::map<std::string_view, void (Core::*)()> _stdinMap = {
-        {"/exit", &Core::_stop}};
+        const std::map<std::string_view, void (Core::*)()> _stdinMap = {
+            {"/exit", &Core::_stop}};
 
-public:
-    explicit Core();
-    ~Core() = default;
+    public:
+        explicit Core();
+        ~Core() = default;
 
-    void init(const std::span<char *>& args);
-    int run();
+        void init(const std::span<char *>& args);
+        int run();
 };
