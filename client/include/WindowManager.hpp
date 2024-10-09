@@ -73,7 +73,7 @@ namespace GUI {
             void _displayBackground() const;
             void _fpsCounter();
 
-            void _displayGame();
+            void _displayGame() const;
             void _displayMenu();
             void _mainMenuInit();
             void _displayMainMenu();

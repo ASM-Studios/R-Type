@@ -1,7 +1,7 @@
 #include "Factories/LevelFactory.hpp"
 
 namespace ecs::factory {
-    LevelFactory::LevelFactory(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename) {
+    void LevelFactory::load(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename) {
         libconfig::Config cfg;
         try {
             cfg.readFile(filename.c_str());

@@ -28,7 +28,10 @@ GUI::WindowManager::WindowManager()
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 0});
 
-    ecs::factory::LevelFactory levelFactory({width, height}, "shared/Scenarios/level_1.cfg");
+    ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
+    // Changing level:
+    // ecs::RegistryManager::getInstance().getRegistry().resetAll();
+    // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
 }
 
 void GUI::WindowManager::run() {
@@ -172,7 +175,7 @@ void GUI::WindowManager::_deleteButton(const std::string &id) {
 
 /* Game */
 
-void GUI::WindowManager::_displayGame() {
+void GUI::WindowManager::_displayGame() const {
     for (ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry(); const auto& entity : registry.getEntities()) {
         if (registry.contains<ecs::component::Sprite>(entity) && registry.contains<ecs::component::Position>(entity)) {
             const auto [spriteID, stateID] = registry.getComponent<ecs::component::Sprite>(entity).getSpriteState();
