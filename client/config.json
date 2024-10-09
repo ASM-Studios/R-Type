@@ -7,5 +7,7 @@
   "width": 1920,
   "height": 1080,
   "logLevel": "INFO",
-  "frameRateLimit": 60
+  "frameRateLimit": 60,
+  "hostname": "localhost",
+  "port": 8080
 }
