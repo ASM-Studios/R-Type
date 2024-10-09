@@ -11,7 +11,7 @@ It is used to create the level, the player, the enemies, the items, the obstacle
 
 _registry = new ecs::Registry();
 
-ecs::factory::LevelFactory levelFactory(_registry, {width, height}, "shared/Scenarios/level_1.cfg");
+ecs::factory::LevelFactory::load(_registry, {width, height}, "shared/Scenarios/level_1.cfg");
 ```
 
 ### Arguments
@@ -19,9 +19,26 @@ ecs::factory::LevelFactory levelFactory(_registry, {width, height}, "shared/Scen
 - {width, height}: The size of the screen.
 - "shared/Scenarios/level_1.cfg": The path to the configuration file.
 
+## Path
+
+You can use the `getScenarioPath()` function to get the path of the scenario.
+
+```cpp
+ecs::factory::LevelFactory::load(_registry, {width, height}, ecs::factory::getScenarioPath(1));
+```
+
 ## Player
 
-**Player MUST be defined as the first entity (id 0)**
+The player entity **SHOULD NOT** be created in the scenario, it should be created directly by the client and/or the server.
+
+Client side, the player will always have the id 0.
+
+The server will handle player with its own id.
+
+## Minimal ID
+
+In the scenario configuration, **DO NOT** put and id lower than 10.<br>
+Entities with an id lower than 10 are reserved for the engine and will be ignored.
 
 ## Format
 
@@ -29,27 +46,9 @@ A level is defined in a configuration file with the following format:
 
 ```cfg
 entities = (
-    {
-        name = "player";
-        components = (
-            {
-                type = "Position";
-                x = 50;
-                y = 200;
-            },
-            {
-                type = "Sprite";
-                spriteID = 22;  # Ship_1
-                stateID = 0;
-            },
-            {
-                type = "AI";
-                model = "none";
-            }
-        );
-    },
-    {
+   {
         name = "enemy";
+        id = 11;
         components = (
             {
                 type = "Position";
