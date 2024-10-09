@@ -6,8 +6,8 @@ The documentation is divided into the following sections:
 
 ## Client
 
-- [Config](Misc/Config.md)
-- [Logger](Misc/Logger.md)
+- [Config](Shared/Config.md)
+- [Logger](Shared/Logger.md)
 - [WindowManager](Client/WindowManager.md)
 - [SpriteManager](Client/SpriteManager.md)
 - [MusicManager](Client/MusicManager.md)
@@ -21,6 +21,6 @@ The documentation is divided into the following sections:
 ## Misc
 
 - [ReadMe](../README.md)
-- [VCPKG](Misc/VCPKG.md)
-- [Contributing](Misc/Contributing.md)
-- [LevelFactory](Misc/LevelFactory.md)
+- [VCPKG](Shared/VCPKG.md)
+- [Contributing](Shared/Contributing.md)
+- [LevelFactory](Shared/LevelFactory.md)

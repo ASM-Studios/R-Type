@@ -24,7 +24,7 @@ ecs::factory::LevelFactory::load(_registry, {width, height}, "shared/Scenarios/l
 You can use the `getScenarioPath()` function to get the path of the scenario.
 
 ```cpp
-ecs::factory::LevelFactory::load(_registry, {width, height}, ecs::factory::getScenarioPath(1));
+ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
 ```
 
 ## Player

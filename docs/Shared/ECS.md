@@ -4,63 +4,43 @@ The ECS is the entity manager of the project (server-side).
 
 ## Usage
 
-NEVER INSTANCIATE AN ENTITY BY YOURSELF, USE `ecs::Registry::createEntity` INSTEAD.
+**NEVER INSTANCIATE AN ENTITY BY YOURSELF, USE `ecs::Registry::createEntity` INSTEAD.**<br>
 Registry keep a trace of all created entities.
+
+## Factory
+
+Apart from specific cases, you do not need to manually create entities. Use the factory instead.<br>
+The default factory is [LevelFactory](LevelFactory.md).
 
 ### Entity
 
 To create an entity, use the following code:
 
 ```cpp
-//proto
-template <typename... Components>
-static ecs::Entity ecs::Registry::createEntity();
-
-//usage
-auto entity = ecs::Registry::createEntity<Component1, Component2, ...>();
+ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0);
 ```
 
 To add more component, you can either use
 
 ```cpp
-//proto
-template <typename Component>
-void ecs::Entity::addComponent();
-
-//usage
 entity.addComponent<Component1>();
 ```
 
 or
 
 ```cpp
-//proto
-template <typename... Components>
-void ecs::Entity::addComponents();
-
-//usage
 entity.addComponents<Component, Component2, ...>();
 ```
 
 To check if an entity contains a component, use:
 
 ```cpp
-//proto
-template <typename Component>
-bool ecs::Entity::contains();
-
-//usage
 entity.contains<Component1>();
 ```
 
 To get a component, use:
 
 ```cpp
-//proto
-template <typename Component>
-Component& ecs::Entity::getComponent();
-
-//usage
 entity.getComponent<Component1>()
 ```
 
@@ -70,13 +50,11 @@ getComponent throw an error if the component doesn't exist in the entity.
 try {
 	Component component = entity.getComponent<Component>();
 } catch (ecs::Registry::NoComponent &error) {
-	std::cerr << e.what() << std::endl;
+    Logger::log(Logger::ERR, error.what());
 }
 ```
 
 ### Registry
-
-All ecs::Registry's methods are static.
 
 You don't need to keep a reference of entity. Entity is an "id" class.
 
@@ -99,9 +77,5 @@ All entities are stored in ecs::Registry class
 To fetch them all, use
 
 ```cpp
-//proto
-static std::set<ecs::Entity> ecs::Registry::getEntities();
-
-//usage
-auto entities = ecs::Registry::getEntities();
+const auto entities = ecs::RegistryManager::getInstance().getRegistry().getEntities();
 ```
