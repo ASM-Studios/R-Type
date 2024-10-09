@@ -1,7 +1,7 @@
 #include "WindowManager.hpp"
 
 GUI::WindowManager::WindowManager()
-: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)) {
+: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>()){
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
@@ -32,6 +32,7 @@ GUI::WindowManager::WindowManager()
     // Changing level:
     // ecs::RegistryManager::getInstance().getRegistry().resetAll();
     // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
 }
 
 void GUI::WindowManager::run() {
@@ -43,6 +44,7 @@ void GUI::WindowManager::run() {
             _displayMenu();
         }
         if (_gameState == gameState::GAMES) {
+            _gameLogic.update();
             _displayGame();
         }
         _fpsCounter();
@@ -74,17 +76,27 @@ void GUI::WindowManager::_eventsHandler() {
 
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     if (_gameState == gameState::GAMES) {
+        auto& input = registry.getComponent<ecs::component::Input>(_player);
+        input.reset();
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(0, -MOVEMENT_SPEED));
+            input.setFlag(ecs::component::Input::MoveUp);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(0, MOVEMENT_SPEED));
+            input.setFlag(ecs::component::Input::MoveDown);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(-MOVEMENT_SPEED, 0));
+            input.setFlag(ecs::component::Input::MoveLeft);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(MOVEMENT_SPEED, 0));
+            input.setFlag(ecs::component::Input::MoveRight);
+        }
+        if (_event.type == sf::Event::KeyReleased) {
+            if (_event.key.code == sf::Keyboard::Space) {
+                input.setFlag(ecs::component::Input::ReleaseShoot);
+            }
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            input.setFlag(ecs::component::Input::PressedShoot);
         }
     }
 }

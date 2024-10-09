@@ -69,4 +69,15 @@ namespace ecs {
         std::erase_if(this->_components, [this](const auto& item) { return !(item.first == typeid(ecs::component::Player)); });
         std::erase_if(this->_entities, [this](const auto& item) { return getNoComponent(item) == 0; });
     }
+
+    void Registry::removeEntity(const Entity& entity) {
+        _entities.erase(entity);
+        for (auto& [type, componentMap] : _components) {
+            componentMap.erase(entity);
+        }
+    }
+
+    bool Registry::isEntityValid(const Entity& entity) const {
+        return _entities.find(entity) != _entities.end();
+    }
 }
