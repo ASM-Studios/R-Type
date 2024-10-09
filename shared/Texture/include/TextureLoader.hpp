@@ -40,3 +40,4 @@ public:
     Texture& getTexture(int id);
     std::size_t getNoTexture() const;
 };
+

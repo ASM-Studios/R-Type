@@ -1,6 +1,7 @@
 #include "WindowManager.hpp"
 
-GUI::WindowManager::WindowManager() {
+GUI::WindowManager::WindowManager()
+: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)) {
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
@@ -24,8 +25,13 @@ GUI::WindowManager::WindowManager() {
 
     /* ECS Inits */
 
-    const auto player = _registry.createEntity<ecs::component::Position>();
-    _registry.getComponent<ecs::component::Position>(player).move({0, 0});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 0});
+
+    ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
+    // Changing level:
+    // ecs::RegistryManager::getInstance().getRegistry().resetAll();
+    // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
 }
 
 void GUI::WindowManager::run() {
@@ -37,7 +43,7 @@ void GUI::WindowManager::run() {
             _displayMenu();
         }
         if (_gameState == gameState::GAMES) {
-            // TODO: Implement game display
+            _displayGame();
         }
         _fpsCounter();
 
@@ -51,40 +57,37 @@ void GUI::WindowManager::_eventsHandler() {
             _window->close();
         }
 
-        if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Q) {
-            setGameState(gameState::QUITING);
-        }
-        if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Escape) {
-            if (_gameState == gameState::MENUS) continue;
-            _menuState = _menuState == menuState::NO_MENU ? menuState::PAUSE_MENU : menuState::NO_MENU;
-        }
-
-        /* Movement */
-
-        if (_gameState == gameState::GAMES) {
-            if (_event.type == sf::Event::KeyPressed) {
-                if (_event.key.code == sf::Keyboard::Up) {
-                    Logger::log(LogLevel::INFO, "Up key pressed");
-                }
-                if (_event.key.code == sf::Keyboard::Down) {
-                    Logger::log(LogLevel::INFO, "Down key pressed");
-                }
-                if (_event.key.code == sf::Keyboard::Left) {
-                    Logger::log(LogLevel::INFO, "Left key pressed");
-                }
-                if (_event.key.code == sf::Keyboard::Right) {
-                    Logger::log(LogLevel::INFO, "Right key pressed");
-                }
+        if (_event.type == sf::Event::KeyPressed) {
+            if (_event.key.code == sf::Keyboard::Q) {
+                setGameState(gameState::QUITING);
+            }
+            if (_event.key.code == sf::Keyboard::Escape) {
+                if (_gameState == gameState::MENUS) continue;
+                _menuState = _menuState == menuState::NO_MENU ? menuState::PAUSE_MENU : menuState::NO_MENU;
             }
         }
-
 
         for (auto& [id, button] : _currentButtons) {
             button.update(*_window, _event);
         }
     }
-}
 
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    if (_gameState == gameState::GAMES) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(0, -MOVEMENT_SPEED));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(0, MOVEMENT_SPEED));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(-MOVEMENT_SPEED, 0));
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(MOVEMENT_SPEED, 0));
+        }
+    }
+}
 void GUI::WindowManager::_displayBackground() const {
     if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
         _window->draw(*background);
@@ -167,6 +170,20 @@ GUI::Button<> GUI::WindowManager::_getButton(const std::string &id) const {
 void GUI::WindowManager::_deleteButton(const std::string &id) {
     if (const auto it = _buttons.find(id); it != _buttons.end()) {
         _buttons.erase(it);
+    }
+}
+
+/* Game */
+
+void GUI::WindowManager::_displayGame() const {
+    for (ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry(); const auto& entity : registry.getEntities()) {
+        if (registry.contains<ecs::component::Sprite>(entity) && registry.contains<ecs::component::Position>(entity)) {
+            const auto [spriteID, stateID] = registry.getComponent<ecs::component::Sprite>(entity).getSpriteState();
+            const auto sprite = _spriteManager.getSprite(spriteID, stateID);
+            const auto [x, y] = registry.getComponent<ecs::component::Position>(entity).get();
+            sprite->setPosition(x, y);
+            _window->draw(*sprite);
+        }
     }
 }
 

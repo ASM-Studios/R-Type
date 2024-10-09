@@ -23,7 +23,7 @@ namespace ecs {
 
 template <>
 struct std::hash<ecs::Entity> {
-    std::size_t operator()(const ecs::Entity& key) const {
+    std::size_t operator()(const ecs::Entity& key) const noexcept {
         return std::hash<std::size_t>()(key.getID());
     }
 };

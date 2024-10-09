@@ -1,6 +1,8 @@
 #include "Client.hpp"
 #include "Core.hpp"
+#include "Player.hpp"
 #include "RegistryManager.hpp"
+#include "Texture.hpp"
 #include "query/Header.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
@@ -15,7 +17,7 @@ static ecs::Entity registerClientEntity(network::Client client) {
             return entity;
         }
     }
-    ecs::Entity entity = registry.createEntity<>();
+    ecs::Entity entity = registry.createEntity<>(0);
     registry.setComponent(entity, client);
     return entity;
 }

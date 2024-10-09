@@ -2,7 +2,7 @@
 #include "Registry.hpp"
 
 namespace ecs {
-    Entity::Entity(std::size_t id, Registry& registry) :
+    Entity::Entity(const std::size_t id, Registry& registry) :
         _id(id),
         _registry(std::ref(registry)) {}
 

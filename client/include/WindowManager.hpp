@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <RegistryManager.hpp>
 #include <string>
 #include <thread>
 #include <SFML/Graphics.hpp>
@@ -11,6 +12,7 @@
 #include "MusicManager.hpp"
 #include "Button.hpp"
 #include "Registry.hpp"
+#include "Factories/LevelFactory.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -22,6 +24,8 @@ constexpr std::size_t FONT_SIZE = 24;
 constexpr std::size_t TEXT_POS = 10;
 
 constexpr auto MAIN_MENU_BACKGROUND = "backgrounds/main_menu";
+
+constexpr auto MOVEMENT_SPEED = 5;
 
 namespace GUI {
     enum gameState {
@@ -42,17 +46,19 @@ namespace GUI {
             sf::Event _event;
             SpriteManager _spriteManager;
             MusicManager _musicManager;
-            ecs::Registry _registry;
             sf::Font _font;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
             gameState _previousGameState = gameState::NONE;
             menuState _previousMenuState = menuState::NO_MENU;
             gameState _gameState = gameState::MENUS;
             menuState _menuState = MAIN_MENU;
-            bool _showFps = true; //TODO: Set to false
+            bool _showFps = false;
             std::unordered_map<std::string, std::shared_ptr<sf::Text>> _texts;
             std::unordered_map<std::string, Button<>> _buttons;
             std::unordered_map<std::string, Button<>> _currentButtons;
+            std::vector<sf::Keyboard::Key> _pressedKeys;
+
+            ecs::Entity _player;
 
             void _eventsHandler();
 
@@ -67,6 +73,7 @@ namespace GUI {
             void _displayBackground() const;
             void _fpsCounter();
 
+            void _displayGame() const;
             void _displayMenu();
             void _mainMenuInit();
             void _displayMainMenu();
