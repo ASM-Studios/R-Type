@@ -1,7 +1,7 @@
 #include "Factories/LevelFactory.hpp"
 
 namespace ecs::factory {
-    LevelFactory::LevelFactory(Registry& registry, const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename) {
+    LevelFactory::LevelFactory(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename) {
         libconfig::Config cfg;
         try {
             cfg.readFile(filename.c_str());
@@ -57,7 +57,7 @@ namespace ecs::factory {
             entities.push_back(entity);
         }
         try {
-            createRegistryEntity(entities, registry, screenSize);
+            createRegistryEntity(entities, screenSize);
         } catch (const std::exception& e) {
             Logger::log(LogLevel::ERR, e.what());
         }
@@ -86,16 +86,17 @@ namespace ecs::factory {
         return component;
     }
 
-    void LevelFactory::createRegistryEntity(const std::vector<FactoryEntity>& entities, Registry& _registry, const std::pair<std::size_t, std::size_t>& _screenSize) {
+    void LevelFactory::createRegistryEntity(const std::vector<FactoryEntity>& entities, const std::pair<std::size_t, std::size_t>& _screenSize) {
+        ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
         for (const auto&[name, components] : entities) {
-            auto newEntity = _registry.createEntity<>();
+            auto newEntity = registry.createEntity<>();
             for (const auto&[type, x, y, spriteID, stateID, model] : components) {
                 if (type == "Position") {
-                    _registry.setComponent<ecs::component::Position>(newEntity, {static_cast<int16_t>(x), static_cast<int16_t>(y), _screenSize.first, _screenSize.second});
+                    registry.setComponent<ecs::component::Position>(newEntity, {static_cast<int16_t>(x), static_cast<int16_t>(y), _screenSize.first, _screenSize.second});
                 } else if (type == "Sprite") {
-                    _registry.setComponent<ecs::component::Sprite>(newEntity, {spriteID, stateID});
+                    registry.setComponent<ecs::component::Sprite>(newEntity, {spriteID, stateID});
                 } else if (type == "AI") {
-                    _registry.setComponent<ecs::component::AI>(newEntity, {ecs::component::AI::stringToAIModel(model)});
+                    registry.setComponent<ecs::component::AI>(newEntity, {ecs::component::AI::stringToAIModel(model)});
                 }
             }
         }

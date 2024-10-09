@@ -9,6 +9,7 @@
 
 #include "Logger.hpp"
 #include "Registry.hpp"
+#include "RegistryManager.hpp"
 
 namespace ecs::factory {
     struct Component {
@@ -27,13 +28,13 @@ namespace ecs::factory {
 
     class LevelFactory {
         public:
-            explicit LevelFactory(Registry& registry, const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename);
+            explicit LevelFactory(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename);
 
 	    static void load(const std::string& filename);
 	    static Component parsePosition(const libconfig::Setting& componentSetting, const std::string& type);
             static Component parseSprite(const libconfig::Setting& componentSetting, const std::string& type);
             static Component parseModel(const libconfig::Setting& componentSetting, const std::string& type);
 
-            static void createRegistryEntity(const std::vector<FactoryEntity>& entities, Registry& _registry, const std::pair<std::size_t, std::size_t>& _screenSize);
+            static void createRegistryEntity(const std::vector<FactoryEntity>& entities, const std::pair<std::size_t, std::size_t>& _screenSize);
     };
 }

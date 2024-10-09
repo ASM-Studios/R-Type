@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <RegistryManager.hpp>
 #include <string>
 #include <thread>
 #include <SFML/Graphics.hpp>
@@ -45,7 +46,6 @@ namespace GUI {
             sf::Event _event;
             SpriteManager _spriteManager;
             MusicManager _musicManager;
-            ecs::Registry _registry;
             sf::Font _font;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
             gameState _previousGameState = gameState::NONE;
@@ -58,7 +58,7 @@ namespace GUI {
             std::unordered_map<std::string, Button<>> _currentButtons;
             std::vector<sf::Keyboard::Key> _pressedKeys;
 
-            ecs::Entity _player = ecs::Entity(0);
+            ecs::Entity _player;
 
             void _eventsHandler();
 
