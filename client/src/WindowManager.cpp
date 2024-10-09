@@ -4,6 +4,8 @@ GUI::WindowManager::WindowManager()
 : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)) {
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
+    _hostname = config.get("hostname").value_or("127.0.0.1");
+    _port = std::stoul(config.get("port").value_or("8080"));
     const std::size_t width = std::stoul(config.get("width").value_or(std::to_string(desktop.width)));
     const std::size_t height = std::stoul(config.get("height").value_or(std::to_string(desktop.height)));
     _window = std::make_unique<sf::RenderWindow>(
@@ -32,6 +34,10 @@ GUI::WindowManager::WindowManager()
     // Changing level:
     // ecs::RegistryManager::getInstance().getRegistry().resetAll();
     // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
+
+    // Communicate with server:
+    // auto query = TypedQuery<int>({NOTHING}, 5);
+    // send(RawRequest(query));
 }
 
 void GUI::WindowManager::run() {

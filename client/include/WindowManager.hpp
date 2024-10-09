@@ -4,6 +4,7 @@
 #include <RegistryManager.hpp>
 #include <string>
 #include <thread>
+#include <query/RawRequest.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
@@ -13,6 +14,7 @@
 #include "Button.hpp"
 #include "Registry.hpp"
 #include "Factories/LevelFactory.hpp"
+#include "socket/Server.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -47,6 +49,9 @@ namespace GUI {
             SpriteManager _spriteManager;
             MusicManager _musicManager;
             sf::Font _font;
+            network::socket::udp::Server _server;
+            std::string _hostname;
+            std::size_t _port;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
             gameState _previousGameState = gameState::NONE;
             menuState _previousMenuState = menuState::NO_MENU;
@@ -81,6 +86,10 @@ namespace GUI {
             void _displaySettingsMenu();
             void _pauseMenuInit();
             void _displayPauseMenu();
+
+            void send(const RawRequest& request) {
+                _server.send(_hostname, _port, request);
+            }
 
         public:
             WindowManager();
