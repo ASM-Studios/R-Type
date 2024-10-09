@@ -1,6 +1,8 @@
 #include "Client.hpp"
 #include "Core.hpp"
+#include "Player.hpp"
 #include "RegistryManager.hpp"
+#include "Texture.hpp"
 #include "query/Header.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
@@ -37,6 +39,12 @@ void hexDisplay(const char *ptr, std::size_t n) {
 }
 
 int main(int ac, char **av) {
+    auto e1 = ecs::RegistryManager::getInstance().getRegistry().createEntity<ecs::component::Position, Empty>();
+    auto e2 = ecs::RegistryManager::getInstance().getRegistry().createEntity<ecs::component::Player>();
+     
+    ecs::RegistryManager::getInstance().getRegistry().resetAll();
+    ecs::RegistryManager::getInstance().getRegistry().displayAll();
+    return 0;
     auto args = std::span<char *>(av, ac);
     Core core;
 

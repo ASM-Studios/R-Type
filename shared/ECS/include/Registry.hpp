@@ -60,7 +60,13 @@ namespace ecs {
         template <typename Component>
         [[nodiscard]] Component& getComponent(const Entity& entity);
 
+        [[nodiscard]] std::size_t getNoComponent(const Entity& entity);
+
+        void display(const Entity& entity);
+        void displayAll();
+
         void reset(const Entity& entity);
+        void resetAll();
     };
 }
 
