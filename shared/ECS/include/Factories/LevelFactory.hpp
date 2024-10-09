@@ -1,9 +1,9 @@
 #pragma once
 
-#include <libconfig.h++>
-#include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 #include <iostream>
+#include <libconfig.h++>
 #include <string>
 #include <vector>
 
@@ -13,21 +13,21 @@
 
 namespace ecs::factory {
     constexpr auto SCENARIO_PATH = "shared/Scenarios/scenarios.cfg";
-    constexpr int  MIN_ALLOWED_ID = 10;
+    constexpr int MIN_ALLOWED_ID = 10;
 
     struct Component {
-    	std::string type;
-        int x;
-        int y;
-        int spriteID;
-        int stateID;
-        std::string model;
+            std::string type;
+            int x;
+            int y;
+            int spriteID;
+            int stateID;
+            std::string model;
     };
 
     struct FactoryEntity {
-        std::string name;
-        std::size_t id;
-        std::vector<Component> components;
+            std::string name;
+            std::size_t id;
+            std::vector<Component> components;
     };
 
     inline std::string getScenarioPath(const std::size_t scenarioID) {
@@ -62,8 +62,8 @@ namespace ecs::factory {
 
     class LevelFactory {
         public:
-            static void load(const std::pair<std::size_t, std::size_t>& screenSize,const std::string& filename);
-	    static Component parsePosition(const libconfig::Setting& componentSetting, const std::string& type);
+            static void load(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename);
+            static Component parsePosition(const libconfig::Setting& componentSetting, const std::string& type);
             static Component parseSprite(const libconfig::Setting& componentSetting, const std::string& type);
             static Component parseModel(const libconfig::Setting& componentSetting, const std::string& type);
 

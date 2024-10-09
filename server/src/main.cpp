@@ -1,11 +1,9 @@
 #include "Client.hpp"
 #include "Core.hpp"
-#include "Player.hpp"
 #include "RegistryManager.hpp"
-#include "Texture.hpp"
 #include "query/Header.hpp"
 #include "query/RawRequest.hpp"
-#include "query/TypedQuery.hpp"
+#include <boost/asio/buffer.hpp>
 #include <cstdio>
 #include <iomanip>
 #include <iostream>

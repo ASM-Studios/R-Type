@@ -7,16 +7,16 @@
 
 namespace network {
     class Worker {
-    private:
-        std::promise<bool> _promise;
-        std::future<bool> _future;
-        std::thread _thread;
+        private:
+            std::promise<bool> _promise;
+            std::future<bool> _future;
+            std::thread _thread;
 
-    public:
-        explicit Worker(std::pair<Client, RawRequest> query);
-        ~Worker() = default;
+        public:
+            explicit Worker(std::pair<Client, RawRequest> query);
+            ~Worker() = default;
 
-        void join();
-        bool isReady();
+            void join();
+            bool isReady();
     };
 }

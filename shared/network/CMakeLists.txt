@@ -10,7 +10,6 @@ set(SOURCE_FILE src/QueryHandler.cpp
     src/Worker.cpp
     src/Client.cpp
     src/socket/Server.cpp
-    src/socket/Query.cpp
     src/query/RawRequest.cpp)
 
 add_library(network ${SOURCE_FILE})

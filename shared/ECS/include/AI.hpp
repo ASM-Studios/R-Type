@@ -8,10 +8,10 @@ namespace ecs::component {
     };
 
     struct AI {
-        AIModel _model = AIModel::NONE;
+            AIModel _model = AIModel::NONE;
 
-        void setModel(const AIModel model);
+            void setModel(const AIModel model);
 
-        static AIModel stringToAIModel(const std::string& modelStr);
+            static AIModel stringToAIModel(const std::string& modelStr);
     };
 }

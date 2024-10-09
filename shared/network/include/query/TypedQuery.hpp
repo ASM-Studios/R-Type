@@ -9,35 +9,35 @@ class NonTypedQuery;
 
 template <typename Payload>
 class TypedQuery {
-private:
-    Header _header;
-    Payload _payload;
-    std::array<char, MAX_PAYLOAD_SIZE - sizeof(Payload)> _fill;
+    private:
+        Header _header;
+        Payload _payload;
+        std::array<char, MAX_PAYLOAD_SIZE - sizeof(Payload)> _fill;
 
-    friend class NonTypedQuery;
+        friend class NonTypedQuery;
 
-public:
-    explicit TypedQuery(Header header, Payload payload);
-    explicit TypedQuery(NonTypedQuery query);
-    ~TypedQuery() = default;
+    public:
+        explicit TypedQuery(Header header, Payload payload);
+        explicit TypedQuery(NonTypedQuery query);
+        ~TypedQuery() = default;
 
-    operator NonTypedQuery();
+        operator NonTypedQuery();
 
-    [[nodiscard]] Header getHeader() const {
-        return this->_header;
-    }
+        [[nodiscard]] Header getHeader() const {
+            return this->_header;
+        }
 
-    void setHeader(Header header) {
-        this->_header = header;
-    }
+        void setHeader(Header header) {
+            this->_header = header;
+        }
 
-    [[nodiscard]] Payload getPayload() const {
-        return this->_payload;
-    }
+        [[nodiscard]] Payload getPayload() const {
+            return this->_payload;
+        }
 
-    void setPayload(Payload payload) {
-        this->_payload(payload);
-    }
+        void setPayload(Payload payload) {
+            this->_payload(payload);
+        }
 } __attribute__((packed));
 
 #include "TypedQuery.inl"

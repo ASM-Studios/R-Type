@@ -21,7 +21,7 @@ namespace ecs {
 
     int Registry::_generateID() {
         int id = 1;
-        while (std::ranges::any_of(this->_entities.begin(), this->_entities.end(), [id](auto& item){return item.getID() == id;})) {
+        while (std::ranges::any_of(this->_entities.begin(), this->_entities.end(), [id](auto& item) { return item.getID() == id; })) {
             id += 1;
         }
         return id;
@@ -66,7 +66,7 @@ namespace ecs {
     }
 
     void Registry::resetAll() {
-        std::erase_if(this->_components, [this](const auto& item) {return !(item.first == typeid(ecs::component::Player));});
-        std::erase_if(this->_entities, [this](const auto& item) {return getNoComponent(item) == 0;});
+        std::erase_if(this->_components, [this](const auto& item) { return !(item.first == typeid(ecs::component::Player)); });
+        std::erase_if(this->_entities, [this](const auto& item) { return getNoComponent(item) == 0; });
     }
 }

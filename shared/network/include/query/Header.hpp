@@ -10,5 +10,5 @@ enum RequestType {
 };
 
 struct Header {
-    RequestType requestType;
+        RequestType requestType;
 };
