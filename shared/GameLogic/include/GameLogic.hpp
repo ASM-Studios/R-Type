@@ -6,21 +6,26 @@
 #include "Input.hpp"
 #include "Logger.hpp"
 #include "RegistryManager.hpp"
+#include "LastShot.hpp"
+#include "EntitySchematic.hpp"
+#include <algorithm>
+#include <chrono>
 
+constexpr auto SHOOT_COOLDOWN = 0.1F;
 constexpr auto SPEED = 5;
 
 
 class GameLogic {
     public:
-        GameLogic() : _registry(ecs::RegistryManager::getInstance().getRegistry()) {}
+        GameLogic();
 
-        void update();
+        void updateTimed();
 
     private:
-        ecs::Registry &_registry;
+        float _timePerTick;
 
+        void update();
         void updateBullets();
-        void createBullet(const ecs::Entity& shooter);
         void handleInput(const ecs::Entity& entity);
 };
 

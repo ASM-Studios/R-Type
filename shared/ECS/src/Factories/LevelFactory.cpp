@@ -96,7 +96,7 @@ namespace ecs::factory {
     void LevelFactory::createRegistryEntity(const std::vector<FactoryEntity>& entities, const std::pair<std::size_t, std::size_t>& _screenSize) {
         ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
         for (const auto& [name, id, components]: entities) {
-            auto newEntity = registry.createEntity<>(ecs::EntityType::Enemy);
+            auto newEntity = registry.createEntity<>(id, ecs::EntityType::Enemy);
             for (const auto& [type, x, y, spriteID, stateID, model]: components) {
                 if (type == "Position") {
                     registry.setComponent<ecs::component::Position>(newEntity, {static_cast<int16_t>(x), static_cast<int16_t>(y), _screenSize.first, _screenSize.second});
