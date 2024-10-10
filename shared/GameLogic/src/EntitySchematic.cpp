@@ -1,17 +1,16 @@
 #include "EntitySchematic.hpp"
-#include "Entity.hpp"
-#include "Registry.hpp"
-
+#include "BehaviorFunc.hpp"
 
 ecs::Entity EntitySchematic::createPlayer(int16_t startX, int16_t startY, int16_t screenWidth, int16_t screenHeight) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto player = registry.createEntity<ecs::component::Position, ecs::component::Input, ecs::component::Sprite, ecs::component::LastShot>(0,ecs::EntityType::Player);
-    ecs::component::Position position = {startX, startY, static_cast<size_t>(screenWidth), static_cast<size_t>(screenHeight)};
+    ecs::component::Position const position = {startX, startY, static_cast<size_t>(screenWidth), static_cast<size_t>(screenHeight)};
     registry.setComponent<ecs::component::Position>(player, position);
     registry.setComponent<ecs::component::Input>(player, {});
     registry.setComponent<ecs::component::Sprite>(player, {22, 0});
     registry.setComponent<ecs::component::LastShot>(player, {});
     registry.setComponent<ecs::component::Animation>(player, {.frameTime = 0.1F});
+    registry.setComponent<ecs::component::Behavior>(player, {&BehaviorFunc::handleInput});
     return player;
 }
 
@@ -24,6 +23,7 @@ ecs::Entity EntitySchematic::createBullet(const ecs::Entity& shooter)
     registry.setComponent<ecs::component::Position>(bullet, {static_cast<int16_t>(shooterPosition.x + 50), shooterPosition.y, shooterPosition.screenWidth, shooterPosition.screenHeight});
     registry.setComponent<ecs::component::Sprite>(bullet, {13, 0});
     registry.setComponent<ecs::component::Animation>(bullet, {.frameTime = 0.1F});
+    registry.setComponent<ecs::component::Behavior>(bullet, {&BehaviorFunc::updateBullet});
     return bullet;
 }
 

@@ -32,6 +32,7 @@ GUI::WindowManager::WindowManager()
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Animation>(_player, {.frameTime=0.5F});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
 
     ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
     // Changing level:
@@ -84,7 +85,8 @@ void GUI::WindowManager::_eventsHandler() {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     if (_gameState == gameState::GAMES) {
         auto& input = registry.getComponent<ecs::component::Input>(_player);
-        input.reset();
+        input.clearFlag(ecs::component::Input::MoveLeft | ecs::component::Input::MoveRight |
+                        ecs::component::Input::MoveUp | ecs::component::Input::MoveDown | ecs::component::Input::ReleaseShoot);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
             input.setFlag(ecs::component::Input::MoveUp);
         }
@@ -97,10 +99,9 @@ void GUI::WindowManager::_eventsHandler() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
             input.setFlag(ecs::component::Input::MoveRight);
         }
-        if (_event.type == sf::Event::KeyReleased) {
-            if (_event.key.code == sf::Keyboard::Space) {
-                input.setFlag(ecs::component::Input::ReleaseShoot);
-            }
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && input.isFlagSet((ecs::component::Input::PressedShoot))) {
+            input.setFlag(ecs::component::Input::ReleaseShoot);
+            input.clearFlag(ecs::component::Input::PressedShoot);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
             input.setFlag(ecs::component::Input::PressedShoot);

@@ -41,72 +41,15 @@ void GameLogic::updateTimed()
 void GameLogic::update() {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     for (const auto& entity : registry.getEntities()) {
-        if (entity.getType() == ecs::EntityType::Player
-            && registry.contains<ecs::component::Input>(entity)
-            && registry.contains<ecs::component::Position>(entity) ) {
-            handleInput(entity);
-        }
         if (registry.contains<ecs::component::Animation>(entity) &&
             registry.contains<ecs::component::Sprite>(entity)) {
             updateAnimation(entity);
         }
-    }
-    updateBullets();
-}
-
-
-void GameLogic::handleInput(const ecs::Entity& entity)
-{
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    auto& input = registry.getComponent<ecs::component::Input>(entity);
-    auto& position = registry.getComponent<ecs::component::Position>(entity);
-    auto& lastShot = registry.getComponent<ecs::component::LastShot>(entity);
-
-    ecs::component::Position offset(0, 0);
-    if (input.isFlagSet(ecs::component::Input::MoveLeft)) {
-        offset.x -= SPEED;
-    }
-    if (input.isFlagSet(ecs::component::Input::MoveRight)) {
-        offset.x += SPEED;
-    }
-    if (input.isFlagSet(ecs::component::Input::MoveUp)) {
-        offset.y -= SPEED;
-    }
-    if (input.isFlagSet(ecs::component::Input::MoveDown)) {
-        offset.y += SPEED;
-    }
-    position.move(offset);
-
-    auto currentTime = std::chrono::steady_clock::now();
-    float const deltaTimeShot = std::chrono::duration<float>(currentTime - lastShot.lastShotTime).count();
-
-    if (input.isFlagSet(ecs::component::Input::PressedShoot) && deltaTimeShot >= SHOOT_COOLDOWN
-        && registry.contains<ecs::component::LastShot>(entity) ) {
-        EntitySchematic::createBullet(entity);
-        lastShot.lastShotTime = currentTime;
-        input.clearFlag(ecs::component::Input::PressedShoot);
-    }
-}
-
-
-
-void GameLogic::updateBullets()
-{
-    Collision::updateCollisions();
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    for (const auto& bullet : registry.getEntities()) {
-        if (bullet.getType() == ecs::EntityType::Bullet
-            && registry.contains<ecs::component::Position>(bullet)
-            && registry.contains<ecs::component::Sprite>(bullet)) {
-            auto& position = registry.getComponent<ecs::component::Position>(bullet);
-            ecs::component::Position const offset(SPEED * 2, 0);
-
-            position.move(offset);
-            if (position.x >= position.screenWidth - 1) {
-                registry.removeEntity(bullet);
-            }
+        if (registry.contains<ecs::component::Behavior>(entity)) {
+            registry.getComponent<ecs::component::Behavior>(entity).func(entity, _timePerTick);
         }
     }
+    Collision::updateCollisions();
 }
 
 void GameLogic::updateAnimation (const ecs::Entity& entity)
@@ -128,7 +71,5 @@ void GameLogic::updateAnimation (const ecs::Entity& entity)
         }
         sprite.setStateID(animation.currFrame);
     }
-
-
 }
 

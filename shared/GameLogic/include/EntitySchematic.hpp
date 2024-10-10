@@ -6,6 +6,10 @@
 #include "Sprite.hpp"
 #include "LastShot.hpp"
 #include "Animation.hpp"
+#include "Behavior.hpp"
+#include "Entity.hpp"
+#include "Registry.hpp"
+#include "GameLogic.hpp"
 #include "RegistryManager.hpp"
 
 class EntitySchematic {

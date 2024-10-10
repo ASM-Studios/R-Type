@@ -17,6 +17,7 @@
 #include "GameLogic.hpp"
 #include "Input.hpp"
 #include "socket/Server.hpp"
+#include "BehaviorFunc.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";

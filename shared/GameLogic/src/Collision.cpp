@@ -38,11 +38,9 @@ void Collision::checkCollisions(const std::vector<std::pair<int16_t, ecs::Entity
             continue;
         for (size_t j = i + 1; j < sortedEntities.size(); ++j) {
             const auto& [x2, enemy] = sortedEntities[j];
-
-            short const MAX_BULLET_WIDTH = 50;
-            if (x2 > x1 + MAX_BULLET_WIDTH)
+            if (x2 > x1 + 100) {
                 break;
-
+            }
             ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
             if (enemy.getType() == ecs::EntityType::Enemy &&
                 registry.contains<ecs::component::Position>(enemy)

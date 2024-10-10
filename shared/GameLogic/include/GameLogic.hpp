@@ -14,8 +14,7 @@
 #include <chrono>
 #include <thread>
 
-constexpr auto SHOOT_COOLDOWN = 0.1F;
-constexpr auto SPEED = 5;
+constexpr auto SHOOT_COOLDOWN = 0.2F;
 
 
 class GameLogic {
@@ -23,13 +22,10 @@ class GameLogic {
         GameLogic();
 
         void updateTimed();
-
     private:
         float _timePerTick;
 
         void update();
-        void updateBullets();
-        void handleInput(const ecs::Entity& entity);
         void updateAnimation(const ecs::Entity& entity);
 };
 
