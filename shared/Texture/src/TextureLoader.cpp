@@ -50,5 +50,15 @@ std::size_t TextureLoader::getNoTexture() const {
     return this->_textures.size();
 }
 
+std::pair<int, int> TextureLoader::getSizeFromId(int textureId) {
+    try {
+        auto& texture = getTexture(textureId);
+        return texture.getSize();
+    } catch (const std::out_of_range& e) {
+        Logger::log(LogLevel::WARNING, "Texture ID not found: " + std::to_string(textureId));
+        return {0, 0};
+    }
+}
+
 std::unique_ptr<TextureLoader> TextureLoader::_instance(nullptr);
 std::mutex TextureLoader::_mutex;

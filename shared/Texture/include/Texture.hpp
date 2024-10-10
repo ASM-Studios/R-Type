@@ -44,6 +44,7 @@ class Texture {
         void setScale(float scale);
 
         [[nodiscard]] std::pair<int, int> getSize() const;
+        [[nodiscard]] int getFrameCount();
 
         int getTextureId() const;
         void setTexture(int textureId);

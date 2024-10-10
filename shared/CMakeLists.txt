@@ -3,6 +3,7 @@ project(rtype-shared)
 
 add_subdirectory(network)
 add_subdirectory(ECS)
+add_subdirectory(GameLogic)
 add_subdirectory(Config)
 add_subdirectory(Logger)
 add_subdirectory(Texture)

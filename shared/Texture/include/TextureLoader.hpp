@@ -39,4 +39,5 @@ class TextureLoader {
 
         Texture& getTexture(int id);
         std::size_t getNoTexture() const;
+        std::pair<int, int> getSizeFromId(int textureId);
 };
