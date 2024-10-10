@@ -8,7 +8,7 @@
 #include <future>
 
 static void callCallback(std::pair<network::Client, RawRequest> request) {
-    auto it = requestAction.find(request.second.getQuery().getHeader().requestType);
+    auto it = requestAction.find(request.second.getQuery().getRequestType());
     if (it != requestAction.end()) {
         it->second(request.first, request.second);
     } else {
@@ -17,11 +17,7 @@ static void callCallback(std::pair<network::Client, RawRequest> request) {
 }
 
 void execute(std::reference_wrapper<std::promise<bool>> promise, std::pair<network::Client, RawRequest> request) {
-    if (!request.second.verifChecksum()) {
-        Logger::log(LogLevel::ERR, "Checksum is invalid");
-    } else {
-        callCallback(request);
-    }
+    callCallback(request);
     promise.get().set_value(true);
 }
 

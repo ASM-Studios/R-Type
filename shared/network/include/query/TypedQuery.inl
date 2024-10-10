@@ -5,8 +5,8 @@
 #include <cstring>
 
 template <typename Payload>
-TypedQuery<Payload>::TypedQuery(Header header, Payload payload) :
-    _header(header),
+TypedQuery<Payload>::TypedQuery(RequestType requestType, Payload payload) :
+    _requestType(requestType),
     _payload(),
     _fill({0}) {
     this->_payload = payload;
@@ -14,7 +14,7 @@ TypedQuery<Payload>::TypedQuery(Header header, Payload payload) :
 
 template <typename Payload>
 TypedQuery<Payload>::TypedQuery(NonTypedQuery query) :
-    _header(query.getHeader()),
+    _requestType(query.getRequestType()),
     _payload(),
     _fill({0}) {
     auto fill = query._fill;

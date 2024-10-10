@@ -8,7 +8,3 @@ enum RequestType {
     DESTROY_ENTITY = 0x0003
     // Client to server
 };
-
-struct Header {
-        RequestType requestType;
-};
