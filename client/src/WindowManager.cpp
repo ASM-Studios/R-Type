@@ -1,7 +1,7 @@
 #include "WindowManager.hpp"
 
 GUI::WindowManager::WindowManager()
-: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)) {
+: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0, ecs::EntityType::Player)){
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     _hostname = config.get("hostname").value_or("127.0.0.1");
@@ -28,13 +28,15 @@ GUI::WindowManager::WindowManager()
     /* ECS Inits */
 
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 0});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 2});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
 
     ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
     // Changing level:
     // ecs::RegistryManager::getInstance().getRegistry().resetAll();
     // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
-
     // Communicate with server:
     // auto query = TypedQuery<int>({NOTHING}, 5);
     // send(RawRequest(query));
@@ -49,6 +51,7 @@ void GUI::WindowManager::run() {
             _displayMenu();
         }
         if (_gameState == gameState::GAMES) {
+            _gameLogic.updateTimed();
             _displayGame();
         }
         _fpsCounter();
@@ -80,17 +83,27 @@ void GUI::WindowManager::_eventsHandler() {
 
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     if (_gameState == gameState::GAMES) {
+        auto& input = registry.getComponent<ecs::component::Input>(_player);
+        input.clearFlag(ecs::component::Input::MoveLeft | ecs::component::Input::MoveRight |
+                        ecs::component::Input::MoveUp | ecs::component::Input::MoveDown | ecs::component::Input::ReleaseShoot);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(0, -MOVEMENT_SPEED));
+            input.setFlag(ecs::component::Input::MoveUp);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(0, MOVEMENT_SPEED));
+            input.setFlag(ecs::component::Input::MoveDown);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(-MOVEMENT_SPEED, 0));
+            input.setFlag(ecs::component::Input::MoveLeft);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            registry.getComponent<ecs::component::Position>(_player).move(ecs::component::Position(MOVEMENT_SPEED, 0));
+            input.setFlag(ecs::component::Input::MoveRight);
+        }
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && input.isFlagSet((ecs::component::Input::PressedShoot))) {
+            input.setFlag(ecs::component::Input::ReleaseShoot);
+            input.clearFlag(ecs::component::Input::PressedShoot);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+            input.setFlag(ecs::component::Input::PressedShoot);
         }
     }
 }

@@ -10,6 +10,7 @@
 #include "Logger.hpp"
 #include "Registry.hpp"
 #include "RegistryManager.hpp"
+#include "EntitySchematic.hpp"
 
 namespace ecs::factory {
     constexpr auto SCENARIO_PATH = "shared/Scenarios/scenarios.cfg";

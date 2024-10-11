@@ -65,6 +65,10 @@ std::pair<int, int> Texture::getSize() const {
     return this->_size;
 }
 
+int Texture::getFrameCount() {
+    return _row * _col;
+}
+
 int Texture::getTextureId() const {
     return _id;
 }
