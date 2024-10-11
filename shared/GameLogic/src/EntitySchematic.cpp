@@ -7,9 +7,8 @@ ecs::Entity EntitySchematic::createPlayer(int16_t startX, int16_t startY, int16_
     ecs::component::Position const position = {startX, startY, static_cast<size_t>(screenWidth), static_cast<size_t>(screenHeight)};
     registry.setComponent<ecs::component::Position>(player, position);
     registry.setComponent<ecs::component::Input>(player, {});
-    registry.setComponent<ecs::component::Sprite>(player, {22, 0});
+    registry.setComponent<ecs::component::Sprite>(player, {22, 2});
     registry.setComponent<ecs::component::LastShot>(player, {});
-    registry.setComponent<ecs::component::Animation>(player, {.frameTime = 0.1F});
     registry.setComponent<ecs::component::Behavior>(player, {&BehaviorFunc::handleInput});
     return player;
 }

@@ -28,10 +28,9 @@ GUI::WindowManager::WindowManager()
     /* ECS Inits */
 
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 0});
+    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 2});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Animation>(_player, {.frameTime=0.5F});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
 
     ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
