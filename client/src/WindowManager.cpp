@@ -1,7 +1,7 @@
 #include "WindowManager.hpp"
 
 GUI::WindowManager::WindowManager()
-: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0, ecs::EntityType::Player)){
+: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)){
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     _hostname = config.get("hostname").value_or("127.0.0.1");

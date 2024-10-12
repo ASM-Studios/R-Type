@@ -3,7 +3,7 @@
 #include "Animation.hpp"
 #include "Behavior.hpp"
 #include "BehaviorFunc.hpp"
-#include "CollisionComp.hpp"
+#include "Collision.hpp"
 #include "Entity.hpp"
 #include "GameLogic.hpp"
 #include "Input.hpp"

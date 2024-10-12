@@ -51,10 +51,10 @@ namespace ecs {
             explicit Registry(uint8_t id = 0);
 
             template <typename... Components>
-            Entity createEntity(EntityType type);
+            Entity createEntity();
 
             template <typename... Components>
-            Entity createEntity(int id, EntityType type);
+            Entity createEntity(int id);
 
             [[nodiscard]] std::set<Entity> getEntities();
 

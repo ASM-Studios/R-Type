@@ -15,7 +15,7 @@ namespace ecs::component {
         Custom
     };
 
-    struct CollisionComp {
+    struct Collision {
             CollisionAlgorithm algo;
             void checkCollision(const ecs::Entity& self);
             std::function<void (const ecs::Entity self, const ecs::Entity other)>customCollision;

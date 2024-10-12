@@ -1,4 +1,4 @@
-#include "CollisionComp.hpp"
+#include "Collision.hpp"
 
 bool checkAABBCollision(const ecs::component::Position& pos1, const std::pair<int, int>& size1,
                         const ecs::component::Position& pos2, const std::pair<int, int>& size2) {
@@ -20,7 +20,7 @@ bool checkCircleCollision(const ecs::component::Position& pos1, const std::pair<
     return distance < (radius1 + radius2);
 }
 
-void ecs::component::CollisionComp::checkCollision(const ecs::Entity& self)
+void ecs::component::Collision::checkCollision(const ecs::Entity& self)
 {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     if (!registry.contains<Position>(self) || !registry.contains<Sprite>(self) || !registry.contains<Tags>(self)) {
@@ -34,22 +34,18 @@ void ecs::component::CollisionComp::checkCollision(const ecs::Entity& self)
     for (const auto& other : registry.getEntities()) {
         if (self == other)
             continue;
-        Logger::log(LogLevel::INFO, "Collision ENTER");
         if (!registry.contains<Tags>(other) || !registry.contains<Position>(other) || !registry.contains<Sprite>(other)) {
             continue;
         }
-        Logger::log(LogLevel::INFO, "Collision ENTER1");
         ecs::component::Tags otherTags = registry.getComponent<Tags>(other);
         if (tags == otherTags || otherTags.hasTag(Tag::Explosion)) {
             continue;
         }
-        Logger::log(LogLevel::INFO, "Collision ENTER2");
         if (tags.hasTag(Tag::Bullet) && otherTags.hasTag(Tag::Bullet))
             continue;
         auto& otherPosition = registry.getComponent<Position>(other);
         auto& otherSprite = registry.getComponent<Sprite>(other);
         std::pair<int, int> otherSize = TextureLoader::getInstance().getTexture(otherSprite.getSpriteID()).getSize();
-        Logger::log(LogLevel::INFO, "Collision END");
         switch (algo) {
             case CollisionAlgorithm::AABB:
 
