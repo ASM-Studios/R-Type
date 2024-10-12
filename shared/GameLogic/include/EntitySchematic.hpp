@@ -1,16 +1,18 @@
 #pragma once
 
-#include "Registry.hpp"
-#include "Position.hpp"
-#include "Input.hpp"
-#include "Sprite.hpp"
-#include "LastShot.hpp"
 #include "Animation.hpp"
 #include "Behavior.hpp"
+#include "BehaviorFunc.hpp"
+#include "CollisionComp.hpp"
 #include "Entity.hpp"
-#include "Registry.hpp"
 #include "GameLogic.hpp"
+#include "Input.hpp"
+#include "LastShot.hpp"
+#include "Position.hpp"
+#include "Registry.hpp"
 #include "RegistryManager.hpp"
+#include "Sprite.hpp"
+#include "Tags.hpp"
 
 class EntitySchematic {
     public:

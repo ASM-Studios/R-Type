@@ -1,4 +1,5 @@
 #include "GameLogic.hpp"
+#include "CollisionComp.hpp"
 
 GameLogic::GameLogic()
     : _timePerTick(1.0F / 60.0f) // Default values
@@ -48,8 +49,10 @@ void GameLogic::update() {
         if (registry.contains<ecs::component::Behavior>(entity)) {
             registry.getComponent<ecs::component::Behavior>(entity).func(entity, _timePerTick);
         }
+        if (registry.contains<ecs::component::CollisionComp>(entity)) {
+            registry.getComponent<ecs::component::CollisionComp>(entity).checkCollision(entity);
+        }
     }
-    Collision::updateCollisions();
 }
 
 void GameLogic::updateAnimation (const ecs::Entity& entity)
