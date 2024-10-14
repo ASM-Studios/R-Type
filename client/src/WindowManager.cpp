@@ -1,5 +1,16 @@
 #include "WindowManager.hpp"
 
+/**
+ * \brief Constructs a WindowManager object.
+ *
+ * Initializes the WindowManager with the default configuration.
+ * Loads the configuration from the specified config file.
+ * Initializes the window with the specified width and height.
+ * Initializes the music manager with the main theme music.
+ * Initializes the player entity.
+ *
+ * \throws GuiException if there is an error reading the config file.
+ */
 GUI::WindowManager::WindowManager()
 : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)){
     const Config &config = Config::getInstance("client/config.json");
@@ -34,14 +45,11 @@ GUI::WindowManager::WindowManager()
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
 
     ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
-    // Changing level:
-    // ecs::RegistryManager::getInstance().getRegistry().resetAll();
-    // ecs::factory::LevelFactory::load({width, height}, "shared/Scenarios/level_2.cfg");
-    // Communicate with server:
-    // auto query = TypedQuery<int>({NOTHING}, 5);
-    // send(RawRequest(query));
 }
 
+/**
+ * \brief Sets the game state.
+ */
 void GUI::WindowManager::run() {
     while (_window->isOpen() && _gameState != gameState::QUITING) {
         _window->clear();
@@ -60,6 +68,9 @@ void GUI::WindowManager::run() {
     }
 }
 
+/**
+ * \brief Sets the game state.
+ */
 void GUI::WindowManager::_eventsHandler() {
     while (_window->pollEvent(_event)) {
         if (_event.type == sf::Event::Closed) {
@@ -108,6 +119,9 @@ void GUI::WindowManager::_eventsHandler() {
     }
 }
 
+/**
+ * \brief Sets the game state.
+ */
 void GUI::WindowManager::_displayBackground() const {
     if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
         _window->draw(*background);
@@ -121,6 +135,15 @@ void GUI::WindowManager::_displayBackground() const {
 
 /* Text */
 
+/**
+ * \brief Adds a text to the window.
+ *  The text is identified by its id.
+ *  The text is stored and does not need to be recreated every frame.
+ *
+ * \param id The id of the text.
+ * \param text The text to be displayed.
+ * \param position The position of the text.
+ */
 void GUI::WindowManager::_addText(const std::string& id, const std::string& text, const sf::Vector2f& position) {
     const auto sfText = std::make_shared<sf::Text>();
     if (!_font.loadFromFile(FONT_FILENAME)) {
@@ -134,6 +157,13 @@ void GUI::WindowManager::_addText(const std::string& id, const std::string& text
     _texts[id] = sfText;
 }
 
+/**
+ * \brief Gets the text with the specified id.
+ *
+ * \param id The id of the text.
+ *
+ * \return The text with the specified id.
+ */
 std::shared_ptr<sf::Text> GUI::WindowManager::_getText(const std::string& id) const {
     if (const auto it = _texts.find(id); it != _texts.end()) {
         return it->second;
@@ -141,10 +171,18 @@ std::shared_ptr<sf::Text> GUI::WindowManager::_getText(const std::string& id) co
     return nullptr;
 }
 
+/**
+ * \brief Deletes the text with the specified id.
+ *
+ * \param id The id of the text.
+ */
 void GUI::WindowManager::_deleteText(const std::string& id) {
     _texts.erase(id);
 }
 
+/**
+ * \brief Updates the FPS counter.
+ */
 void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
     if (!_showFps) return;
     static sf::Clock clock;
@@ -173,6 +211,14 @@ void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
 
 /* Button */
 
+/**
+ * \brief Adds a button to the window.
+ *  The button is identified by its id.
+ *  The button is stored and does not need to be recreated every frame.
+ *
+ * \param id The id of the button.
+ * \param button The button to be displayed.
+ */
 void GUI::WindowManager::_addButton(const std::string &id, const Button<> &button) {
     if (_buttons.contains(id)) {
         throw GuiException("Button with id " + id + " already exists");
@@ -180,6 +226,15 @@ void GUI::WindowManager::_addButton(const std::string &id, const Button<> &butto
     _buttons.emplace(id, button);
 }
 
+/**
+ * \brief Gets the button with the specified id.
+ *
+ * \param id The id of the button.
+ *
+ * \return The button with the specified id.
+ *
+ * \throws GuiException if the button is not found.
+ */
 GUI::Button<> GUI::WindowManager::_getButton(const std::string &id) const {
     if (const auto it = _buttons.find(id); it != _buttons.end()) {
         return it->second;
@@ -187,6 +242,11 @@ GUI::Button<> GUI::WindowManager::_getButton(const std::string &id) const {
     throw GuiException("Button with id " + id + " not found");
 }
 
+/**
+ * \brief Deletes the button with the specified id.
+ *
+ * \param id The id of the button.
+ */
 void GUI::WindowManager::_deleteButton(const std::string &id) {
     if (const auto it = _buttons.find(id); it != _buttons.end()) {
         _buttons.erase(it);
@@ -195,6 +255,9 @@ void GUI::WindowManager::_deleteButton(const std::string &id) {
 
 /* Game */
 
+/**
+ * \brief Displays the game.
+ */
 void GUI::WindowManager::_displayGame() const {
     for (ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry(); const auto& entity : registry.getEntities()) {
         if (registry.contains<ecs::component::Sprite>(entity) && registry.contains<ecs::component::Position>(entity)) {
@@ -209,6 +272,9 @@ void GUI::WindowManager::_displayGame() const {
 
 /* Menu */
 
+/**
+ * \brief Displays the menu.
+ */
 void GUI::WindowManager::_displayMenu() {
     if (_gameState != _previousGameState || _menuState != _previousMenuState) {
         _currentButtons.clear();
@@ -235,6 +301,9 @@ void GUI::WindowManager::_displayMenu() {
     }
 }
 
+/**
+ * \brief Sets the game state.
+ */
 void GUI::WindowManager::_mainMenuInit() {
     _currentButtons.clear();
     constexpr float buttonSpacing = 150.0f;
@@ -261,6 +330,9 @@ void GUI::WindowManager::_mainMenuInit() {
     _currentButtons.emplace("main:quit", quitButton);
 }
 
+/**
+ * \brief Sets the game state.
+ */
 void GUI::WindowManager::_settingsMenuInit() {
     _currentButtons.clear();
     constexpr float buttonSpacing = 150.0f;
@@ -302,6 +374,9 @@ void GUI::WindowManager::_settingsMenuInit() {
     _currentButtons.emplace("settings:main_menu", mainMenuButton);
 }
 
+/**
+ * \brief Sets the game state.
+ */
 void GUI::WindowManager::_pauseMenuInit() {
     _currentButtons.clear();
     constexpr float buttonSpacing = 150.0f;
