@@ -1,23 +1,29 @@
 # Accessibility
 
-## For dev team:
+## For Development Team
 
-### - Physical and Motor Disabilities: 
-You can code with your usual tools.
+#### Physical and Motor Disabilities
 
-### - Audio and Visual Disabilities:
-That's no problem at all.
+- Developers with physical or motor disabilities can use their preferred tools and assistive technologies to code. The project supports various IDEs and editors that are compatible with accessibility tools.  
 
-### - Mental and Cognitive Disabilities:
-It depends on the disease. If you're a developer, this shouldn't be a problem.
+#### Audio and Visual Disabilities
 
-## For players:
+- Developers with audio or visual disabilities can work on this project without issues. The development environment and tools are compatible with screen readers and other assistive technologies.  
 
-### - Physical and Motor Disabilities:
-It's possible to play as long as you can use a keyboard. The documentation is perfectly accessible with your usual tools.
+#### Cognitive Disabilities
 
-### - Audio and Visual Disabilities:
-You don't have to be able to hear to be able to play. But you do need to be able to see. Documentation is accessible with screen readers.
+- The project aims to be inclusive for developers with cognitive disabilities. The complexity of tasks may vary, and it is recommended to assess individual needs and provide necessary support.  
 
-### - Mental and Cognitive Disabilities:
-It depends on the disease, we recommend you test to find out.
+## For Players
+
+#### Physical and Motor Disabilities
+
+- Players with physical or motor disabilities can play the game using a keyboard. The game controls are designed to be accessible, and the documentation is compatible with assistive technologies.  
+
+#### Audio and Visual Disabilities
+
+- Players do not need to hear to play the game, but visual ability is required. The game and its documentation are accessible with screen readers and other visual aids.  
+
+#### Cognitive Disabilities
+
+- The game aims to be inclusive for players with cognitive disabilities. The experience may vary, and it is recommended to test the game to determine its suitability for individual needs.
