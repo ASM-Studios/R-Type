@@ -96,33 +96,33 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 <div class="textblock"><p>In the R-Type project, we aim to recreate the classic R-Type game in a multiplayer version. This project focuses on both the client and server sides, with an emphasis on the network part. The server will be developed as a game engine, and the client will be a simple game client. The project is written entirely in C++.</p>
 <p>This comparative study evaluates various technologies and techniques that could be used in the development of the R-Type game. We compare different algorithms, data structures, graphics handling libraries, networking techniques, storage methods, and security measures to determine the best choices for the project.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md29"></a>
+<h1><a class="anchor" id="autotoc_md38"></a>
 1. Algorithms and Data Structures</h1>
 <p>In a game like <b>R-Type</b>, performance is critical, so the choice of algorithms and data structures must balance efficiency with simplicity. Here's how algorithms and data structures play a role:</p>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 1.1 Game Logic Algorithms</h2>
-<h3><a class="anchor" id="autotoc_md31"></a>
+<h3><a class="anchor" id="autotoc_md40"></a>
 1.1.1 Collision Detection</h3>
 <ul>
 <li>Axis-Aligned Bounding Box (AABB): For 2<a class="el" href="classD.html">D</a> collision detection, AABB is efficient and widely used in games like R-Type. It’s a simple algorithm that checks for overlaps between rectangular bounding boxes, which is suitable for the type of objects (spaceships, projectiles, enemies) typically found in R-Type.</li>
 <li>Comparison: AABB is preferred over more complex collision detection methods (e.g., Separating Axis Theorem or pixel-perfect collision detection) due to its simplicity and performance benefits in a fast-paced game. AABB can be combined with spatial partitioning techniques for better scalability in levels with many entities.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md32"></a>
+<h3><a class="anchor" id="autotoc_md41"></a>
 1.1.2 Pathfinding</h3>
 <ul>
 <li>A* Algorithm: If enemy AI has complex movement patterns (e.g., enemies following the player or avoiding obstacles), the A* algorithm would be ideal. A* is a popular choice for pathfinding in games because it combines the efficiency of Dijkstra’s algorithm with heuristics, making it faster and more targeted.</li>
 <li>Comparison: While simpler pathfinding algorithms like BFS could be used for uniform, grid-based levels, A* allows for more intelligent behavior, though it’s more computationally expensive.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 1.2 Data Structures</h2>
-<h3><a class="anchor" id="autotoc_md34"></a>
+<h3><a class="anchor" id="autotoc_md43"></a>
 1.2.1 Quadtrees</h3>
 <ul>
 <li><p class="startli">Quadtree: Used for partitioning the 2<a class="el" href="classD.html">D</a> space of the game world. It divides the game area into smaller regions, allowing efficient queries about which objects are near each other. This is critical for optimizing collision detection and rendering, as only nearby objects need to be checked for interactions.</p>
 <p class="startli">Comparison: Quadtrees are far more efficient for large, open game areas than brute-force collision checks. They offer better scalability than simple list-based approaches when many entities are present.</p>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md35"></a>
+<h3><a class="anchor" id="autotoc_md44"></a>
 1.2.2 Entity-Component System (ECS)</h3>
 <ul>
 <li>ECS: An Entity-Component System is a design pattern widely used in game development. It allows for flexibility by decoupling entity behavior (e.g., player, enemies, power-ups) from the actual objects. This makes it easier to add or modify behaviors without rewriting large parts of the game engine.</li>
@@ -131,28 +131,28 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md37"></a>
+<h1><a class="anchor" id="autotoc_md46"></a>
 2. Graphics Handling and Libraries</h1>
 <p>The visual elements are central to R-Type's appeal. The choice of graphics libraries influences performance, rendering quality, and ease of use.</p>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md47"></a>
 2.1 Graphics Libraries</h2>
-<h3><a class="anchor" id="autotoc_md39"></a>
+<h3><a class="anchor" id="autotoc_md48"></a>
 2.1.1 SDL2 (Simple DirectMedia Layer)</h3>
 <ul>
 <li><p class="startli">SDL2: SDL2 is a cross-platform graphics library that simplifies handling 2<a class="el" href="classD.html">D</a> graphics, sound, and input. For a 2<a class="el" href="classD.html">D</a> shooter like R-Type, SDL2 offers efficient rendering and input handling, making it a popular choice for retro-style games.</p>
 <p class="startli">Comparison: SDL2 is lightweight compared to more feature-heavy libraries like Unity or Unreal Engine. It provides enough functionality for 2<a class="el" href="classD.html">D</a> games without unnecessary overhead, making it perfect for R-Type. SDL also supports hardware acceleration via OpenGL or Direct3D.</p>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md40"></a>
+<h3><a class="anchor" id="autotoc_md49"></a>
 2.1.2 SFML (Simple and Fast Multimedia Library)</h3>
 <ul>
 <li><p class="startli">SFML: Another 2D-focused library similar to SDL but with a slightly more user-friendly API. It supports window management, rendering, and multimedia (sound and input).</p>
 <p class="startli">Comparison: While SFML has a simpler API and might be easier to learn, SDL2 is more widely used in the game development community, meaning it has more support and third-party tools.</p>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 2.2 Rendering Techniques</h2>
-<h3><a class="anchor" id="autotoc_md42"></a>
+<h3><a class="anchor" id="autotoc_md51"></a>
 2.2.1 Double Buffering</h3>
 <ul>
 <li><p class="startli">Double Buffering: Essential for smooth gameplay. Double buffering ensures that the screen isn’t redrawn mid-frame, which prevents visual tearing.</p>
@@ -160,17 +160,17 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md44"></a>
+<h1><a class="anchor" id="autotoc_md53"></a>
 3. Networking Techniques</h1>
 <p>For multiplayer or co-op versions of R-Type, networking plays a vital role. Here's how networking technologies were evaluated:</p>
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2><a class="anchor" id="autotoc_md54"></a>
 3.1 Sockets</h2>
 <ul>
 <li><p class="startli">TCP vs UDP: For real-time multiplayer gaming, UDP (User Datagram Protocol) is usually favored because it is faster and doesn’t require acknowledgment of packet receipt, which reduces latency. However, since UDP doesn’t guarantee packet delivery, it requires additional logic for critical data (e.g., player positions) to ensure synchronization.</p>
 <p class="startli">Comparison: TCP is more reliable but can introduce delays due to the acknowledgment of packets, making it unsuitable for real-time games. UDP is preferred for its speed, with custom-built reliability for key actions like joining or leaving a game.</p>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md46"></a>
+<h2><a class="anchor" id="autotoc_md55"></a>
 3.2 Peer-to-Peer (P2P) vs Client-Server</h2>
 <ul>
 <li><p class="startli">Client-Server Model: Chosen for its simplicity in managing game state and preventing cheating in multiplayer scenarios. The server holds the authoritative game state, and clients send inputs, which the server processes and broadcasts back.</p>
@@ -178,10 +178,10 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 </li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md48"></a>
+<h1><a class="anchor" id="autotoc_md57"></a>
 4. Storage Techniques</h1>
 <p>For an R-Type game, storage is less about large databases and more about configuration, user progress, and multiplayer session data.</p>
-<h2><a class="anchor" id="autotoc_md49"></a>
+<h2><a class="anchor" id="autotoc_md58"></a>
 4.1 File-Based Storage</h2>
 <ul>
 <li>JSON/XML for Configuration: JSON is lightweight and human-readable, making it ideal for storing game settings,</li>
@@ -190,7 +190,7 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 </li>
 <li>be used for faster loading but at the cost of readability.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md50"></a>
+<h2><a class="anchor" id="autotoc_md59"></a>
 4.2 Persistent Storage for Multiplayer</h2>
 <ul>
 <li>SQLite: <a class="el" href="classA.html">A</a> small, serverless SQL database that can be used for storing user progress, high scores, and matchmaking</li>
@@ -201,10 +201,10 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 <li>games with lightweight storage needs. SQLite is more appropriate for single-user settings or small-scale multiplayer.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md52"></a>
+<h1><a class="anchor" id="autotoc_md61"></a>
 5. Security</h1>
 <p>Security in game development focuses on data integrity, preventing cheating, and securing multiplayer interactions.</p>
-<h2><a class="anchor" id="autotoc_md53"></a>
+<h2><a class="anchor" id="autotoc_md62"></a>
 5.1 Cheat Prevention</h2>
 <ul>
 <li>Server-Side Validation: In multiplayer games, all critical game logic (e.g., movement, collision, and scoring)</li>
@@ -214,7 +214,7 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 </li>
 <li>server-side validation is essential in multiplayer scenarios.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md54"></a>
+<h2><a class="anchor" id="autotoc_md63"></a>
 5.2 Data Encryption</h2>
 <ul>
 <li>TLS for Data Transmission: All data transmitted between the client and server, especially in multiplayer games,</li>
@@ -225,7 +225,7 @@ $(document).ready(function(){initNavTree('md_docs_ComparativeStudy.html',''); in
 <li>R-Type, the slight overhead of encryption is worth the security benefits.</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md56"></a>
+<h1><a class="anchor" id="autotoc_md65"></a>
 Conclusion</h1>
 <p>The choice of technologies for the R-Type project is centered around performance, security, and maintainability. SDL2 for graphics, UDP for networking, and AABB for collision detection are all chosen for their balance between simplicity and performance. On the storage front, SQLite and JSON provide lightweight, easy-to-use solutions for small datasets, and server-side validation ensures security against cheating. These technologies were selected based on their suitability for a fast-paced 2<a class="el" href="classD.html">D</a> game with both single-player and multiplayer components. </p>
 </div></div><!-- contents -->

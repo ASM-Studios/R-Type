@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('md_docs_Client_SpriteManager.html','')
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The sprite manager is responsible for loading and storing all the sprites used in the game.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md21"></a>
 Usage</h1>
 <p>The manager is instantiated in the <a class="el" href="md_docs_Client_WindowManager.html">`WindowManager`</a> class and is used to load all the sprites in the game.</p>
 <p>To get a sprite, use the following code:</p>
@@ -112,13 +112,13 @@ Usage</h1>
 <div class="line">// in the WindowManager class</div>
 <div class="line"> </div>
 <div class="line">_spriteManager.getSprites(&quot;name&quot;);</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md22"></a>
 Sprite Loading</h1>
 <p>The sprite manager loads the sprites from the <code>sprites_path</code> field in the configuration file. (see <a class="el" href="md_docs_Shared_Config.html">Config</a>)</p>
 <p>Importing only the sprites sheets in the folder will result in an error.<br  />
  Alongside the sprite, a configuration file is required.</p>
 <p>The only supported sprite format is <code>.png</code>.</p>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<h1><a class="anchor" id="autotoc_md23"></a>
 Folder Structure</h1>
 <p>You can create folders inside the sprites folder to organize the sprites.</p>
 <p>Beware that the configuration file must explicit this with the following format:</p>
@@ -131,7 +131,7 @@ Folder Structure</h1>
 <div class="line">    center = false</div>
 <div class="line">  };</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
 Autoscale</h2>
 <p><code>autoscale</code> is a boolean field that scales the sprite to the size of the window.<br  />
  This field isn't mandatory.<br  />
@@ -140,7 +140,7 @@ Autoscale</h2>
 <li>If <code>autoscale</code> is set to <code>true</code>, the <code>scale</code> field will be ignored.</li>
 <li>By default, the <code>autoscale</code> field is set to <code>false</code>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md25"></a>
 Center</h2>
 <p><code>center</code> is a boolean field that enable the centering of the sprite in it's middle.<br  />
  This field isn't mandatory.<br  />
@@ -149,15 +149,15 @@ Center</h2>
 <li>If the <code>center</code> field is set to false, the sprite will be placed in the top-left corner of the window.</li>
 <li>By default, the <code>center</code> field is set to <code>true</code>.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 Backgrounds</h2>
 <p>For background sprites, it is recommended to set <code>autoscale</code> to <code>true</code> and <code>center</code> to <code>false</code>.</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 Configuration File</h2>
 <p>The configuration file is a <code>.cfg</code> file with the following fields:</p>
 <p>By default, the configuration file is located at <code>client/assets/sprites_config.cfg</code>.<br  />
  This path can be changed in the <a class="el" href="md_docs_Shared_Config.html">user configuration file</a>.</p>
-<h3><a class="anchor" id="autotoc_md19"></a>
+<h3><a class="anchor" id="autotoc_md28"></a>
 example</h3>
 <div class="fragment"><div class="line">turret: {</div>
 <div class="line">  row = 2</div>

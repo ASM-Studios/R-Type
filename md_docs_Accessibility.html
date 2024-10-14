@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: ECS</title>
+<title>R-Type: Accessibility</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('md_docs_Shared_ECS.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('md_docs_Accessibility.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -90,48 +90,49 @@ $(document).ready(function(){initNavTree('md_docs_Shared_ECS.html',''); initResi
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">ECS </div></div>
+  <div class="headertitle"><div class="title">Accessibility </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The ECS is the entity manager of the project (server-side).</p>
-<h1><a class="anchor" id="autotoc_md102"></a>
-Usage</h1>
-<p><b>NEVER INSTANCIATE AN ENTITY BY YOURSELF, USE <code>ecs::Registry::createEntity</code> INSTEAD.</b><br  />
- Registry keep a trace of all created entities.</p>
-<h1><a class="anchor" id="autotoc_md103"></a>
-Factory</h1>
-<p>Apart from specific cases, you do not need to manually create entities. Use the factory instead.<br  />
- The default factory is <a class="el" href="md_docs_Shared_LevelFactory.html">LevelFactory</a>.</p>
-<h2><a class="anchor" id="autotoc_md104"></a>
-Entity</h2>
-<p>To create an entity, use the following code:</p>
-<div class="fragment"><div class="line">ecs::RegistryManager::getInstance().getRegistry().createEntity&lt;&gt;(0);</div>
-</div><!-- fragment --><p>To add more component, you can either use</p>
-<div class="fragment"><div class="line">entity.addComponent&lt;Component1&gt;();</div>
-</div><!-- fragment --><p>or</p>
-<div class="fragment"><div class="line">entity.addComponents&lt;Component, Component2, ...&gt;();</div>
-</div><!-- fragment --><p>To check if an entity contains a component, use:</p>
-<div class="fragment"><div class="line">entity.contains&lt;Component1&gt;();</div>
-</div><!-- fragment --><p>To get a component, use:</p>
-<div class="fragment"><div class="line">entity.getComponent&lt;Component1&gt;()</div>
-</div><!-- fragment --><p>getComponent throw an error if the component doesn't exist in the entity.</p>
-<div class="fragment"><div class="line"><span class="keywordflow">try</span> {</div>
-<div class="line">    Component component = entity.getComponent&lt;Component&gt;();</div>
-<div class="line">} <span class="keywordflow">catch</span> (ecs::Registry::NoComponent &amp;error) {</div>
-<div class="line">    Logger::log(Logger::ERR, error.what());</div>
-<div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md105"></a>
-Registry</h2>
-<p>You don't need to keep a reference of entity. Entity is an "id" class.</p>
-<p><a class="el" href="classecs_1_1Entity.html">ecs::Entity</a>'s methods are just "redirections" of <a class="el" href="classecs_1_1Registry.html">ecs::Registry</a>'s methods.</p>
-<p>For example,</p>
-<div class="fragment"><div class="line">entity.contains&lt;Component&gt;();</div>
-</div><!-- fragment --><p>stands for</p>
-<div class="fragment"><div class="line">ecs::Registry::contains&lt;Component&gt;(entity);</div>
-</div><!-- fragment --><p>All entities are stored in <a class="el" href="classecs_1_1Registry.html">ecs::Registry</a> class</p>
-<p>To fetch them all, use</p>
-<div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> entities = ecs::RegistryManager::getInstance().getRegistry().getEntities();</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
+For Development Team</h1>
+<h3><a class="anchor" id="autotoc_md2"></a>
+Physical and Motor Disabilities</h3>
+<ul>
+<li>Developers with physical or motor disabilities can use their preferred tools and assistive technologies to code. The project supports various IDEs and editors that are compatible with accessibility tools. <br  />
+</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md3"></a>
+Audio and Visual Disabilities</h3>
+<ul>
+<li>Developers with audio or visual disabilities can work on this project without issues. The development environment and tools are compatible with screen readers and other assistive technologies. <br  />
+</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md4"></a>
+Cognitive Disabilities</h3>
+<ul>
+<li>The project aims to be inclusive for developers with cognitive disabilities. The complexity of tasks may vary, and it is recommended to assess individual needs and provide necessary support. <br  />
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md5"></a>
+For Players</h1>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Physical and Motor Disabilities</h3>
+<ul>
+<li>Players with physical or motor disabilities can play the game using a keyboard. The game controls are designed to be accessible, and the documentation is compatible with assistive technologies. <br  />
+</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md7"></a>
+Audio and Visual Disabilities</h3>
+<ul>
+<li>Players do not need to hear to play the game, but visual ability is required. The game and its documentation are accessible with screen readers and other visual aids. <br  />
+</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md8"></a>
+Cognitive Disabilities</h3>
+<ul>
+<li>The game aims to be inclusive for players with cognitive disabilities. The experience may vary, and it is recommended to test the game to determine its suitability for individual needs. </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

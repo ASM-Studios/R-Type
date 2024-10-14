@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['level_20factory_0',['Level Factory',['../md_docs_Shared_LevelFactory.html',1,'']]],
-  ['logger_1',['Logger',['../md_docs_Shared_Logger.html',1,'']]]
+  ['how_20to_20handle_203rd_20party_20dependency_20_3f_0',['How to handle 3rd party dependency ?',['../md_docs_Shared_VCPKG.html',1,'']]]
 ];

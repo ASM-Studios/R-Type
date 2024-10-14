@@ -95,22 +95,22 @@ $(document).ready(function(){initNavTree('md_docs_Client_Button.html',''); initR
 <div class="contents">
 <div class="textblock"><p>To instantiate a button, you need to provide a <code>std::map&lt;std::size_t, std::shared_ptr&lt;sf::Sprite&gt;&gt;</code> for the button's sprites, a <code>std::function&lt;void(Args...)&gt;</code> for the button's click event, and a <code>std::pair&lt;std::size_t, std::size_t&gt;</code> for the button's position.</p>
 <p>Once done, you can call the <code>_addButton</code> method in the <code>WindowManager</code> to create the button.</p>
-<h1><a class="anchor" id="autotoc_md2"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Storage</h1>
 <p>Buttons are stored in the <code>WindowManager</code> in a <code>std::unordered_map&lt;std::string, Button&lt;&gt;&gt;</code>.<br  />
  The <code>std::string</code> is the key, and the <code>Button&lt;&gt;</code> is the value.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md12"></a>
 onClick</h1>
 <p>The <code>Button</code> class has an <code>onClick</code> attribute that lets you define a function to be called when the button is clicked.<br  />
 </p>
 <p>The awaited function is defined as follows: ```cpp template&lt;typename... Args&gt; class Button { std::function&lt;void(Args...)&gt; _onClick; }; ```</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Usage</h1>
 <p>To use a button, once created, use the <code>_getButton</code> method of <code>WindowManager</code>.<br  />
  Buttons are updated via their <code>update</code> method, and drawn via their <code>draw</code> method.</p>
 <p>The update is called in <code>_eventsHandler</code> and is handled by the <code>WindowManager</code>.<br  />
  The draw is called in <code>_displayMenu</code> and is handled by the <code>WindowManager</code>.</p>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Example</h2>
 <p>Here is an example of how to create and use a button:</p>
 <ol type="1">
