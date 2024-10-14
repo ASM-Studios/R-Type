@@ -49,8 +49,6 @@ GUI::WindowManager::WindowManager()
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
-
-    ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));
 }
 
 /**

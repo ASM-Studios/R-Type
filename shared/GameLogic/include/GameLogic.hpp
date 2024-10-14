@@ -10,6 +10,11 @@
 #include "Position.hpp"
 #include "Registry.hpp"
 #include "RegistryManager.hpp"
+#include "LastShot.hpp"
+#include "EntitySchematic.hpp"
+#include "Collision.hpp"
+#include "Animation.hpp"
+#include "Factories/LevelFactory.hpp"
 #include <algorithm>
 #include <chrono>
 #include <thread>
@@ -34,9 +39,9 @@ class GameLogic {
         GameLogicMode _mode;
         bool _isRunning;
         float _timePerTick;
-
+        float _totalTime;
         void update();
- 
+
         void client(ecs::Entity entity);
         void sendInput(ecs::Entity entity);
         void updateAnimation(const ecs::Entity& entity);
