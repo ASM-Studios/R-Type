@@ -31,3 +31,4 @@ If you are looking for the main README file, you can find it [here](../README.md
 - [VCPKG](Shared/VCPKG.md)
 - [Contributing](Shared/Contributing.md)
 - [LevelFactory](Shared/LevelFactory.md)
+- [Accessibility](Accessibility.md)
