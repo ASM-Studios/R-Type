@@ -6,6 +6,7 @@ include_directories(include)
 set(SOURCE_FILE src/GameLogic.cpp
         src/EntitySchematic.cpp
         src/BehaviorFunc.cpp
+        src/EnemyBehavior.cpp
 )
 
 add_library(GameLogic ${SOURCE_FILE})

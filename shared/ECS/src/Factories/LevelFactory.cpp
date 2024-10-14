@@ -1,6 +1,14 @@
 #include "Factories/LevelFactory.hpp"
 
 namespace ecs::factory {
+    LevelFactory& LevelFactory::getInstance() {
+        std::lock_guard<std::mutex> lock(_mutex);
+        if (_instance == nullptr) {
+            _instance = std::unique_ptr<LevelFactory>(new LevelFactory());
+        }
+        return *_instance;
+    }
+
     void LevelFactory::load(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename) {
         libconfig::Config cfg;
         try {
@@ -23,6 +31,7 @@ namespace ecs::factory {
             entitySetting.lookupValue("name", entity.name);
             int id;
             entitySetting.lookupValue("id", id);
+            entitySetting.lookupValue("delay_time", entity.delay_time);
             entity.id = static_cast<std::size_t>(id);
             if (id < MIN_ALLOWED_ID) {
                 Logger::log(LogLevel::WARNING, "Entity ID is less than " + std::to_string(MIN_ALLOWED_ID) + ", skipping.");
@@ -39,7 +48,7 @@ namespace ecs::factory {
                     if (componentSetting.exists("x") && componentSetting.exists("y")) {
                         component = parsePosition(componentSetting, component.type);
                     } else {
-                        Logger::log(LogLevel::WARNING, "Position component missing 'x' or 'y' value, skipping.");
+                        Logger::log(LogLevel::INFO, "Position component missing 'x' or 'y' value, skipping.");
                         continue;
                     }
                 } else if (component.type == "Sprite") {
@@ -49,11 +58,11 @@ namespace ecs::factory {
                         Logger::log(LogLevel::WARNING, "Sprite component missing 'spriteID' or 'stateID' value, skipping.");
                         continue;
                     }
-                } else if (component.type == "AI") {
+                } else if (component.type == "Behavior") {
                     if (componentSetting.exists("model")) {
                         component = parseModel(componentSetting, component.type);
                     } else {
-                        Logger::log(LogLevel::WARNING, "AI component missing 'model' value, skipping.");
+                        Logger::log(LogLevel::WARNING, "Behavior component missing 'model' value, skipping.");
                         continue;
                     }
                 } else {
@@ -62,9 +71,11 @@ namespace ecs::factory {
                 entity.components.push_back(component);
             }
             entities.push_back(entity);
+            _screenSize = screenSize;
         }
         try {
-            createRegistryEntity(entities, screenSize);
+            pendingEntities = entities;
+            std::srand(time(NULL));
         } catch (const std::exception& e) {
             Logger::log(LogLevel::ERR, e.what());
         }
@@ -93,26 +104,45 @@ namespace ecs::factory {
         return component;
     }
 
-    void LevelFactory::createRegistryEntity(const std::vector<FactoryEntity>& entities, const std::pair<std::size_t, std::size_t>& _screenSize) {
-        for (const auto& [name, id, components]: entities) {
-            int16_t x = 0;
-            int16_t y = 0;
-            int spriteID = 0;
-            int stateID = 0;
-            std::string model;
-
-            for (const auto& [type, cx, cy, cspriteID, cstateID, cmodel] : components) {
-                if (type == "Position") {
-                    x = static_cast<int16_t>(cx);
-                    y = static_cast<int16_t>(cy);
-                } else if (type == "Sprite") {
-                    spriteID = cspriteID;
-                    stateID = cstateID;
-                } else if (type == "AI") {
-                    model = cmodel;
-                }
+    void LevelFactory::updateEntities(float elapsedTime)
+    {
+        auto it = pendingEntities.begin();
+        while (it != pendingEntities.end()) {
+            if (elapsedTime >= it->delay_time) {
+                createRegistryEntity({*it});
+                it = pendingEntities.erase(it);
+            } else {
+                ++it;
             }
-            EntitySchematic::createEnemy(id, x, y, spriteID, stateID, model, _screenSize);
         }
     }
+
+    void LevelFactory::createRegistryEntity(FactoryEntity& entity) {
+        int16_t x = 0;
+        int16_t y = 0;
+        int spriteID = 0;
+        int stateID = 0;
+        std::string model;
+
+        for (const auto& component: entity.components) {
+            if (component.type == "Position") {
+                x = static_cast<int16_t>(component.x);
+                y = static_cast<int16_t>(component.y);
+            } else if (component.type == "Sprite") {
+                spriteID = component.spriteID;
+                stateID = component.stateID;
+            } else if (component.type == "Behavior") {
+                model = component.model;
+            }
+        }
+        if (x == 0 && y == 0) {
+            y = std::rand() % _screenSize.second;
+            x = _screenSize.first;
+        }
+        EntitySchematic::createEnemy(entity.id, x, y, spriteID, stateID, model, _screenSize);
+    }
+    std::unique_ptr<LevelFactory> LevelFactory::_instance(nullptr);
+    std::mutex LevelFactory::_mutex;
+    std::vector<FactoryEntity> LevelFactory::pendingEntities;
+    std::pair<std::size_t, std::size_t> LevelFactory::_screenSize;
 }

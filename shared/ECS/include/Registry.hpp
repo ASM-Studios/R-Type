@@ -7,8 +7,6 @@
 #include <string>
 #include <typeindex>
 #include <unordered_map>
-
-#include "AI.hpp"
 #include "Position.hpp"
 #include "Sprite.hpp"
 #include "Texture.hpp"

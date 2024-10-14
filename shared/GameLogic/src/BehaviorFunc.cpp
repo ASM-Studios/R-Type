@@ -22,6 +22,8 @@ void BehaviorFunc::setSpriteSheetFromInput(const ecs::Entity& entity, float delt
     auto& sprite = registry.getComponent<ecs::component::Sprite>(entity);
     static float upDuration = 0.0F;
     static float downDuration = 0.0F;
+    int spriteSheetID = 2;
+
     if (input.isFlagSet(ecs::component::Input::MoveUp) && input.isFlagSet(ecs::component::Input::MoveDown)) {
         upDuration = std::max(0.0F, upDuration - deltaTime);
         downDuration = std::max(0.0F, downDuration - deltaTime);
@@ -32,10 +34,9 @@ void BehaviorFunc::setSpriteSheetFromInput(const ecs::Entity& entity, float delt
         downDuration += deltaTime;
         upDuration = 0.0F;
     } else {
-        upDuration = std::max(0.0F, upDuration - deltaTime);
-        downDuration = std::max(0.0F, downDuration - deltaTime);
+        upDuration = 0;
+        downDuration = 0;
     }
-    int spriteSheetID = 2;
 
     if (upDuration > 0.33F) {
         spriteSheetID = 4;
@@ -95,3 +96,4 @@ void BehaviorFunc::handleInput(const ecs::Entity& entity, float timePerTick)
         lastShot.lastShotTime = currentTime;
     }
 }
+

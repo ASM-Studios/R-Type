@@ -10,6 +10,7 @@
 #include "EntitySchematic.hpp"
 #include "Collision.hpp"
 #include "Animation.hpp"
+#include "Factories/LevelFactory.hpp"
 #include <algorithm>
 #include <chrono>
 #include <thread>
@@ -24,7 +25,7 @@ class GameLogic {
         void updateTimed();
     private:
         float _timePerTick;
-
+        float _totalTime;
         void update();
         void updateAnimation(const ecs::Entity& entity);
 };

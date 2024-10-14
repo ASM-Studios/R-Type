@@ -12,7 +12,6 @@
 #include "MusicManager.hpp"
 #include "Button.hpp"
 #include "Registry.hpp"
-#include "Factories/LevelFactory.hpp"
 #include "GameLogic.hpp"
 #include "socket/Server.hpp"
 
