@@ -37,7 +37,7 @@ ecs::Entity EntitySchematic::createExplosion(const ecs::Entity& destroyed)
 
     registry.setComponent<ecs::component::Tags>(explosion, ecs::component::Tags({ecs::component::Tag::Explosion}));
     registry.setComponent<ecs::component::Position>(explosion, {static_cast<int16_t>(destroyedPosition.x + 50), destroyedPosition.y, destroyedPosition.screenWidth, destroyedPosition.screenHeight});
-    registry.setComponent<ecs::component::Sprite>(explosion, {29, 0});
+    registry.setComponent<ecs::component::Sprite>(explosion, {EXPLOSION_SPRITE_ID, 0});
     registry.setComponent<ecs::component::Animation>(explosion, {.frameTime = 0.1F});
 
     return explosion;

@@ -14,6 +14,8 @@
 #include "Sprite.hpp"
 #include "Tags.hpp"
 
+constexpr int EXPLOSION_SPRITE_ID = 49;
+
 class EntitySchematic {
     public:
         static ecs::Entity createPlayer(int16_t startX, int16_t startY, int16_t screenWidth, int16_t screenHeight);
