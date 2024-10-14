@@ -94,15 +94,15 @@ $(document).ready(function(){initNavTree('md_docs_Shared_ECS.html',''); initResi
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The ECS is the entity manager of the project (server-side).</p>
-<h1><a class="anchor" id="autotoc_md71"></a>
+<h1><a class="anchor" id="autotoc_md93"></a>
 Usage</h1>
 <p><b>NEVER INSTANCIATE AN ENTITY BY YOURSELF, USE <code>ecs::Registry::createEntity</code> INSTEAD.</b><br  />
  Registry keep a trace of all created entities.</p>
-<h1><a class="anchor" id="autotoc_md72"></a>
+<h1><a class="anchor" id="autotoc_md94"></a>
 Factory</h1>
 <p>Apart from specific cases, you do not need to manually create entities. Use the factory instead.<br  />
  The default factory is <a class="el" href="md_docs_Shared_LevelFactory.html">LevelFactory</a>.</p>
-<h2><a class="anchor" id="autotoc_md73"></a>
+<h2><a class="anchor" id="autotoc_md95"></a>
 Entity</h2>
 <p>To create an entity, use the following code:</p>
 <div class="fragment"><div class="line">ecs::RegistryManager::getInstance().getRegistry().createEntity&lt;&gt;(0);</div>
@@ -120,7 +120,7 @@ Entity</h2>
 <div class="line">} <span class="keywordflow">catch</span> (ecs::Registry::NoComponent &amp;error) {</div>
 <div class="line">    Logger::log(Logger::ERR, error.what());</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md74"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md96"></a>
 Registry</h2>
 <p>You don't need to keep a reference of entity. Entity is an "id" class.</p>
 <p><a class="el" href="classecs_1_1Entity.html">ecs::Entity</a>'s methods are just "redirections" of <a class="el" href="classecs_1_1Registry.html">ecs::Registry</a>'s methods.</p>

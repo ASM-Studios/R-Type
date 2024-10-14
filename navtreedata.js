@@ -97,56 +97,86 @@ var NAVTREE =
       ] ],
       [ "Conclusion", "md_docs_ComparativeStudy.html#autotoc_md56", null ]
     ] ],
+    [ "Project Documentation", "md_docs_Developers.html", [
+      [ "Architecture", "md_docs_Developers.html#autotoc_md58", [
+        [ "Code Materialization", "md_docs_Developers.html#autotoc_md61", [
+          [ "Diagram", "md_docs_Developers.html#autotoc_md59", null ],
+          [ "Primary system and their roles", "md_docs_Developers.html#autotoc_md60", null ],
+          [ "Structure", "md_docs_Developers.html#autotoc_md62", null ]
+        ] ],
+        [ "How-to", "md_docs_Developers.html#autotoc_md63", [
+          [ "Add a new sprite", "md_docs_Developers.html#autotoc_md64", null ],
+          [ "Handle events", "md_docs_Developers.html#autotoc_md65", null ],
+          [ "Add a new ECS Component", "md_docs_Developers.html#autotoc_md66", null ]
+        ] ],
+        [ "Contribution Guidelines", "md_docs_Developers.html#autotoc_md67", [
+          [ "Coding Style", "md_docs_Developers.html#autotoc_md68", null ],
+          [ "Pull Request Process", "md_docs_Developers.html#autotoc_md69", null ],
+          [ "Naming Conventions", "md_docs_Developers.html#autotoc_md70", [
+            [ "Branches", "md_docs_Developers.html#autotoc_md71", null ],
+            [ "Commits", "md_docs_Developers.html#autotoc_md72", null ]
+          ] ],
+          [ "CI/CD", "md_docs_Developers.html#autotoc_md73", null ],
+          [ "Linter and Formatter Usage", "md_docs_Developers.html#autotoc_md74", [
+            [ "Tools", "md_docs_Developers.html#autotoc_md75", null ],
+            [ "Usage", "md_docs_Developers.html#autotoc_md76", null ]
+          ] ],
+          [ "Branching strategy", "md_docs_Developers.html#autotoc_md77", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "Config", "md_docs_Shared_Config.html", [
-      [ "JSON Example", "md_docs_Shared_Config.html#autotoc_md64", null ],
-      [ "Usage", "md_docs_Shared_Config.html#autotoc_md65", null ]
+      [ "JSON Example", "md_docs_Shared_Config.html#autotoc_md86", null ],
+      [ "Usage", "md_docs_Shared_Config.html#autotoc_md87", null ]
     ] ],
     [ "Contributing", "md_docs_Shared_Contributing.html", [
-      [ "How to Contribute", "md_docs_Shared_Contributing.html#autotoc_md67", null ],
-      [ "License", "md_docs_Shared_Contributing.html#autotoc_md68", null ],
-      [ "Have Fun!", "md_docs_Shared_Contributing.html#autotoc_md69", null ]
+      [ "How to Contribute", "md_docs_Shared_Contributing.html#autotoc_md89", null ],
+      [ "License", "md_docs_Shared_Contributing.html#autotoc_md90", null ],
+      [ "Have Fun!", "md_docs_Shared_Contributing.html#autotoc_md91", null ]
     ] ],
     [ "ECS", "md_docs_Shared_ECS.html", [
-      [ "Usage", "md_docs_Shared_ECS.html#autotoc_md71", null ],
-      [ "Factory", "md_docs_Shared_ECS.html#autotoc_md72", [
-        [ "Entity", "md_docs_Shared_ECS.html#autotoc_md73", null ],
-        [ "Registry", "md_docs_Shared_ECS.html#autotoc_md74", null ]
+      [ "Usage", "md_docs_Shared_ECS.html#autotoc_md93", null ],
+      [ "Factory", "md_docs_Shared_ECS.html#autotoc_md94", [
+        [ "Entity", "md_docs_Shared_ECS.html#autotoc_md95", null ],
+        [ "Registry", "md_docs_Shared_ECS.html#autotoc_md96", null ]
       ] ]
     ] ],
     [ "Level Factory", "md_docs_Shared_LevelFactory.html", [
-      [ "Usage", "md_docs_Shared_LevelFactory.html#autotoc_md76", [
-        [ "Arguments", "md_docs_Shared_LevelFactory.html#autotoc_md77", null ]
+      [ "Usage", "md_docs_Shared_LevelFactory.html#autotoc_md98", [
+        [ "Arguments", "md_docs_Shared_LevelFactory.html#autotoc_md99", null ]
       ] ],
-      [ "Path", "md_docs_Shared_LevelFactory.html#autotoc_md78", null ],
-      [ "Player", "md_docs_Shared_LevelFactory.html#autotoc_md79", null ],
-      [ "Minimal ID", "md_docs_Shared_LevelFactory.html#autotoc_md80", null ],
-      [ "Format", "md_docs_Shared_LevelFactory.html#autotoc_md81", null ]
+      [ "Path", "md_docs_Shared_LevelFactory.html#autotoc_md100", null ],
+      [ "Player", "md_docs_Shared_LevelFactory.html#autotoc_md101", null ],
+      [ "Minimal ID", "md_docs_Shared_LevelFactory.html#autotoc_md102", null ],
+      [ "Format", "md_docs_Shared_LevelFactory.html#autotoc_md103", null ]
     ] ],
     [ "Logger", "md_docs_Shared_Logger.html", [
-      [ "Usage", "md_docs_Shared_Logger.html#autotoc_md83", [
-        [ "Warning", "md_docs_Shared_Logger.html#autotoc_md84", null ],
-        [ "User log level", "md_docs_Shared_Logger.html#autotoc_md85", null ]
+      [ "Usage", "md_docs_Shared_Logger.html#autotoc_md105", [
+        [ "Warning", "md_docs_Shared_Logger.html#autotoc_md106", null ],
+        [ "User log level", "md_docs_Shared_Logger.html#autotoc_md107", null ]
       ] ]
     ] ],
     [ "How to handle 3rd party dependency ?", "md_docs_Shared_VCPKG.html", [
-      [ "Download and install VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md87", null ],
-      [ "Setup a project with VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md88", null ],
-      [ "Add dependencies with VCPKG (example with SFML)", "md_docs_Shared_VCPKG.html#autotoc_md89", null ],
-      [ "Build and run the project", "md_docs_Shared_VCPKG.html#autotoc_md90", [
-        [ "To create a debug build:", "md_docs_Shared_VCPKG.html#autotoc_md91", null ],
-        [ "To create a release build:", "md_docs_Shared_VCPKG.html#autotoc_md92", null ]
+      [ "Download and install VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md109", null ],
+      [ "Setup a project with VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md110", null ],
+      [ "Add dependencies with VCPKG (example with SFML)", "md_docs_Shared_VCPKG.html#autotoc_md111", null ],
+      [ "Build and run the project", "md_docs_Shared_VCPKG.html#autotoc_md112", [
+        [ "To create a debug build:", "md_docs_Shared_VCPKG.html#autotoc_md113", null ],
+        [ "To create a release build:", "md_docs_Shared_VCPKG.html#autotoc_md114", null ]
       ] ]
     ] ],
     [ "pag_example", "pag_example.html", null ],
     [ "R-Type", "md_README.html", [
-      [ "Requirements", "md_README.html#autotoc_md94", null ],
-      [ "Installation", "md_README.html#autotoc_md95", null ],
-      [ "Build", "md_README.html#autotoc_md96", [
-        [ "Debug", "md_README.html#autotoc_md97", null ],
-        [ "Release", "md_README.html#autotoc_md98", null ]
+      [ "Supported platforms", "md_README.html#autotoc_md116", null ],
+      [ "Requirements", "md_README.html#autotoc_md117", null ],
+      [ "Installation", "md_README.html#autotoc_md118", null ],
+      [ "Build", "md_README.html#autotoc_md119", [
+        [ "Debug", "md_README.html#autotoc_md120", null ],
+        [ "Release", "md_README.html#autotoc_md121", null ]
       ] ],
-      [ "Documentation", "md_README.html#autotoc_md99", null ],
-      [ "Authors", "md_README.html#autotoc_md100", null ]
+      [ "Documentation", "md_README.html#autotoc_md122", null ],
+      [ "Authors", "md_README.html#autotoc_md123", null ],
+      [ "License", "md_README.html#autotoc_md124", null ]
     ] ],
     [ "Bug List", "bug.html", null ],
     [ "Modules", "modules.html", "modules" ],
