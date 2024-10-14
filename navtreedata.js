@@ -63,39 +63,39 @@ var NAVTREE =
       [ "Methods", "md_docs_Client_WindowManager.html#autotoc_md25", null ],
       [ "Configuration", "md_docs_Client_WindowManager.html#autotoc_md26", null ]
     ] ],
-    [ "R-Type project: Comparative Study", "md_docs_Comparative_study.html", [
-      [ "1. <strong>Algorithms and Data Structures</strong>", "md_docs_Comparative_study.html#autotoc_md29", [
-        [ "1.1 <strong>Game Logic Algorithms</strong>", "md_docs_Comparative_study.html#autotoc_md30", [
-          [ "1.1.1 <strong>Collision Detection</strong>", "md_docs_Comparative_study.html#autotoc_md31", null ],
-          [ "1.1.2 <strong>Pathfinding</strong>", "md_docs_Comparative_study.html#autotoc_md32", null ]
+    [ "R-Type project: Comparative Study", "md_docs_ComparativeStudy.html", [
+      [ "1. <strong>Algorithms and Data Structures</strong>", "md_docs_ComparativeStudy.html#autotoc_md29", [
+        [ "1.1 <strong>Game Logic Algorithms</strong>", "md_docs_ComparativeStudy.html#autotoc_md30", [
+          [ "1.1.1 <strong>Collision Detection</strong>", "md_docs_ComparativeStudy.html#autotoc_md31", null ],
+          [ "1.1.2 <strong>Pathfinding</strong>", "md_docs_ComparativeStudy.html#autotoc_md32", null ]
         ] ],
-        [ "1.2 <strong>Data Structures</strong>", "md_docs_Comparative_study.html#autotoc_md33", [
-          [ "1.2.1 <strong>Quadtrees</strong>", "md_docs_Comparative_study.html#autotoc_md34", null ],
-          [ "1.2.2 <strong>Entity-Component System (ECS)</strong>", "md_docs_Comparative_study.html#autotoc_md35", null ]
+        [ "1.2 <strong>Data Structures</strong>", "md_docs_ComparativeStudy.html#autotoc_md33", [
+          [ "1.2.1 <strong>Quadtrees</strong>", "md_docs_ComparativeStudy.html#autotoc_md34", null ],
+          [ "1.2.2 <strong>Entity-Component System (ECS)</strong>", "md_docs_ComparativeStudy.html#autotoc_md35", null ]
         ] ]
       ] ],
-      [ "2. <strong>Graphics Handling and Libraries</strong>", "md_docs_Comparative_study.html#autotoc_md37", [
-        [ "2.1 <strong>Graphics Libraries</strong>", "md_docs_Comparative_study.html#autotoc_md38", [
-          [ "2.1.1 <strong>SDL2 (Simple DirectMedia Layer)</strong>", "md_docs_Comparative_study.html#autotoc_md39", null ],
-          [ "2.1.2 <strong>SFML (Simple and Fast Multimedia Library)</strong>", "md_docs_Comparative_study.html#autotoc_md40", null ]
+      [ "2. <strong>Graphics Handling and Libraries</strong>", "md_docs_ComparativeStudy.html#autotoc_md37", [
+        [ "2.1 <strong>Graphics Libraries</strong>", "md_docs_ComparativeStudy.html#autotoc_md38", [
+          [ "2.1.1 <strong>SDL2 (Simple DirectMedia Layer)</strong>", "md_docs_ComparativeStudy.html#autotoc_md39", null ],
+          [ "2.1.2 <strong>SFML (Simple and Fast Multimedia Library)</strong>", "md_docs_ComparativeStudy.html#autotoc_md40", null ]
         ] ],
-        [ "2.2 <strong>Rendering Techniques</strong>", "md_docs_Comparative_study.html#autotoc_md41", [
-          [ "2.2.1 <strong>Double Buffering</strong>", "md_docs_Comparative_study.html#autotoc_md42", null ]
+        [ "2.2 <strong>Rendering Techniques</strong>", "md_docs_ComparativeStudy.html#autotoc_md41", [
+          [ "2.2.1 <strong>Double Buffering</strong>", "md_docs_ComparativeStudy.html#autotoc_md42", null ]
         ] ]
       ] ],
-      [ "3. <strong>Networking Techniques</strong>", "md_docs_Comparative_study.html#autotoc_md44", [
-        [ "3.1 <strong>Sockets</strong>", "md_docs_Comparative_study.html#autotoc_md45", null ],
-        [ "3.2 <strong>Peer-to-Peer (P2P) vs Client-Server</strong>", "md_docs_Comparative_study.html#autotoc_md46", null ]
+      [ "3. <strong>Networking Techniques</strong>", "md_docs_ComparativeStudy.html#autotoc_md44", [
+        [ "3.1 <strong>Sockets</strong>", "md_docs_ComparativeStudy.html#autotoc_md45", null ],
+        [ "3.2 <strong>Peer-to-Peer (P2P) vs Client-Server</strong>", "md_docs_ComparativeStudy.html#autotoc_md46", null ]
       ] ],
-      [ "4. <strong>Storage Techniques</strong>", "md_docs_Comparative_study.html#autotoc_md48", [
-        [ "4.1 <strong>File-Based Storage</strong>", "md_docs_Comparative_study.html#autotoc_md49", null ],
-        [ "4.2 <strong>Persistent Storage for Multiplayer</strong>", "md_docs_Comparative_study.html#autotoc_md50", null ]
+      [ "4. <strong>Storage Techniques</strong>", "md_docs_ComparativeStudy.html#autotoc_md48", [
+        [ "4.1 <strong>File-Based Storage</strong>", "md_docs_ComparativeStudy.html#autotoc_md49", null ],
+        [ "4.2 <strong>Persistent Storage for Multiplayer</strong>", "md_docs_ComparativeStudy.html#autotoc_md50", null ]
       ] ],
-      [ "5. <strong>Security</strong>", "md_docs_Comparative_study.html#autotoc_md52", [
-        [ "5.1 <strong>Cheat Prevention</strong>", "md_docs_Comparative_study.html#autotoc_md53", null ],
-        [ "5.2 <strong>Data Encryption</strong>", "md_docs_Comparative_study.html#autotoc_md54", null ]
+      [ "5. <strong>Security</strong>", "md_docs_ComparativeStudy.html#autotoc_md52", [
+        [ "5.1 <strong>Cheat Prevention</strong>", "md_docs_ComparativeStudy.html#autotoc_md53", null ],
+        [ "5.2 <strong>Data Encryption</strong>", "md_docs_ComparativeStudy.html#autotoc_md54", null ]
       ] ],
-      [ "Conclusion", "md_docs_Comparative_study.html#autotoc_md56", null ]
+      [ "Conclusion", "md_docs_ComparativeStudy.html#autotoc_md56", null ]
     ] ],
     [ "Config", "md_docs_Shared_Config.html", [
       [ "JSON Example", "md_docs_Shared_Config.html#autotoc_md62", null ],
