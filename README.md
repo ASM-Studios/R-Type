@@ -35,6 +35,12 @@ Use debug.sh script to create a debug build.
 ./debug.sh
 ```
 
+or
+
+```powershell
+debug.bat
+```
+
 ### Release
 
 Use release.sh script to create a release build.
@@ -43,11 +49,19 @@ Use release.sh script to create a release build.
 ./release.sh
 ```
 
+or
+
+```powershell
+release.bat
+```
+
 ## Documentation
 
 This project is documented using Doxygen.
 
 You can find additional information in the [`docs`](docs/Hub.md) folder.
+
+For developers, refer to the [Developpers.md](docs/Developers) file.
 
 ## Authors
 
