@@ -19,6 +19,6 @@ class RawRequest {
 
         [[nodiscard]] NonTypedQuery getQuery() const;
         void setQuery(NonTypedQuery query);
-} __attribute__((packed));
+};
 
 extern const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction;

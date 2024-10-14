@@ -1,29 +1,31 @@
 #include "Client.hpp"
 #include "Core.hpp"
+#include "Entity.hpp"
+#include "EntitySchematic.hpp"
+#include "Logger.hpp"
 #include "RegistryManager.hpp"
+#include "Tags.hpp"
 #include "query/Header.hpp"
+#include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
+#include "query/TypedQuery.hpp"
+#include "socket/ServerManager.hpp"
 #include <boost/asio/buffer.hpp>
+#include <csignal>
 #include <cstdio>
 #include <iomanip>
 #include <iostream>
 
-static ecs::Entity registerClientEntity(network::Client client) {
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    for (const auto& entity: registry.getEntities()) {
-        if (registry.contains<network::Client>(entity, client)) {
-            return entity;
-        }
-    }
-    ecs::Entity entity = registry.createEntity<>(0);
-    registry.setComponent(entity, client);
-    return entity;
+ecs::Entity registerClientEntity(network::Client client);
+
+void handleInput(network::Client client, RawRequest request) {
+    ecs::Entity entity = registerClientEntity(client);
+    TypedQuery<ecs::component::Input> query = request.getQuery();
+    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload());
 }
 
 const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
-    {NOTHING, [](network::Client client, RawRequest rawRequest) {
-         registerClientEntity(client);
-     }}};
+    {INPUT, &handleInput}};
 
 void hexDisplay(const char *ptr, std::size_t n) {
     for (int i = 0; i < n; i++) {

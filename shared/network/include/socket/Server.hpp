@@ -11,9 +11,6 @@ namespace network::socket::udp {
         private:
             boost::asio::io_context _context;
             boost::asio::ip::udp::socket _socket;
-            std::set<network::Client> _clients;
-
-            Client _registerClient(boost::asio::ip::udp::endpoint endpoint);
 
         public:
             explicit Server();
@@ -30,7 +27,7 @@ namespace network::socket::udp {
                 if (error) {
                     throw boost::system::system_error(error);
                 }
-                Client client = this->_registerClient(remoteEndpoint);
+                Client client(remoteEndpoint.address().to_v4(), remoteEndpoint.port());
                 return {client, buffer};
             }
 

@@ -35,6 +35,6 @@ class NonTypedQuery {
         void setRequestType(RequestType requestType) {
             this->_requestType = requestType;
         }
-} __attribute__((packed));
+};
 
 #include "NonTypedQuery.inl"

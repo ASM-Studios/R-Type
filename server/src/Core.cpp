@@ -7,17 +7,9 @@
 #include "TextureLoader.hpp"
 #include "query/RawRequest.hpp"
 #include "socket/Server.hpp"
+#include "socket/ServerManager.hpp"
 #include <cstdlib>
 #include <iostream>
-
-void Core::_initTextures() {
-    TextureLoader::getInstance().loadFile("assets/textures_config.cfg");
-    TextureLoader::getInstance().loadTextures("backgrounds", TextureLoader::Type::BACKGROUND);
-    TextureLoader::getInstance().loadTextures("bullets", TextureLoader::Type::BULLET);
-    TextureLoader::getInstance().loadTextures("enemies", TextureLoader::Type::ENEMY);
-    TextureLoader::getInstance().loadTextures("ships", TextureLoader::Type::SHIP);
-    Logger::log(LogLevel::INFO, std::format("{0} textures have been loaded", TextureLoader::getInstance().getNoTexture()));
-}
 
 void Core::_stop() {
     this->_isRunning = false;
@@ -37,7 +29,9 @@ void Core::_readStdin() {
     }
 }
 
-void Core::_loop(network::socket::udp::Server& server) {
+void Core::_loop() {
+    this->_gameLogic.updateTimed();
+    auto& server = network::socket::udp::ServerManager::getInstance().getServer();
     if (server.availableRequest()) {
         auto query = server.recv<RawRequest>();
         network::Client client = query.first;
@@ -50,6 +44,7 @@ void Core::_loop(network::socket::udp::Server& server) {
 Core::Core() :
     _tps(20),
     _tickTime(1000 / _tps),
+    _gameLogic(GameLogicMode::SERVER),
     _isRunning(true),
     _port(8080) {}
 
@@ -61,17 +56,17 @@ void Core::init(const std::span<char *>& args [[maybe_unused]]) {
     this->_port = std::atoi(config.get("port").value_or("8080").c_str());
     this->_hitboxes_config_file = config.get("hitboxes_config_file").value_or("");
     Logger::log(LogLevel::INFO, std::format("Server running on port {0}", this->_port));
-    this->_initTextures();
 }
 
 int Core::run() {
     network::QueryHandler& handler = network::QueryHandler::getInstance();
-    network::socket::udp::Server server(_port);
+    network::socket::udp::ServerManager::getInstance().init(this->_port);
     std::thread stdinThread(&Core::_readStdin, this);
+    this->_gameLogic.start();
 
     while (this->_isRunning) {
         ScopeDuration duration(this->_tickTime);
-        this->_loop(server);
+        this->_loop();
     }
     stdinThread.join();
     return 0;

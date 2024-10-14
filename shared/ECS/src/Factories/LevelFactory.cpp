@@ -101,7 +101,7 @@ namespace ecs::factory {
             int stateID = 0;
             std::string model;
 
-            for (const auto& [type, cx, cy, cspriteID, cstateID, cmodel] : components) {
+            for (const auto& [type, cx, cy, cspriteID, cstateID, cmodel]: components) {
                 if (type == "Position") {
                     x = static_cast<int16_t>(cx);
                     y = static_cast<int16_t>(cy);

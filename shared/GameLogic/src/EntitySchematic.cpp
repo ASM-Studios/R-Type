@@ -14,8 +14,39 @@ ecs::Entity EntitySchematic::createPlayer(int16_t startX, int16_t startY, int16_
     return player;
 }
 
-ecs::Entity EntitySchematic::createBullet(const ecs::Entity& shooter)
-{
+ecs::Entity EntitySchematic::createTeamPlayer(uint64_t id, int16_t x, int16_t y, int spriteID) {
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    auto player = registry.createEntity<>(id);
+    std::size_t a = std::stoi(Config::getInstance("a").get("width").value_or("1920"));
+    ecs::component::Position position = {x, y, static_cast<std::size_t>(std::stoi(Config::getInstance("config/client.json").get("width").value_or("1920"))),
+                                         static_cast<std::size_t>(std::stoi(Config::getInstance("config/client.json").get("height").value_or("1080")))};
+
+    registry.setComponent<ecs::component::Tags>(player, ecs::component::Tags({ecs::component::Tag::Ally}));
+    registry.setComponent<ecs::component::Position>(player, position);
+    registry.setComponent<ecs::component::Input>(player, {});
+    registry.setComponent<ecs::component::Sprite>(player, {spriteID, 2});
+    registry.setComponent<ecs::component::LastShot>(player, {});
+    registry.setComponent<ecs::component::Behavior>(player, {&BehaviorFunc::handleInput});
+    return player;
+}
+
+ecs::Entity EntitySchematic::createTeamPlayerClient(uint64_t id, int16_t x, int16_t y, int spriteID) {
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    auto player = registry.createEntity<>(id);
+    std::size_t a = std::stoi(Config::getInstance("a").get("width").value_or("1920"));
+    ecs::component::Position position = {x, y, static_cast<std::size_t>(std::stoi(Config::getInstance("config/client.json").get("width").value_or("1920"))),
+                                         static_cast<std::size_t>(std::stoi(Config::getInstance("config/client.json").get("height").value_or("1080")))};
+
+    registry.setComponent<ecs::component::Tags>(player, ecs::component::Tags({ecs::component::Tag::Ally}));
+    registry.setComponent<ecs::component::Position>(player, position);
+    registry.setComponent<ecs::component::Input>(player, {});
+    registry.setComponent<ecs::component::Sprite>(player, {spriteID, 2});
+    registry.setComponent<ecs::component::LastShot>(player, {});
+    registry.setComponent<ecs::component::Behavior>(player, {&BehaviorFunc::setSpriteSheetFromInput});
+    return player;
+}
+
+ecs::Entity EntitySchematic::createBullet(const ecs::Entity& shooter) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& shooterPosition = registry.getComponent<ecs::component::Position>(shooter);
     auto bullet = registry.createEntity<>();
@@ -29,8 +60,7 @@ ecs::Entity EntitySchematic::createBullet(const ecs::Entity& shooter)
     return bullet;
 }
 
-ecs::Entity EntitySchematic::createExplosion(const ecs::Entity& destroyed)
-{
+ecs::Entity EntitySchematic::createExplosion(const ecs::Entity& destroyed) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& destroyedPosition = registry.getComponent<ecs::component::Position>(destroyed);
     auto explosion = registry.createEntity<>();
@@ -43,8 +73,7 @@ ecs::Entity EntitySchematic::createExplosion(const ecs::Entity& destroyed)
     return explosion;
 }
 
-ecs::Entity EntitySchematic::createEnemy(std::size_t id, int16_t x, int16_t y, int spriteID, int stateID, const std::string& model, const std::pair<std::size_t, std::size_t>& screenSize)
-{
+ecs::Entity EntitySchematic::createEnemy(std::size_t id, int16_t x, int16_t y, int spriteID, int stateID, const std::string& model, const std::pair<std::size_t, std::size_t>& screenSize) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto enemy = registry.createEntity<>();
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Logger.hpp"
 #include "NonTypedQuery.hpp"
 #include "TypedQuery.hpp"
 #include <cstring>
