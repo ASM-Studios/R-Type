@@ -1,11 +1,16 @@
-# Documentation
+# Project Documentation
 
 In this folder, you will find all links to the documentation of the project.
 
 The documentation is divided into the following sections:
 
-## Client
+## README
+If you are looking for the main README file, you can find it [here](../README.md).
 
+## Research
+- [Comparative Study](ComparativeStudy.md)
+
+## Client
 - [Config](Shared/Config.md)
 - [Logger](Shared/Logger.md)
 - [WindowManager](Client/WindowManager.md)
@@ -15,12 +20,10 @@ The documentation is divided into the following sections:
 - [Button](Client/Button.md)
 
 ## Server
-
-- [](Server/.md)
+- [ADD HERE SERVER MD DOC FILES](Server/.md)
 
 ## Misc
 
-- [ReadMe](../README.md)
 - [VCPKG](Shared/VCPKG.md)
 - [Contributing](Shared/Contributing.md)
 - [LevelFactory](Shared/LevelFactory.md)
