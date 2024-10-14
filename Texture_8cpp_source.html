@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('Texture_8cpp_source.html',''); initRes
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordflow">try</span> {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        boost::gil::rgba8_image_t image;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        boost::gil::read_image(this-&gt;_realPath, image, boost::gil::png_tag());</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keyword">auto</span> view = boost::gil::view(image);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keyword">const</span> <span class="keyword">auto</span> view = boost::gil::view(image);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        this-&gt;_size = std::make_pair((view.width() / this-&gt;_col) * this-&gt;_scale, (view.height() / this-&gt;_row) * this-&gt;_scale);</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    } <span class="keywordflow">catch</span> (std::ios_base::failure&amp; e) {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">throw</span> LoadFailed(this-&gt;_initialPath);</div>
