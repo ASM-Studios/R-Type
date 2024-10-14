@@ -9,9 +9,10 @@ var searchData=
   ['car_6',['Car',['../structCar.html',1,'']]],
   ['client_7',['Client',['../classnetwork_1_1Client.html',1,'network']]],
   ['clock_8',['Clock',['../classClock.html',1,'']]],
-  ['component_9',['Component',['../structecs_1_1factory_1_1Component.html',1,'ecs::factory']]],
-  ['componentnotfound_10',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
-  ['config_11',['Config',['../classConfig.html',1,'']]],
-  ['coordstruct_12',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['core_13',['Core',['../classCore.html',1,'']]]
+  ['collision_9',['Collision',['../structecs_1_1component_1_1Collision.html',1,'ecs::component']]],
+  ['component_10',['Component',['../structecs_1_1factory_1_1Component.html',1,'ecs::factory']]],
+  ['componentnotfound_11',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
+  ['config_12',['Config',['../classConfig.html',1,'']]],
+  ['coordstruct_13',['CoordStruct',['../structCoordStruct.html',1,'']]],
+  ['core_14',['Core',['../classCore.html',1,'']]]
 ];

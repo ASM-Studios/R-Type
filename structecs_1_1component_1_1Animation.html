@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: network::socket::udp::QuerySender Class Reference</title>
+<title>R-Type: ecs::component::Animation Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classnetwork_1_1socket_1_1udp_1_1QuerySender.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structecs_1_1component_1_1Animation.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -90,92 +90,82 @@ $(document).ready(function(){initNavTree('classnetwork_1_1socket_1_1udp_1_1Query
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classnetwork_1_1socket_1_1udp_1_1QuerySender-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">network::socket::udp::QuerySender Class Reference</div></div>
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structecs_1_1component_1_1Animation-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ecs::component::Animation Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a636927d0109fb292cc2e2e7cc8491fa1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1QuerySender.html#a636927d0109fb292cc2e2e7cc8491fa1">QuerySender</a> (std::string hostname, int port)</td></tr>
-<tr class="separator:a636927d0109fb292cc2e2e7cc8491fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac03f85de3ce89ea8fc829828ace3a822"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1QuerySender.html#ac03f85de3ce89ea8fc829828ace3a822">send</a> (<a class="el" href="classRawRequest.html">RawRequest</a> request)</td></tr>
-<tr class="separator:ac03f85de3ce89ea8fc829828ace3a822"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:abb55d150f8bcbc3dc25dde5de45625fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Animation.html#abb55d150f8bcbc3dc25dde5de45625fb">currFrame</a> = 0</td></tr>
+<tr class="separator:abb55d150f8bcbc3dc25dde5de45625fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a629f142a0af9d8b031517d5f02b695d6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Animation.html#a629f142a0af9d8b031517d5f02b695d6">frameTime</a> = 0.2F</td></tr>
+<tr class="separator:a629f142a0af9d8b031517d5f02b695d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdebeddd31fb113c47c7fe2c1c68ba1b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structecs_1_1component_1_1Animation.html#acdebeddd31fb113c47c7fe2c1c68ba1b">elapsedTime</a> = 0.0F</td></tr>
+<tr class="separator:acdebeddd31fb113c47c7fe2c1c68ba1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Query_8hpp_source.html#l00007">7</a> of file <a class="el" href="Query_8hpp_source.html">Query.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a636927d0109fb292cc2e2e7cc8491fa1" name="a636927d0109fb292cc2e2e7cc8491fa1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a636927d0109fb292cc2e2e7cc8491fa1">&#9670;&#160;</a></span>QuerySender()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">network::socket::udp::QuerySender::QuerySender </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>hostname</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>port</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Query_8cpp_source.html#l00005">5</a> of file <a class="el" href="Query_8cpp_source.html">Query.cpp</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac03f85de3ce89ea8fc829828ace3a822" name="ac03f85de3ce89ea8fc829828ace3a822"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac03f85de3ce89ea8fc829828ace3a822">&#9670;&#160;</a></span>send()</h2>
+<p class="definition">Definition at line <a class="el" href="Animation_8hpp_source.html#l00004">4</a> of file <a class="el" href="Animation_8hpp_source.html">Animation.hpp</a>.</p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="abb55d150f8bcbc3dc25dde5de45625fb" name="abb55d150f8bcbc3dc25dde5de45625fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb55d150f8bcbc3dc25dde5de45625fb">&#9670;&#160;</a></span>currFrame</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void network::socket::udp::QuerySender::send </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classRawRequest.html">RawRequest</a>&#160;</td>
-          <td class="paramname"><em>request</em></td><td>)</td>
-          <td></td>
+          <td class="memname">int ecs::component::Animation::currFrame = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Query_8cpp_source.html#l00012">12</a> of file <a class="el" href="Query_8cpp_source.html">Query.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Animation_8hpp_source.html#l00005">5</a> of file <a class="el" href="Animation_8hpp_source.html">Animation.hpp</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>shared/network/include/socket/<a class="el" href="Query_8hpp_source.html">Query.hpp</a></li>
-<li>shared/network/src/socket/<a class="el" href="Query_8cpp_source.html">Query.cpp</a></li>
+<a id="acdebeddd31fb113c47c7fe2c1c68ba1b" name="acdebeddd31fb113c47c7fe2c1c68ba1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdebeddd31fb113c47c7fe2c1c68ba1b">&#9670;&#160;</a></span>elapsedTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ecs::component::Animation::elapsedTime = 0.0F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Animation_8hpp_source.html#l00007">7</a> of file <a class="el" href="Animation_8hpp_source.html">Animation.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a629f142a0af9d8b031517d5f02b695d6" name="a629f142a0af9d8b031517d5f02b695d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a629f142a0af9d8b031517d5f02b695d6">&#9670;&#160;</a></span>frameTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ecs::component::Animation::frameTime = 0.2F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Animation_8hpp_source.html#l00006">6</a> of file <a class="el" href="Animation_8hpp_source.html">Animation.hpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>shared/ECS/include/<a class="el" href="Animation_8hpp_source.html">Animation.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>network</b></li><li class="navelem"><b>socket</b></li><li class="navelem"><b>udp</b></li><li class="navelem"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1QuerySender.html">QuerySender</a></li>
+    <li class="navelem"><b>ecs</b></li><li class="navelem"><b>component</b></li><li class="navelem"><a class="el" href="structecs_1_1component_1_1Animation.html">Animation</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

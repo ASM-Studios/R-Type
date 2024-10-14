@@ -103,15 +103,45 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9ccfdbd5945b61a141257a21111a5d84"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a9ccfdbd5945b61a141257a21111a5d84"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a>, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#a9ccfdbd5945b61a141257a21111a5d84">recv</a> ()</td></tr>
 <tr class="separator:a9ccfdbd5945b61a141257a21111a5d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a488b250b54591dc4593b3f87290760f5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a488b250b54591dc4593b3f87290760f5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#a488b250b54591dc4593b3f87290760f5">send</a> (std::string hostname, int port, T payload)</td></tr>
+<tr class="separator:a488b250b54591dc4593b3f87290760f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab73a2e9e55f3f628a6177e6fd9d39054"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#ab73a2e9e55f3f628a6177e6fd9d39054">availableRequest</a> ()</td></tr>
 <tr class="separator:ab73a2e9e55f3f628a6177e6fd9d39054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00009">9</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00010">10</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae0fac6ebd486b5c6c4099c0ff195e124" name="ae0fac6ebd486b5c6c4099c0ff195e124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0fac6ebd486b5c6c4099c0ff195e124">&#9670;&#160;</a></span>Server() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">network::socket::udp::Server::Server </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00011">11</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a022837b9ae0e29dfbc2e48879cf10a76" name="a022837b9ae0e29dfbc2e48879cf10a76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a022837b9ae0e29dfbc2e48879cf10a76">&#9670;&#160;</a></span>Server()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a022837b9ae0e29dfbc2e48879cf10a76">&#9670;&#160;</a></span>Server() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,7 +164,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00011">11</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00014">14</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>
@@ -154,7 +184,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00015">15</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00017">17</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>
@@ -183,7 +213,53 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00023">23</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00024">24</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a488b250b54591dc4593b3f87290760f5" name="a488b250b54591dc4593b3f87290760f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a488b250b54591dc4593b3f87290760f5">&#9670;&#160;</a></span>send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::socket::udp::Server::send </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>hostname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>payload</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00038">38</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
 
 </div>
 </div>

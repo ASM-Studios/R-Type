@@ -144,8 +144,18 @@ $(document).ready(function(){initNavTree('TextureLoader_8cpp_source.html',''); i
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> this-&gt;_textures.size();</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>std::unique_ptr&lt;TextureLoader&gt; TextureLoader::_instance(<span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>std::mutex TextureLoader::_mutex;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>std::pair&lt;int, int&gt; TextureLoader::getSizeFromId(<span class="keywordtype">int</span> textureId) {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">auto</span>&amp; texture = getTexture(textureId);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> texture.getSize();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::out_of_range&amp; e) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        Logger::log(LogLevel::WARNING, <span class="stringliteral">&quot;Texture ID not found: &quot;</span> + std::to_string(textureId));</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> {0, 0};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>std::unique_ptr&lt;TextureLoader&gt; TextureLoader::_instance(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>std::mutex TextureLoader::_mutex;</div>
 <div class="ttc" id="aclassTextureLoader_html"><div class="ttname"><a href="classTextureLoader.html">TextureLoader</a></div><div class="ttdef"><b>Definition:</b> <a href="TextureLoader_8hpp_source.html#l00010">TextureLoader.hpp:10</a></div></div>
 <div class="ttc" id="aclassTexture_html"><div class="ttname"><a href="classTexture.html">Texture</a></div><div class="ttdef"><b>Definition:</b> <a href="Texture_8hpp_source.html#l00008">Texture.hpp:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
