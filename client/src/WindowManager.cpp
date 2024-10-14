@@ -107,6 +107,7 @@ void GUI::WindowManager::_eventsHandler() {
         }
     }
 }
+
 void GUI::WindowManager::_displayBackground() const {
     if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
         _window->draw(*background);
@@ -213,20 +214,20 @@ void GUI::WindowManager::_displayMenu() {
         _currentButtons.clear();
         _previousGameState = _gameState;
         _previousMenuState = _menuState;
-    }
 
-    switch (_menuState) {
-    case NO_MENU:
-        return;
-    case MAIN_MENU:
-        _displayMainMenu();
-        break;
-    case SETTINGS_MENU:
-        _displaySettingsMenu();
-        break;
-    case PAUSE_MENU:
-        _displayPauseMenu();
-        break;
+        switch (_menuState) {
+            case NO_MENU:
+                return;
+            case MAIN_MENU:
+                _mainMenuInit();
+            break;
+            case SETTINGS_MENU:
+                _settingsMenuInit();
+            break;
+            case PAUSE_MENU:
+                _pauseMenuInit();
+            break;
+        }
     }
 
     for (auto& [id, button] : _currentButtons) {
@@ -235,6 +236,7 @@ void GUI::WindowManager::_displayMenu() {
 }
 
 void GUI::WindowManager::_mainMenuInit() {
+    _currentButtons.clear();
     constexpr float buttonSpacing = 150.0f;
     const float startY = _window->getSize().y / 2 - buttonSpacing;
 
@@ -243,48 +245,24 @@ void GUI::WindowManager::_mainMenuInit() {
         this->setGameState(gameState::GAMES);
         this->setMenuState(menuState::NO_MENU);
     }, {_window->getSize().x / 2, startY});
-    _addButton("main:play", playButton);
+    _currentButtons.emplace("main:play", playButton);
 
     const auto settingsButtonSprites = _spriteManager.getSprites("buttons/settings");
     const Button<> settingsButton(settingsButtonSprites, [this]() {
         this->setGameState(gameState::MENUS);
         this->setMenuState(menuState::SETTINGS_MENU);
     }, {_window->getSize().x / 2, startY + buttonSpacing});
-    _addButton("main:settings", settingsButton);
+    _currentButtons.emplace("main:settings", settingsButton);
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
         this->setGameState(gameState::QUITING);
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
-    _addButton("main:quit", quitButton);
-}
-
-void GUI::WindowManager::_displayMainMenu() {
-    std::vector<std::string> buttons = {"main:play", "main:settings", "main:quit"};
-    for (const auto& button : buttons) {
-        if (!_buttons.contains(button)) {
-            try {
-                for (const auto& b : buttons) {
-                    _deleteButton(b);
-                }
-            } catch (const GuiException& e) {
-                Logger::log(LogLevel::ERR, e.what());
-            }
-            _mainMenuInit();
-        }
-    }
-
-    try {
-        for (const auto& button : buttons) {
-            _currentButtons.emplace(button, _getButton(button));
-            _currentButtons.at(button).draw(*_window);
-        }
-    } catch (const GuiException& e) {
-        Logger::log(LogLevel::ERR, e.what());
-    }
+    _currentButtons.emplace("main:quit", quitButton);
 }
 
 void GUI::WindowManager::_settingsMenuInit() {
+    _currentButtons.clear();
     constexpr float buttonSpacing = 150.0f;
     const float centerX = _window->getSize().x / 2;
     const float startY = _window->getSize().y / 2 - buttonSpacing;
@@ -294,68 +272,38 @@ void GUI::WindowManager::_settingsMenuInit() {
     const Button<> fpsButton(fpsButtonSprites, [this]() {
         _showFps = !_showFps;
     }, {centerX, startY});
-    _addButton("settings:fps", fpsButton);
+    _currentButtons.emplace("settings:fps", fpsButton);
 
     const auto plusButtonSprites = _spriteManager.getSprites("buttons/settings_btn/plus");
     const Button<> plusButton(plusButtonSprites, [this]() {
         const float volume = _musicManager.getVolume();
         _musicManager.setVolume(volume + 10.0f);
     }, {centerX + musicButtonSpritesWidth / 2 + 45, startY + buttonSpacing});
-    _addButton("settings:plus", plusButton);
+    _currentButtons.emplace("settings:plus", plusButton);
 
     const auto minusButtonSprites = _spriteManager.getSprites("buttons/settings_btn/minus");
     const Button<> minusButton(minusButtonSprites, [this]() {
         const float volume = _musicManager.getVolume();
         _musicManager.setVolume(volume - 10.0f);
     }, {centerX - musicButtonSpritesWidth / 2 - 45, startY + buttonSpacing});
-    _addButton("settings:minus", minusButton);
+    _currentButtons.emplace("settings:minus", minusButton);
 
     const auto musicButtonSprites = _spriteManager.getSprites("buttons/settings_btn/music");
     const Button<> musicButton(musicButtonSprites, [this]() {
         _musicManager.toggleMute();
     }, {centerX, startY + buttonSpacing});
-    _addButton("settings:musics", musicButton);
+    _currentButtons.emplace("settings:musics", musicButton);
+
     const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
     const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
-            this->setGameState(gameState::MENUS);
-            this->setMenuState(menuState::MAIN_MENU);
+        this->setGameState(gameState::MENUS);
+        this->setMenuState(menuState::MAIN_MENU);
     }, {centerX, startY + 2 * buttonSpacing});
-    _addButton("settings:main_menu", mainMenuButton);
-}
-
-void GUI::WindowManager::_displaySettingsMenu() {
-    std::vector<std::string> buttons = {
-        "settings:fps",
-        "settings:plus",
-        "settings:minus",
-        "settings:musics",
-        "settings:main_menu"
-    };
-
-    for (const auto& button : buttons) {
-        if (!_buttons.contains(button)) {
-            try {
-                for (const auto& b : buttons) {
-                    _deleteButton(b);
-                }
-            } catch (const GuiException& e) {
-                Logger::log(LogLevel::ERR, e.what());
-            }
-            _settingsMenuInit();
-        }
-    }
-
-    try {
-        for (const auto& button : buttons) {
-            _currentButtons.emplace(button, _getButton(button));
-            _currentButtons.at(button).draw(*_window);
-        }
-    } catch (const GuiException& e) {
-        Logger::log(LogLevel::ERR, e.what());
-    }
+    _currentButtons.emplace("settings:main_menu", mainMenuButton);
 }
 
 void GUI::WindowManager::_pauseMenuInit() {
+    _currentButtons.clear();
     constexpr float buttonSpacing = 150.0f;
     const float startY = _window->getSize().y / 2 - buttonSpacing;
 
@@ -363,43 +311,19 @@ void GUI::WindowManager::_pauseMenuInit() {
     const Button<> resumeButton(resumeButtonSprites, [this]() {
         this->setMenuState(menuState::NO_MENU);
     }, {_window->getSize().x / 2, startY});
-    _addButton("pause:resume", resumeButton);
+    _currentButtons.emplace("pause:resume", resumeButton);
 
     const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
     const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
         this->setGameState(gameState::MENUS);
         this->setMenuState(menuState::MAIN_MENU);
     }, {_window->getSize().x / 2, startY + buttonSpacing});
-    _addButton("pause:main_menu", mainMenuButton);
+    _currentButtons.emplace("pause:main_menu", mainMenuButton);
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
         this->setGameState(gameState::QUITING);
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
-    _addButton("pause:quit", quitButton);
+    _currentButtons.emplace("pause:quit", quitButton);
 }
 
-void GUI::WindowManager::_displayPauseMenu() {
-    std::vector<std::string> buttons = {"pause:resume", "pause:main_menu", "pause:quit"};
-    for (const auto& button : buttons) {
-        if (!_buttons.contains(button)) {
-            try {
-                for (const auto& b : buttons) {
-                    _deleteButton(b);
-                }
-            } catch (const GuiException& e) {
-                Logger::log(LogLevel::ERR, e.what());
-            }
-            _pauseMenuInit();
-        }
-    }
-
-    try {
-        for (const auto& button : buttons) {
-            _currentButtons.emplace(button, _getButton(button));
-            _currentButtons.at(button).draw(*_window);
-        }
-    } catch (const GuiException& e) {
-        Logger::log(LogLevel::ERR, e.what());
-    }
-}

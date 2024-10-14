@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <RegistryManager.hpp>
 #include <string>
 #include <thread>
 #include <query/RawRequest.hpp>
@@ -15,9 +14,7 @@
 #include "Registry.hpp"
 #include "Factories/LevelFactory.hpp"
 #include "GameLogic.hpp"
-#include "Input.hpp"
 #include "socket/Server.hpp"
-#include "BehaviorFunc.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -85,11 +82,8 @@ namespace GUI {
             void _displayGame() const;
             void _displayMenu();
             void _mainMenuInit();
-            void _displayMainMenu();
             void _settingsMenuInit();
-            void _displaySettingsMenu();
             void _pauseMenuInit();
-            void _displayPauseMenu();
 
             void send(const RawRequest& request) {
                 _server.send(_hostname, _port, request);
