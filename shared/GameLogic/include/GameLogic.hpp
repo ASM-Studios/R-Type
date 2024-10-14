@@ -8,7 +8,7 @@
 #include "RegistryManager.hpp"
 #include "LastShot.hpp"
 #include "EntitySchematic.hpp"
-#include "Collison.hpp"
+#include "Collision.hpp"
 #include "Animation.hpp"
 #include <algorithm>
 #include <chrono>

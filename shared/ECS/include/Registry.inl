@@ -5,18 +5,18 @@
 
 namespace ecs {
     template <typename... Components>
-    Entity Registry::createEntity(EntityType type) {
-        return this->createEntity(this->_generateID(), type);
+    Entity Registry::createEntity() {
+        return this->createEntity(this->_generateID());
     }
 
     template <typename... Components>
-    Entity Registry::createEntity(int id, EntityType type) {
+    Entity Registry::createEntity(int id) {
         for (auto entity: this->_entities) {
             if (entity.getID() == id) {
                 throw AlreadyExist(id);
             }
         }
-        const Entity entity(id, type, *this);
+        const Entity entity(id, *this);
         _entities.insert(entity);
         Registry::addComponents<Components...>(entity);
         return entity;

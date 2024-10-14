@@ -11,6 +11,7 @@ set(SOURCE_FILE src/Registry.cpp
     src/Sprite.cpp
     src/AI.cpp
     src/Factories/LevelFactory.cpp
+        src/Collision.cpp
 )
 
 add_library(ECS ${SOURCE_FILE})

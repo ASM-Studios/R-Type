@@ -1,4 +1,5 @@
 #include "GameLogic.hpp"
+#include "Collision.hpp"
 
 GameLogic::GameLogic()
     : _timePerTick(1.0F / 60.0f) // Default values
@@ -48,8 +49,10 @@ void GameLogic::update() {
         if (registry.contains<ecs::component::Behavior>(entity)) {
             registry.getComponent<ecs::component::Behavior>(entity).func(entity, _timePerTick);
         }
+        if (registry.contains<ecs::component::Collision>(entity)) {
+            registry.getComponent<ecs::component::Collision>(entity).checkCollision(entity);
+        }
     }
-    Collision::updateCollisions();
 }
 
 void GameLogic::updateAnimation (const ecs::Entity& entity)
@@ -57,13 +60,14 @@ void GameLogic::updateAnimation (const ecs::Entity& entity)
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& animation = registry.getComponent<ecs::component::Animation>(entity);
     auto& sprite = registry.getComponent<ecs::component::Sprite>(entity);
+    auto& tags = registry.getComponent<ecs::component::Tags>(entity);
     animation.elapsedTime += _timePerTick;
     if (animation.elapsedTime >= animation.frameTime) {
         animation.elapsedTime -= animation.frameTime;
         animation.currFrame++;
         int const nbFrame = TextureLoader::getInstance().getTexture(sprite.getSpriteID()).getFrameCount();
         if (animation.currFrame >= nbFrame) {
-            if (entity.getType() == ecs::EntityType::Explosion) {
+            if (tags.hasTag(ecs::component::Tag::Explosion)) {
                 registry.removeEntity(entity);
                 return;
             }
