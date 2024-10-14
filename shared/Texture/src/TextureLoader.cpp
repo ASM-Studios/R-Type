@@ -23,11 +23,13 @@ void TextureLoader::loadTexture(const std::string& path, Type type) {
     int row = 1;
     int col = 1;
     float scale = 1.0;
+    float animation_speed = 0.1F;
     element.lookupValue("id", id);
     element.lookupValue("row", row);
     element.lookupValue("col", col);
     element.lookupValue("scale", scale);
-    this->_textures.insert({id, {type, Texture(element.getPath(), row, col, scale)}});
+    element.lookupValue("animation_speed", animation_speed);
+    this->_textures.insert({id, {type, Texture(element.getPath(), row, col, scale, animation_speed)}});
 }
 
 void TextureLoader::loadTextures(std::string path, Type type) {

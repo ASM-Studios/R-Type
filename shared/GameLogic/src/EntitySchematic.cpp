@@ -23,7 +23,7 @@ ecs::Entity EntitySchematic::createBullet(const ecs::Entity& shooter)
     registry.setComponent<ecs::component::Tags>(bullet, ecs::component::Tags({ecs::component::Tag::Bullet, ecs::component::Tag::Ally}));
     registry.setComponent<ecs::component::Position>(bullet, {static_cast<int16_t>(shooterPosition.x + 50), shooterPosition.y, shooterPosition.screenWidth, shooterPosition.screenHeight});
     registry.setComponent<ecs::component::Sprite>(bullet, {13, 0});
-    registry.setComponent<ecs::component::Animation>(bullet, {.frameTime = 0.1F});
+    registry.setComponent<ecs::component::Animation>(bullet, {});
     registry.setComponent<ecs::component::Behavior>(bullet, {&BehaviorFunc::updateBullet});
     registry.setComponent<ecs::component::Collision>(bullet, {ecs::component::CollisionAlgorithm::AABB});
     return bullet;
@@ -36,9 +36,9 @@ ecs::Entity EntitySchematic::createExplosion(const ecs::Entity& destroyed)
     auto explosion = registry.createEntity<>();
 
     registry.setComponent<ecs::component::Tags>(explosion, ecs::component::Tags({ecs::component::Tag::Explosion}));
-    registry.setComponent<ecs::component::Position>(explosion, {static_cast<int16_t>(destroyedPosition.x + 50), destroyedPosition.y, destroyedPosition.screenWidth, destroyedPosition.screenHeight});
+    registry.setComponent<ecs::component::Position>(explosion, {static_cast<int16_t>(destroyedPosition.x), destroyedPosition.y, destroyedPosition.screenWidth, destroyedPosition.screenHeight});
     registry.setComponent<ecs::component::Sprite>(explosion, {EXPLOSION_SPRITE_ID, 0});
-    registry.setComponent<ecs::component::Animation>(explosion, {.frameTime = 0.1F});
+    registry.setComponent<ecs::component::Animation>(explosion, {});
 
     return explosion;
 }
@@ -52,6 +52,6 @@ ecs::Entity EntitySchematic::createEnemy(std::size_t id, int16_t x, int16_t y, i
     registry.setComponent<ecs::component::Position>(enemy, {x, y, static_cast<size_t>(static_cast<int16_t>(screenSize.first)), static_cast<size_t>(static_cast<int16_t>(screenSize.second))});
     registry.setComponent<ecs::component::Sprite>(enemy, {spriteID, stateID});
     registry.setComponent<ecs::component::AI>(enemy, {ecs::component::AI::stringToAIModel(model)});
-    registry.setComponent<ecs::component::Animation>(enemy, {.frameTime = 0.1F});
+    registry.setComponent<ecs::component::Animation>(enemy, {});
     return enemy;
 }

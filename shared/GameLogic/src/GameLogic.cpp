@@ -60,12 +60,14 @@ void GameLogic::updateAnimation (const ecs::Entity& entity)
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& animation = registry.getComponent<ecs::component::Animation>(entity);
     auto& sprite = registry.getComponent<ecs::component::Sprite>(entity);
+    auto& texture = TextureLoader::getInstance();
+    float const animation_speed = texture.getTexture(sprite.getSpriteID()).getAnimSpeed();
     auto& tags = registry.getComponent<ecs::component::Tags>(entity);
     animation.elapsedTime += _timePerTick;
-    if (animation.elapsedTime >= animation.frameTime) {
-        animation.elapsedTime -= animation.frameTime;
+    if (animation.elapsedTime >= animation_speed) {
+        animation.elapsedTime -= animation_speed;
         animation.currFrame++;
-        int const nbFrame = TextureLoader::getInstance().getTexture(sprite.getSpriteID()).getFrameCount();
+        int const nbFrame = texture.getTexture(sprite.getSpriteID()).getFrameCount();
         if (animation.currFrame >= nbFrame) {
             if (tags.hasTag(ecs::component::Tag::Explosion)) {
                 registry.removeEntity(entity);

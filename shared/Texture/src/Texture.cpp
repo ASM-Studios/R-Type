@@ -22,12 +22,13 @@ void Texture::_loadSize() {
     }
 }
 
-Texture::Texture(const std::string& path, const int row, const int col, const float scale) :
+Texture::Texture(const std::string& path, const int row, const int col, const float scale, const float animation_speed) :
     _initialPath(std::move(path)),
     _virtualPath(std::move(path)),
     _row(row),
     _col(col),
     _scale(scale),
+    _animation_speed(animation_speed),
     _size(0, 0) {
     std::replace(this->_virtualPath.begin(), this->_virtualPath.end(), '.', '/');
     this->_realPath = std::format("./assets/textures/{0}.png", this->_virtualPath);
@@ -75,4 +76,12 @@ int Texture::getTextureId() const {
 
 void Texture::setTexture(const int textureId) {
     _id = textureId;
+}
+
+float Texture::getAnimSpeed() const {
+    return this->_animation_speed;
+}
+
+void Texture::setAnimSpeed(float animation_speed) {
+    _animation_speed = animation_speed;
 }
