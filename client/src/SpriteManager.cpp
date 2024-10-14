@@ -2,6 +2,14 @@
 
 #include "Config.hpp"
 
+/**
+ * \brief Constructs a SpriteManager object.
+ *
+ * Initializes the SpriteManager with the default sprites configuration file.
+ * Loads the sprites from the specified sprites path.
+ *
+ * \throws GuiException if there is an error reading the config file.
+ */
 void GUI::SpriteManager::init() {
     Config& config = Config::getInstance("client/config.json");
     _spritesConfigPath = config.get("sprites_config_path").value_or(DEFAULT_SPRITES_CONFIG);
@@ -12,6 +20,12 @@ void GUI::SpriteManager::init() {
     loopDirectory(spritePath, "");
 }
 
+/**
+ * \brief Loads the sprites from the specified directory.
+ *
+ * \param spritePath The path to the sprites directory.
+ * \param relativePath The relative path to the sprites directory.
+ */
 void GUI::SpriteManager::loopDirectory(const std::string &spritePath, const std::string &relativePath) {
     boost::filesystem::path const path(spritePath + relativePath);
     if (exists(path) && is_directory(path)) {
@@ -29,6 +43,14 @@ void GUI::SpriteManager::loopDirectory(const std::string &spritePath, const std:
     }
 }
 
+/**
+ * \brief Imports the sprites from the specified sprite sheet.
+ *
+ * \param spritePath The path to the sprites directory.
+ * \param name The name of the sprite sheet.
+ *
+ * \throws GuiException if the sprite sheet is already loaded or if the sprite sheet is missing keys or has wrong typed values in the configuration file.
+ */
 void GUI::SpriteManager::importSprites(const std::string& spritePath, const std::string& name) {
     libconfig::Config cfg;
     try {

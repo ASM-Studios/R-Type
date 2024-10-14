@@ -1,19 +1,40 @@
 #include "MusicManager.hpp"
 
+#include <GuiException.hpp>
+
+/**
+ * \brief Constructs a MusicManager object.
+ *
+ * Initializes the MusicManager with default volume and mute settings.
+ * Loads the music configuration from the specified config file.
+ *
+ * \throws GuiException if there is an error reading the config file.
+ */
 GUI::MusicManager::MusicManager() : _volume(50.0f), _isMuted(false) {
-    Config &config = Config::getInstance("client/config.json");
-    loadMusic(config.get("musics_config_path").value_or(DEFAULT_MUSIC_CONFIG));
-    _musicsPath = config.get("musics_path").value_or(DEFAULT_MUSIC_PATH);
+    try {
+        Config &config = Config::getInstance("client/config.json");
+        loadMusic(config.get("musics_config_path").value_or(DEFAULT_MUSIC_CONFIG));
+        _musicsPath = config.get("musics_path").value_or(DEFAULT_MUSIC_PATH);
+    } catch (std::runtime_error &e) {
+        throw GuiException(e.what());
+    }
 }
 
+/**
+ * \brief Loads the musics files from the specified configuration file.
+ *
+ * \param configPath The path to the music configuration file.
+ *
+ * \throws GuiException if there is an error reading the config file.
+ */
 void GUI::MusicManager::loadMusic(const std::string& configPath) {
     libconfig::Config cfg;
     try {
         cfg.readFile(configPath.c_str());
-    } catch (const libconfig::FileIOException &fioex) {
-        throw std::runtime_error("I/O error while reading file.");
+    } catch (const libconfig::FileIOException) {
+        throw GuiException("I/O error while reading file.");
     } catch (const libconfig::ParseException &pex) {
-        throw std::runtime_error("Parse error at " + std::string(pex.getFile()) + ":" + std::to_string(pex.getLine()) + " - " + pex.getError());
+        throw GuiException("Parse error at " + std::string(pex.getFile()) + ":" + std::to_string(pex.getLine()) + " - " + pex.getError());
     }
 
     if (const libconfig::Setting& root = cfg.getRoot(); root.exists("musics")) {
@@ -53,6 +74,14 @@ void GUI::MusicManager::setMute(const bool mute) {
     _updateVolume();
 }
 
+/**
+ * \brief Sets the music to be played.
+ *
+ * \param musicName The name of the music to be played.
+ * \param loop Whether the music should loop or not.
+ *
+ * \throws GuiException if the music is not found.
+ */
 void GUI::MusicManager::setMusic(const std::string& musicName, const bool loop) {
     if (_musicMap.contains(musicName)) {
         if (_currentMusic) {
@@ -63,7 +92,7 @@ void GUI::MusicManager::setMusic(const std::string& musicName, const bool loop) 
         _currentMusic->setVolume(_isMuted ? 0.0f : _volume);
         _currentMusic->play();
     } else {
-        throw std::runtime_error("Music not found: " + musicName);
+        throw GuiException("Music not found: " + musicName);
     }
 }
 
