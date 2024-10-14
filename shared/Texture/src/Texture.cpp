@@ -15,7 +15,7 @@ void Texture::_loadSize() {
     try {
         boost::gil::rgba8_image_t image;
         boost::gil::read_image(this->_realPath, image, boost::gil::png_tag());
-        auto view = boost::gil::view(image);
+        const auto view = boost::gil::view(image);
         this->_size = std::make_pair((view.width() / this->_col) * this->_scale, (view.height() / this->_row) * this->_scale);
     } catch (std::ios_base::failure& e) {
         throw LoadFailed(this->_initialPath);
