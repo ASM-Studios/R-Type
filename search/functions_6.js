@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['javadoc_5ftest_0',['Javadoc_Test',['../classJavadoc__Test.html#a17313327932ae97596b0a455ba8342cc',1,'Javadoc_Test']]]
+  ['init_0',['init',['../classGUI_1_1SpriteManager.html#ad99ada885ef8751001e6334de245db20',1,'GUI::SpriteManager']]]
 ];

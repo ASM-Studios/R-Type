@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['qtstyle_5ftest_0',['QTstyle_Test',['../classQTstyle__Test.html#a14a296ea4e2ad446712f2310bec60766',1,'QTstyle_Test']]]
+  ['pymethod_0',['PyMethod',['../classdocstring_1_1PyClass.html#af092e1eacc10334e0e8630531a3473b4',1,'docstring.PyClass.PyMethod()'],['../classpyexample_1_1PyClass.html#a654596774eb28a0c6d26eea565de3a9d',1,'pyexample.PyClass.PyMethod()']]]
 ];

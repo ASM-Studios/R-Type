@@ -9,7 +9,7 @@ var searchData=
   ['messagepopup_6',['MessagePopup',['../classGUI_1_1MessagePopup.html',1,'GUI']]],
   ['min_7',['MIN',['../define_8h.html#a74e75242132eaabbc1c512488a135926',1,'define.h']]],
   ['music_20manager_8',['Music Manager',['../md_docs_Client_MusicManager.html',1,'']]],
-  ['musicmanager_9',['MusicManager',['../classGUI_1_1MusicManager.html',1,'GUI']]],
+  ['musicmanager_9',['MusicManager',['../classGUI_1_1MusicManager.html',1,'GUI::MusicManager'],['../classGUI_1_1MusicManager.html#a8225b68506e1556c8cebbd74c17b33cd',1,'GUI::MusicManager::MusicManager()']]],
   ['mux_2evhdl_10',['mux.vhdl',['../mux_8vhdl.html',1,'']]],
   ['mux_5fout_11',['mux_out',['../classmux__using__with.html#a6258515f40573285292fdb0b9663c422',1,'mux_using_with']]],
   ['mux_5fusing_5fwith_12',['mux_using_with',['../classmux__using__with.html',1,'']]]

@@ -30,9 +30,9 @@ var annotated_dup =
       [ "guiActionException", "classGUI_1_1guiActionException.html", null ],
       [ "GuiException", "classGUI_1_1GuiException.html", null ],
       [ "MessagePopup", "classGUI_1_1MessagePopup.html", null ],
-      [ "MusicManager", "classGUI_1_1MusicManager.html", null ],
-      [ "SpriteManager", "classGUI_1_1SpriteManager.html", null ],
-      [ "WindowManager", "classGUI_1_1WindowManager.html", null ]
+      [ "MusicManager", "classGUI_1_1MusicManager.html", "classGUI_1_1MusicManager" ],
+      [ "SpriteManager", "classGUI_1_1SpriteManager.html", "classGUI_1_1SpriteManager" ],
+      [ "WindowManager", "classGUI_1_1WindowManager.html", "classGUI_1_1WindowManager" ]
     ] ],
     [ "network", null, [
       [ "socket", null, [

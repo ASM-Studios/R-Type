@@ -117,6 +117,7 @@ Collaboration diagram for GUI::SpriteManager:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad99ada885ef8751001e6334de245db20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1SpriteManager.html#ad99ada885ef8751001e6334de245db20">init</a> ()</td></tr>
+<tr class="memdesc:ad99ada885ef8751001e6334de245db20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classGUI_1_1SpriteManager.html">SpriteManager</a> object.  <br /></td></tr>
 <tr class="separator:ad99ada885ef8751001e6334de245db20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfa7c2ff6fd830855fe4fb7e63c613e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1SpriteManager.html#abfa7c2ff6fd830855fe4fb7e63c613e3">updateWindowSize</a> (const std::size_t width, const std::size_t height)</td></tr>
 <tr class="separator:abfa7c2ff6fd830855fe4fb7e63c613e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -342,7 +343,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SpriteManager_8cpp_source.html#l00005">5</a> of file <a class="el" href="SpriteManager_8cpp_source.html">SpriteManager.cpp</a>.</p>
+<p>Constructs a <a class="el" href="classGUI_1_1SpriteManager.html">SpriteManager</a> object. </p>
+<p>Initializes the <a class="el" href="classGUI_1_1SpriteManager.html">SpriteManager</a> with the default sprites configuration file. Loads the sprites from the specified sprites path.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classGUI_1_1GuiException.html">GuiException</a></td><td>if there is an error reading the config file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SpriteManager_8cpp_source.html#l00013">13</a> of file <a class="el" href="SpriteManager_8cpp_source.html">SpriteManager.cpp</a>.</p>
 
 </div>
 </div>
