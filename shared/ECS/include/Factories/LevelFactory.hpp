@@ -28,6 +28,7 @@ namespace ecs::factory {
     struct FactoryEntity {
             std::string name;
             std::size_t id;
+            float delay_time;
             std::vector<Component> components;
     };
 
@@ -63,11 +64,18 @@ namespace ecs::factory {
 
     class LevelFactory {
         public:
+            explicit LevelFactory() = default;
+            static LevelFactory& getInstance();
             static void load(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename);
             static Component parsePosition(const libconfig::Setting& componentSetting, const std::string& type);
             static Component parseSprite(const libconfig::Setting& componentSetting, const std::string& type);
             static Component parseModel(const libconfig::Setting& componentSetting, const std::string& type);
-
-            static void createRegistryEntity(const std::vector<FactoryEntity>& entities, const std::pair<std::size_t, std::size_t>& _screenSize);
+            static void createRegistryEntity(FactoryEntity& entity);
+            static void updateEntities(float elapsedTime);
+        private:
+            static std::vector<FactoryEntity> pendingEntities;
+            static std::unique_ptr<LevelFactory> _instance;
+            static std::mutex _mutex;
+            static std::pair<std::size_t, std::size_t> _screenSize;
     };
 }
