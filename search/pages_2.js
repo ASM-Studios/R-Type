@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['r_2dtype_0',['R-Type',['../md_README.html',1,'']]]
+  ['documentation_0',['Documentation',['../index.html',1,'']]]
 ];

@@ -12,7 +12,7 @@ var indexSectionsWithContent =
   9: "s",
   10: "abm",
   11: "t",
-  12: "bprt"
+  12: "bcdehlmprstw"
 };
 
 var indexSectionNames =
@@ -35,7 +35,7 @@ var indexSectionNames =
 var indexSectionLabels =
 {
   0: "All",
-  1: "Classes",
+  1: "Data Structures",
   2: "Namespaces",
   3: "Files",
   4: "Functions",
