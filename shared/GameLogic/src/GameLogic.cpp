@@ -90,6 +90,8 @@ void GameLogic::client(ecs::Entity entity) {
     if (registry.contains<ecs::component::Animation>(entity) && registry.contains<ecs::component::Sprite>(entity)) {
         this->updateAnimation(entity);
     }
+    auto & factory = ecs::factory::LevelFactory::getInstance();
+    factory.updateEntities(_totalTime);
 }
 
 void GameLogic::sendInput(ecs::Entity entity) {
