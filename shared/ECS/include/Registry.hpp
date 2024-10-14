@@ -23,7 +23,7 @@ namespace ecs {
                     std::string _message;
 
                 public:
-                    explicit AlreadyExist(int id);
+                    explicit AlreadyExist(uint64_t id);
                     ~AlreadyExist() override = default;
 
                     [[nodiscard]] const char *what() const noexcept override;
@@ -44,6 +44,7 @@ namespace ecs {
 
         private:
             uint8_t _id;
+            std::mutex _mutex;
             std::set<Entity> _entities;
             std::unordered_map<std::type_index, std::unordered_map<Entity, std::any>> _components;
 
@@ -52,14 +53,15 @@ namespace ecs {
 
             template <typename... Components>
             Entity createEntity();
-
             template <typename... Components>
             Entity createEntity(int id);
 
             [[nodiscard]] std::set<Entity> getEntities();
+            template <typename Component>
+            [[nodiscard]] std::unordered_map<Entity, Component> getEntities();
 
             void removeEntity(const Entity& entity);
-            bool isEntityValid(const Entity& entity) const;
+            bool isEntityValid(const Entity& entity);
 
             template <typename Component>
             void addComponent(const Entity& entity);
@@ -78,9 +80,6 @@ namespace ecs {
             [[nodiscard]] Component& getComponent(const Entity& entity);
 
             [[nodiscard]] std::size_t getNoComponent(const Entity& entity);
-
-            void display(const Entity& entity);
-            void displayAll();
 
             void reset(const Entity& entity);
             void resetAll();

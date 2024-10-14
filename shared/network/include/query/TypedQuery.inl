@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Logger.hpp"
 #include "TypedQuery.hpp"
 #include "NonTypedQuery.hpp"
 #include <cstring>
@@ -17,7 +18,7 @@ TypedQuery<Payload>::TypedQuery(NonTypedQuery query) :
     _requestType(query.getRequestType()),
     _payload(),
     _fill({0}) {
-    auto fill = query._fill;
+    auto& fill = query._fill;
     std::memcpy(&this->_payload, &fill, sizeof(Payload));
 }
 

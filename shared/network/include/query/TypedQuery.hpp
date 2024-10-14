@@ -38,6 +38,6 @@ class TypedQuery {
         void setPayload(Payload payload) {
             this->_payload(payload);
         }
-} __attribute__((packed));
+};
 
 #include "TypedQuery.inl"
