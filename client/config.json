@@ -3,7 +3,7 @@
   "sprites_config_path": "assets/textures_config.cfg",
   "musics_path": "assets/musics/",
   "musics_config_path": "assets/musics_config.cfg",
-  "fullscreen": true,
+  "fullscreen": false,
   "width": 1920,
   "height": 1080,
   "logLevel": "INFO",

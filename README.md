@@ -65,7 +65,7 @@ This project is documented using Doxygen.
 
 You can find additional information in the [`docs`](docs/Hub.md) folder.
 
-For developers, refer to the [Developpers.md](docs/Developers) file.
+For developers, refer to the [Developers.md](docs/Developers.md) file.
 
 ## Authors
 
@@ -80,3 +80,13 @@ For developers, refer to the [Developpers.md](docs/Developers) file.
 ## License
 
 This project is under the GNU General Public License v3.0.
+
+## Assets
+
+All assets used in this project are under the Creative Commons License.
+
+Here are the authors of some of the assets:
+
+- [helianthus-games](https://helianthus-games.itch.io/)
+- [kayillustrations](https://kayillustrations.itch.io/)
+- [ansimuz](https://ansimuz.itch.io/)

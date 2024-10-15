@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include <cmath>
 #include <query/RawRequest.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -17,7 +18,7 @@
 #include "BehaviorFunc.hpp"
 #include "socket/ServerManager.hpp"
 
-constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
+constexpr auto FONT_FILENAME = "assets/fonts/FFFFORWA.TTF";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
 
 constexpr std::size_t POPUP_WIDTH = 200;
@@ -40,6 +41,7 @@ namespace GUI {
     enum menuState {
         NO_MENU,
         MAIN_MENU,
+        SCENARIO_SELECTION_MENU,
         SETTINGS_MENU,
         PAUSE_MENU,
     };
@@ -82,6 +84,7 @@ namespace GUI {
             void _displayGame() const;
             void _displayMenu();
             void _mainMenuInit();
+            void _scenarioSelectionInit();
             void _settingsMenuInit();
             void _pauseMenuInit();
 
