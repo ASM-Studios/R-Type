@@ -23,7 +23,9 @@ class EntitySchematic {
         static ecs::Entity createTeamPlayer(uint64_t id, int16_t x, int16_t y, int spriteID);
         static ecs::Entity createTeamPlayerClient(uint64_t id, int16_t x, int16_t y, int spriteID);
 
+        static ecs::Entity createBullet();
         static ecs::Entity createBullet(const ecs::Entity& shooter);
+
         static ecs::Entity createExplosion(const ecs::Entity& destroyed);
         static ecs::Entity createEnemy(std::size_t id, int16_t x, int16_t y, int spriteID, int stateID, const std::string& model, const std::pair<std::size_t, std::size_t>& screenSize);
 };

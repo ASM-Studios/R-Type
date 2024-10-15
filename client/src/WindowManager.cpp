@@ -1,4 +1,5 @@
 #include "WindowManager.hpp"
+#include "GameLogicMode.hpp"
 #include "QueryHandler.hpp"
 #include "socket/ServerManager.hpp"
 #include <chrono>

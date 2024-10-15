@@ -1,6 +1,7 @@
 #include "Core.hpp"
 #include "Client.hpp"
 #include "Config.hpp"
+#include "GameLogicMode.hpp"
 #include "Logger.hpp"
 #include "QueryHandler.hpp"
 #include "ScopeDuration.hpp"

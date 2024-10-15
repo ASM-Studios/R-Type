@@ -12,6 +12,7 @@ namespace ecs::component {
             std::size_t screenHeight;
             void set(const Position& position);
             void move(const Position& offset);
+            [[nodiscard]] double getDistance(const Position& other) const;
             std::pair<int16_t, int16_t> get() const;
     };
 }

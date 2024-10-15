@@ -11,7 +11,8 @@ set(SOURCE_FILE src/QueryHandler.cpp
     src/Client.cpp
     src/socket/Server.cpp
     src/socket/ServerManager.cpp
-    src/query/RawRequest.cpp)
+    src/query/RawRequest.cpp
+    src/query/Header.cpp)
 
 add_library(network ${SOURCE_FILE})
 

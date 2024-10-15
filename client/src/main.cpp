@@ -15,25 +15,31 @@ static void updatePlayer(network::Client client, RawRequest request) {
 }
 
 static void updateTeamPlayer(network::Client client, RawRequest request) {
-    Logger::log(LogLevel::ERR, "Receiving pos");
     TypedQuery<UpdateTeamPlayer> query = request.getQuery();
     ecs::Entity entity(query.getPayload().id, ecs::RegistryManager::getInstance().getRegistry());
-    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().input);
+    //ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().input);
     ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().position);
 }
 
 static void createEntity(network::Client client, RawRequest request) {
     TypedQuery<CreateEntity> tq = request.getQuery();
     auto payload = tq.getPayload();
-    if (ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Ally) && !ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Bullet)) {
+    if (ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Ally) && ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Player)) {
         ecs::Entity entity = EntitySchematic::createTeamPlayerClient(payload.id, payload.position.x, payload.position.y, payload.spriteID);
+        return;
+    }
+    if (ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Ally) && ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Bullet)) {
+        ecs::Entity shooter = ecs::Entity(client.getID(), ecs::RegistryManager::getInstance().getRegistry());
+        ecs::Entity bullet = EntitySchematic::createBullet();
+        ecs::RegistryManager::getInstance().getRegistry().setComponent(bullet, payload.position);
+        return;
     }
 }
 
 const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
-    {UPDATE_PLAYER, &updatePlayer},
-    {UPDATE_TEAM_PLAYER, &updateTeamPlayer},
-    {CREATE_ENTITY, &createEntity},
+    {RequestType::UPDATE_PLAYER, &updatePlayer},
+    {RequestType::UPDATE_TEAM_PLAYER, &updateTeamPlayer},
+    {RequestType::CREATE_ENTITY, &createEntity}
 };
 
 int main() {

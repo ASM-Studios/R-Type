@@ -8,6 +8,6 @@
   "height": 1080,
   "logLevel": "INFO",
   "frameRateLimit": 60,
-  "hostname": "10.109.0.2",
+  "hostname": "127.0.0.1",
   "port": 8080
 }

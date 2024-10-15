@@ -42,6 +42,9 @@ void ecs::component::Collision::checkCollision(const ecs::Entity& self) {
             continue;
         }
         ecs::component::Tags otherTags = registry.getComponent<Tags>(other);
+        if (otherTags.hasTag(Tag::Player)) {
+            continue;
+        }
         if (tags == otherTags || otherTags.hasTag(Tag::Explosion)) {
             continue;
         }

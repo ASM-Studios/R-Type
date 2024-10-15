@@ -103,8 +103,7 @@ namespace ecs::factory {
         return component;
     }
 
-    void LevelFactory::updateEntities(float elapsedTime)
-    {
+    void LevelFactory::updateEntities(float elapsedTime) {
         auto it = pendingEntities.begin();
         while (it != pendingEntities.end()) {
             if (elapsedTime >= it->delay_time) {
