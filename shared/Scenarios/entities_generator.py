@@ -13,7 +13,6 @@ def generate_entities_cfg(file_name, num_entities):
     n = 0
 
     for i in range(num_entities):
-        print(n, round_size)
         if n > round_size:
             n = 0
             delay_time += 5
