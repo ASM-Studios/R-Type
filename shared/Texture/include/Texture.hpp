@@ -24,6 +24,7 @@ class Texture {
         int _row;
         int _col;
         float _scale;
+        float _animation_speed;
         std::pair<int, int> _size; // WIDTH * HEIGHT
         std::string _realPath;
         int _id;
@@ -31,7 +32,7 @@ class Texture {
         void _loadSize();
 
     public:
-        explicit Texture(const std::string& path, int row, int col, float scale);
+        explicit Texture(const std::string& path, int row, int col, float scale, float animation_speed);
         ~Texture() = default;
 
         [[nodiscard]] int getRow() const;
@@ -42,6 +43,9 @@ class Texture {
 
         [[nodiscard]] float getScale() const;
         void setScale(float scale);
+
+        [[nodiscard]] float getAnimSpeed() const;
+        void setAnimSpeed(float animation_speed);
 
         [[nodiscard]] std::pair<int, int> getSize() const;
         [[nodiscard]] int getFrameCount();
