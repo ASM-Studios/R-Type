@@ -5,7 +5,6 @@ var annotated_dup =
     ] ],
     [ "ecs", null, [
       [ "component", null, [
-        [ "AI", "structecs_1_1component_1_1AI.html", null ],
         [ "Animation", "structecs_1_1component_1_1Animation.html", null ],
         [ "Behavior", "structecs_1_1component_1_1Behavior.html", null ],
         [ "Collision", "structecs_1_1component_1_1Collision.html", null ],
@@ -72,6 +71,7 @@ var annotated_dup =
     [ "D", "classD.html", null ],
     [ "E", "classE.html", null ],
     [ "Empty", "structEmpty.html", null ],
+    [ "EnemyBehavior", "classEnemyBehavior.html", null ],
     [ "EntitySchematic", "classEntitySchematic.html", null ],
     [ "Enum_Test", "classEnum__Test.html", "classEnum__Test" ],
     [ "Example_Test", "classExample__Test.html", "classExample__Test" ],

@@ -7,7 +7,6 @@ var hierarchy =
       ] ]
     ] ],
     [ "Afterdoc_Test", "classAfterdoc__Test.html", null ],
-    [ "ecs::component::AI", "structecs_1_1component_1_1AI.html", null ],
     [ "ecs::component::Animation", "structecs_1_1component_1_1Animation.html", null ],
     [ "Autolink_Test", "classAutolink__Test.html", null ],
     [ "B", "classB.html", [
@@ -35,6 +34,7 @@ var hierarchy =
       [ "GUI::SpriteManager", "classGUI_1_1SpriteManager.html", null ],
       [ "GUI::WindowManager", "classGUI_1_1WindowManager.html", null ]
     ] ],
+    [ "EnemyBehavior", "classEnemyBehavior.html", null ],
     [ "ecs::Entity", "classecs_1_1Entity.html", null ],
     [ "EntitySchematic", "classEntitySchematic.html", null ],
     [ "Enum_Test", "classEnum__Test.html", null ],

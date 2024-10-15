@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: BehaviorFunc Class Reference</title>
+<title>R-Type: EnemyBehavior Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classBehaviorFunc.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classEnemyBehavior.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -92,25 +92,25 @@ $(document).ready(function(){initNavTree('classBehaviorFunc.html',''); initResiz
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
-  <div class="headertitle"><div class="title">BehaviorFunc Class Reference</div></div>
+  <div class="headertitle"><div class="title">EnemyBehavior Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a6eb44dd6f35841e132788a6b1b22f7f7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#a6eb44dd6f35841e132788a6b1b22f7f7">updateBullet</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
-<tr class="separator:a6eb44dd6f35841e132788a6b1b22f7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d39bac044e3aaab640c692f67fd9423"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#a4d39bac044e3aaab640c692f67fd9423">handleInput</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
-<tr class="separator:a4d39bac044e3aaab640c692f67fd9423"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15b65cdbd9d1c6d040836d461133137d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#a15b65cdbd9d1c6d040836d461133137d">setSpriteSheetFromInput</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;entity, float timePerTick)</td></tr>
-<tr class="separator:a15b65cdbd9d1c6d040836d461133137d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af93a1de2567e80e7abdd8557d7e7096a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#af93a1de2567e80e7abdd8557d7e7096a">classicEnemy</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
+<tr class="separator:af93a1de2567e80e7abdd8557d7e7096a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b1e25e8470656dc2351f264524f335"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#a76b1e25e8470656dc2351f264524f335">EnemySinusoidal</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
+<tr class="separator:a76b1e25e8470656dc2351f264524f335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10aab31a71dddd42dc6b86e498db189d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#a10aab31a71dddd42dc6b86e498db189d">EnemyZigZag</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
+<tr class="separator:a10aab31a71dddd42dc6b86e498db189d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8hpp_source.html#l00005">5</a> of file <a class="el" href="BehaviorFunc_8hpp_source.html">BehaviorFunc.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8hpp_source.html#l00005">5</a> of file <a class="el" href="EnemyBehavior_8hpp_source.html">EnemyBehavior.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4d39bac044e3aaab640c692f67fd9423" name="a4d39bac044e3aaab640c692f67fd9423"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d39bac044e3aaab640c692f67fd9423">&#9670;&#160;</a></span>handleInput()</h2>
+<a id="af93a1de2567e80e7abdd8557d7e7096a" name="af93a1de2567e80e7abdd8557d7e7096a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af93a1de2567e80e7abdd8557d7e7096a">&#9670;&#160;</a></span>classicEnemy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -119,10 +119,10 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void BehaviorFunc::handleInput </td>
+          <td class="memname">void EnemyBehavior::classicEnemy </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
-          <td class="paramname"><em>bullet</em>, </td>
+          <td class="paramname"><em>enemy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -143,12 +143,12 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00059">59</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8cpp_source.html#l00010">10</a> of file <a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a15b65cdbd9d1c6d040836d461133137d" name="a15b65cdbd9d1c6d040836d461133137d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15b65cdbd9d1c6d040836d461133137d">&#9670;&#160;</a></span>setSpriteSheetFromInput()</h2>
+<a id="a76b1e25e8470656dc2351f264524f335" name="a76b1e25e8470656dc2351f264524f335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76b1e25e8470656dc2351f264524f335">&#9670;&#160;</a></span>EnemySinusoidal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -157,10 +157,10 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void BehaviorFunc::setSpriteSheetFromInput </td>
+          <td class="memname">void EnemyBehavior::EnemySinusoidal </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
-          <td class="paramname"><em>entity</em>, </td>
+          <td class="paramname"><em>enemy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -181,12 +181,12 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00017">17</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8cpp_source.html#l00023">23</a> of file <a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a6eb44dd6f35841e132788a6b1b22f7f7" name="a6eb44dd6f35841e132788a6b1b22f7f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6eb44dd6f35841e132788a6b1b22f7f7">&#9670;&#160;</a></span>updateBullet()</h2>
+<a id="a10aab31a71dddd42dc6b86e498db189d" name="a10aab31a71dddd42dc6b86e498db189d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10aab31a71dddd42dc6b86e498db189d">&#9670;&#160;</a></span>EnemyZigZag()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,10 +195,10 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void BehaviorFunc::updateBullet </td>
+          <td class="memname">void EnemyBehavior::EnemyZigZag </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
-          <td class="paramname"><em>bullet</em>, </td>
+          <td class="paramname"><em>enemy</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -219,20 +219,20 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00005">5</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8cpp_source.html#l00037">37</a> of file <a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>shared/GameLogic/include/<a class="el" href="BehaviorFunc_8hpp_source.html">BehaviorFunc.hpp</a></li>
-<li>shared/GameLogic/src/<a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a></li>
+<li>shared/GameLogic/include/<a class="el" href="EnemyBehavior_8hpp_source.html">EnemyBehavior.hpp</a></li>
+<li>shared/GameLogic/src/<a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="classBehaviorFunc.html">BehaviorFunc</a></li>
+    <li class="navelem"><a class="el" href="classEnemyBehavior.html">EnemyBehavior</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
