@@ -98,13 +98,13 @@ $(document).ready(function(){initNavTree('classecs_1_1Entity.html',''); initResi
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac3cb72165ad388bbf79a165485656332"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#ac3cb72165ad388bbf79a165485656332">Entity</a> (std::size_t id, <a class="el" href="classecs_1_1Registry.html">Registry</a> &amp;registry)</td></tr>
-<tr class="separator:ac3cb72165ad388bbf79a165485656332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fa7bbb38196937b9a83decc17c85a62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a6fa7bbb38196937b9a83decc17c85a62">Entity</a> (uint64_t id, <a class="el" href="classecs_1_1Registry.html">Registry</a> &amp;registry)</td></tr>
+<tr class="separator:a6fa7bbb38196937b9a83decc17c85a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a8853b32a76d840efb096593fdafc18"><td class="memItemLeft" align="right" valign="top"><a id="a0a8853b32a76d840efb096593fdafc18" name="a0a8853b32a76d840efb096593fdafc18"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Entity</b> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;other)=default</td></tr>
 <tr class="separator:a0a8853b32a76d840efb096593fdafc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55416a1529abd345f0acb4ebf0e2a920"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a55416a1529abd345f0acb4ebf0e2a920">getID</a> () const</td></tr>
-<tr class="separator:a55416a1529abd345f0acb4ebf0e2a920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b7894c83e7e2dd9035be638151ce345"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a5b7894c83e7e2dd9035be638151ce345">getID</a> () const</td></tr>
+<tr class="separator:a5b7894c83e7e2dd9035be638151ce345"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d0d64f3e6b2f2a6755304d05a136089"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a7d0d64f3e6b2f2a6755304d05a136089">operator==</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;other) const</td></tr>
 <tr class="separator:a7d0d64f3e6b2f2a6755304d05a136089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a256bf845acb61303af89bd1da622dcac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Entity.html#a256bf845acb61303af89bd1da622dcac">operator&lt;</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;other) const</td></tr>
@@ -112,10 +112,10 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Entity_8hpp_source.html#l00008">8</a> of file <a class="el" href="Entity_8hpp_source.html">Entity.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Entity_8hpp_source.html#l00009">9</a> of file <a class="el" href="Entity_8hpp_source.html">Entity.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac3cb72165ad388bbf79a165485656332" name="ac3cb72165ad388bbf79a165485656332"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3cb72165ad388bbf79a165485656332">&#9670;&#160;</a></span>Entity()</h2>
+<a id="a6fa7bbb38196937b9a83decc17c85a62" name="a6fa7bbb38196937b9a83decc17c85a62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fa7bbb38196937b9a83decc17c85a62">&#9670;&#160;</a></span>Entity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -126,7 +126,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">ecs::Entity::Entity </td>
           <td>(</td>
-          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramtype">uint64_t&#160;</td>
           <td class="paramname"><em>id</em>, </td>
         </tr>
         <tr>
@@ -153,14 +153,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a55416a1529abd345f0acb4ebf0e2a920" name="a55416a1529abd345f0acb4ebf0e2a920"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55416a1529abd345f0acb4ebf0e2a920">&#9670;&#160;</a></span>getID()</h2>
+<a id="a5b7894c83e7e2dd9035be638151ce345" name="a5b7894c83e7e2dd9035be638151ce345"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b7894c83e7e2dd9035be638151ce345">&#9670;&#160;</a></span>getID()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t ecs::Entity::getID </td>
+          <td class="memname">uint64_t ecs::Entity::getID </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

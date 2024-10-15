@@ -37,7 +37,8 @@ var annotated_dup =
     [ "network", null, [
       [ "socket", null, [
         [ "udp", null, [
-          [ "Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ]
+          [ "Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ],
+          [ "ServerManager", "classnetwork_1_1socket_1_1udp_1_1ServerManager.html", "classnetwork_1_1socket_1_1udp_1_1ServerManager" ]
         ] ]
       ] ],
       [ "Client", "classnetwork_1_1Client.html", null ],
@@ -67,6 +68,7 @@ var annotated_dup =
     [ "Config", "classConfig.html", null ],
     [ "CoordStruct", "structCoordStruct.html", "structCoordStruct" ],
     [ "Core", "classCore.html", null ],
+    [ "CreateEntity", "structCreateEntity.html", null ],
     [ "D", "classD.html", null ],
     [ "E", "classE.html", null ],
     [ "Empty", "structEmpty.html", null ],
@@ -75,7 +77,6 @@ var annotated_dup =
     [ "Example_Test", "classExample__Test.html", "classExample__Test" ],
     [ "Fn_Test", "classFn__Test.html", "classFn__Test" ],
     [ "GameLogic", "classGameLogic.html", null ],
-    [ "Header", "structHeader.html", null ],
     [ "Include_Test", "classInclude__Test.html", "classInclude__Test" ],
     [ "Javadoc_Test", "classJavadoc__Test.html", "classJavadoc__Test" ],
     [ "Logger", "classLogger.html", null ],
@@ -98,5 +99,8 @@ var annotated_dup =
     [ "TextureLoader", "classTextureLoader.html", null ],
     [ "Truck", "structTruck.html", "structTruck" ],
     [ "TypedQuery", "classTypedQuery.html", null ],
+    [ "UpdateEntity", "structUpdateEntity.html", null ],
+    [ "UpdatePlayer", "structUpdatePlayer.html", null ],
+    [ "UpdateTeamPlayer", "structUpdateTeamPlayer.html", null ],
     [ "Vehicle", "structVehicle.html", "structVehicle" ]
 ];

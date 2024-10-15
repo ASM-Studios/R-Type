@@ -29,6 +29,7 @@ var hierarchy =
     [ "Config", "classConfig.html", null ],
     [ "CoordStruct", "structCoordStruct.html", null ],
     [ "Core", "classCore.html", null ],
+    [ "CreateEntity", "structCreateEntity.html", null ],
     [ "Empty", "structEmpty.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "GUI::SpriteManager", "classGUI_1_1SpriteManager.html", null ],
@@ -45,13 +46,13 @@ var hierarchy =
       [ "GUI::guiActionException", "classGUI_1_1guiActionException.html", null ],
       [ "Texture::LoadFailed", "classTexture_1_1LoadFailed.html", null ],
       [ "ecs::Registry::AlreadyExist", "classecs_1_1Registry_1_1AlreadyExist.html", null ],
-      [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ]
+      [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ],
+      [ "network::socket::udp::ServerManager::NotInitialized", "classnetwork_1_1socket_1_1udp_1_1ServerManager_1_1NotInitialized.html", null ]
     ] ],
     [ "ecs::factory::FactoryEntity", "structecs_1_1factory_1_1FactoryEntity.html", null ],
     [ "Fn_Test", "classFn__Test.html", null ],
     [ "GameLogic", "classGameLogic.html", null ],
     [ "std::hash< ecs::Entity >", "structstd_1_1hash_3_01ecs_1_1Entity_01_4.html", null ],
-    [ "Header", "structHeader.html", null ],
     [ "Include_Test", "classInclude__Test.html", null ],
     [ "ecs::component::Input", "structecs_1_1component_1_1Input.html", null ],
     [ "Javadoc_Test", "classJavadoc__Test.html", null ],
@@ -82,6 +83,7 @@ var hierarchy =
     [ "ecs::RegistryManager", "classecs_1_1RegistryManager.html", null ],
     [ "ScopeDuration", "classScopeDuration.html", null ],
     [ "network::socket::udp::Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ],
+    [ "network::socket::udp::ServerManager", "classnetwork_1_1socket_1_1udp_1_1ServerManager.html", null ],
     [ "SomeNiceClass", "classSomeNiceClass.html", null ],
     [ "ecs::component::Sprite", "structecs_1_1component_1_1Sprite.html", null ],
     [ "String", "classString.html", null ],
@@ -93,5 +95,8 @@ var hierarchy =
     [ "Texture", "classTexture.html", null ],
     [ "TextureLoader", "classTextureLoader.html", null ],
     [ "TypedQuery< Payload >", "classTypedQuery.html", null ],
+    [ "UpdateEntity", "structUpdateEntity.html", null ],
+    [ "UpdatePlayer", "structUpdatePlayer.html", null ],
+    [ "UpdateTeamPlayer", "structUpdateTeamPlayer.html", null ],
     [ "network::Worker", "classnetwork_1_1Worker.html", null ]
 ];

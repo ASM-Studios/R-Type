@@ -105,7 +105,7 @@ $(document).ready(function(){initNavTree('NonTypedQuery_8hpp_source.html',''); i
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classNonTypedQuery.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="classNonTypedQuery.html">NonTypedQuery</a> {</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <a class="code hl_struct" href="structHeader.html">Header</a> _header;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        RequestType _requestType;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        std::array&lt;char, MAX_PAYLOAD_SIZE&gt; _fill;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('NonTypedQuery_8hpp_source.html',''); i
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keyword">explicit</span> <a class="code hl_class" href="classNonTypedQuery.html">NonTypedQuery</a>() :</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            _header(RequestType::NOTHING),</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            _requestType(RequestType::NOTHING),</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            _fill() {</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            std::fill(this-&gt;_fill.begin(), this-&gt;_fill.end(), 0);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        }</div>
@@ -123,19 +123,18 @@ $(document).ready(function(){initNavTree('NonTypedQuery_8hpp_source.html',''); i
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Payload&gt;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keyword">operator</span> <a class="code hl_class" href="classTypedQuery.html">TypedQuery&lt;Payload&gt;</a>();</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        [[nodiscard]] <a class="code hl_struct" href="structHeader.html">Header</a> getHeader()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordflow">return</span> this-&gt;_header;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        [[nodiscard]] RequestType getRequestType()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordflow">return</span> this-&gt;_requestType;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        }</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">void</span> setHeader(<a class="code hl_struct" href="structHeader.html">Header</a> header) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            this-&gt;_header = header;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">void</span> setRequestType(RequestType requestType) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            this-&gt;_requestType = requestType;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>} __attribute__((packed));</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &quot;NonTypedQuery.inl&quot;</span></div>
 <div class="ttc" id="aclassNonTypedQuery_html"><div class="ttname"><a href="classNonTypedQuery.html">NonTypedQuery</a></div><div class="ttdef"><b>Definition:</b> <a href="NonTypedQuery_8hpp_source.html#l00011">NonTypedQuery.hpp:11</a></div></div>
 <div class="ttc" id="aclassTypedQuery_html"><div class="ttname"><a href="classTypedQuery.html">TypedQuery</a></div><div class="ttdef"><b>Definition:</b> <a href="TypedQuery_8hpp_source.html#l00011">TypedQuery.hpp:11</a></div></div>
-<div class="ttc" id="astructHeader_html"><div class="ttname"><a href="structHeader.html">Header</a></div><div class="ttdef"><b>Definition:</b> <a href="Header_8hpp_source.html#l00012">Header.hpp:12</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -14,5 +14,6 @@ var searchData=
   ['componentnotfound_11',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
   ['config_12',['Config',['../classConfig.html',1,'']]],
   ['coordstruct_13',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['core_14',['Core',['../classCore.html',1,'']]]
+  ['core_14',['Core',['../classCore.html',1,'']]],
+  ['createentity_15',['CreateEntity',['../structCreateEntity.html',1,'']]]
 ];

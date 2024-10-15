@@ -100,6 +100,10 @@ $(document).ready(function(){initNavTree('classEntitySchematic.html',''); initRe
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa3a7e325f56c332f736e0b5e122c66dc"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySchematic.html#aa3a7e325f56c332f736e0b5e122c66dc">createPlayer</a> (int16_t startX, int16_t startY, int16_t screenWidth, int16_t screenHeight)</td></tr>
 <tr class="separator:aa3a7e325f56c332f736e0b5e122c66dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad537c7b9f3916fb7df73573d973940e0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySchematic.html#ad537c7b9f3916fb7df73573d973940e0">createTeamPlayer</a> (uint64_t id, int16_t x, int16_t y, int spriteID)</td></tr>
+<tr class="separator:ad537c7b9f3916fb7df73573d973940e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d11212cef06ed10f9052e99137ab2f9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySchematic.html#a1d11212cef06ed10f9052e99137ab2f9">createTeamPlayerClient</a> (uint64_t id, int16_t x, int16_t y, int spriteID)</td></tr>
+<tr class="separator:a1d11212cef06ed10f9052e99137ab2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a135e54c0bd361c0cd7e7d0a841747483"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySchematic.html#a135e54c0bd361c0cd7e7d0a841747483">createBullet</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;shooter)</td></tr>
 <tr class="separator:a135e54c0bd361c0cd7e7d0a841747483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36b0504451526d7e29a3c0184d337a6d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEntitySchematic.html#a36b0504451526d7e29a3c0184d337a6d">createExplosion</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;destroyed)</td></tr>
@@ -135,7 +139,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00017">17</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00049">49</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
 
 </div>
 </div>
@@ -203,7 +207,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00046">46</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00076">76</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
 
 </div>
 </div>
@@ -231,7 +235,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00032">32</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00063">63</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
 
 </div>
 </div>
@@ -282,6 +286,106 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00003">3</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad537c7b9f3916fb7df73573d973940e0" name="ad537c7b9f3916fb7df73573d973940e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad537c7b9f3916fb7df73573d973940e0">&#9670;&#160;</a></span>createTeamPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> EntitySchematic::createTeamPlayer </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>spriteID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00017">17</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a1d11212cef06ed10f9052e99137ab2f9" name="a1d11212cef06ed10f9052e99137ab2f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d11212cef06ed10f9052e99137ab2f9">&#9670;&#160;</a></span>createTeamPlayerClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> EntitySchematic::createTeamPlayerClient </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>spriteID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="EntitySchematic_8cpp_source.html#l00033">33</a> of file <a class="el" href="EntitySchematic_8cpp_source.html">EntitySchematic.cpp</a>.</p>
 
 </div>
 </div>
