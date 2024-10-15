@@ -67,120 +67,96 @@ var NAVTREE =
       [ "Methods", "md_docs_Client_WindowManager.html#autotoc_md34", null ],
       [ "Configuration", "md_docs_Client_WindowManager.html#autotoc_md35", null ]
     ] ],
-    [ "R-Type project: Comparative Study", "md_docs_ComparativeStudy.html", [
-      [ "1. Algorithms and Data Structures", "md_docs_ComparativeStudy.html#autotoc_md38", [
-        [ "1.1 Game Logic Algorithms", "md_docs_ComparativeStudy.html#autotoc_md39", [
-          [ "1.1.1 Collision Detection", "md_docs_ComparativeStudy.html#autotoc_md40", null ],
-          [ "1.1.2 Pathfinding", "md_docs_ComparativeStudy.html#autotoc_md41", null ]
-        ] ],
-        [ "1.2 Data Structures", "md_docs_ComparativeStudy.html#autotoc_md42", [
-          [ "1.2.1 Quadtrees", "md_docs_ComparativeStudy.html#autotoc_md43", null ],
-          [ "1.2.2 Entity-Component System (ECS)", "md_docs_ComparativeStudy.html#autotoc_md44", null ]
-        ] ]
+    [ "Comparative Study for the R-Type Project", "md_docs_ComparativeStudy.html", [
+      [ "Table of Contents", "md_docs_ComparativeStudy.html#autotoc_md37", [
+        [ "ECS vs. Object-Oriented Programming (OOP)", "md_docs_ComparativeStudy.html#autotoc_md39", null ],
+        [ "Graphics Library: SFML vs. SDL2", "md_docs_ComparativeStudy.html#autotoc_md41", null ],
+        [ "Networking Library: Boost.Asio vs. SFML Networking", "md_docs_ComparativeStudy.html#autotoc_md43", null ],
+        [ "Package Management with vcpkg and dependencies choice", "md_docs_ComparativeStudy.html#autotoc_md45", null ],
+        [ "Documentation with Markdown and Doxygen", "md_docs_ComparativeStudy.html#autotoc_md47", null ]
       ] ],
-      [ "2. Graphics Handling and Libraries", "md_docs_ComparativeStudy.html#autotoc_md46", [
-        [ "2.1 Graphics Libraries", "md_docs_ComparativeStudy.html#autotoc_md47", [
-          [ "2.1.1 SDL2 (Simple DirectMedia Layer)", "md_docs_ComparativeStudy.html#autotoc_md48", null ],
-          [ "2.1.2 SFML (Simple and Fast Multimedia Library)", "md_docs_ComparativeStudy.html#autotoc_md49", null ]
-        ] ],
-        [ "2.2 Rendering Techniques", "md_docs_ComparativeStudy.html#autotoc_md50", [
-          [ "2.2.1 Double Buffering", "md_docs_ComparativeStudy.html#autotoc_md51", null ]
-        ] ]
-      ] ],
-      [ "3. Networking Techniques", "md_docs_ComparativeStudy.html#autotoc_md53", [
-        [ "3.1 Sockets", "md_docs_ComparativeStudy.html#autotoc_md54", null ],
-        [ "3.2 Peer-to-Peer (P2P) vs Client-Server", "md_docs_ComparativeStudy.html#autotoc_md55", null ]
-      ] ],
-      [ "4. Storage Techniques", "md_docs_ComparativeStudy.html#autotoc_md57", [
-        [ "4.1 File-Based Storage", "md_docs_ComparativeStudy.html#autotoc_md58", null ],
-        [ "4.2 Persistent Storage for Multiplayer", "md_docs_ComparativeStudy.html#autotoc_md59", null ]
-      ] ],
-      [ "5. Security", "md_docs_ComparativeStudy.html#autotoc_md61", [
-        [ "5.1 Cheat Prevention", "md_docs_ComparativeStudy.html#autotoc_md62", null ],
-        [ "5.2 Data Encryption", "md_docs_ComparativeStudy.html#autotoc_md63", null ]
-      ] ],
-      [ "Conclusion", "md_docs_ComparativeStudy.html#autotoc_md65", null ]
+      [ "Development tools:", "md_docs_ComparativeStudy.html#autotoc_md49", null ]
     ] ],
     [ "Project Documentation", "md_docs_Developers.html", [
-      [ "Architecture", "md_docs_Developers.html#autotoc_md67", [
-        [ "Code Materialization", "md_docs_Developers.html#autotoc_md70", [
-          [ "Diagram", "md_docs_Developers.html#autotoc_md68", null ],
-          [ "Primary system and their roles", "md_docs_Developers.html#autotoc_md69", null ],
-          [ "Structure", "md_docs_Developers.html#autotoc_md71", null ]
+      [ "Architecture", "md_docs_Developers.html#autotoc_md52", [
+        [ "Code Materialization", "md_docs_Developers.html#autotoc_md55", [
+          [ "Diagram", "md_docs_Developers.html#autotoc_md53", null ],
+          [ "Primary system and their roles", "md_docs_Developers.html#autotoc_md54", null ],
+          [ "Structure", "md_docs_Developers.html#autotoc_md56", null ]
         ] ],
-        [ "How-to", "md_docs_Developers.html#autotoc_md72", [
-          [ "Add a new sprite", "md_docs_Developers.html#autotoc_md73", null ],
-          [ "Handle events", "md_docs_Developers.html#autotoc_md74", null ],
-          [ "Add a new ECS Component", "md_docs_Developers.html#autotoc_md75", null ]
+        [ "How-to", "md_docs_Developers.html#autotoc_md57", [
+          [ "Add a new sprite", "md_docs_Developers.html#autotoc_md58", null ],
+          [ "Handle events", "md_docs_Developers.html#autotoc_md59", null ],
+          [ "Add a new ECS Component", "md_docs_Developers.html#autotoc_md60", null ]
         ] ],
-        [ "Contribution Guidelines", "md_docs_Developers.html#autotoc_md76", [
-          [ "Coding Style", "md_docs_Developers.html#autotoc_md77", null ],
-          [ "Pull Request Process", "md_docs_Developers.html#autotoc_md78", null ],
-          [ "Naming Conventions", "md_docs_Developers.html#autotoc_md79", [
-            [ "Branches", "md_docs_Developers.html#autotoc_md80", null ],
-            [ "Commits", "md_docs_Developers.html#autotoc_md81", null ]
+        [ "Contribution Guidelines", "md_docs_Developers.html#autotoc_md61", [
+          [ "Coding Style", "md_docs_Developers.html#autotoc_md62", null ],
+          [ "Pull Request Process", "md_docs_Developers.html#autotoc_md63", null ],
+          [ "Naming Conventions", "md_docs_Developers.html#autotoc_md64", [
+            [ "Branches", "md_docs_Developers.html#autotoc_md65", null ],
+            [ "Commits", "md_docs_Developers.html#autotoc_md66", null ]
           ] ],
-          [ "CI/CD", "md_docs_Developers.html#autotoc_md82", null ],
-          [ "Linter and Formatter Usage", "md_docs_Developers.html#autotoc_md83", [
-            [ "Tools", "md_docs_Developers.html#autotoc_md84", null ],
-            [ "Usage", "md_docs_Developers.html#autotoc_md85", null ]
+          [ "CI/CD", "md_docs_Developers.html#autotoc_md67", null ],
+          [ "Linter and Formatter Usage", "md_docs_Developers.html#autotoc_md68", [
+            [ "Tools", "md_docs_Developers.html#autotoc_md69", null ],
+            [ "Usage", "md_docs_Developers.html#autotoc_md70", null ]
           ] ],
-          [ "Branching strategy", "md_docs_Developers.html#autotoc_md86", null ]
+          [ "Branching strategy", "md_docs_Developers.html#autotoc_md71", null ]
         ] ]
       ] ]
     ] ],
     [ "Config", "md_docs_Shared_Config.html", [
-      [ "JSON Example", "md_docs_Shared_Config.html#autotoc_md95", null ],
-      [ "Usage", "md_docs_Shared_Config.html#autotoc_md96", null ]
+      [ "JSON Example", "md_docs_Shared_Config.html#autotoc_md80", null ],
+      [ "Usage", "md_docs_Shared_Config.html#autotoc_md81", null ]
     ] ],
     [ "Contributing", "md_docs_Shared_Contributing.html", [
-      [ "How to Contribute", "md_docs_Shared_Contributing.html#autotoc_md98", null ],
-      [ "License", "md_docs_Shared_Contributing.html#autotoc_md99", null ],
-      [ "Have Fun!", "md_docs_Shared_Contributing.html#autotoc_md100", null ]
+      [ "How to Contribute", "md_docs_Shared_Contributing.html#autotoc_md83", null ],
+      [ "License", "md_docs_Shared_Contributing.html#autotoc_md84", null ],
+      [ "Have Fun!", "md_docs_Shared_Contributing.html#autotoc_md85", null ]
     ] ],
     [ "ECS", "md_docs_Shared_ECS.html", [
-      [ "Usage", "md_docs_Shared_ECS.html#autotoc_md102", null ],
-      [ "Factory", "md_docs_Shared_ECS.html#autotoc_md103", [
-        [ "Entity", "md_docs_Shared_ECS.html#autotoc_md104", null ],
-        [ "Registry", "md_docs_Shared_ECS.html#autotoc_md105", null ]
+      [ "Usage", "md_docs_Shared_ECS.html#autotoc_md87", null ],
+      [ "Factory", "md_docs_Shared_ECS.html#autotoc_md88", [
+        [ "Entity", "md_docs_Shared_ECS.html#autotoc_md89", null ],
+        [ "Registry", "md_docs_Shared_ECS.html#autotoc_md90", null ]
       ] ]
     ] ],
     [ "Level Factory", "md_docs_Shared_LevelFactory.html", [
-      [ "Usage", "md_docs_Shared_LevelFactory.html#autotoc_md107", [
-        [ "Arguments", "md_docs_Shared_LevelFactory.html#autotoc_md108", null ]
+      [ "Usage", "md_docs_Shared_LevelFactory.html#autotoc_md92", [
+        [ "Arguments", "md_docs_Shared_LevelFactory.html#autotoc_md93", null ]
       ] ],
-      [ "Path", "md_docs_Shared_LevelFactory.html#autotoc_md109", null ],
-      [ "Player", "md_docs_Shared_LevelFactory.html#autotoc_md110", null ],
-      [ "Minimal ID", "md_docs_Shared_LevelFactory.html#autotoc_md111", null ],
-      [ "Format", "md_docs_Shared_LevelFactory.html#autotoc_md112", null ]
+      [ "Path", "md_docs_Shared_LevelFactory.html#autotoc_md94", null ],
+      [ "Player", "md_docs_Shared_LevelFactory.html#autotoc_md95", null ],
+      [ "Minimal ID", "md_docs_Shared_LevelFactory.html#autotoc_md96", null ],
+      [ "Format", "md_docs_Shared_LevelFactory.html#autotoc_md97", null ]
     ] ],
     [ "Logger", "md_docs_Shared_Logger.html", [
-      [ "Usage", "md_docs_Shared_Logger.html#autotoc_md114", [
-        [ "Warning", "md_docs_Shared_Logger.html#autotoc_md115", null ],
-        [ "User log level", "md_docs_Shared_Logger.html#autotoc_md116", null ]
+      [ "Usage", "md_docs_Shared_Logger.html#autotoc_md99", [
+        [ "Warning", "md_docs_Shared_Logger.html#autotoc_md100", null ],
+        [ "User log level", "md_docs_Shared_Logger.html#autotoc_md101", null ]
       ] ]
     ] ],
     [ "How to handle 3rd party dependency ?", "md_docs_Shared_VCPKG.html", [
-      [ "Download and install VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md118", null ],
-      [ "Setup a project with VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md119", null ],
-      [ "Add dependencies with VCPKG (example with SFML)", "md_docs_Shared_VCPKG.html#autotoc_md120", null ],
-      [ "Build and run the project", "md_docs_Shared_VCPKG.html#autotoc_md121", [
-        [ "To create a debug build:", "md_docs_Shared_VCPKG.html#autotoc_md122", null ],
-        [ "To create a release build:", "md_docs_Shared_VCPKG.html#autotoc_md123", null ]
+      [ "Download and install VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md103", null ],
+      [ "Setup a project with VCPKG", "md_docs_Shared_VCPKG.html#autotoc_md104", null ],
+      [ "Add dependencies with VCPKG (example with SFML)", "md_docs_Shared_VCPKG.html#autotoc_md105", null ],
+      [ "Build and run the project", "md_docs_Shared_VCPKG.html#autotoc_md106", [
+        [ "To create a debug build:", "md_docs_Shared_VCPKG.html#autotoc_md107", null ],
+        [ "To create a release build:", "md_docs_Shared_VCPKG.html#autotoc_md108", null ]
       ] ]
     ] ],
     [ "pag_example", "pag_example.html", null ],
     [ "R-Type", "md_README.html", [
-      [ "Supported platforms", "md_README.html#autotoc_md125", null ],
-      [ "Requirements", "md_README.html#autotoc_md126", null ],
-      [ "Installation", "md_README.html#autotoc_md127", null ],
-      [ "Build", "md_README.html#autotoc_md128", [
-        [ "Debug", "md_README.html#autotoc_md129", null ],
-        [ "Release", "md_README.html#autotoc_md130", null ]
+      [ "Supported platforms", "md_README.html#autotoc_md110", null ],
+      [ "Requirements", "md_README.html#autotoc_md111", null ],
+      [ "Installation", "md_README.html#autotoc_md112", null ],
+      [ "Build", "md_README.html#autotoc_md113", [
+        [ "Debug", "md_README.html#autotoc_md114", null ],
+        [ "Release", "md_README.html#autotoc_md115", null ]
       ] ],
-      [ "Documentation", "md_README.html#autotoc_md131", null ],
-      [ "Authors", "md_README.html#autotoc_md132", null ],
-      [ "License", "md_README.html#autotoc_md133", null ]
+      [ "Documentation", "md_README.html#autotoc_md116", null ],
+      [ "Authors", "md_README.html#autotoc_md117", null ],
+      [ "License", "md_README.html#autotoc_md118", null ]
     ] ],
     [ "Bug List", "bug.html", null ],
     [ "Modules", "modules.html", "modules" ],
@@ -223,8 +199,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AI_8cpp_source.html",
-"dir_921c09d2ff088da8da8c30a2d4392e13.html",
-"structstd_1_1less_3_01network_1_1Client_01_4.html"
+"dir_921c09d2ff088da8da8c30a2d4392e13.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -12,11 +12,12 @@ var searchData=
   ['clock_9',['Clock',['../classClock.html',1,'']]],
   ['close_10',['close',['../structcmd_8h.html#ae152484c890a24e4d9b4980e7b965be0',1,'structcmd.h']]],
   ['collision_11',['Collision',['../structecs_1_1component_1_1Collision.html',1,'ecs::component']]],
-  ['component_12',['Component',['../structecs_1_1factory_1_1Component.html',1,'ecs::factory']]],
-  ['componentnotfound_13',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
-  ['config_14',['Config',['../classConfig.html',1,'Config'],['../md_docs_Shared_Config.html',1,'(Global Namespace)']]],
-  ['contributing_15',['Contributing',['../md_docs_Shared_Contributing.html',1,'']]],
-  ['coord_16',['Coord',['../restypedef_8cpp.html#a013489fb99c6a5b012db8ec66544a507',1,'restypedef.cpp']]],
-  ['coordstruct_17',['CoordStruct',['../structCoordStruct.html',1,'']]],
-  ['core_18',['Core',['../classCore.html',1,'']]]
+  ['comparative_20study_20for_20the_20r_2dtype_20project_12',['Comparative Study for the R-Type Project',['../md_docs_ComparativeStudy.html',1,'']]],
+  ['component_13',['Component',['../structecs_1_1factory_1_1Component.html',1,'ecs::factory']]],
+  ['componentnotfound_14',['ComponentNotFound',['../classecs_1_1Registry_1_1ComponentNotFound.html',1,'ecs::Registry']]],
+  ['config_15',['Config',['../classConfig.html',1,'Config'],['../md_docs_Shared_Config.html',1,'(Global Namespace)']]],
+  ['contributing_16',['Contributing',['../md_docs_Shared_Contributing.html',1,'']]],
+  ['coord_17',['Coord',['../restypedef_8cpp.html#a013489fb99c6a5b012db8ec66544a507',1,'restypedef.cpp']]],
+  ['coordstruct_18',['CoordStruct',['../structCoordStruct.html',1,'']]],
+  ['core_19',['Core',['../classCore.html',1,'']]]
 ];

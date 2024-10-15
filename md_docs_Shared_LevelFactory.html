@@ -95,7 +95,7 @@ $(document).ready(function(){initNavTree('md_docs_Shared_LevelFactory.html','');
 <div class="contents">
 <div class="textblock"><p>The level factory is a static class that help generating the entity in a Registry.<br  />
  It is used to create the level, the player, the enemies, the items, the obstacles, etc...</p>
-<h1><a class="anchor" id="autotoc_md107"></a>
+<h1><a class="anchor" id="autotoc_md92"></a>
 Usage</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;Factories/LevelFactory.hpp&quot;</span></div>
 <div class="line"> </div>
@@ -103,26 +103,26 @@ Usage</h1>
 <div class="line"> </div>
 <div class="line">ecs::factory::LevelFactory::load(_registry, {width, height}, <span class="stringliteral">&quot;shared/Scenarios/level_1.cfg&quot;</span>);</div>
 <div class="ttc" id="aclassecs_1_1Registry_html"><div class="ttname"><a href="classecs_1_1Registry.html">ecs::Registry</a></div><div class="ttdef"><b>Definition:</b> <a href="Registry_8hpp_source.html#l00019">Registry.hpp:19</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md108"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md93"></a>
 Arguments</h2>
 <ul>
 <li>{width, height}: The size of the screen.</li>
 <li>"shared/Scenarios/level_1.cfg": The path to the configuration file.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md109"></a>
+<h1><a class="anchor" id="autotoc_md94"></a>
 Path</h1>
 <p>You can use the <code>getScenarioPath()</code> function to get the path of the scenario.</p>
 <div class="fragment"><div class="line">ecs::factory::LevelFactory::load({width, height}, ecs::factory::getScenarioPath(1));</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md110"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md95"></a>
 Player</h1>
 <p>The player entity <b>SHOULD NOT</b> be created in the scenario, it should be created directly by the client and/or the server.</p>
 <p>Client side, the player will always have the id 0.</p>
 <p>The server will handle player with its own id.</p>
-<h1><a class="anchor" id="autotoc_md111"></a>
+<h1><a class="anchor" id="autotoc_md96"></a>
 Minimal ID</h1>
 <p>In the scenario configuration, <b>DO NOT</b> put and id lower than 10.<br  />
  Entities with an id lower than 10 are reserved for the engine and will be ignored.</p>
-<h1><a class="anchor" id="autotoc_md112"></a>
+<h1><a class="anchor" id="autotoc_md97"></a>
 Format</h1>
 <p><a class="el" href="classA.html">A</a> level is defined in a configuration file with the following format:</p>
 <div class="fragment"><div class="line">entities = (</div>

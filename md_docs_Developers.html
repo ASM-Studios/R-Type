@@ -93,9 +93,9 @@ $(document).ready(function(){initNavTree('md_docs_Developers.html',''); initResi
   <div class="headertitle"><div class="title">Project Documentation </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md67"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md52"></a>
 Architecture</h1>
-<h3><a class="anchor" id="autotoc_md68"></a>
+<h3><a class="anchor" id="autotoc_md53"></a>
 Diagram</h3>
 <div class="fragment"><div class="line">graph TD</div>
 <div class="line">    subgraph client</div>
@@ -145,7 +145,7 @@ Diagram</h3>
 <div class="line">    </div>
 <div class="line">    L --&gt;|Contains| M</div>
 <div class="line">    L --&gt;|Contains| N</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md69"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md54"></a>
 Primary system and their roles</h3>
 <ol type="1">
 <li><b>WindowManager</b>: Manages the main game window, handles events, and updates the game state.</li>
@@ -153,9 +153,9 @@ Primary system and their roles</h3>
 <li><b>MusicManager</b>: Manages background music and sound effects, including volume control and muting.</li>
 <li><b>ECS (Entity-Component-System)</b>: Manages game entities and their components, handles game logic and updates.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md70"></a>
+<h2><a class="anchor" id="autotoc_md55"></a>
 Code Materialization</h2>
-<h3><a class="anchor" id="autotoc_md71"></a>
+<h3><a class="anchor" id="autotoc_md56"></a>
 Structure</h3>
 <ul>
 <li>client/src: Contains the client-side code.</li>
@@ -164,28 +164,28 @@ Structure</h3>
 <li>docs: Contains the project documentation.</li>
 <li>assets: Contains the project assets (images, sounds, etc.) and their configuration files.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md72"></a>
+<h2><a class="anchor" id="autotoc_md57"></a>
 How-to</h2>
-<h3><a class="anchor" id="autotoc_md73"></a>
+<h3><a class="anchor" id="autotoc_md58"></a>
 Add a new sprite</h3>
 <ol type="1">
 <li>Add the sprite image to the assets folder.</li>
 <li>Add the sprite configuration to the sprites_config.cfg file.</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md74"></a>
+<h3><a class="anchor" id="autotoc_md59"></a>
 Handle events</h3>
 <ol type="1">
 <li>Create an event entry in the <code>_eventsHandler</code> method in <a class="el" href="WindowManager_8cpp_source.html">WindowManager.cpp</a></li>
 <li>Add the event handling logic in the <code>_handleEvent</code> method in <a class="el" href="WindowManager_8cpp_source.html">WindowManager.cpp</a></li>
 </ol>
-<h3><a class="anchor" id="autotoc_md75"></a>
+<h3><a class="anchor" id="autotoc_md60"></a>
 Add a new ECS Component</h3>
 <ol type="1">
 <li>Create a new structure in the shared/ECS/ folder.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md76"></a>
+<h2><a class="anchor" id="autotoc_md61"></a>
 Contribution Guidelines</h2>
-<h3><a class="anchor" id="autotoc_md77"></a>
+<h3><a class="anchor" id="autotoc_md62"></a>
 Coding Style</h3>
 <ul>
 <li>Use the clang-tidy tool to ensure code quality.</li>
@@ -193,7 +193,7 @@ Coding Style</h3>
 <li>Write clear and concise docstring comments when necessary.</li>
 <li>Create usage documentation for new features in the docs folder.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md78"></a>
+<h3><a class="anchor" id="autotoc_md63"></a>
 Pull Request Process</h3>
 <ol type="1">
 <li>Create a new branch for your feature or bug fix, starting from <code>dev</code>.</li>
@@ -202,14 +202,14 @@ Pull Request Process</h3>
 <li>Create a pull request from your branch to the <code>dev</code> branch.</li>
 <li>Wait for the code review and address any comments or feedback.</li>
 </ol>
-<h3><a class="anchor" id="autotoc_md79"></a>
+<h3><a class="anchor" id="autotoc_md64"></a>
 Naming Conventions</h3>
-<h4><a class="anchor" id="autotoc_md80"></a>
+<h4><a class="anchor" id="autotoc_md65"></a>
 Branches</h4>
 <p>use the following naming convention for branches:</p>
 <p>&lt;triggram&gt;/&lt;branch-name&gt;</p>
 <p>example: <code>mra/feature-branch</code></p>
-<h4><a class="anchor" id="autotoc_md81"></a>
+<h4><a class="anchor" id="autotoc_md66"></a>
 Commits</h4>
 <p>use the following naming convention for commits:</p>
 <p>&lt;type&gt;(scope): </p>
@@ -226,28 +226,28 @@ Commits</h4>
 <li>ci: changes to CI/CD configuration</li>
 <li>wip: work in progress (for temporary commits)</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md82"></a>
+<h3><a class="anchor" id="autotoc_md67"></a>
 CI/CD</h3>
 <p>The project uses GitHub Actions for continuous integration and deployment. The CI/CD pipeline runs on every push to the repository and checks the code quality, runs the tests, and builds the project.</p>
 <ul>
 <li>Check the compilation status.</li>
 <li>Create a release on the GitHub repository.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md83"></a>
+<h3><a class="anchor" id="autotoc_md68"></a>
 Linter and Formatter Usage</h3>
-<h4><a class="anchor" id="autotoc_md84"></a>
+<h4><a class="anchor" id="autotoc_md69"></a>
 Tools</h4>
 <ul>
 <li>clang-tidy: Used for static code analysis.</li>
 <li>clang-format: Used for code formatting.</li>
 </ul>
-<h4><a class="anchor" id="autotoc_md85"></a>
+<h4><a class="anchor" id="autotoc_md70"></a>
 Usage</h4>
 <ul>
 <li>Run clang-tidy to analyze the code for potential issues.</li>
 <li>Run clang-format to format the code according to the project's style guidelines.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md86"></a>
+<h3><a class="anchor" id="autotoc_md71"></a>
 Branching strategy</h3>
 <ul>
 <li>Use <code>master</code> for stable releases.</li>
