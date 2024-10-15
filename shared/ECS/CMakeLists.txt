@@ -9,10 +9,10 @@ set(SOURCE_FILE src/Registry.cpp
     src/Entity.cpp
     src/Position.cpp
     src/Sprite.cpp
-    src/AI.cpp
     src/Factories/LevelFactory.cpp
-        src/Collision.cpp
+    src/Collision.cpp
+    src/Behavior.cpp
 )
 
 add_library(ECS ${SOURCE_FILE})
-target_link_libraries(ECS Texture)
+target_link_libraries(ECS GameLogic Texture)

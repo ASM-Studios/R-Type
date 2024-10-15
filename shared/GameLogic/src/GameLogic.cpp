@@ -23,6 +23,11 @@ GameLogic::GameLogic(GameLogicMode mode) :
     TextureLoader::getInstance().loadTextures("ships", TextureLoader::Type::SHIP);
     TextureLoader::getInstance().loadTextures("explosions", TextureLoader::Type::EXPLOSION);
     Logger::log(LogLevel::INFO, std::format("{0} textures have been loaded", TextureLoader::getInstance().getNoTexture()));
+
+    auto &factory = ecs::factory::LevelFactory::getInstance();
+    int const width = std::stoi(config.get("width").value_or("1920"));
+    int const height = std::stoi(config.get("height").value_or("1080"));
+    factory.load({width, height}, ecs::factory::getScenarioPath(1));
 }
 
 void GameLogic::start() {
@@ -45,7 +50,7 @@ void GameLogic::updateTimed() {
     float const deltaTime = std::chrono::duration<float>(cur - prevTime).count();
     prevTime = cur;
     tmp += deltaTime;
-
+    _totalTime += deltaTime;
     if (tmp >= _timePerTick) {
         this->update();
         tmp -= _timePerTick;
@@ -70,6 +75,8 @@ void GameLogic::update() {
         this->server(entity);
         this->client(entity);
     }
+    auto & factory = ecs::factory::LevelFactory::getInstance();
+    factory.updateEntities(_totalTime);
 }
 
 void GameLogic::client(ecs::Entity entity) {
@@ -83,6 +90,8 @@ void GameLogic::client(ecs::Entity entity) {
     if (registry.contains<ecs::component::Animation>(entity) && registry.contains<ecs::component::Sprite>(entity)) {
         this->updateAnimation(entity);
     }
+    auto & factory = ecs::factory::LevelFactory::getInstance();
+    factory.updateEntities(_totalTime);
 }
 
 void GameLogic::sendInput(ecs::Entity entity) {
