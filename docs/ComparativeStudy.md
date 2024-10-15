@@ -1,170 +1,82 @@
-# R-Type project: Comparative Study
+# Comparative Study for the R-Type Project
 
-In the R-Type project, we aim to recreate the classic R-Type game in a multiplayer version. This project focuses on
-both the client and server sides, with an emphasis on the network part. The server will be developed as a game engine,
-and the client will be a simple game client. The project is written entirely in C++.
-
-This comparative study evaluates various technologies and techniques that could be used in the development of the R-Type
-game. We compare different algorithms, data structures, graphics handling libraries, networking techniques, storage
-methods, and security measures to determine the best choices for the project.
-
----
-
-# 1. Algorithms and Data Structures
-
-In a game like **R-Type**, performance is critical, so the choice of algorithms and data structures must balance
-efficiency with simplicity. Here's how algorithms and data structures play a role:
-
-## 1.1 Game Logic Algorithms
-
-### 1.1.1 Collision Detection
-- Axis-Aligned Bounding Box (AABB): For 2D collision detection, AABB is efficient and widely used in games
-like R-Type. It’s a simple algorithm that checks for overlaps between rectangular bounding boxes, which is suitable
-for the type of objects (spaceships, projectiles, enemies) typically found in R-Type.
-
-- Comparison: AABB is preferred over more complex collision detection methods (e.g., Separating Axis Theorem or
-pixel-perfect collision detection) due to its simplicity and performance benefits in a fast-paced game. AABB can be
-combined with spatial partitioning techniques for better scalability in levels with many entities.
-
-### 1.1.2 Pathfinding
-- A\* Algorithm: If enemy AI has complex movement patterns (e.g., enemies following the player or avoiding
-obstacles), the A* algorithm would be ideal. A* is a popular choice for pathfinding in games because it combines
-the efficiency of Dijkstra’s algorithm with heuristics, making it faster and more targeted.
-
-- Comparison: While simpler pathfinding algorithms like BFS could be used for uniform, grid-based levels, A*
-allows for more intelligent behavior, though it’s more computationally expensive.
-
-## 1.2 Data Structures
-
-### 1.2.1 Quadtrees
-- Quadtree: Used for partitioning the 2D space of the game world. It divides the game area into smaller regions,
-allowing efficient queries about which objects are near each other. This is critical for optimizing collision detection
-and rendering, as only nearby objects need to be checked for interactions.
-
-  Comparison: Quadtrees are far more efficient for large, open game areas than brute-force collision checks. They
-offer better scalability than simple list-based approaches when many entities are present.
-
-### 1.2.2 Entity-Component System (ECS)
-- ECS: An Entity-Component System is a design pattern widely used in game development. It allows for
-flexibility by decoupling entity behavior (e.g., player, enemies, power-ups) from the actual objects. This makes it
-easier to add or modify behaviors without rewriting large parts of the game engine.
-- OOP: In contrast, Object-Oriented Programming (OOP) would involve deep inheritance hierarchies but could be
-faster to implement for simpler games.
-
-  Comparison: OOP is prefered for simpler games with fewer entities and behaviors, while ECS is more scalable
-and maintainable for complex games.
+## Table of Contents
+- [Entity-Component-System (ECS) vs. Object-Oriented Programming (OOP)](#ecs-vs-object-oriented-programming-oop)
+- [Graphics Library: SFML vs. SDL2](#graphics-library-sfml-vs-sdl2)
+- [Networking Library: Boost.Asio vs. SFML Networking](#networking-library-boostasio-vs-sfml-networking)
+- [Package Management with vcpkg and dependencies choice](#package-management-with-vcpkg-and-dependencies-choice)
+- [Documentation with Markdown and Doxygen](#documentation-with-markdown-and-doxygen)
+- [Development Tools](#development-tools)
 
 ---
 
-# 2. Graphics Handling and Libraries
+### ECS vs. Object-Oriented Programming (OOP)
+The **Entity-Component-System (ECS)** architecture was selected over traditional OOP because:
 
-The visual elements are central to R-Type's appeal. The choice of graphics libraries influences performance,
-rendering quality, and ease of use.
+- **Separation of Concerns**: ECS separates data (components) from behavior (systems), providing flexibility and scalability. This makes managing complex systems easier as data and behavior are not bundled together as in OOP.
+- **Dynamic Composition**: ECS allows dynamic changes to an entity’s behavior by adding or removing components, unlike OOP where inheritance can lead to rigid, hard-to-modify hierarchies.
+- **Performance Benefits**: ECS’s data-oriented approach promotes better cache usage and reduces the overhead of object-oriented structures. This is particularly useful in gaming environments with many active entities.
 
-## 2.1 Graphics Libraries
+Research suggests that while OOP focuses on the behavior and attributes of individual entities, ECS focuses on the data these entities represent, which can be more efficient and flexible for game development.
 
-### 2.1.1 SDL2 (Simple DirectMedia Layer)
-- SDL2: SDL2 is a cross-platform graphics library that simplifies handling 2D graphics, sound, and input.
-For a 2D shooter like R-Type, SDL2 offers efficient rendering and input handling, making it a popular choice
-for retro-style games.
-
-  Comparison: SDL2 is lightweight compared to more feature-heavy libraries like Unity or Unreal Engine.
-It provides enough functionality for 2D games without unnecessary overhead, making it perfect for R-Type.
-SDL also supports hardware acceleration via OpenGL or Direct3D.
-
-### 2.1.2 SFML (Simple and Fast Multimedia Library)
-- SFML: Another 2D-focused library similar to SDL but with a slightly more user-friendly API. It supports
-window management, rendering, and multimedia (sound and input).
-
-  Comparison: While SFML has a simpler API and might be easier to learn, SDL2 is more widely used in the game
-development community, meaning it has more support and third-party tools.
-
-## 2.2 Rendering Techniques
-
-### 2.2.1 Double Buffering
-- Double Buffering: Essential for smooth gameplay. Double buffering ensures that the screen isn’t redrawn
-mid-frame, which prevents visual tearing.
-
-  Comparison: Single buffering could cause flickering or screen tearing, which would ruin the experience
-in a fast-paced game like R-Type. Triple buffering is an alternative but consumes more memory and isn’t necessary
-for most 2D games.
+Sources:
+- [flamendless.github.io: ecs-vs-oop](https://flamendless.github.io/ecs-vs-oop/)
+- [theknowledgeacademy.com: entity-component-system](https://www.theknowledgeacademy.com/blog/entity-component-system/).
 
 ---
 
-# 3. Networking Techniques
+### Graphics Library: SFML vs. SDL2
+We compared **SFML** and **SDL2** before choosing SFML for our project. Here’s a feature comparison:
 
-For multiplayer or co-op versions of R-Type, networking plays a vital role. Here's how networking technologies
-were evaluated:
+| Feature               | SFML                                       | SDL2                                                 |
+|-----------------------|--------------------------------------------|------------------------------------------------------|
+| **Ease of Use**       | Simple, high-level API, quick setup        | Requires more setup and boilerplate                  |
+| **Graphics Handling** | High-level 2D graphics API, OpenGL support | More low-level control but harder to set up OpenGL   |
+| **Audio**             | Integrated, easy-to-use audio support      | Requires **SDL\_mixer** for advanced audio features  |
+| **Networking**        | Built-in support for TCP/UDP               | No built-in networking; third-party libraries needed |
+| **Platform Support**  | Cross-platform, but not as lightweight     | Very lightweight, optimized for performance          |
 
-## 3.1 Sockets
-- TCP vs UDP: For real-time multiplayer gaming, UDP (User Datagram Protocol) is usually favored because it is
-faster and doesn’t require acknowledgment of packet receipt, which reduces latency. However, since UDP doesn’t
-guarantee packet delivery, it requires additional logic for critical data (e.g., player positions) to ensure
-synchronization.
-
-  Comparison: TCP is more reliable but can introduce delays due to the acknowledgment of packets, making it
-unsuitable for real-time games. UDP is preferred for its speed, with custom-built reliability for key actions
-like joining or leaving a game.
-
-## 3.2 Peer-to-Peer (P2P) vs Client-Server
-- Client-Server Model: Chosen for its simplicity in managing game state and preventing cheating in multiplayer
-scenarios. The server holds the authoritative game state, and clients send inputs, which the server processes
-and broadcasts back.
-
-  Comparison: While P2P networking could reduce server load, it is more complex and prone to synchronization
-issues. For a game like R-Type, where predictability and synchronization are crucial, the client-server model offers
-better control over the game state and prevents cheating.
+SFML was chosen because it provides a more streamlined development experience, especially for 2D games like R-Type. Its built-in support for graphics, audio, and networking saves time compared to SDL2, which often requires external libraries like SDL_mixer for advanced audio and third-party solutions for networking  .
 
 ---
 
-# 4. Storage Techniques
+### Networking Library: Boost.Asio vs. SFML Networking
+We chose **Boost.Asio** over **SFML’s networking** for several reasons:
 
-For an R-Type game, storage is less about large databases and more about configuration, user progress, and multiplayer
-session data.
+1. **Asynchronous I/O**: Boost.Asio offers robust asynchronous communication, which is crucial for handling real-time multiplayer interactions without blocking the game’s main thread. SFML’s networking, in contrast, is largely synchronous, which can cause performance issues in real-time games.
+2. **Scalability and Multithreading**: Boost.Asio excels in managing multiple connections concurrently and efficiently supports multithreaded applications. This is vital for multiplayer games with a large number of players, while SFML’s simpler networking tools are less suited for scaling.
+3. **Advanced Control**: Boost.Asio provides more control over low-level networking operations, allowing for custom protocols and advanced optimizations, which SFML lacks.
 
-## 4.1 File-Based Storage
-- JSON/XML for Configuration: JSON is lightweight and human-readable, making it ideal for storing game settings,
-- high scores, and level configurations. It’s easy to parse and modify, which is useful during the development phase.
-
-  Comparison: JSON is more modern and lightweight compared to XML, which tends to be verbose. Binary formats could
-- be used for faster loading but at the cost of readability.
-
-## 4.2 Persistent Storage for Multiplayer
-- SQLite: A small, serverless SQL database that can be used for storing user progress, high scores, and matchmaking
-- data. For a game like R-Type, SQLite offers sufficient performance without the complexity of setting up a full
-- database server.
-
-  Comparison: While more scalable solutions like MySQL/PostgreSQL could be used, they are unnecessary for small
-- games with lightweight storage needs. SQLite is more appropriate for single-user settings or small-scale multiplayer.
+In summary, **Boost.Asio** offers the performance, flexibility, and scalability needed for a high-performance multiplayer game, which SFML’s built-in networking cannot match.
 
 ---
 
-# 5. Security
+### Package Management with vcpkg and dependencies choice
+We selected **vcpkg** as our package manager because it simplifies cross-platform dependency management on Windows and Linux. It allows the project to easily integrate and manage external libraries across different environments, reducing the configuration burden on developers. The key dependencies managed via vcpkg include:
 
-Security in game development focuses on data integrity, preventing cheating, and securing multiplayer interactions.
-
-## 5.1 Cheat Prevention
-- Server-Side Validation: In multiplayer games, all critical game logic (e.g., movement, collision, and scoring)
-- is validated server-side to prevent cheating. This ensures that any input from the client is verified by the server
-- before being applied to the game state.
-
-  Comparison: Client-side validation is faster but prone to exploitation through client modification, which is why
-- server-side validation is essential in multiplayer scenarios.
-
-## 5.2 Data Encryption
-- TLS for Data Transmission: All data transmitted between the client and server, especially in multiplayer games,
-- should be encrypted using TLS (Transport Layer Security) to prevent man-in-the-middle attacks and tampering with
-- game data.
-
-  Comparison: Plaintext transmission is faster but highly insecure. In modern games, even fast-paced ones like
-- R-Type, the slight overhead of encryption is worth the security benefits.
+- **Boost**: A versatile library offering utility features like json parser or non-standard library algorithms, which are usefully to speed up the project development.
+- **libconfig**: Provides an easy-to-use API for managing game settings through configuration files, crucial for offering flexible and customizable game configurations.
+- **libpng**: Ensures efficient handling of PNG images, which are commonly used for game assets due to their lossless compression.
+- **SFML**: Chosen for its simplicity and cohesive APIs for graphics, audio, and networking, SFML significantly accelerates game development, making it easier to prototype and build game features.
 
 ---
 
-# Conclusion
+### Documentation with Markdown and Doxygen
+We use **Markdown** in combination with **Doxygen** for our documentation strategy to ensure simplicity, consistency, and accessibility:
 
-The choice of technologies for the R-Type project is centered around performance, security, and maintainability.
-SDL2 for graphics, UDP for networking, and AABB for collision detection are all chosen for their balance
-between simplicity and performance. On the storage front, SQLite and JSON provide lightweight, easy-to-use
-solutions for small datasets, and server-side validation ensures security against cheating. These technologies were
-selected based on their suitability for a fast-paced 2D game with both single-player and multiplayer components.
+- **Markdown** provides a lightweight syntax, allowing all team members to contribute to documentation without a steep learning curve.
+- **Doxygen** enables automatic generation of documentation from source code comments, keeping the documentation in sync with the codebase.
+- **GitHub Pages** is used to host the Doxygen-generated documentation, making it easily accessible to the team and the public. This combination ensures that documentation remains up to date and easy to maintain as the project grows.
+
+---
+
+## Development tools:
+
+The project uses `clang-tidy` to enforce coding standards for local development. We also use **GitHub Actions** to implement CI/CD pipelines, which helps automate critical parts of the development process:
+- **Cross-Platform Compilation**: The pipeline automatically checks that the project compiles correctly on both Windows and Linux, ensuring cross-platform compatibility.
+- **Automatic Release Creation**: Upon successful builds, the pipeline generates release zip files for both Windows and Linux, simplifying the release process.
+- **Documentation Deployment**: The pipeline automatically generates and deploys Doxygen documentation to GitHub Pages, ensuring up-to-date project documentation.
+
+---
+
+By leveraging ECS architecture, streamlined dependency management with vcpkg, a well-organized codebase, and robust CI/CD processes, the R-Type project is set up for scalable, maintainable development, ensuring a polished multiplayer game experience.
