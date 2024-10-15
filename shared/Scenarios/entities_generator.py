@@ -1,24 +1,34 @@
 import os
 import random
 import sys
+import time
 
 def generate_entities_cfg(file_name, num_entities):
     behaviors = ["classic", "sinusoidal", "zig-zag"]
     sprite_ids = [14, 15, 16]
     entities = []
     delay_time = 1.0
+    random.seed(time.time())
+    round_size = random.randint(4, 8)
+    n = 0
 
     for i in range(num_entities):
+        print(n, round_size)
+        if n > round_size:
+            n = 0
+            delay_time += 5
+            round_size += random.randint(1, 5)
         entity = {
             "name": "enemy",
             "id": i + 11,
-            "delay_time": delay_time,
+            "delay_time": round(delay_time, 2),
             "components": [
                 {"type": "Position"},
                 {"type": "Sprite", "spriteID": sprite_ids[i % len(sprite_ids)], "stateID": 0},
                 {"type": "Behavior", "model": behaviors[i % len(behaviors)]}
             ]
         }
+        n += 1
         entities.append(entity)
         delay_time += 1.0
 
