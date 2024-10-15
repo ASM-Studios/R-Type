@@ -3,6 +3,6 @@
 
 namespace ecs::component {
     struct Behavior {
-        std::function<void (const ecs::Entity entity, float timePerTick)>func;
+            std::function<void(const ecs::Entity entity, float timePerTick)> func;
     };
 }

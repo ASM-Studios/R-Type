@@ -27,7 +27,7 @@ namespace network {
 
     void QueryHandler::executeQuery(std::pair<Client, RawRequest> query) {
         auto worker = std::make_shared<Worker>(query);
-        this->_workers.emplace_back(worker);
+        this->_workers.push_back(worker);
     }
 
     void QueryHandler::executeQueries() {
@@ -43,7 +43,6 @@ namespace network {
         for (auto it = this->_workers.begin(); it != this->_workers.end();) {
             auto worker = *it;
             if (worker->isReady()) {
-                Logger::log(LogLevel::INFO, "End of worker");
                 worker->join();
                 it = this->_workers.erase(it);
             } else {

@@ -1,4 +1,5 @@
 #include "RegistryManager.hpp"
+#include "Logger.hpp"
 #include <mutex>
 
 namespace ecs {

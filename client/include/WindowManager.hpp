@@ -15,6 +15,8 @@
 #include "Factories/LevelFactory.hpp"
 #include "GameLogic.hpp"
 #include "socket/Server.hpp"
+#include "BehaviorFunc.hpp"
+#include "socket/ServerManager.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/arial.ttf";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -49,7 +51,6 @@ namespace GUI {
             SpriteManager _spriteManager;
             MusicManager _musicManager;
             sf::Font _font;
-            network::socket::udp::Server _server;
             std::string _hostname;
             std::size_t _port;
             std::string _currentBackground = MAIN_MENU_BACKGROUND;
@@ -86,13 +87,15 @@ namespace GUI {
             void _pauseMenuInit();
 
             void send(const RawRequest& request) {
-                _server.send(_hostname, _port, request);
+                network::socket::udp::ServerManager::getInstance().getServer().send(_hostname, _port, request);
+            network::socket::udp::Server _server;
             }
 
         public:
             WindowManager();
             ~WindowManager() = default;
 
+            void readServer();
             void run();
 
             void setGameState(const gameState state) {

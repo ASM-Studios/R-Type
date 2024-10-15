@@ -2,11 +2,11 @@
 #include "Registry.hpp"
 
 namespace ecs {
-    Entity::Entity(const std::size_t id, Registry& registry) :
+    Entity::Entity(uint64_t id, Registry& registry) :
         _id(id),
         _registry(std::ref(registry)) {}
 
-    [[nodiscard]] std::size_t Entity::getID() const {
+    [[nodiscard]] uint64_t Entity::getID() const {
         return this->_id;
     }
 

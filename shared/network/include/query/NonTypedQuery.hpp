@@ -10,7 +10,7 @@ class TypedQuery;
 
 class NonTypedQuery {
     private:
-        Header _header;
+        RequestType _requestType;
         std::array<char, MAX_PAYLOAD_SIZE> _fill;
 
         template <typename T>
@@ -18,7 +18,7 @@ class NonTypedQuery {
 
     public:
         explicit NonTypedQuery() :
-            _header(RequestType::NOTHING),
+            _requestType(RequestType::NOTHING),
             _fill() {
             std::fill(this->_fill.begin(), this->_fill.end(), 0);
         }
@@ -28,13 +28,13 @@ class NonTypedQuery {
         template <typename Payload>
         operator TypedQuery<Payload>();
 
-        [[nodiscard]] Header getHeader() const {
-            return this->_header;
+        [[nodiscard]] RequestType getRequestType() const {
+            return this->_requestType;
         }
 
-        void setHeader(Header header) {
-            this->_header = header;
+        void setRequestType(RequestType requestType) {
+            this->_requestType = requestType;
         }
-} __attribute__((packed));
+};
 
 #include "NonTypedQuery.inl"

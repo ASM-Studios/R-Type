@@ -1,10 +1,19 @@
 #include "GameLogic.hpp"
 #include "Collision.hpp"
+#include "Input.hpp"
+#include "Position.hpp"
+#include "RegistryManager.hpp"
+#include "query/Payloads.hpp"
+#include "query/RawRequest.hpp"
+#include "query/TypedQuery.hpp"
+#include "socket/ServerManager.hpp"
+#include <algorithm>
 
-GameLogic::GameLogic()
-    : _timePerTick(1.0F / 60.0f) // Default values
+GameLogic::GameLogic(GameLogicMode mode) :
+    _mode(mode),
+    _timePerTick(1.0F / 60.0f) // Default values,
 {
-    const Config& config = Config::getInstance("client/config.json");
+    const Config& config = Config::getInstance("server/config.json");
     int _tps = std::stoi(config.get("tps").value_or("60"));
     _timePerTick = 1.0F / static_cast<float>(_tps);
     TextureLoader::getInstance().loadFile("assets/textures_config.cfg");
@@ -16,8 +25,18 @@ GameLogic::GameLogic()
     Logger::log(LogLevel::INFO, std::format("{0} textures have been loaded", TextureLoader::getInstance().getNoTexture()));
 }
 
-void GameLogic::updateTimed()
-{
+void GameLogic::start() {
+    this->_isRunning = true;
+}
+
+void GameLogic::stop() {
+    this->_isRunning = false;
+}
+
+void GameLogic::updateTimed() {
+    if (!this->_isRunning) {
+        return;
+    }
     using clock = std::chrono::steady_clock;
     static auto prevTime = clock::now();
     static float tmp = 0.0F;
@@ -41,22 +60,44 @@ void GameLogic::updateTimed()
 
 void GameLogic::update() {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    for (const auto& entity : registry.getEntities()) {
-        if (registry.contains<ecs::component::Animation>(entity) &&
-            registry.contains<ecs::component::Sprite>(entity)) {
-            updateAnimation(entity);
-        }
+    for (const auto& entity: registry.getEntities()) {
         if (registry.contains<ecs::component::Behavior>(entity)) {
             registry.getComponent<ecs::component::Behavior>(entity).func(entity, _timePerTick);
         }
-        if (registry.contains<ecs::component::Collision>(entity)) {
+        if (this->_mode == CLIENT && registry.contains<ecs::component::Collision>(entity)) {
             registry.getComponent<ecs::component::Collision>(entity).checkCollision(entity);
         }
+        this->server(entity);
+        this->client(entity);
     }
 }
 
-void GameLogic::updateAnimation (const ecs::Entity& entity)
-{
+void GameLogic::client(ecs::Entity entity) {
+    if (this->_mode != CLIENT) {
+        return;
+    }
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    if (registry.contains<ecs::component::Input>(entity)) {
+        this->sendInput(entity);
+    }
+    if (registry.contains<ecs::component::Animation>(entity) && registry.contains<ecs::component::Sprite>(entity)) {
+        this->updateAnimation(entity);
+    }
+}
+
+void GameLogic::sendInput(ecs::Entity entity) {
+    const Config& config = Config::getInstance("server/config.json");
+    std::string hostname = config.get("hostname").value_or("127.0.0.1");
+    int port = std::stoi(config.get("port").value_or("8080"));
+    auto input = ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Input>(entity);
+    if (input.inputFlags == input.oldInputFlags) {
+        return;
+    }
+    TypedQuery<ecs::component::Input> typedQuery(RequestType::INPUT, input);
+    network::socket::udp::ServerManager::getInstance().getServer().send(hostname, port, RawRequest(typedQuery));
+}
+
+void GameLogic::updateAnimation(const ecs::Entity& entity) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& animation = registry.getComponent<ecs::component::Animation>(entity);
     auto& sprite = registry.getComponent<ecs::component::Sprite>(entity);
@@ -79,3 +120,33 @@ void GameLogic::updateAnimation (const ecs::Entity& entity)
     }
 }
 
+void GameLogic::server(ecs::Entity entity) {
+    if (this->_mode != SERVER) {
+        return;
+    }
+    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    if (registry.contains<network::Client>(entity)) {
+        this->sendPlayerPosition(entity);
+        this->sendTeamPosition(entity);
+    }
+}
+
+void GameLogic::sendPlayerPosition(ecs::Entity entity) {
+    auto position = ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(entity);
+    UpdatePlayer payload{position};
+
+    RawRequest request(TypedQuery(RequestType::UPDATE_PLAYER, payload));
+    auto client = ecs::RegistryManager::getInstance().getRegistry().getComponent<network::Client>(entity);
+    network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), request);
+}
+
+void GameLogic::sendTeamPosition(ecs::Entity entity) {
+    for (const auto& [destEntity, client]: ecs::RegistryManager::getInstance().getRegistry().getEntities<network::Client>()) {
+        if (entity == destEntity) {
+            continue;
+        }
+        UpdateTeamPlayer payload{entity.getID(), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Input>(entity), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(entity)};
+        TypedQuery<UpdateTeamPlayer> typedQuery(RequestType::UPDATE_TEAM_PLAYER, payload);
+        network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(typedQuery));
+    }
+}

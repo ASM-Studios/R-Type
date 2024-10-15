@@ -1,4 +1,8 @@
 #include "WindowManager.hpp"
+#include "QueryHandler.hpp"
+#include "socket/ServerManager.hpp"
+#include <chrono>
+#include <thread>
 
 /**
  * \brief Constructs a WindowManager object.
@@ -12,7 +16,9 @@
  * \throws GuiException if there is an error reading the config file.
  */
 GUI::WindowManager::WindowManager()
-: _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)){
+    : _gameLogic(GameLogicMode::CLIENT),
+    _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)){
+    network::socket::udp::ServerManager::getInstance().init();
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     _hostname = config.get("hostname").value_or("127.0.0.1");
@@ -50,8 +56,21 @@ GUI::WindowManager::WindowManager()
 /**
  * \brief Sets the game state.
  */
+void GUI::WindowManager::readServer() {
+    auto& server = network::socket::udp::ServerManager::getInstance().getServer();
+    if (server.availableRequest()) {
+        auto query = server.recv<RawRequest>();
+        network::QueryHandler::getInstance().addQuery(query);
+    }
+    network::QueryHandler::getInstance().executeQueries();
+    network::QueryHandler::getInstance().checkWorkers();
+}
+
 void GUI::WindowManager::run() {
+    _gameLogic.start();
     while (_window->isOpen() && _gameState != gameState::QUITING) {
+        std::this_thread::sleep_for(std::chrono::microseconds(50));
+        this->readServer();
         _window->clear();
         _eventsHandler();
         _displayBackground();
@@ -94,28 +113,31 @@ void GUI::WindowManager::_eventsHandler() {
 
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     if (_gameState == gameState::GAMES) {
-        auto& input = registry.getComponent<ecs::component::Input>(_player);
-        input.clearFlag(ecs::component::Input::MoveLeft | ecs::component::Input::MoveRight |
+        ecs::component::Input newInput = registry.getComponent<ecs::component::Input>(_player);
+        auto& entityInput = registry.getComponent<ecs::component::Input>(_player);
+
+        newInput.clearFlag(ecs::component::Input::MoveLeft | ecs::component::Input::MoveRight |
                         ecs::component::Input::MoveUp | ecs::component::Input::MoveDown | ecs::component::Input::ReleaseShoot);
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            input.setFlag(ecs::component::Input::MoveUp);
+            newInput.setFlag(ecs::component::Input::MoveUp);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            input.setFlag(ecs::component::Input::MoveDown);
+            newInput.setFlag(ecs::component::Input::MoveDown);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            input.setFlag(ecs::component::Input::MoveLeft);
+            newInput.setFlag(ecs::component::Input::MoveLeft);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            input.setFlag(ecs::component::Input::MoveRight);
+            newInput.setFlag(ecs::component::Input::MoveRight);
         }
-        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && input.isFlagSet((ecs::component::Input::PressedShoot))) {
-            input.setFlag(ecs::component::Input::ReleaseShoot);
-            input.clearFlag(ecs::component::Input::PressedShoot);
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && newInput.isFlagSet((ecs::component::Input::PressedShoot))) {
+            newInput.setFlag(ecs::component::Input::ReleaseShoot);
+            newInput.clearFlag(ecs::component::Input::PressedShoot);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            input.setFlag(ecs::component::Input::PressedShoot);
+            newInput.setFlag(ecs::component::Input::PressedShoot);
         }
+        entityInput = newInput;
     }
 }
 

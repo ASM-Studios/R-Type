@@ -8,14 +8,10 @@
 
 class RawRequest {
     private:
-        uint32_t _checksum;
         NonTypedQuery _query;
 
-        void _reloadChecksum();
-
     public:
-        explicit RawRequest() :
-            _checksum(0) {}
+        explicit RawRequest() = default;
         explicit RawRequest(NonTypedQuery query);
         ~RawRequest() = default;
 
@@ -23,8 +19,6 @@ class RawRequest {
 
         [[nodiscard]] NonTypedQuery getQuery() const;
         void setQuery(NonTypedQuery query);
-
-        [[nodiscard]] bool verifChecksum() const;
-} __attribute__((packed));
+};
 
 extern const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction;

@@ -1,12 +1,13 @@
 #pragma once
 
+#include "Logger.hpp"
 #include "NonTypedQuery.hpp"
 #include "TypedQuery.hpp"
 #include <cstring>
 
 template <typename Payload>
 NonTypedQuery::NonTypedQuery(TypedQuery<Payload> query) :
-    _header(query.getHeader()),
+    _requestType(query.getRequestType()),
     _fill() {
     std::fill(this->_fill.begin(), this->_fill.end(), 0);
     auto payload = query.getPayload();

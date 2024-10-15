@@ -2,12 +2,11 @@
 
 constexpr auto SPEED = 400;
 
-void BehaviorFunc::updateBullet(const ecs::Entity &bullet, float timePerTick)
-{
+void BehaviorFunc::updateBullet(const ecs::Entity& bullet, float timePerTick) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     int16_t speed = SPEED * 10 * timePerTick;
     auto& position = registry.getComponent<ecs::component::Position>(bullet);
-    ecs::component::Position const offset( speed, 0);
+    ecs::component::Position const offset(speed, 0);
 
     position.move(offset);
     if (position.x >= position.screenWidth - 1) {
@@ -15,8 +14,7 @@ void BehaviorFunc::updateBullet(const ecs::Entity &bullet, float timePerTick)
     }
 }
 
-void BehaviorFunc::setSpriteSheetFromInput(const ecs::Entity& entity, float deltaTime)
-{
+void BehaviorFunc::setSpriteSheetFromInput(const ecs::Entity& entity, float deltaTime) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& input = registry.getComponent<ecs::component::Input>(entity);
     auto& sprite = registry.getComponent<ecs::component::Sprite>(entity);
@@ -57,9 +55,7 @@ void BehaviorFunc::setSpriteSheetFromInput(const ecs::Entity& entity, float delt
     }
 }
 
-
-void BehaviorFunc::handleInput(const ecs::Entity& entity, float timePerTick)
-{
+void BehaviorFunc::handleInput(const ecs::Entity& entity, float timePerTick) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& input = registry.getComponent<ecs::component::Input>(entity);
     if (input.inputFlags == 0) {
@@ -89,8 +85,7 @@ void BehaviorFunc::handleInput(const ecs::Entity& entity, float timePerTick)
     auto currentTime = std::chrono::steady_clock::now();
     float const deltaTimeShot = std::chrono::duration<float>(currentTime - lastShot.lastShotTime).count();
 
-    if (input.isFlagSet(ecs::component::Input::ReleaseShoot) && deltaTimeShot >= SHOOT_COOLDOWN
-        && registry.contains<ecs::component::LastShot>(entity) ) {
+    if (input.isFlagSet(ecs::component::Input::ReleaseShoot) && deltaTimeShot >= SHOOT_COOLDOWN && registry.contains<ecs::component::LastShot>(entity)) {
         EntitySchematic::createBullet(entity);
         lastShot.lastShotTime = currentTime;
     }

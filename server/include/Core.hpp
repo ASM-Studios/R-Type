@@ -3,6 +3,7 @@
 #include "Client.hpp"
 #include "Clock.hpp"
 #include "Entity.hpp"
+#include "GameLogic.hpp"
 #include "Registry.hpp"
 #include "query/RawRequest.hpp"
 #include "socket/Server.hpp"
@@ -20,12 +21,11 @@ class Core {
         std::atomic<bool> _isRunning;
         int _port;
         std::string _hitboxes_config_file;
-
-        void _initTextures();
+        GameLogic _gameLogic;
 
         void _stop();
         void _readStdin();
-        void _loop(network::socket::udp::Server& server);
+        void _loop();
 
         const std::map<std::string_view, void (Core::*)()> _stdinMap = {
             {"/exit", &Core::_stop}};

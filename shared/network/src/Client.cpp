@@ -1,4 +1,5 @@
 #include "Client.hpp"
+#include "Logger.hpp"
 #include <boost/asio.hpp>
 #include <cstdint>
 #include <iostream>
