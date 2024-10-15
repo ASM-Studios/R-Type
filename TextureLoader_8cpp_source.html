@@ -118,45 +118,47 @@ $(document).ready(function(){initNavTree('TextureLoader_8cpp_source.html',''); i
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">int</span> row = 1;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> col = 1;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordtype">float</span> scale = 1.0;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    element.lookupValue(<span class="stringliteral">&quot;id&quot;</span>, <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    element.lookupValue(<span class="stringliteral">&quot;row&quot;</span>, row);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    element.lookupValue(<span class="stringliteral">&quot;col&quot;</span>, col);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    element.lookupValue(<span class="stringliteral">&quot;scale&quot;</span>, scale);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    this-&gt;_textures.insert({id, {type, <a class="code hl_class" href="classTexture.html">Texture</a>(element.getPath(), row, col, scale)}});</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">void</span> TextureLoader::loadTextures(std::string path, Type type) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    libconfig::Setting&amp; section = this-&gt;_cfg.lookup(path);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">int</span> <span class="keywordtype">id</span> = 0;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; texture: section) {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">if</span> (!texture.exists(<span class="stringliteral">&quot;id&quot;</span>)) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            Logger::log(LogLevel::WARNING, std::format(<span class="stringliteral">&quot;Failed to retrieve id of texture {0}&quot;</span>, texture.getName()));</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        this-&gt;loadTexture(texture.getPath(), type);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><a class="code hl_class" href="classTexture.html">Texture</a>&amp; TextureLoader::getTexture(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> this-&gt;_textures.at(<span class="keywordtype">id</span>).second;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>std::size_t TextureLoader::getNoTexture()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> this-&gt;_textures.size();</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>std::pair&lt;int, int&gt; TextureLoader::getSizeFromId(<span class="keywordtype">int</span> textureId) {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">auto</span>&amp; texture = getTexture(textureId);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> texture.getSize();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::out_of_range&amp; e) {</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        Logger::log(LogLevel::WARNING, <span class="stringliteral">&quot;Texture ID not found: &quot;</span> + std::to_string(textureId));</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> {0, 0};</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>std::unique_ptr&lt;TextureLoader&gt; TextureLoader::_instance(<span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>std::mutex TextureLoader::_mutex;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">float</span> animation_speed = 0.1F;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    element.lookupValue(<span class="stringliteral">&quot;id&quot;</span>, <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    element.lookupValue(<span class="stringliteral">&quot;row&quot;</span>, row);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    element.lookupValue(<span class="stringliteral">&quot;col&quot;</span>, col);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    element.lookupValue(<span class="stringliteral">&quot;scale&quot;</span>, scale);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    element.lookupValue(<span class="stringliteral">&quot;animation_speed&quot;</span>, animation_speed);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    this-&gt;_textures.insert({id, {type, <a class="code hl_class" href="classTexture.html">Texture</a>(element.getPath(), row, col, scale, animation_speed)}});</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> TextureLoader::loadTextures(std::string path, Type type) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    libconfig::Setting&amp; section = this-&gt;_cfg.lookup(path);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">int</span> <span class="keywordtype">id</span> = 0;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; texture: section) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">if</span> (!texture.exists(<span class="stringliteral">&quot;id&quot;</span>)) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            Logger::log(LogLevel::WARNING, std::format(<span class="stringliteral">&quot;Failed to retrieve id of texture {0}&quot;</span>, texture.getName()));</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        this-&gt;loadTexture(texture.getPath(), type);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><a class="code hl_class" href="classTexture.html">Texture</a>&amp; TextureLoader::getTexture(<span class="keyword">const</span> <span class="keywordtype">int</span> <span class="keywordtype">id</span>) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">return</span> this-&gt;_textures.at(<span class="keywordtype">id</span>).second;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>std::size_t TextureLoader::getNoTexture()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span> this-&gt;_textures.size();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>std::pair&lt;int, int&gt; TextureLoader::getSizeFromId(<span class="keywordtype">int</span> textureId) {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keyword">auto</span>&amp; texture = getTexture(textureId);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">return</span> texture.getSize();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> std::out_of_range&amp; e) {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        Logger::log(LogLevel::WARNING, <span class="stringliteral">&quot;Texture ID not found: &quot;</span> + std::to_string(textureId));</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> {0, 0};</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>std::unique_ptr&lt;TextureLoader&gt; TextureLoader::_instance(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>std::mutex TextureLoader::_mutex;</div>
 <div class="ttc" id="aclassTextureLoader_html"><div class="ttname"><a href="classTextureLoader.html">TextureLoader</a></div><div class="ttdef"><b>Definition:</b> <a href="TextureLoader_8hpp_source.html#l00010">TextureLoader.hpp:10</a></div></div>
 <div class="ttc" id="aclassTexture_html"><div class="ttname"><a href="classTexture.html">Texture</a></div><div class="ttdef"><b>Definition:</b> <a href="Texture_8hpp_source.html#l00008">Texture.hpp:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

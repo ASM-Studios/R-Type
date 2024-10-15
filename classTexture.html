@@ -104,8 +104,8 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5cb86b392d2aca65e4018726124d4d28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a5cb86b392d2aca65e4018726124d4d28">Texture</a> (const std::string &amp;path, int row, int col, float scale)</td></tr>
-<tr class="separator:a5cb86b392d2aca65e4018726124d4d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac708b2ac70cd6fdaf068e948f1707666"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#ac708b2ac70cd6fdaf068e948f1707666">Texture</a> (const std::string &amp;path, int row, int col, float scale, float animation_speed)</td></tr>
+<tr class="separator:ac708b2ac70cd6fdaf068e948f1707666"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaa3a258c0f5d324e31123892dc4a338"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#afaa3a258c0f5d324e31123892dc4a338">getRow</a> () const</td></tr>
 <tr class="separator:afaa3a258c0f5d324e31123892dc4a338"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa22864cbe3f12b65ad53dbb4ff37634d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#aa22864cbe3f12b65ad53dbb4ff37634d">setRow</a> (int row)</td></tr>
@@ -118,6 +118,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a22795ac7e7ba7bf0e2d5a5faf172b473"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1e02770781c5917bf4fd50594f4a692"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#aa1e02770781c5917bf4fd50594f4a692">setScale</a> (float scale)</td></tr>
 <tr class="separator:aa1e02770781c5917bf4fd50594f4a692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af585eab98c3f0d71eb4ff68e67fd3e3b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#af585eab98c3f0d71eb4ff68e67fd3e3b">getAnimSpeed</a> () const</td></tr>
+<tr class="separator:af585eab98c3f0d71eb4ff68e67fd3e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c26ad599cff316fffc2ecdd24e360aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a1c26ad599cff316fffc2ecdd24e360aa">setAnimSpeed</a> (float animation_speed)</td></tr>
+<tr class="separator:a1c26ad599cff316fffc2ecdd24e360aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a742319fc293b36100d7a40a0083eaf78"><td class="memItemLeft" align="right" valign="top">std::pair&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a742319fc293b36100d7a40a0083eaf78">getSize</a> () const</td></tr>
 <tr class="separator:a742319fc293b36100d7a40a0083eaf78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f3f7af5f02a6a2366eb3066af9256d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture.html#a8f3f7af5f02a6a2366eb3066af9256d6">getFrameCount</a> ()</td></tr>
@@ -131,8 +135,8 @@ Public Member Functions</h2></td></tr>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="Texture_8hpp_source.html#l00008">8</a> of file <a class="el" href="Texture_8hpp_source.html">Texture.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5cb86b392d2aca65e4018726124d4d28" name="a5cb86b392d2aca65e4018726124d4d28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cb86b392d2aca65e4018726124d4d28">&#9670;&#160;</a></span>Texture()</h2>
+<a id="ac708b2ac70cd6fdaf068e948f1707666" name="ac708b2ac70cd6fdaf068e948f1707666"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac708b2ac70cd6fdaf068e948f1707666">&#9670;&#160;</a></span>Texture()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +166,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>scale</em>&#160;</td>
+          <td class="paramname"><em>scale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>animation_speed</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -182,6 +192,25 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="af585eab98c3f0d71eb4ff68e67fd3e3b" name="af585eab98c3f0d71eb4ff68e67fd3e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af585eab98c3f0d71eb4ff68e67fd3e3b">&#9670;&#160;</a></span>getAnimSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Texture::getAnimSpeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00081">81</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a1a21a82b3a1073291f7a7cc25615f148" name="a1a21a82b3a1073291f7a7cc25615f148"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a21a82b3a1073291f7a7cc25615f148">&#9670;&#160;</a></span>getCol()</h2>
 
@@ -197,7 +226,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00046">46</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00047">47</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -216,7 +245,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00068">68</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00069">69</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -235,7 +264,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00037">37</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00038">38</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +283,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00055">55</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00056">56</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -273,7 +302,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00064">64</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00065">65</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +321,27 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00072">72</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00073">73</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a1c26ad599cff316fffc2ecdd24e360aa" name="a1c26ad599cff316fffc2ecdd24e360aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c26ad599cff316fffc2ecdd24e360aa">&#9670;&#160;</a></span>setAnimSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Texture::setAnimSpeed </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>animation_speed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00085">85</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,7 +361,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00050">50</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00051">51</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +381,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00041">41</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00042">42</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -352,7 +401,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00059">59</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00060">60</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,7 +421,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00076">76</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Texture_8cpp_source.html#l00077">77</a> of file <a class="el" href="Texture_8cpp_source.html">Texture.cpp</a>.</p>
 
 </div>
 </div>
