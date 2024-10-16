@@ -110,37 +110,43 @@ $(document).ready(function(){initNavTree('client_2src_2main_8cpp_source.html',''
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">static</span> <span class="keywordtype">void</span> updateTeamPlayer(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> request) {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    Logger::log(LogLevel::ERR, <span class="stringliteral">&quot;Receiving pos&quot;</span>);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classTypedQuery.html">TypedQuery&lt;UpdateTeamPlayer&gt;</a> query = request.getQuery();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> entity(query.getPayload().id, ecs::RegistryManager::getInstance().getRegistry());</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().input);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().position);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">static</span> <span class="keywordtype">void</span> createEntity(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> request) {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_class" href="classTypedQuery.html">TypedQuery&lt;CreateEntity&gt;</a> tq = request.getQuery();</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">auto</span> payload = tq.getPayload();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">if</span> (ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Ally) &amp;&amp; !ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Bullet)) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> entity = EntitySchematic::createTeamPlayerClient(payload.id, payload.position.x, payload.position.y, payload.spriteID);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classTypedQuery.html">TypedQuery&lt;UpdateTeamPlayer&gt;</a> query = request.getQuery();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> entity(query.getPayload().id, ecs::RegistryManager::getInstance().getRegistry());</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">//ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().input);</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().position);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">static</span> <span class="keywordtype">void</span> createEntity(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> request) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="classTypedQuery.html">TypedQuery&lt;CreateEntity&gt;</a> tq = request.getQuery();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">auto</span> payload = tq.getPayload();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">if</span> (ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Ally) &amp;&amp; ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Player)) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> entity = EntitySchematic::createTeamPlayerClient(payload.id, payload.position.x, payload.position.y, payload.spriteID);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">const</span> std::map&lt;RequestType, void (*)(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> rawRequest)&gt; requestAction = {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {UPDATE_PLAYER, &amp;updatePlayer},</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {UPDATE_TEAM_PLAYER, &amp;updateTeamPlayer},</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {CREATE_ENTITY, &amp;createEntity},</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span> (ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Ally) &amp;&amp; ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Bullet)) {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> shooter = <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a>(client.getID(), ecs::RegistryManager::getInstance().getRegistry());</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> bullet = EntitySchematic::createBullet();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        ecs::RegistryManager::getInstance().getRegistry().setComponent(bullet, payload.position);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">int</span> main() {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <a class="code hl_class" href="classGUI_1_1WindowManager.html">GUI::WindowManager</a> windowManager;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        windowManager.run();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code hl_class" href="classGUI_1_1GuiException.html">GUI::GuiException</a>&amp; e) {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        Logger::log(LogLevel::ERR, e.what());</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">const</span> std::map&lt;RequestType, void (*)(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> rawRequest)&gt; requestAction = {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {RequestType::UPDATE_PLAYER, &amp;updatePlayer},</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {RequestType::UPDATE_TEAM_PLAYER, &amp;updateTeamPlayer},</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {RequestType::CREATE_ENTITY, &amp;createEntity}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>};</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">int</span> main() {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <a class="code hl_class" href="classGUI_1_1WindowManager.html">GUI::WindowManager</a> windowManager;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        windowManager.run();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code hl_class" href="classGUI_1_1GuiException.html">GUI::GuiException</a>&amp; e) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        Logger::log(LogLevel::ERR, e.what());</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
 <div class="ttc" id="aclassGUI_1_1GuiException_html"><div class="ttname"><a href="classGUI_1_1GuiException.html">GUI::GuiException</a></div><div class="ttdef"><b>Definition:</b> <a href="GuiException_8hpp_source.html#l00008">GuiException.hpp:8</a></div></div>
 <div class="ttc" id="aclassGUI_1_1WindowManager_html"><div class="ttname"><a href="classGUI_1_1WindowManager.html">GUI::WindowManager</a></div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00048">WindowManager.hpp:48</a></div></div>
 <div class="ttc" id="aclassRawRequest_html"><div class="ttname"><a href="classRawRequest.html">RawRequest</a></div><div class="ttdef"><b>Definition:</b> <a href="RawRequest_8hpp_source.html#l00009">RawRequest.hpp:9</a></div></div>

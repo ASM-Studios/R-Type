@@ -98,19 +98,19 @@ $(document).ready(function(){initNavTree('classEnemyBehavior.html',''); initResi
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af93a1de2567e80e7abdd8557d7e7096a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#af93a1de2567e80e7abdd8557d7e7096a">classicEnemy</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
-<tr class="separator:af93a1de2567e80e7abdd8557d7e7096a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76b1e25e8470656dc2351f264524f335"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#a76b1e25e8470656dc2351f264524f335">EnemySinusoidal</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
-<tr class="separator:a76b1e25e8470656dc2351f264524f335"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10aab31a71dddd42dc6b86e498db189d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#a10aab31a71dddd42dc6b86e498db189d">EnemyZigZag</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
-<tr class="separator:a10aab31a71dddd42dc6b86e498db189d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4d61812a99c4599c03339d19a225de5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#ac4d61812a99c4599c03339d19a225de5">classicEnemy</a> (GameLogicMode mode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
+<tr class="separator:ac4d61812a99c4599c03339d19a225de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a712d90435228089d04b5f9f6208fdf1c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#a712d90435228089d04b5f9f6208fdf1c">EnemySinusoidal</a> (GameLogicMode mode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
+<tr class="separator:a712d90435228089d04b5f9f6208fdf1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c73385ff547186f1d3a80da19add8ef"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemyBehavior.html#a8c73385ff547186f1d3a80da19add8ef">EnemyZigZag</a> (GameLogicMode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;enemy, float timePerTick)</td></tr>
+<tr class="separator:a8c73385ff547186f1d3a80da19add8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8hpp_source.html#l00005">5</a> of file <a class="el" href="EnemyBehavior_8hpp_source.html">EnemyBehavior.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8hpp_source.html#l00007">7</a> of file <a class="el" href="EnemyBehavior_8hpp_source.html">EnemyBehavior.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="af93a1de2567e80e7abdd8557d7e7096a" name="af93a1de2567e80e7abdd8557d7e7096a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af93a1de2567e80e7abdd8557d7e7096a">&#9670;&#160;</a></span>classicEnemy()</h2>
+<a id="ac4d61812a99c4599c03339d19a225de5" name="ac4d61812a99c4599c03339d19a225de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4d61812a99c4599c03339d19a225de5">&#9670;&#160;</a></span>classicEnemy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,6 +121,12 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void EnemyBehavior::classicEnemy </td>
           <td>(</td>
+          <td class="paramtype">GameLogicMode&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>enemy</em>, </td>
         </tr>
@@ -147,8 +153,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a76b1e25e8470656dc2351f264524f335" name="a76b1e25e8470656dc2351f264524f335"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76b1e25e8470656dc2351f264524f335">&#9670;&#160;</a></span>EnemySinusoidal()</h2>
+<a id="a712d90435228089d04b5f9f6208fdf1c" name="a712d90435228089d04b5f9f6208fdf1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a712d90435228089d04b5f9f6208fdf1c">&#9670;&#160;</a></span>EnemySinusoidal()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,6 +165,12 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void EnemyBehavior::EnemySinusoidal </td>
           <td>(</td>
+          <td class="paramtype">GameLogicMode&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>enemy</em>, </td>
         </tr>
@@ -181,12 +193,12 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8cpp_source.html#l00023">23</a> of file <a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8cpp_source.html#l00022">22</a> of file <a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a10aab31a71dddd42dc6b86e498db189d" name="a10aab31a71dddd42dc6b86e498db189d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10aab31a71dddd42dc6b86e498db189d">&#9670;&#160;</a></span>EnemyZigZag()</h2>
+<a id="a8c73385ff547186f1d3a80da19add8ef" name="a8c73385ff547186f1d3a80da19add8ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c73385ff547186f1d3a80da19add8ef">&#9670;&#160;</a></span>EnemyZigZag()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,6 +209,12 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void EnemyBehavior::EnemyZigZag </td>
           <td>(</td>
+          <td class="paramtype">GameLogicMode&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>enemy</em>, </td>
         </tr>
@@ -219,7 +237,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8cpp_source.html#l00037">37</a> of file <a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="EnemyBehavior_8cpp_source.html#l00035">35</a> of file <a class="el" href="EnemyBehavior_8cpp_source.html">EnemyBehavior.cpp</a>.</p>
 
 </div>
 </div>

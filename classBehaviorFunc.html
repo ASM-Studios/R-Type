@@ -98,19 +98,19 @@ $(document).ready(function(){initNavTree('classBehaviorFunc.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a6eb44dd6f35841e132788a6b1b22f7f7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#a6eb44dd6f35841e132788a6b1b22f7f7">updateBullet</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
-<tr class="separator:a6eb44dd6f35841e132788a6b1b22f7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d39bac044e3aaab640c692f67fd9423"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#a4d39bac044e3aaab640c692f67fd9423">handleInput</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
-<tr class="separator:a4d39bac044e3aaab640c692f67fd9423"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15b65cdbd9d1c6d040836d461133137d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#a15b65cdbd9d1c6d040836d461133137d">setSpriteSheetFromInput</a> (const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;entity, float timePerTick)</td></tr>
-<tr class="separator:a15b65cdbd9d1c6d040836d461133137d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1dfc0dfdbc6a52e15b0784e0d7be29"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#ace1dfc0dfdbc6a52e15b0784e0d7be29">updateBullet</a> (GameLogicMode mode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
+<tr class="separator:ace1dfc0dfdbc6a52e15b0784e0d7be29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1b1bcc4c2b1945708a7ae1da567aae3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#ad1b1bcc4c2b1945708a7ae1da567aae3">handleInput</a> (GameLogicMode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
+<tr class="separator:ad1b1bcc4c2b1945708a7ae1da567aae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa76e792cfccb1907b008d25864983a02"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#aa76e792cfccb1907b008d25864983a02">setSpriteSheetFromInput</a> (GameLogicMode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;entity, float timePerTick)</td></tr>
+<tr class="separator:aa76e792cfccb1907b008d25864983a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8hpp_source.html#l00005">5</a> of file <a class="el" href="BehaviorFunc_8hpp_source.html">BehaviorFunc.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8hpp_source.html#l00007">7</a> of file <a class="el" href="BehaviorFunc_8hpp_source.html">BehaviorFunc.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4d39bac044e3aaab640c692f67fd9423" name="a4d39bac044e3aaab640c692f67fd9423"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d39bac044e3aaab640c692f67fd9423">&#9670;&#160;</a></span>handleInput()</h2>
+<a id="ad1b1bcc4c2b1945708a7ae1da567aae3" name="ad1b1bcc4c2b1945708a7ae1da567aae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1b1bcc4c2b1945708a7ae1da567aae3">&#9670;&#160;</a></span>handleInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,6 +121,12 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void BehaviorFunc::handleInput </td>
           <td>(</td>
+          <td class="paramtype">GameLogicMode&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>bullet</em>, </td>
         </tr>
@@ -143,12 +149,12 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00059">59</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00082">82</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a15b65cdbd9d1c6d040836d461133137d" name="a15b65cdbd9d1c6d040836d461133137d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15b65cdbd9d1c6d040836d461133137d">&#9670;&#160;</a></span>setSpriteSheetFromInput()</h2>
+<a id="aa76e792cfccb1907b008d25864983a02" name="aa76e792cfccb1907b008d25864983a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa76e792cfccb1907b008d25864983a02">&#9670;&#160;</a></span>setSpriteSheetFromInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,6 +165,12 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void BehaviorFunc::setSpriteSheetFromInput </td>
           <td>(</td>
+          <td class="paramtype">GameLogicMode&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>entity</em>, </td>
         </tr>
@@ -181,12 +193,12 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00017">17</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00027">27</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a6eb44dd6f35841e132788a6b1b22f7f7" name="a6eb44dd6f35841e132788a6b1b22f7f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6eb44dd6f35841e132788a6b1b22f7f7">&#9670;&#160;</a></span>updateBullet()</h2>
+<a id="ace1dfc0dfdbc6a52e15b0784e0d7be29" name="ace1dfc0dfdbc6a52e15b0784e0d7be29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1dfc0dfdbc6a52e15b0784e0d7be29">&#9670;&#160;</a></span>updateBullet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,6 +209,12 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void BehaviorFunc::updateBullet </td>
           <td>(</td>
+          <td class="paramtype">GameLogicMode&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
           <td class="paramname"><em>bullet</em>, </td>
         </tr>
@@ -219,7 +237,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00005">5</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00015">15</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
 
 </div>
 </div>

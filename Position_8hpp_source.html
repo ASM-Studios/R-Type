@@ -107,9 +107,10 @@ $(document).ready(function(){initNavTree('Position_8hpp_source.html',''); initRe
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>            std::size_t screenHeight;</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            <span class="keywordtype">void</span> set(<span class="keyword">const</span> <a class="code hl_struct" href="structecs_1_1component_1_1Position.html">Position</a>&amp; position);</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>            <span class="keywordtype">void</span> move(<span class="keyword">const</span> <a class="code hl_struct" href="structecs_1_1component_1_1Position.html">Position</a>&amp; offset);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            std::pair&lt;int16_t, int16_t&gt; get() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    };</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            [[nodiscard]] <span class="keywordtype">double</span> getDistance(<span class="keyword">const</span> <a class="code hl_struct" href="structecs_1_1component_1_1Position.html">Position</a>&amp; other) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            std::pair&lt;int16_t, int16_t&gt; get() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    };</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
 <div class="ttc" id="astructecs_1_1component_1_1Position_html"><div class="ttname"><a href="structecs_1_1component_1_1Position.html">ecs::component::Position</a></div><div class="ttdef"><b>Definition:</b> <a href="Position_8hpp_source.html#l00008">Position.hpp:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
