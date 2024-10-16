@@ -5,7 +5,7 @@ import time
 
 def generate_entities_cfg(file_name, num_entities):
     behaviors = ["classic", "sinusoidal", "zig-zag"]
-    sprite_ids = [14, 15, 16]
+    sprite_ids = [14, 15, 16, 58, 59]
     entities = []
     delay_time = 1.0
     random.seed(time.time())
