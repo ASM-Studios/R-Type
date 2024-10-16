@@ -12,6 +12,13 @@
 
 constexpr auto SPEED = 400;
 
+/**
+ * @brief Update the bullet position
+ *
+ * @param mode The game logic mode
+ * @param bullet The bullet entity
+ * @param timePerTick The time per tick
+ */
 void BehaviorFunc::updateBullet(GameLogicMode mode, const ecs::Entity& bullet, float timePerTick) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     int16_t speed = SPEED * 10 * timePerTick;
@@ -24,6 +31,13 @@ void BehaviorFunc::updateBullet(GameLogicMode mode, const ecs::Entity& bullet, f
     }
 }
 
+/**
+ * @brief Update the player sprite sheet from input
+ *
+ * @param mode The game logic mode
+ * @param player The player entity
+ * @param timePerTick The time per tick
+ */
 void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity& entity, float deltaTime) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& input = registry.getComponent<ecs::component::Input>(entity);
@@ -66,6 +80,11 @@ void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity
     }
 }
 
+/**
+ * @brief Send a bullet to all clients
+ *
+ * @param entity The entity that shot the bullet
+ */
 static void sendBullet(const ecs::Entity& entity) {
     for (const auto& [destEntity, destClient]: ecs::RegistryManager::getInstance().getRegistry().getEntities<network::Client>()) {
         const ecs::Entity& bullet = EntitySchematic::createBullet(entity);
@@ -79,6 +98,13 @@ static void sendBullet(const ecs::Entity& entity) {
     }
 }
 
+/**
+ * @brief Handle the input of the player
+ *
+ * @param mode The game logic mode
+ * @param entity The player entity
+ * @param timePerTick The time per tick
+ */
 void BehaviorFunc::handleInput(GameLogicMode mode, const ecs::Entity& entity, float timePerTick) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& input = registry.getComponent<ecs::component::Input>(entity);
