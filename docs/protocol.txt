@@ -19,24 +19,27 @@ RFC 9999 et des brouettes - RType Binary Data Transfer Procol (RBDTP)
     data (such as player movement or chat content).
     
     To ensure no extra memory padding is added, all structures are packed.
-    To ensure packet integrity, a CRC32 checksum is included in the header.
 
-    struct Header {
+    class NonTypedQuery {
         RequestType requestType;
+        std::array<char, MAX_PAYLOAD_SIZE> _fill;
     };
     
     template <typename Payload>
-    struct Query {
-        Header header;
+    class TypedQuery {
+        RequestType requestType;
         Payload payload;
+        std::array<char, MAX_PAYLOAD_SIZE - sizeof(Payload)> _fill;
     };
-    
 
-    template <typename Payload>
-    struct Request {
-        uint32_t checksum;
-        Query<Payload> query;
+    NonTypedQuery and TypedQuery are same elements except that TypedQuery has
+    a typed payload.
+
+    class RawRequest {
+        NonTypedQuery query;
     };
+
+    RawRequest is the class used by the socket to send queries.
 
 4. Protocol
 
@@ -46,110 +49,30 @@ RFC 9999 et des brouettes - RType Binary Data Transfer Procol (RBDTP)
 
         4.1.1. Movement
 
-            Key pressed:
+            Input:
                 - ID: 0x0000
-                - Request: Query<KeyPressed>
-
-        4.1.2. Chat
-
-            Send a message:
-                - ID: 0x0000
-                - Request: Query<SendMessage>
-
-        4.1.3. Ping
-
-            Ping:
-                - ID: 0x0000
-                - Request: Query<Empty>
+                - Request: ecs::component::Input
 
     4.2. Server to Client
 
-        4.2.1. Entity
+        Update player:
+            - ID: 0x0000
+            - Request: UpdatePlayer
 
-            Entity updated:
-                - ID: 0x0000
-                - Request: Query<EntityUpdatedRequest>
+        Update team player:
+            - ID: 0x0000
+            - Request: UpdateTeamPlayer
 
-            Entity destroyed:
-                - ID: 0x0000
-                - Request: Query<EntityDestroyedRequest>
-            
-        4.2.2. Event
+        Create entity:
+            - ID: 0x0000
+            - Request: CreateEntity
 
-            Projectile fired:
-                - ID: 0x0000
-                - Request: Query<ProjectileFiredRequest>
+        Update entity:
+            - ID: 0x0000
+            - Request: UpdateEntity
 
-            Collision:
-                - ID: 0x0000
-                - Request: Query<CollisionRequest>
+        Destroy entity:
+            - ID: 0x0000
+            - Request: DestroyEntity
 
-            Powerup spawned:
-                - ID: 0x0000
-                - Request: Query<PowerupSpawnedRequest>
 
-            Powerup collected:
-                - ID: 0x0000
-                - Request: Query<PowerupCollectedRequest>
-            
-            Explosion:
-                - ID: 0x0000
-                - Request: Query<ExplosionRequest>
-
-            Receive a message:
-                - ID: 0x0000
-                - Request: Query<ReceiveMessageRequest>
-
-5. Structures
-
-struct Empty {};
-
-enum StatusCode {
-    OK,
-    KO
-};
-
-struct CreateLobbyRequest {
-    char username[128];
-};
-
-struct CreateLobbyResponse {
-    uint32_t lobbyId;
-};
-
-struct JoinLobbyRequest {
-    char username[128];
-    uint32_t lobbyId;
-};
-
-struct KeyPressedRequest {
-    char key;
-};
-
-using KeyReleasedRequest = KeyPressedRequest;
-
-struct SendMessageRequest {
-    char message[256];
-};
-
-struct PingResponse {
-    uint64_t timestamp;
-};
-
-struct EntityCreatedRequest {
-    uint32_t entityId;
-    uint32_t x;
-    uint32_t y;
-};
-
-struct EntityDestroyedRequest {
-    uint32_t entityId;
-};
-
-struct EntityUpdatedRequest {
-    uint32_t entityId;
-    uint32_t x;
-    uint32_t y;
-};
-
-// TO BE CONTINUED
