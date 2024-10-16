@@ -1,18 +1,18 @@
 #pragma once
 
 #include "Entity.hpp"
+#include <algorithm>
 #include <cstdint>
 
 namespace ecs::component {
     struct Position {
-        uint16_t x;
-        uint16_t y;
-    };
-}
-
-namespace ecs::system {
-    struct Position {
-        static void set(Entity entity, ecs::component::Position position);
-        static void move(Entity entity, ecs::component::Position offset);
+            int16_t x;
+            int16_t y;
+            std::size_t screenWidth;
+            std::size_t screenHeight;
+            void set(const Position& position);
+            void move(const Position& offset);
+            [[nodiscard]] double getDistance(const Position& other) const;
+            std::pair<int16_t, int16_t> get() const;
     };
 }

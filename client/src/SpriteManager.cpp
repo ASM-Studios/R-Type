@@ -2,6 +2,14 @@
 
 #include "Config.hpp"
 
+/**
+ * \brief Constructs a SpriteManager object.
+ *
+ * Initializes the SpriteManager with the default sprites configuration file.
+ * Loads the sprites from the specified sprites path.
+ *
+ * \throws GuiException if there is an error reading the config file.
+ */
 void GUI::SpriteManager::init() {
     Config& config = Config::getInstance("client/config.json");
     _spritesConfigPath = config.get("sprites_config_path").value_or(DEFAULT_SPRITES_CONFIG);
@@ -12,6 +20,12 @@ void GUI::SpriteManager::init() {
     loopDirectory(spritePath, "");
 }
 
+/**
+ * \brief Loads the sprites from the specified directory.
+ *
+ * \param spritePath The path to the sprites directory.
+ * \param relativePath The relative path to the sprites directory.
+ */
 void GUI::SpriteManager::loopDirectory(const std::string &spritePath, const std::string &relativePath) {
     boost::filesystem::path const path(spritePath + relativePath);
     if (exists(path) && is_directory(path)) {
@@ -29,6 +43,14 @@ void GUI::SpriteManager::loopDirectory(const std::string &spritePath, const std:
     }
 }
 
+/**
+ * \brief Imports the sprites from the specified sprite sheet.
+ *
+ * \param spritePath The path to the sprites directory.
+ * \param name The name of the sprite sheet.
+ *
+ * \throws GuiException if the sprite sheet is already loaded or if the sprite sheet is missing keys or has wrong typed values in the configuration file.
+ */
 void GUI::SpriteManager::importSprites(const std::string& spritePath, const std::string& name) {
     libconfig::Config cfg;
     try {
@@ -41,11 +63,15 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
 
     if (cfg.exists(name)) {
         const libconfig::Setting& setting = cfg.lookup(name);
-        for (const auto& [fst, _] : _textures) {
-            if (fst == name) {
-                throw GuiException("Sprite sheet '" + name + "' already loaded.");
-            }
+        int spriteID;
+        if (!setting.lookupValue("id", spriteID)) {
+            throw GuiException("ID not found for sprite: " + name);
         }
+
+        if (_textures.contains(spriteID)) {
+            throw GuiException("Sprite sheet '" + name + "' already loaded.");
+        }
+
         int row, col;
         if (float scale; setting.lookupValue("row", row) && setting.lookupValue("col", col) && setting.lookupValue("scale", scale)) {
             bool autoscale = setting.lookupValue("autoscale", autoscale) ? autoscale : false;
@@ -55,7 +81,7 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
                 throw GuiException("Failed to load texture: " + spritePath + "/" + name + ".png");
             }
 
-            _textures[name] = texture;
+            _textures[spriteID] = texture;
 
             std::size_t const spriteWidth = texture->getSize().x / col;
             std::size_t const spriteHeight = texture->getSize().y / row;
@@ -74,7 +100,7 @@ void GUI::SpriteManager::importSprites(const std::string& spritePath, const std:
                         sprite->setScale(scaleFactorX, scaleFactorY);
                     } else { sprite->setScale(scale, scale); }
                     if (center) { sprite->setOrigin(spriteWidth / 2, spriteHeight / 2); }
-                    _sprites[name][id++] = sprite;
+                    _sprites[spriteID][id++] = sprite;
                 }
             }
         } else {

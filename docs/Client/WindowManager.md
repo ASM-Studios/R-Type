@@ -14,4 +14,4 @@ The `WindowManager` class contain the `run` method which is the entry point of t
 ## Configuration
 
 The window configuration is handled by the client itself, apart from the fullscreen mode which is can be changed by the user configuration.<br>
-For more information, please refer to the [Config](../Misc/Config.md) documentation.
+For more information, please refer to the [Config](../Shared/Config.md) documentation.

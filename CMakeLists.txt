@@ -3,9 +3,11 @@ project(rtype)
 
 include_directories(shared/network/include)
 include_directories(shared/ECS/include)
+include_directories(shared/ECS/src/Factories)
 include_directories(shared/Config/include)
 include_directories(shared/Logger/include)
 include_directories(shared/Texture/include)
+include_directories(shared/GameLogic/include)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)

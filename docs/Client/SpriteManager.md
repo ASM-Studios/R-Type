@@ -27,7 +27,7 @@ _spriteManager.getSprites("name");
 
 ## Sprite Loading
 
-The sprite manager loads the sprites from the `sprites_path` field in the configuration file. (see [Config](../Misc/Config.md))
+The sprite manager loads the sprites from the `sprites_path` field in the configuration file. (see [Config](../Shared/Config.md))
 
 Importing only the sprites sheets in the folder will result in an error.<br>
 Alongside the sprite, a configuration file is required.
@@ -79,7 +79,7 @@ For background sprites, it is recommended to set `autoscale` to `true` and `cent
 The configuration file is a `.cfg` file with the following fields:
 
 By default, the configuration file is located at `client/assets/sprites_config.cfg`.<br>
-This path can be changed in the [user configuration file](../Misc/Config.md).
+This path can be changed in the [user configuration file](../Shared/Config.md).
 
 #### example
 

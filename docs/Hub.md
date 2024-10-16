@@ -1,13 +1,18 @@
-# Documentation
+# Project Documentation
 
 In this folder, you will find all links to the documentation of the project.
 
 The documentation is divided into the following sections:
 
-## Client
+## README
+If you are looking for the main README file, you can find it [here](../README.md).
 
-- [Config](Misc/Config.md)
-- [Logger](Misc/Logger.md)
+## Research
+- [Comparative Study](ComparativeStudy.md)
+
+## Client
+- [Config](Shared/Config.md)
+- [Logger](Shared/Logger.md)
 - [WindowManager](Client/WindowManager.md)
 - [SpriteManager](Client/SpriteManager.md)
 - [MusicManager](Client/MusicManager.md)
@@ -15,11 +20,15 @@ The documentation is divided into the following sections:
 - [Button](Client/Button.md)
 
 ## Server
+- [ADD SERVER DOCUMENTATION HERE]()
 
-- [](Server/.md)
+## ECS
+- [ADD ECS DOCUMENTATION HERE]()
 
 ## Misc
 
-- [ReadMe](../README.md)
-- [VCPKG](Misc/VCPKG.md)
-- [Contributing](Misc/Contributing.md)
+- [Developers](Developers.md)
+- [VCPKG](Shared/VCPKG.md)
+- [Contributing](Shared/Contributing.md)
+- [LevelFactory](Shared/LevelFactory.md)
+- [Accessibility](Accessibility.md)
