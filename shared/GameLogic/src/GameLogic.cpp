@@ -10,11 +10,17 @@
 #include "socket/ServerManager.hpp"
 #include <algorithm>
 
-GameLogic::GameLogic(GameLogicMode mode) :
-    _mode(mode),
-    _timePerTick(1.0F / 60.0f) // Default values,
+/**
+ * @brief Construct a new GameLogic object
+ *
+ * @param mode The game logic mode
+ */
+GameLogic::GameLogic(const GameLogicMode mode) :
+    _mode(mode), _isRunning(false),
+    _timePerTick(1.0F / 60.0f),
+    _totalTime(0)
 {
-    const Config& config = Config::getInstance("server/config.json");
+    const Config &config = Config::getInstance("server/config.json");
     int _tps = std::stoi(config.get("tps").value_or("60"));
     _timePerTick = 1.0F / static_cast<float>(_tps);
     TextureLoader::getInstance().loadFile("assets/textures_config.cfg");
@@ -25,20 +31,30 @@ GameLogic::GameLogic(GameLogicMode mode) :
     TextureLoader::getInstance().loadTextures("explosions", TextureLoader::Type::EXPLOSION);
     Logger::log(LogLevel::INFO, std::format("{0} textures have been loaded", TextureLoader::getInstance().getNoTexture()));
 
-    auto& factory = ecs::factory::LevelFactory::getInstance();
+    auto &factory = ecs::factory::LevelFactory::getInstance();
     int const width = std::stoi(config.get("width").value_or("1920"));
     int const height = std::stoi(config.get("height").value_or("1080"));
     factory.load({width, height}, ecs::factory::getScenarioPath(1));
 }
 
+/**
+ * @brief Start the game logic
+ */
 void GameLogic::start() {
     this->_isRunning = true;
 }
 
+/**
+ * @brief Stop the game logic
+ */
 void GameLogic::stop() {
     this->_isRunning = false;
 }
 
+
+/**
+ * @brief Update the game logic
+ */
 void GameLogic::updateTimed() {
     if (!this->_isRunning) {
         return;
@@ -64,6 +80,9 @@ void GameLogic::updateTimed() {
     }
 }
 
+/**
+ * @brief Update the game logic
+ */
 void GameLogic::update() {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     for (const auto& entity: registry.getEntities()) {
@@ -80,6 +99,11 @@ void GameLogic::update() {
     factory.updateEntities(_totalTime);
 }
 
+/**
+ * @brief Update the game logic for a client
+ *
+ * @param entity The entity to update
+ */
 void GameLogic::client(const ecs::Entity& entity) {
     if (!isPureClient(this->_mode)) {
         return;
@@ -95,6 +119,11 @@ void GameLogic::client(const ecs::Entity& entity) {
     factory.updateEntities(_totalTime);
 }
 
+/**
+ * @brief Send the input to the server
+ *
+ * @param entity The entity to send the input
+ */
 void GameLogic::sendInput(const ecs::Entity& entity) {
     const Config& config = Config::getInstance("server/config.json");
     std::string hostname = config.get("hostname").value_or("127.0.0.1");
@@ -107,6 +136,11 @@ void GameLogic::sendInput(const ecs::Entity& entity) {
     network::socket::udp::ServerManager::getInstance().getServer().send(hostname, port, RawRequest(typedQuery));
 }
 
+/**
+ * @brief Update the animation of an entity
+ *
+ * @param entity The entity to update
+ */
 void GameLogic::updateAnimation(const ecs::Entity& entity) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& animation = registry.getComponent<ecs::component::Animation>(entity);
@@ -130,6 +164,11 @@ void GameLogic::updateAnimation(const ecs::Entity& entity) {
     }
 }
 
+/**
+ * @brief Update the game logic for a server
+ *
+ * @param entity The entity to update
+ */
 void GameLogic::server(const ecs::Entity& entity) {
     if (!isPureServer(this->_mode)) {
         return;
@@ -141,6 +180,11 @@ void GameLogic::server(const ecs::Entity& entity) {
     }
 }
 
+/**
+ * @brief Send the player position to all clients
+ *
+ * @param entity The entity to send the position
+ */
 void GameLogic::sendPlayerPosition(const ecs::Entity& entity) {
     auto position = ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(entity);
     UpdatePlayer payload{position};
@@ -150,6 +194,11 @@ void GameLogic::sendPlayerPosition(const ecs::Entity& entity) {
     network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), request);
 }
 
+/**
+ * @brief Send the team position to all clients
+ *
+ * @param entity The entity to send the position
+ */
 void GameLogic::sendTeamPosition(const ecs::Entity& entity) {
     for (const auto& [destEntity, destClient]: ecs::RegistryManager::getInstance().getRegistry().getEntities<network::Client>()) {
         if (entity == destEntity) {

@@ -1,6 +1,15 @@
 #include "EntitySchematic.hpp"
 #include "Position.hpp"
 
+/**
+ * @brief Create a player entity (client side)
+ *
+ * @param startX The start x position
+ * @param startY The start y position
+ * @param screenWidth The screen width
+ * @param screenHeight The screen height
+ * @return The player entity
+ */
 ecs::Entity EntitySchematic::createPlayer(int16_t startX, int16_t startY, int16_t screenWidth, int16_t screenHeight) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto player = registry.createEntity<>(0);
@@ -15,6 +24,15 @@ ecs::Entity EntitySchematic::createPlayer(int16_t startX, int16_t startY, int16_
     return player;
 }
 
+/**
+ * @brief Create a player entity (server side)
+ *
+ * @param id The entity id
+ * @param x The x position
+ * @param y The y position
+ * @param spriteID The sprite id
+ * @return The player entity
+ */
 ecs::Entity EntitySchematic::createTeamPlayer(uint64_t id, int16_t x, int16_t y, int spriteID) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto player = registry.createEntity<>(id);
@@ -31,6 +49,15 @@ ecs::Entity EntitySchematic::createTeamPlayer(uint64_t id, int16_t x, int16_t y,
     return player;
 }
 
+/**
+ * @brief Create a player entity (client side)
+ *
+ * @param id The entity id
+ * @param x The x position
+ * @param y The y position
+ * @param spriteID The sprite id
+ * @return The player entity
+ */
 ecs::Entity EntitySchematic::createTeamPlayerClient(uint64_t id, int16_t x, int16_t y, int spriteID) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto player = registry.createEntity<>(id);
@@ -46,6 +73,15 @@ ecs::Entity EntitySchematic::createTeamPlayerClient(uint64_t id, int16_t x, int1
     return player;
 }
 
+/**
+ * @brief Create a player entity (server side)
+ *
+ * @param id The entity id
+ * @param x The x position
+ * @param y The y position
+ * @param spriteID The sprite id
+ * @return The player entity
+ */
 ecs::Entity EntitySchematic::createBullet() {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto bullet = registry.createEntity<>();
@@ -59,6 +95,12 @@ ecs::Entity EntitySchematic::createBullet() {
     return bullet;
 }
 
+/**
+ * @brief Create a bullet entity (client side)
+ *
+ * @param shooter The entity that shot the bullet
+ * @return The bullet entity
+ */
 ecs::Entity EntitySchematic::createBullet(const ecs::Entity& shooter) {
     auto bullet = createBullet();
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
@@ -68,6 +110,12 @@ ecs::Entity EntitySchematic::createBullet(const ecs::Entity& shooter) {
     return bullet;
 }
 
+/**
+ * @brief Create an explosion entity
+ *
+ * @param destroyed The entity that was destroyed
+ * @return The explosion entity
+ */
 ecs::Entity EntitySchematic::createExplosion(const ecs::Entity& destroyed) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& destroyedPosition = registry.getComponent<ecs::component::Position>(destroyed);
@@ -81,6 +129,18 @@ ecs::Entity EntitySchematic::createExplosion(const ecs::Entity& destroyed) {
     return explosion;
 }
 
+/**
+ * @brief Create an enemy entity
+ *
+ * @param id The entity id
+ * @param x The x position
+ * @param y The y position
+ * @param spriteID The sprite id
+ * @param stateID The state id
+ * @param model The behavior model
+ * @param screenSize The screen size
+ * @return The enemy entity
+ */
 ecs::Entity EntitySchematic::createEnemy(std::size_t id, int16_t x, int16_t y, int spriteID, int stateID, const std::string& model, const std::pair<std::size_t, std::size_t>& screenSize) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto enemy = registry.createEntity<>();
