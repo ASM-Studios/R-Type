@@ -156,7 +156,8 @@ var NAVTREE =
       ] ],
       [ "Documentation", "md_README.html#autotoc_md116", null ],
       [ "Authors", "md_README.html#autotoc_md117", null ],
-      [ "License", "md_README.html#autotoc_md118", null ]
+      [ "License", "md_README.html#autotoc_md118", null ],
+      [ "Assets", "md_README.html#autotoc_md119", null ]
     ] ],
     [ "Bug List", "bug.html", null ],
     [ "Modules", "modules.html", "modules" ],
