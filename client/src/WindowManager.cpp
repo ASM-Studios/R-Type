@@ -16,8 +16,9 @@
  * \throws GuiException if there is an error reading the config file.
  */
 GUI::WindowManager::WindowManager()
-    : _gameLogic(GameLogicMode::CLIENT),
-    _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)){
+    : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)),
+    _gameLogic(GameLogicMode::CLIENT)
+{
     network::socket::udp::ServerManager::getInstance().init();
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
@@ -38,7 +39,7 @@ GUI::WindowManager::WindowManager()
     _spriteManager.init();
     _event = sf::Event();
 
-    _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 100, 10));
+    _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 150, 10));
 
     _musicManager.setMusic(MAIN_THEME_MUSIC);
 
@@ -210,13 +211,13 @@ void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
 
     frameCount++;
     if (const sf::Time elapsed = clock.getElapsedTime(); elapsed.asSeconds() >= 1.0f) {
-        const float fps = frameCount / elapsed.asSeconds();
+        const float fps = std::roundf(frameCount / elapsed.asSeconds());
         frameCount = 0;
         clock.restart();
 
         auto fpsText = _getText("fps");
         if (!fpsText) {
-            _addText("fps", "FPS: 0", sf::Vector2f(_window->getSize().x - 100, 10));
+            _addText("fps", "FPS: 0", sf::Vector2f(_window->getSize().x - 150, 10));
             fpsText = _getText("fps");
         }
         if (fpsText) {
@@ -293,7 +294,7 @@ void GUI::WindowManager::_displayGame() const {
 /* Menu */
 
 /**
- * \brief Displays the menu.
+ * \brief Displays the menu based on the current game state and menu state.
  */
 void GUI::WindowManager::_displayMenu() {
     if (_gameState != _previousGameState || _menuState != _previousMenuState) {
@@ -301,18 +302,16 @@ void GUI::WindowManager::_displayMenu() {
         _previousGameState = _gameState;
         _previousMenuState = _menuState;
 
-        switch (_menuState) {
-            case NO_MENU:
-                return;
-            case MAIN_MENU:
-                _mainMenuInit();
-            break;
-            case SETTINGS_MENU:
-                _settingsMenuInit();
-            break;
-            case PAUSE_MENU:
-                _pauseMenuInit();
-            break;
+        const std::unordered_map<menuState, std::function<void()>> menuInitMap = {
+            {NO_MENU, []() {}},
+            {MAIN_MENU, [this]() { _mainMenuInit(); }},
+            {SCENARIO_SELECTION_MENU, [this]() { _scenarioSelectionInit(); }},
+            {SETTINGS_MENU, [this]() { _settingsMenuInit(); }},
+            {PAUSE_MENU, [this]() { _pauseMenuInit(); }}
+        };
+
+        if (menuInitMap.contains(_menuState)) {
+            menuInitMap.at(_menuState)();
         }
     }
 
@@ -322,7 +321,7 @@ void GUI::WindowManager::_displayMenu() {
 }
 
 /**
- * \brief Sets the game state.
+ * \brief Loads the Main Menu.
  */
 void GUI::WindowManager::_mainMenuInit() {
     _currentButtons.clear();
@@ -331,8 +330,8 @@ void GUI::WindowManager::_mainMenuInit() {
 
     const auto playButtonSprites = _spriteManager.getSprites("buttons/play");
     const Button<> playButton(playButtonSprites, [this]() {
-        this->setGameState(gameState::GAMES);
-        this->setMenuState(menuState::NO_MENU);
+        this->setGameState(gameState::MENUS);
+        this->setMenuState(menuState::SCENARIO_SELECTION_MENU);
     }, {_window->getSize().x / 2, startY});
     _currentButtons.emplace("main:play", playButton);
 
@@ -351,7 +350,28 @@ void GUI::WindowManager::_mainMenuInit() {
 }
 
 /**
- * \brief Sets the game state.
+ * \brief Loads the Scenario Selection Menu.
+ */
+void GUI::WindowManager::_scenarioSelectionInit() {
+    _currentButtons.clear();
+    constexpr float buttonSpacing = 150.0f;
+    const float startY = _window->getSize().y / 2 - buttonSpacing * 2;
+    const float centerX = _window->getSize().x / 2;
+
+    const std::vector<std::string> planetNames = {"terran", "baren", "ice", "lava", "black_hole"};
+    for (std::size_t i = 0; i < planetNames.size(); ++i) {
+        const auto buttonSprites = _spriteManager.getSprites("buttons/planets/" + planetNames[i]);
+        const Button<> planetButton(buttonSprites, [this, i]() {
+            // TODO:  Add level loading here where i is the scenario number
+            this->setGameState(gameState::GAMES);
+            this->setMenuState(menuState::NO_MENU);
+        }, {centerX, startY + i * buttonSpacing});
+        _currentButtons.emplace("scenario:" + planetNames[i], planetButton);
+    }
+}
+
+/**
+ * \brief Loads the Settings Menu.
  */
 void GUI::WindowManager::_settingsMenuInit() {
     _currentButtons.clear();
@@ -395,7 +415,7 @@ void GUI::WindowManager::_settingsMenuInit() {
 }
 
 /**
- * \brief Sets the game state.
+ * \brief Loads the Pause Menu.
  */
 void GUI::WindowManager::_pauseMenuInit() {
     _currentButtons.clear();

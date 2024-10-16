@@ -8,8 +8,7 @@
 namespace GUI {
     template<typename... Args>
     class Button {
-        private:
-            std::map<std::size_t, std::shared_ptr<sf::Sprite>> _buttonSprites;
+        std::map<std::size_t, std::shared_ptr<sf::Sprite>> _buttonSprites;
             std::function<void(Args...)> _onClick;
             std::pair<std::size_t, std::size_t> _position;
             std::size_t _currentState = 0;
