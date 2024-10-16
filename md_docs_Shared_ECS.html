@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('md_docs_Shared_ECS.html',''); initResi
 <div class="textblock"><p>The ECS is the entity manager of the project (server-side).</p>
 <h1><a class="anchor" id="autotoc_md87"></a>
 Usage</h1>
-<p><b>NEVER INSTANCIATE AN ENTITY BY YOURSELF, USE <code>ecs::Registry::createEntity</code> INSTEAD.</b><br  />
+<p><b>NEVER INSTANCIATE AN ENTITY BY YOURSELF, USE <code><a class="el" href="classecs_1_1Registry.html#aa204a3f8f58b7961089b6c183f59b88d" title="Create an entity with a unique ID.">ecs::Registry::createEntity</a></code> INSTEAD.</b><br  />
  Registry keep a trace of all created entities.</p>
 <h1><a class="anchor" id="autotoc_md88"></a>
 Factory</h1>
@@ -105,7 +105,8 @@ Factory</h1>
 <h2><a class="anchor" id="autotoc_md89"></a>
 Entity</h2>
 <p>To create an entity, use the following code:</p>
-<div class="fragment"><div class="line">ecs::RegistryManager::getInstance().getRegistry().createEntity&lt;&gt;(0);</div>
+<div class="fragment"><div class="line">ecs::RegistryManager::getInstance().getRegistry().<a class="code hl_function" href="classecs_1_1Registry.html#aa204a3f8f58b7961089b6c183f59b88d">createEntity</a>&lt;&gt;(0);</div>
+<div class="ttc" id="aclassecs_1_1Registry_html_aa204a3f8f58b7961089b6c183f59b88d"><div class="ttname"><a href="classecs_1_1Registry.html#aa204a3f8f58b7961089b6c183f59b88d">ecs::Registry::createEntity</a></div><div class="ttdeci">Entity createEntity()</div><div class="ttdoc">Create an entity with a unique ID.</div><div class="ttdef"><b>Definition:</b> <a href="Registry_8inl_source.html#l00012">Registry.inl:12</a></div></div>
 </div><!-- fragment --><p>To add more component, you can either use</p>
 <div class="fragment"><div class="line">entity.addComponent&lt;Component1&gt;();</div>
 </div><!-- fragment --><p>or</p>
@@ -130,7 +131,8 @@ Registry</h2>
 <div class="fragment"><div class="line">ecs::Registry::contains&lt;Component&gt;(entity);</div>
 </div><!-- fragment --><p>All entities are stored in <a class="el" href="classecs_1_1Registry.html">ecs::Registry</a> class</p>
 <p>To fetch them all, use</p>
-<div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> entities = ecs::RegistryManager::getInstance().getRegistry().getEntities();</div>
+<div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> entities = ecs::RegistryManager::getInstance().getRegistry().<a class="code hl_function" href="classecs_1_1Registry.html#a0a2f6023ca391529e991c24e83223117">getEntities</a>();</div>
+<div class="ttc" id="aclassecs_1_1Registry_html_a0a2f6023ca391529e991c24e83223117"><div class="ttname"><a href="classecs_1_1Registry.html#a0a2f6023ca391529e991c24e83223117">ecs::Registry::getEntities</a></div><div class="ttdeci">std::set&lt; Entity &gt; getEntities()</div><div class="ttdoc">Get all entities of the registry.</div><div class="ttdef"><b>Definition:</b> <a href="Registry_8cpp_source.html#l00044">Registry.cpp:44</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
