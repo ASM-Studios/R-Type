@@ -7,12 +7,11 @@ constexpr auto WAVE_FREQUENCY = 0.01f;
 constexpr auto ZIGZAG_SPEED = 300;
 constexpr auto DIAGONAL_SPEED = 300;
 
-void EnemyBehavior::classicEnemy(const ecs::Entity& enemy, float timePerTick)
-{
+void EnemyBehavior::classicEnemy(GameLogicMode mode, const ecs::Entity& enemy, float timePerTick) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     int16_t speed = -ENEMY_SPEED * timePerTick;
     auto& position = registry.getComponent<ecs::component::Position>(enemy);
-    ecs::component::Position const offset( speed, 0);
+    ecs::component::Position const offset(speed, 0);
 
     position.move(offset);
     if (position.x < 1) {
@@ -20,8 +19,7 @@ void EnemyBehavior::classicEnemy(const ecs::Entity& enemy, float timePerTick)
     }
 }
 
-void EnemyBehavior::EnemySinusoidal(const ecs::Entity& enemy, float timePerTick)
-{
+void EnemyBehavior::EnemySinusoidal(GameLogicMode mode, const ecs::Entity& enemy, float timePerTick) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     auto& position = registry.getComponent<ecs::component::Position>(enemy);
     int16_t speedX = -ENEMY_SPEED * timePerTick;
@@ -34,8 +32,7 @@ void EnemyBehavior::EnemySinusoidal(const ecs::Entity& enemy, float timePerTick)
     }
 }
 
-void EnemyBehavior::EnemyZigZag(const ecs::Entity& enemy, float timePerTick)
-{
+void EnemyBehavior::EnemyZigZag(GameLogicMode mode, const ecs::Entity& enemy, float timePerTick) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
 
     auto& position = registry.getComponent<ecs::component::Position>(enemy);

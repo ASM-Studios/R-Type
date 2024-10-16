@@ -1,8 +1,7 @@
 #include "Behavior.hpp"
 
 namespace ecs::component {
-    Behavior Behavior::stringToBehaviorModel(const std::string& modelStr)
-    {
+    Behavior Behavior::stringToBehaviorModel(const std::string& modelStr) {
         if (modelStr == "none") {
             return {&EnemyBehavior::classicEnemy};
         }

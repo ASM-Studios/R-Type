@@ -20,7 +20,7 @@ struct CreateEntity {
         uint64_t id;
         uint8_t spriteID;
         ecs::component::Position position;
-        std::array<std::optional<ecs::component::Tag>, 4> tags;
+        std::array<std::optional<ecs::component::Tag>, 5> tags;
 };
 
 struct UpdateEntity {

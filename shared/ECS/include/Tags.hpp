@@ -8,6 +8,7 @@
 namespace ecs::component {
 
     enum class Tag {
+        Player,
         Bullet,
         Enemy,
         Ally,
@@ -17,8 +18,8 @@ namespace ecs::component {
     struct Tags {
             std::set<Tag> tags;
 
-            operator std::array<std::optional<Tag>, 4>() const {
-                std::array<std::optional<Tag>, 4> arr;
+            operator std::array<std::optional<Tag>, 5>() const {
+                std::array<std::optional<Tag>, 5> arr;
                 std::fill(arr.begin(), arr.end(), std::nullopt);
                 std::copy(tags.begin(), tags.end(), arr.begin());
                 return arr;
@@ -31,7 +32,7 @@ namespace ecs::component {
                 tags.erase(tag);
             }
 
-            static bool hasTag(const std::array<std::optional<Tag>, 4>& tags, Tag tag) {
+            static bool hasTag(std::array<std::optional<Tag>, 5> tags, Tag tag) {
                 return std::find(tags.begin(), tags.end(), tag) != tags.end();
             }
 

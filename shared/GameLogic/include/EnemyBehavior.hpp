@@ -1,11 +1,13 @@
 #pragma once
+
 #include "RegistryManager.hpp"
-#include "EntitySchematic.hpp"
+
+enum class GameLogicMode;
 
 class EnemyBehavior {
     public:
         EnemyBehavior() = default;
-        static void classicEnemy(const ecs::Entity &enemy, float timePerTick);
-        static void EnemySinusoidal(const ecs::Entity& enemy, float timePerTick);
-        static void EnemyZigZag(const ecs::Entity& enemy, float timePerTick);
+        static void classicEnemy(GameLogicMode mode, const ecs::Entity& enemy, float timePerTick);
+        static void EnemySinusoidal(GameLogicMode mode, const ecs::Entity& enemy, float timePerTick);
+        static void EnemyZigZag(GameLogicMode, const ecs::Entity& enemy, float timePerTick);
 };

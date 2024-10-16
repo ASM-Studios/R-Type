@@ -12,7 +12,7 @@ namespace ecs {
     }
 
     template <typename... Components>
-    Entity Registry::createEntity(int id) {
+    Entity Registry::createEntity(uint64_t id) {
         std::lock_guard<std::mutex> lock(this->_mutex);
         for (auto entity: this->_entities) {
             if (entity.getID() == id) {

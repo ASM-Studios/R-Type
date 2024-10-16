@@ -10,6 +10,7 @@ fi
 
 rm -rf cmake-build-release
 rm -rf cmake-build-debug
+rm -rf cmake-build-windows
 rm -rf vgcore*
 rm -rf $CLIENT
 rm -rf $SERVER

@@ -13,7 +13,8 @@ static void callCallback(std::pair<network::Client, RawRequest> request) {
     if (it != requestAction.end()) {
         it->second(request.first, request.second);
     } else {
-        Logger::log(LogLevel::ERR, "Callback not found");
+        Logger::log(LogLevel::ERR, std::format("Callback not found: "));
+        std::cout << request.second.getQuery().getRequestType() << std::endl;
     }
 }
 

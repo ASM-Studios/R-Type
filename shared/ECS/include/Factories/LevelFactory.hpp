@@ -72,6 +72,7 @@ namespace ecs::factory {
             static Component parseModel(const libconfig::Setting& componentSetting, const std::string& type);
             static void createRegistryEntity(FactoryEntity& entity);
             static void updateEntities(float elapsedTime);
+
         private:
             static std::vector<FactoryEntity> pendingEntities;
             static std::unique_ptr<LevelFactory> _instance;

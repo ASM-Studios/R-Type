@@ -25,7 +25,7 @@ void handleInput(network::Client client, RawRequest request) {
 }
 
 const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
-    {INPUT, &handleInput}};
+    {RequestType::INPUT, &handleInput}};
 
 void hexDisplay(const char *ptr, std::size_t n) {
     for (int i = 0; i < n; i++) {

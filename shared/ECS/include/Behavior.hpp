@@ -1,11 +1,11 @@
 #pragma once
+#include "EnemyBehavior.hpp"
 #include "Entity.hpp"
 #include "Logger.hpp"
-#include "EnemyBehavior.hpp"
 
 namespace ecs::component {
     struct Behavior {
-        std::function<void (const ecs::Entity entity, float timePerTick)>func;
-        static Behavior stringToBehaviorModel(const std::string& modelStr);
+            std::function<void(GameLogicMode mode, const ecs::Entity entity, float timePerTick)> func;
+            static Behavior stringToBehaviorModel(const std::string& modelStr);
     };
 }

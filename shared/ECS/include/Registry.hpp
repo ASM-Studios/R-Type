@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Position.hpp"
+#include "Sprite.hpp"
+#include "Texture.hpp"
 #include <any>
 #include <cstddef>
 #include <cstdint>
@@ -7,9 +10,6 @@
 #include <string>
 #include <typeindex>
 #include <unordered_map>
-#include "Position.hpp"
-#include "Sprite.hpp"
-#include "Texture.hpp"
 
 namespace ecs {
     class Entity;
@@ -52,7 +52,7 @@ namespace ecs {
             template <typename... Components>
             Entity createEntity();
             template <typename... Components>
-            Entity createEntity(int id);
+            Entity createEntity(uint64_t id);
 
             [[nodiscard]] std::set<Entity> getEntities();
             template <typename Component>
