@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gamelogic_0',['GameLogic',['../classGameLogic.html',1,'']]],
+  ['gamelogic_0',['GameLogic',['../classGameLogic.html',1,'GameLogic'],['../classGameLogic.html#a05cbb3ac81c73a17fd3d6b1891ceb363',1,'GameLogic::GameLogic()']]],
   ['globalvalue_1',['globalValue',['../file_8h.html#a4a86bef4b6181cb3f53bd0461a9a511b',1,'file.h']]],
   ['globenum_2',['GlobEnum',['../autolink_8cpp.html#a656d63cf384d2a6f23c2c18523a7bc5e',1,'autolink.cpp']]],
   ['globvar_3',['globVar',['../autolink_8cpp.html#a88d0bae800d600a11d7bd60f0bc4b858',1,'autolink.cpp']]],

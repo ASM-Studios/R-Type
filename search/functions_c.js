@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['read_0',['read',['../structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90',1,'structcmd.h']]],
-  ['readserver_1',['readServer',['../classGUI_1_1WindowManager.html#a50fe768b86186cb5ea5068e375f3625a',1,'GUI::WindowManager']]]
+  ['pymethod_0',['PyMethod',['../classdocstring_1_1PyClass.html#af092e1eacc10334e0e8630531a3473b4',1,'docstring.PyClass.PyMethod()'],['../classpyexample_1_1PyClass.html#a654596774eb28a0c6d26eea565de3a9d',1,'pyexample.PyClass.PyMethod()']]]
 ];

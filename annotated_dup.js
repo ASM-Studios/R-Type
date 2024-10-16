@@ -76,7 +76,7 @@ var annotated_dup =
     [ "Enum_Test", "classEnum__Test.html", "classEnum__Test" ],
     [ "Example_Test", "classExample__Test.html", "classExample__Test" ],
     [ "Fn_Test", "classFn__Test.html", "classFn__Test" ],
-    [ "GameLogic", "classGameLogic.html", null ],
+    [ "GameLogic", "classGameLogic.html", "classGameLogic" ],
     [ "Include_Test", "classInclude__Test.html", "classInclude__Test" ],
     [ "Javadoc_Test", "classJavadoc__Test.html", "classJavadoc__Test" ],
     [ "Logger", "classLogger.html", null ],

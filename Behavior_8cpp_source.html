@@ -98,22 +98,25 @@ $(document).ready(function(){initNavTree('Behavior_8cpp_source.html',''); initRe
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span>ecs::component {</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>    Behavior Behavior::stringToBehaviorModel(<span class="keyword">const</span> std::string&amp; modelStr) {</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>        <span class="keywordflow">if</span> (modelStr == <span class="stringliteral">&quot;none&quot;</span>) {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>            <span class="keywordflow">return</span> {&amp;EnemyBehavior::classicEnemy};</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>            <span class="keywordflow">return</span> {&amp;<a class="code hl_function" href="classEnemyBehavior.html#ac4d61812a99c4599c03339d19a225de5">EnemyBehavior::classicEnemy</a>};</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>        }</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        <span class="keywordflow">if</span> (modelStr == <span class="stringliteral">&quot;classic&quot;</span>) {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>            <span class="keywordflow">return</span> {&amp;EnemyBehavior::classicEnemy};</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>            <span class="keywordflow">return</span> {&amp;<a class="code hl_function" href="classEnemyBehavior.html#ac4d61812a99c4599c03339d19a225de5">EnemyBehavior::classicEnemy</a>};</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        }</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="keywordflow">if</span> (modelStr == <span class="stringliteral">&quot;sinusoidal&quot;</span>) {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>            <span class="keywordflow">return</span> {&amp;EnemyBehavior::EnemySinusoidal};</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>            <span class="keywordflow">return</span> {&amp;<a class="code hl_function" href="classEnemyBehavior.html#a712d90435228089d04b5f9f6208fdf1c">EnemyBehavior::EnemySinusoidal</a>};</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        }</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="keywordflow">if</span> (modelStr == <span class="stringliteral">&quot;zig-zag&quot;</span>) {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            <span class="keywordflow">return</span> {&amp;EnemyBehavior::EnemyZigZag};</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>            <span class="keywordflow">return</span> {&amp;<a class="code hl_function" href="classEnemyBehavior.html#a8c73385ff547186f1d3a80da19add8ef">EnemyBehavior::EnemyZigZag</a>};</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        }</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="comment">// TODO: Add more AI models here</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        Logger::log(LogLevel::ERR, <span class="stringliteral">&quot;Unknown Behavior model: &quot;</span> + modelStr);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">return</span> {&amp;EnemyBehavior::classicEnemy};</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">return</span> {&amp;<a class="code hl_function" href="classEnemyBehavior.html#ac4d61812a99c4599c03339d19a225de5">EnemyBehavior::classicEnemy</a>};</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    }</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
+<div class="ttc" id="aclassEnemyBehavior_html_a712d90435228089d04b5f9f6208fdf1c"><div class="ttname"><a href="classEnemyBehavior.html#a712d90435228089d04b5f9f6208fdf1c">EnemyBehavior::EnemySinusoidal</a></div><div class="ttdeci">static void EnemySinusoidal(GameLogicMode mode, const ecs::Entity &amp;enemy, float timePerTick)</div><div class="ttdoc">Update the enemy position.</div><div class="ttdef"><b>Definition:</b> <a href="EnemyBehavior_8cpp_source.html#l00036">EnemyBehavior.cpp:36</a></div></div>
+<div class="ttc" id="aclassEnemyBehavior_html_a8c73385ff547186f1d3a80da19add8ef"><div class="ttname"><a href="classEnemyBehavior.html#a8c73385ff547186f1d3a80da19add8ef">EnemyBehavior::EnemyZigZag</a></div><div class="ttdeci">static void EnemyZigZag(GameLogicMode, const ecs::Entity &amp;enemy, float timePerTick)</div><div class="ttdoc">Update the enemy position.</div><div class="ttdef"><b>Definition:</b> <a href="EnemyBehavior_8cpp_source.html#l00056">EnemyBehavior.cpp:56</a></div></div>
+<div class="ttc" id="aclassEnemyBehavior_html_ac4d61812a99c4599c03339d19a225de5"><div class="ttname"><a href="classEnemyBehavior.html#ac4d61812a99c4599c03339d19a225de5">EnemyBehavior::classicEnemy</a></div><div class="ttdeci">static void classicEnemy(GameLogicMode mode, const ecs::Entity &amp;enemy, float timePerTick)</div><div class="ttdoc">Update the enemy position.</div><div class="ttdef"><b>Definition:</b> <a href="EnemyBehavior_8cpp_source.html#l00017">EnemyBehavior.cpp:17</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

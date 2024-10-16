@@ -99,10 +99,13 @@ $(document).ready(function(){initNavTree('classBehaviorFunc.html',''); initResiz
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ace1dfc0dfdbc6a52e15b0784e0d7be29"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#ace1dfc0dfdbc6a52e15b0784e0d7be29">updateBullet</a> (GameLogicMode mode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
+<tr class="memdesc:ace1dfc0dfdbc6a52e15b0784e0d7be29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the bullet position.  <br /></td></tr>
 <tr class="separator:ace1dfc0dfdbc6a52e15b0784e0d7be29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1b1bcc4c2b1945708a7ae1da567aae3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#ad1b1bcc4c2b1945708a7ae1da567aae3">handleInput</a> (GameLogicMode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;bullet, float timePerTick)</td></tr>
+<tr class="memdesc:ad1b1bcc4c2b1945708a7ae1da567aae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the input of the player.  <br /></td></tr>
 <tr class="separator:ad1b1bcc4c2b1945708a7ae1da567aae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa76e792cfccb1907b008d25864983a02"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBehaviorFunc.html#aa76e792cfccb1907b008d25864983a02">setSpriteSheetFromInput</a> (GameLogicMode, const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;entity, float timePerTick)</td></tr>
+<tr class="memdesc:aa76e792cfccb1907b008d25864983a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the player sprite sheet from input.  <br /></td></tr>
 <tr class="separator:aa76e792cfccb1907b008d25864983a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -120,50 +123,6 @@ Static Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void BehaviorFunc::handleInput </td>
-          <td>(</td>
-          <td class="paramtype">GameLogicMode&#160;</td>
-          <td class="paramname"><em>mode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
-          <td class="paramname"><em>bullet</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>timePerTick</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00082">82</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
-
-</div>
-</div>
-<a id="aa76e792cfccb1907b008d25864983a02" name="aa76e792cfccb1907b008d25864983a02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa76e792cfccb1907b008d25864983a02">&#9670;&#160;</a></span>setSpriteSheetFromInput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void BehaviorFunc::setSpriteSheetFromInput </td>
           <td>(</td>
           <td class="paramtype">GameLogicMode&#160;</td>
           <td class="paramname"><em>mode</em>, </td>
@@ -193,7 +152,71 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00027">27</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p>Handle the input of the player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The game logic mode </td></tr>
+    <tr><td class="paramname">entity</td><td>The player entity </td></tr>
+    <tr><td class="paramname">timePerTick</td><td>The time per tick </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00108">108</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aa76e792cfccb1907b008d25864983a02" name="aa76e792cfccb1907b008d25864983a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa76e792cfccb1907b008d25864983a02">&#9670;&#160;</a></span>setSpriteSheetFromInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BehaviorFunc::setSpriteSheetFromInput </td>
+          <td>(</td>
+          <td class="paramtype">GameLogicMode&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classecs_1_1Entity.html">ecs::Entity</a> &amp;&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Update the player sprite sheet from input. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The game logic mode </td></tr>
+    <tr><td class="paramname">player</td><td>The player entity </td></tr>
+    <tr><td class="paramname">timePerTick</td><td>The time per tick </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00041">41</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
 
 </div>
 </div>
@@ -237,7 +260,17 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00015">15</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
+<p>Update the bullet position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The game logic mode </td></tr>
+    <tr><td class="paramname">bullet</td><td>The bullet entity </td></tr>
+    <tr><td class="paramname">timePerTick</td><td>The time per tick </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="BehaviorFunc_8cpp_source.html#l00022">22</a> of file <a class="el" href="BehaviorFunc_8cpp_source.html">BehaviorFunc.cpp</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init_0',['init',['../classGUI_1_1SpriteManager.html#ad99ada885ef8751001e6334de245db20',1,'GUI::SpriteManager']]]
+  ['gamelogic_0',['GameLogic',['../classGameLogic.html#a05cbb3ac81c73a17fd3d6b1891ceb363',1,'GameLogic']]]
 ];
