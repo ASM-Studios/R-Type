@@ -2,15 +2,25 @@
 #include "Logger.hpp"
 #include <format>
 #include <mutex>
+#include <stdexcept>
+
+#define NO_WORKER       10
+
+void execute(std::pair<network::Client, RawRequest> request) {
+    try {
+        auto callback = requestAction.at(request.second.getQuery().getRequestType());
+        callback(request.first, request.second);
+    } catch (std::out_of_range &e) {
+        Logger::log(LogLevel::ERR, std::format("Callback not found"));
+    }
+}
 
 namespace network {
+    QueryHandler::QueryHandler() :
+        _pool(boost::asio::thread_pool(NO_WORKER)) {}
+
     QueryHandler::~QueryHandler() {
-        if (this->_workers.size() > 0) {
-            Logger::log(LogLevel::INFO, std::format("Waiting for {0} workers", this->_workers.size()));
-        }
-        for (auto& worker: this->_workers) {
-            worker->join();
-        }
+        this->_pool.join();
     }
 
     QueryHandler& QueryHandler::getInstance() {
@@ -26,8 +36,9 @@ namespace network {
     }
 
     void QueryHandler::executeQuery(std::pair<Client, RawRequest> query) {
-        auto worker = std::make_shared<Worker>(query);
-        this->_workers.push_back(worker);
+        boost::asio::post(this->_pool, [query](){
+            execute(query);
+        });
     }
 
     void QueryHandler::executeQueries() {
@@ -36,18 +47,6 @@ namespace network {
             auto query = this->_pendingQueries.front();
             this->_pendingQueries.pop();
             this->executeQuery(query);
-        }
-    }
-
-    void QueryHandler::checkWorkers() {
-        for (auto it = this->_workers.begin(); it != this->_workers.end();) {
-            auto worker = *it;
-            if (worker->isReady()) {
-                worker->join();
-                it = this->_workers.erase(it);
-            } else {
-                it++;
-            }
         }
     }
 
