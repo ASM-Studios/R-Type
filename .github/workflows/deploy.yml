@@ -52,10 +52,6 @@ jobs:
             ./vcpkg/bootstrap-vcpkg.sh
           fi
           ./vcpkg/vcpkg install
-      #- name: Setup CMake
-      #  uses: jwlawson/actions-setup-cmake@v2
-      #  with:
-      #    cmake-version: '3.27.4'
       - name: Compilation
         run: |
           ./release.sh
@@ -92,9 +88,9 @@ jobs:
             .\vcpkg\bootstrap-vcpkg.bat
           }
           C:\vcpkg\vcpkg install
-      - name: Compilation # ne fonctionne pas encore
+      - name: Compilation
         run: |
-          release.bat
+          windows.bat
       - name: Create archive
         run: |
           Compress-Archive -Path r-type_client.exe, r-type_server.exe -DestinationPath windows_executables.zip
