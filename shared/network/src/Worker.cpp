@@ -6,7 +6,6 @@
 #include "query/TypedQuery.hpp"
 #include <chrono>
 #include <future>
-#include <unistd.h>
 
 static void callCallback(std::pair<network::Client, RawRequest> request) {
     auto it = requestAction.find(request.second.getQuery().getRequestType());
