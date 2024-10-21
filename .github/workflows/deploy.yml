@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - yma/windows_deployement # for test
 
 env:
   EXECUTABLES:  r-type_client, r-type_server
@@ -51,10 +52,10 @@ jobs:
             ./vcpkg/bootstrap-vcpkg.sh
           fi
           ./vcpkg/vcpkg install
-      - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@v2
-        with:
-          cmake-version: '3.27.4'
+      #- name: Setup CMake
+      #  uses: jwlawson/actions-setup-cmake@v2
+      #  with:
+      #    cmake-version: '3.27.4'
       - name: Compilation
         run: |
           ./release.sh
@@ -72,39 +73,38 @@ jobs:
           asset_name: linux_executables.zip
           asset_content_type: application/zip
 
-#  build_and_deploy_windows:
-#    name: Build and deploy (Windows)
-#    runs-on: windows-latest
-#    needs: create_release
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-#      - name: Cache vcpkg
-#        uses: actions/cache@v4
-#        with:
-#          path: C:\Users\runneradmin\AppData\Local\vcpkg\archives
-#          key: ${{ hashFiles('vcpkg.json') }}
-#      - name: Setup vcpkg
-#        run: |
-#          if (-not (Test-Path -Path "C:\vcpkg")) {
-#            git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
-#            .\vcpkg\bootstrap-vcpkg.bat
-#          }
-#          C:\vcpkg\vcpkg install
-#      - name: Compilation # ne fonctionne pas encore
-#        run: |
-#          cmake -S . -B build -G "Ninja" -DCMAKE_TOOLCHAIN_FILE="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\scripts\buildsystems\vcpkg.cmake" -DCMAKE_BUILD_TYPE=Release
-#          cmake --build .
-#      - name: Create archive
-#        run: |
-#          Compress-Archive -Path r-type_client.exe, r-type_server.exe -DestinationPath windows_executables.zip
-#      - name: Upload Release Asset
-#        id: upload-release-asset-windows
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ needs.create_release.outputs.upload_url }}
-#          asset_path: ./windows_executables.zip
-#          asset_name: windows_executables.zip
-#          asset_content_type: application/zip
+  build_and_deploy_windows:
+    name: Build and deploy (Windows)
+    runs-on: windows-latest
+    needs: create_release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Cache vcpkg
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runneradmin\AppData\Local\vcpkg\archives
+          key: ${{ hashFiles('vcpkg.json') }}
+      - name: Setup vcpkg
+        run: |
+          if (-not (Test-Path -Path "C:\vcpkg")) {
+            git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
+            .\vcpkg\bootstrap-vcpkg.bat
+          }
+          C:\vcpkg\vcpkg install
+      - name: Compilation # ne fonctionne pas encore
+        run: |
+          release.bat
+      - name: Create archive
+        run: |
+          Compress-Archive -Path r-type_client.exe, r-type_server.exe -DestinationPath windows_executables.zip
+      - name: Upload Release Asset
+        id: upload-release-asset-windows
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: ./windows_executables.zip
+          asset_name: windows_executables.zip
+          asset_content_type: application/zip
