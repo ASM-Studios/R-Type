@@ -96,8 +96,8 @@ $(document).ready(function(){initNavTree('QueryHandler_8hpp_source.html',''); in
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;Client.hpp&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Worker.hpp&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;query/RawRequest.hpp&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;query/RawRequest.hpp&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;boost/asio/thread_pool.hpp&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;mutex&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;queue&gt;</span></div>
@@ -108,10 +108,10 @@ $(document).ready(function(){initNavTree('QueryHandler_8hpp_source.html',''); in
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            <span class="keyword">static</span> std::unique_ptr&lt;QueryHandler&gt; _instance;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>            <span class="keyword">static</span> std::mutex _mutex;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            std::queue&lt;std::pair&lt;Client, RawRequest&gt;&gt; _pendingQueries;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            std::vector&lt;std::shared_ptr&lt;Worker&gt;&gt; _workers;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            boost::asio::thread_pool _pool;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            std::queue&lt;std::pair&lt;Client, RawRequest&gt;&gt; _pendingQueries;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            <a class="code hl_class" href="classnetwork_1_1QueryHandler.html">QueryHandler</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            <a class="code hl_class" href="classnetwork_1_1QueryHandler.html">QueryHandler</a>();</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <a class="code hl_class" href="classnetwork_1_1QueryHandler.html">QueryHandler</a>(<span class="keyword">const</span> <a class="code hl_class" href="classnetwork_1_1QueryHandler.html">QueryHandler</a>&amp; other) = <span class="keyword">delete</span>;</div>
@@ -124,9 +124,8 @@ $(document).ready(function(){initNavTree('QueryHandler_8hpp_source.html',''); in
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keywordtype">void</span> addQuery(std::pair&lt;Client, RawRequest&gt; query);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keywordtype">void</span> executeQuery(std::pair&lt;Client, RawRequest&gt; query);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keywordtype">void</span> executeQueries();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordtype">void</span> checkWorkers();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    };</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    };</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
 <div class="ttc" id="aclassnetwork_1_1QueryHandler_html"><div class="ttname"><a href="classnetwork_1_1QueryHandler.html">network::QueryHandler</a></div><div class="ttdef"><b>Definition:</b> <a href="QueryHandler_8hpp_source.html#l00011">QueryHandler.hpp:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

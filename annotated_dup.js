@@ -41,8 +41,7 @@ var annotated_dup =
         ] ]
       ] ],
       [ "Client", "classnetwork_1_1Client.html", null ],
-      [ "QueryHandler", "classnetwork_1_1QueryHandler.html", null ],
-      [ "Worker", "classnetwork_1_1Worker.html", null ]
+      [ "QueryHandler", "classnetwork_1_1QueryHandler.html", null ]
     ] ],
     [ "pyexample", "namespacepyexample.html", [
       [ "PyClass", "classpyexample_1_1PyClass.html", "classpyexample_1_1PyClass" ]

@@ -1,8 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classpyexample_1_1PyClass.html#a9165738cd516769e4fcd274219e9d255":[20,0,2,0,2],
-"classpyexample_1_1PyClass.html#a9165738cd516769e4fcd274219e9d255":[21,0,4,0,2],
-"client_2src_2main_8cpp_source.html":[22,0,0,1,0],
 "define_8h.html":[22,0,1,0,4],
 "define_8h.html#a74e75242132eaabbc1c512488a135926":[22,0,1,0,4,2],
 "define_8h.html#a996f7be338ccb40d1a2a5abc1ad61759":[22,0,1,0,4,0],
@@ -249,5 +246,8 @@ var NAVTREEINDEX1 =
 "structVehicle.html#a4dcbcba43792dcd673a552b14479ab77":[21,0,57,1],
 "structVehicle.html#a6891d3d28853bc3fdd075596dc6de9f8":[21,0,57,0],
 "structVehicle.html#ad7970f528d429f6fc1725173e93a77c2":[21,0,57,2],
-"structcmd_8h.html":[22,0,1,0,31]
+"structcmd_8h.html":[22,0,1,0,31],
+"structcmd_8h.html#a2c4414339f388561554c2deab11a1a07":[22,0,1,0,31,3],
+"structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90":[22,0,1,0,31,4],
+"structcmd_8h.html#ad65a8842cc674e3ddf69355898c0ecbf":[22,0,1,0,31,6]
 };

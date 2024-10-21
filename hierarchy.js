@@ -97,6 +97,5 @@ var hierarchy =
     [ "TypedQuery< Payload >", "classTypedQuery.html", null ],
     [ "UpdateEntity", "structUpdateEntity.html", null ],
     [ "UpdatePlayer", "structUpdatePlayer.html", null ],
-    [ "UpdateTeamPlayer", "structUpdateTeamPlayer.html", null ],
-    [ "network::Worker", "classnetwork_1_1Worker.html", null ]
+    [ "UpdateTeamPlayer", "structUpdateTeamPlayer.html", null ]
 ];
