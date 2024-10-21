@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Client.hpp"
-#include "Worker.hpp"
 #include "query/RawRequest.hpp"
+#include <boost/asio/thread_pool.hpp>
 #include <memory>
 #include <mutex>
 #include <queue>
@@ -13,10 +13,10 @@ namespace network {
             static std::unique_ptr<QueryHandler> _instance;
             static std::mutex _mutex;
 
+            boost::asio::thread_pool _pool;
             std::queue<std::pair<Client, RawRequest>> _pendingQueries;
-            std::vector<std::shared_ptr<Worker>> _workers;
 
-            QueryHandler() = default;
+            QueryHandler();
 
         public:
             QueryHandler(const QueryHandler& other) = delete;
@@ -29,6 +29,5 @@ namespace network {
             void addQuery(std::pair<Client, RawRequest> query);
             void executeQuery(std::pair<Client, RawRequest> query);
             void executeQueries();
-            void checkWorkers();
     };
 }

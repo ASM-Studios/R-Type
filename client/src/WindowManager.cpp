@@ -63,7 +63,6 @@ void GUI::WindowManager::readServer() {
         network::QueryHandler::getInstance().addQuery(query);
     }
     network::QueryHandler::getInstance().executeQueries();
-    network::QueryHandler::getInstance().checkWorkers();
 }
 
 void GUI::WindowManager::run() {

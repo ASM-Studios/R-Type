@@ -39,7 +39,6 @@ void Core::_loop() {
         network::QueryHandler::getInstance().addQuery(query);
     }
     network::QueryHandler::getInstance().executeQueries();
-    network::QueryHandler::getInstance().checkWorkers();
 }
 
 Core::Core() :
