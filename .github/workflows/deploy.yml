@@ -91,7 +91,7 @@ jobs:
       - name: Compilation
         run: |
           dir
-          windows.bat
+          D:\a\R-Type\R-Type\windows.bat
       - name: Create archive
         run: |
           Compress-Archive -Path r-type_client.exe, r-type_server.exe -DestinationPath windows_executables.zip
