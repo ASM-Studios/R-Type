@@ -32,14 +32,17 @@ void Core::_readStdin() {
 
 void Core::_loop() {
     this->_gameLogic.updateTimed();
-    auto& server = network::socket::udp::ServerManager::getInstance().getServer();
-    if (server.availableRequest()) {
+    network::QueryHandler::getInstance().executeQueries();
+    network::QueryHandler::getInstance().checkWorkers();
+    //this->_gameLogic.updateTimed();
+    //auto& server = network::socket::udp::ServerManager::getInstance().getServer();
+    /*if (server.availableRequest()) {
         auto query = server.recv<RawRequest>();
         network::Client client = query.first;
         network::QueryHandler::getInstance().addQuery(query);
     }
     network::QueryHandler::getInstance().executeQueries();
-    network::QueryHandler::getInstance().checkWorkers();
+    network::QueryHandler::getInstance().checkWorkers();*/
 }
 
 Core::Core() :
@@ -61,7 +64,13 @@ void Core::init(const std::span<char *>& args [[maybe_unused]]) {
 
 int Core::run() {
     network::QueryHandler& handler = network::QueryHandler::getInstance();
-    network::socket::udp::ServerManager::getInstance().init(this->_port);
+    auto& server = network::socket::udp::ServerManager::getInstance();
+    server.init(this->_port);
+    server.getServer().asyncRecv<RawRequest>();
+    std::thread ioThread([&server](){    server.getServer().run();
+        server.getServer().run();
+    });
+
     std::thread stdinThread(&Core::_readStdin, this);
     this->_gameLogic.start();
 
@@ -70,5 +79,6 @@ int Core::run() {
         this->_loop();
     }
     stdinThread.join();
+    ioThread.join();
     return 0;
 }

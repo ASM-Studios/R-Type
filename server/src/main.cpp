@@ -41,7 +41,19 @@ void hexDisplay(const char *ptr, std::size_t n) {
 int main(int ac, char **av) {
     auto args = std::span<char *>(av, ac);
     Core core;
-
+    std::string output;
+    #if defined(BOOST_ASIO_HAS_IOCP)
+        output = "iocp" ;
+    #elif defined(BOOST_ASIO_HAS_EPOLL)
+        output = "epoll" ;
+    #elif defined(BOOST_ASIO_HAS_KQUEUE)
+        output = "kqueue" ;
+    #elif defined(BOOST_ASIO_HAS_DEV_POLL)
+        output = "/dev/poll" ;
+    #else
+        output = "select" ;
+    #endif
+        std::cout << output << std::endl;
     core.init(args);
     return core.run();
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Client.hpp"
+#include "QueryHandler.hpp"
 #include <boost/asio.hpp>
 #include <boost/asio/buffer.hpp>
 #include <set>
@@ -16,6 +17,7 @@ namespace network::socket::udp {
             explicit Server();
             explicit Server(int port);
             ~Server() = default;
+            void run();
 
             template <typename T>
             [[nodiscard]] std::pair<Client, T> recv() {
@@ -29,6 +31,28 @@ namespace network::socket::udp {
                 }
                 Client client(remoteEndpoint.address().to_v4(), remoteEndpoint.port());
                 return {client, buffer};
+            }
+
+            template <typename T>
+            void asyncRecv() {
+                auto buffer = std::make_shared<T>();
+                auto remoteEndpoint = std::make_shared<boost::asio::ip::udp::endpoint>();
+                Logger::log(LogLevel::INFO, "Waiting for data");
+                this->_socket.async_receive_from(
+                    boost::asio::buffer(buffer.get(), sizeof(T)),
+                    *remoteEndpoint,
+                    [this, buffer, remoteEndpoint](boost::system::error_code error, std::size_t bytesReceived) {
+                        if (!error && bytesReceived > 0) {
+                            Logger::log(LogLevel::INFO, "Received data");
+                            Client client(remoteEndpoint->address().to_v4(), remoteEndpoint->port());
+                            RawRequest request = *buffer;
+                            network::QueryHandler::getInstance().addQuery({client, request});
+                        } else {
+                            Logger::log(LogLevel::ERR, std::format("Receive error: {0}", error.message()));
+                        }
+                        asyncRecv<T>();
+                    }
+                );
             }
 
             template <typename T>

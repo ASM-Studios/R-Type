@@ -14,7 +14,7 @@ namespace network {
     }
 
     QueryHandler& QueryHandler::getInstance() {
-        std::lock_guard<std::mutex> lock(_mutex);
+        std::lock_guard<std::mutex> const lock(_mutex);
         if (_instance == nullptr) {
             _instance = std::unique_ptr<QueryHandler>(new QueryHandler());
         }
@@ -22,16 +22,21 @@ namespace network {
     }
 
     void QueryHandler::addQuery(std::pair<Client, RawRequest> query) {
+        std::lock_guard<std::mutex> const lock(_mutex);
         this->_pendingQueries.push(query);
     }
 
     void QueryHandler::executeQuery(std::pair<Client, RawRequest> query) {
+        std::lock_guard<std::mutex> const lock(_mutex);
         auto worker = std::make_shared<Worker>(query);
         this->_workers.push_back(worker);
     }
 
     void QueryHandler::executeQueries() {
         const std::size_t size = this->_pendingQueries.size();
+        if (size == 0) {
+            return;
+        }
         for (std::size_t i = 0; i < size; i++) {
             auto query = this->_pendingQueries.front();
             this->_pendingQueries.pop();
