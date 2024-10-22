@@ -92,7 +92,7 @@ jobs:
         run: |
           
           Invoke-WebRequest -Uri "https://aka.ms/winget-cli/installer" -OutFile "$env:TEMP\winget.msixbundle"
-          Import-Module Appx
+          Import-Module AppX -SkipEditionCheck:$false
           Add-AppxPackage -Path "$env:TEMP\winget.msixbundle"
           
           winget install Microsoft.VisualStudioCommunity
