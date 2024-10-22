@@ -90,7 +90,9 @@ jobs:
 #          C:\vcpkg\vcpkg install
       - name: Compilation
         run: |
+          
           Invoke-WebRequest -Uri "https://aka.ms/winget-cli/installer" -OutFile "$env:TEMP\winget.msixbundle"
+          Import-Module Appx
           Add-AppxPackage -Path "$env:TEMP\winget.msixbundle"
           
           winget install Microsoft.VisualStudioCommunity
