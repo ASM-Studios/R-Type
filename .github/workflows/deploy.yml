@@ -92,7 +92,7 @@ jobs:
         run: |
           Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_buildtools.exe -OutFile vs_buildtools.exe
           Start-Process -FilePath vs_buildtools.exe -ArgumentList '--quiet --wait --norestart --include Recommended' -NoNewWindow -Wait
-          dir C:\'Program Files (x86)'\'Microsoft Visual Studio' /s
+          dir "C:\'Program Files (x86)'\'Microsoft Visual Studio'" /s
           $MSVC = Get-ChildItem -Path "C:\'Program Files (x86)'\'Microsoft Visual Studio'\2019\BuildTools\VC\Tools\MSVC" | Sort-Object -Property Name -Descending | Select-Object -First 1
           D:\a\R-Type\R-Type\windows.bat
       - name: Create archive
