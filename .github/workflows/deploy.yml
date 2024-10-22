@@ -76,21 +76,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-#      - name: Cache vcpkg
-#        uses: actions/cache@v4
-#        with:
-#          path: C:\Users\runneradmin\AppData\Local\vcpkg\archives
-#          key: ${{ hashFiles('vcpkg.json') }}
-#      - name: Setup vcpkg
-#        run: |
-#          if (-not (Test-Path -Path "C:\vcpkg")) {
-#            git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
-#            .\vcpkg\bootstrap-vcpkg.bat
-#          }
-#          C:\vcpkg\vcpkg install
+      - name: Cache vcpkg
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runneradmin\AppData\Local\vcpkg\archives
+          key: ${{ hashFiles('vcpkg.json') }}
+      - name: Setup vcpkg
+        run: |
+          if (-not (Test-Path -Path "C:\vcpkg")) {
+            git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
+            .\vcpkg\bootstrap-vcpkg.bat
+          }
+          C:\vcpkg\vcpkg install
       - name: Compilation
         run: |
-          dir
+          winget install Microsoft.VisualStudioCommunity
           D:\a\R-Type\R-Type\windows.bat
       - name: Create archive
         run: |
