@@ -90,6 +90,7 @@ jobs:
 #          C:\vcpkg\vcpkg install
       - name: Compilation
         run: |
+          Invoke-WebRequest -Uri "https://aka.ms/winget-cli/installer" -OutFile "$env:TEMP\winget.appxbundle" ; Add-AppxPackage -Path "$env:TEMP\winget.appxbundle"
           winget install Microsoft.VisualStudioCommunity
           D:\a\R-Type\R-Type\windows.bat
       - name: Create archive
