@@ -90,12 +90,8 @@ jobs:
 #          C:\vcpkg\vcpkg install
       - name: Compilation
         run: |
-          
-          Invoke-WebRequest -Uri "https://aka.ms/winget-cli/installer" -OutFile "$env:TEMP\winget.msixbundle"
-          Import-Module AppX -SkipEditionCheck:$false
-          Add-AppxPackage -Path "$env:TEMP\winget.msixbundle"
-          
-          winget install Microsoft.VisualStudioCommunity
+          Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_buildtools.exe -OutFile vs_buildtools.exe
+          Start-Process -FilePath vs_buildtools.exe -ArgumentList '--quiet --wait --norestart --include Recommended' -NoNewWindow -Wait
           D:\a\R-Type\R-Type\windows.bat
       - name: Create archive
         run: |
