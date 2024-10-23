@@ -11,7 +11,10 @@ enum class RequestType {
     UPDATE_ENTITY = 0x0004,
     DESTROY_ENTITY = 0x0005,
     // Client to server
-    INPUT = 0x0010
+    INPUT = 0x0010,
+    // Shared
+    PING = 0x0020
 };
 
 std::ostream& operator<<(std::ostream& os, RequestType requestType);
+std::string to_string(RequestType requestType);
