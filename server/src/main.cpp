@@ -24,8 +24,17 @@ void handleInput(network::Client client, RawRequest request) {
     ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload());
 }
 
+void ping(network::Client client, RawRequest request) {
+    auto timestamp = std::chrono::system_clock::now().time_since_epoch();
+    TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
+    timestamp = timestamp - typedQuery.getPayload();
+    Logger::log(LogLevel::INFO, std::format("Ping: {} ms", std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count()));
+    network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(request.getQuery()));
+}
+
 const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
-    {RequestType::INPUT, &handleInput}};
+    {RequestType::INPUT, &handleInput},
+    {RequestType::PING, &ping}};
 
 void hexDisplay(const char *ptr, std::size_t n) {
     for (int i = 0; i < n; i++) {

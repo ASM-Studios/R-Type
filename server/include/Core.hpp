@@ -23,12 +23,15 @@ class Core {
         std::string _hitboxes_config_file;
         GameLogic _gameLogic;
 
-        void _stop();
+        void _exit();
+        void _info();
+
         void _readStdin();
         void _loop();
 
         const std::map<std::string_view, void (Core::*)()> _stdinMap = {
-            {"/exit", &Core::_stop}};
+            {"/exit", &Core::_exit},
+            {"/info", &Core::_info}};
 
     public:
         explicit Core();

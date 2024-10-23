@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../Client.hpp"
+#include "QueryHandler.hpp"
+#include "query/RawRequest.hpp"
 #include <boost/asio.hpp>
 #include <boost/asio/buffer.hpp>
 #include <set>
@@ -17,28 +19,15 @@ namespace network::socket::udp {
             explicit Server(int port);
             ~Server() = default;
 
-            template <typename T>
-            [[nodiscard]] std::pair<Client, T> recv() {
-                T buffer;
-                boost::asio::ip::udp::endpoint remoteEndpoint;
-                boost::system::error_code error;
+            void read();
+            void send(std::string hostname, int port, RawRequest request);
 
-                this->_socket.receive_from(boost::asio::buffer(&buffer, sizeof(T)), remoteEndpoint, 0, error);
-                if (error) {
-                    throw boost::system::system_error(error);
-                }
-                Client client(remoteEndpoint.address().to_v4(), remoteEndpoint.port());
-                return {client, buffer};
+            boost::asio::io_context& getContext() {
+                return this->_context;
             }
 
-            template <typename T>
-            void send(std::string hostname, int port, T payload) {
-                std::array<T, 1> arr;
-                arr[0] = payload;
-                boost::asio::ip::udp::endpoint endpoint(boost::asio::ip::address::from_string(hostname), port);
-                this->_socket.send_to(boost::asio::buffer(arr), endpoint);
+            boost::asio::ip::udp::socket& getSocket() {
+                return this->_socket;
             }
-
-            bool availableRequest();
     };
 }

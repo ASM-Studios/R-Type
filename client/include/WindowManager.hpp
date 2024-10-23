@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <memory>
 #include <string>
 #include <thread>
@@ -65,8 +66,12 @@ namespace GUI {
             std::unordered_map<std::string, Button<>> _currentButtons;
             std::vector<sf::Keyboard::Key> _pressedKeys;
 
+            std::atomic<bool> _isRunning;
+
             ecs::Entity _player;
             GameLogic _gameLogic;
+
+            void _exit();
 
             void _eventsHandler();
 
@@ -97,7 +102,6 @@ namespace GUI {
             WindowManager();
             ~WindowManager() = default;
 
-            void readServer();
             void run();
 
             void setGameState(const gameState state) {

@@ -1,4 +1,5 @@
 #include "GameLogic.hpp"
+#include "Clock.hpp"
 #include "Collision.hpp"
 #include "GameLogicMode.hpp"
 #include "Input.hpp"
@@ -18,9 +19,8 @@
 GameLogic::GameLogic(const GameLogicMode mode) :
     _mode(mode), _isRunning(false),
     _timePerTick(1.0F / 60.0f),
-    _totalTime(0)
-{
-    const Config &config = Config::getInstance("server/config.json");
+    _totalTime(0) {
+    const Config& config = Config::getInstance("server/config.json");
     int _tps = std::stoi(config.get("tps").value_or("60"));
     _timePerTick = 1.0F / static_cast<float>(_tps);
     TextureLoader::getInstance().loadFile("assets/textures_config.cfg");
@@ -31,7 +31,7 @@ GameLogic::GameLogic(const GameLogicMode mode) :
     TextureLoader::getInstance().loadTextures("explosions", TextureLoader::Type::EXPLOSION);
     Logger::log(LogLevel::INFO, std::format("{0} textures have been loaded", TextureLoader::getInstance().getNoTexture()));
 
-    auto &factory = ecs::factory::LevelFactory::getInstance();
+    auto& factory = ecs::factory::LevelFactory::getInstance();
     int const width = std::stoi(config.get("width").value_or("1920"));
     int const height = std::stoi(config.get("height").value_or("1080"));
     factory.load({width, height}, ecs::factory::getScenarioPath(1));
@@ -51,7 +51,6 @@ void GameLogic::stop() {
     this->_isRunning = false;
 }
 
-
 /**
  * @brief Update the game logic
  */
@@ -59,25 +58,12 @@ void GameLogic::updateTimed() {
     if (!this->_isRunning) {
         return;
     }
-    using clock = std::chrono::steady_clock;
-    static auto prevTime = clock::now();
-    static float tmp = 0.0F;
 
-    auto cur = clock::now();
-    float const deltaTime = std::chrono::duration<float>(cur - prevTime).count();
-    prevTime = cur;
-    tmp += deltaTime;
-    _totalTime += deltaTime;
-    if (tmp >= _timePerTick) {
-        this->update();
-        tmp -= _timePerTick;
-    } else {
-        float const sleepTime = _timePerTick - tmp;
-        if (sleepTime > 0) {
-            std::this_thread::sleep_for(std::chrono::duration<float>(sleepTime));
-            tmp += sleepTime;
-        }
+    if (this->_clock.get() < this->_timePerTick) {
+        return;
     }
+    this->_clock.reset();
+    this->update();
 }
 
 /**

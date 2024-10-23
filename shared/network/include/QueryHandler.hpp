@@ -27,7 +27,5 @@ namespace network {
             static QueryHandler& getInstance();
 
             void addQuery(std::pair<Client, RawRequest> query);
-            void executeQuery(std::pair<Client, RawRequest> query);
-            void executeQueries();
     };
 }

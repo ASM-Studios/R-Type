@@ -5,7 +5,6 @@ include_directories(include)
 
 find_package(SFML COMPONENTS system window graphics network audio CONFIG REQUIRED)
 find_package(Boost COMPONENTS filesystem property_tree algorithm CONFIG REQUIRED)
-find_package(libconfig CONFIG REQUIRED)
 
 set(SOURCE_FILE
         src/main.cpp
@@ -20,11 +19,5 @@ target_link_libraries(
         r-type_client
         sfml-system sfml-window sfml-graphics sfml-network sfml-audio
         Boost::filesystem Boost::property_tree Boost::algorithm
-        network ECS GameLogic Config Logger Texture
+        Clock network ECS GameLogic Config Logger Texture
 )
-
-if (WIN32 OR MSVC)
-    target_link_libraries(r-type_client libconfig::libconfig libconfig::libconfig++)
-elseif (UNIX)
-    target_link_libraries(r-type_client libconfig::config libconfig::config++)
-endif()
