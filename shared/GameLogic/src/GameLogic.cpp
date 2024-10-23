@@ -18,7 +18,8 @@
 GameLogic::GameLogic(const GameLogicMode mode) :
     _mode(mode), _isRunning(false),
     _timePerTick(1.0F / 60.0f),
-    _totalTime(0)
+    _totalTime(0),
+    _threadPool(std::thread::hardware_concurrency())
 {
     const Config &config = Config::getInstance("server/config.json");
     int _tps = std::stoi(config.get("tps").value_or("60"));
@@ -86,14 +87,17 @@ void GameLogic::updateTimed() {
 void GameLogic::update() {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
     for (const auto& entity: registry.getEntities()) {
-        if (registry.contains<ecs::component::Behavior>(entity)) {
-            registry.getComponent<ecs::component::Behavior>(entity).func(this->_mode, entity, _timePerTick);
-        }
-        if (isPureClient(this->_mode) && registry.contains<ecs::component::Collision>(entity)) {
-            registry.getComponent<ecs::component::Collision>(entity).checkCollision(entity);
-        }
-        this->server(entity);
-        this->client(entity);
+        _threadPool.enqueue([this, &registry, entity] {
+            std::lock_guard<std::mutex> lock(this->_mutex);
+            if (registry.contains<ecs::component::Behavior>(entity)) {
+                registry.getComponent<ecs::component::Behavior>(entity).func(this->_mode, entity, _timePerTick);
+            }
+            if (isPureClient(this->_mode) && registry.contains<ecs::component::Collision>(entity)) {
+                registry.getComponent<ecs::component::Collision>(entity).checkCollision(entity);
+            }
+            this->server(entity);
+            this->client(entity);
+        });
     }
     auto& factory = ecs::factory::LevelFactory::getInstance();
     factory.updateEntities(_totalTime);
