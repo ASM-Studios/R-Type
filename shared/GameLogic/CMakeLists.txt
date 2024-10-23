@@ -11,4 +11,4 @@ set(SOURCE_FILE src/GameLogic.cpp
 
 add_library(GameLogic ${SOURCE_FILE})
 
-target_link_libraries(GameLogic ECS Logger Texture)
+target_link_libraries(GameLogic ECS Logger Texture Thread)

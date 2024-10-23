@@ -11,6 +11,7 @@
 #include "Position.hpp"
 #include "Registry.hpp"
 #include "RegistryManager.hpp"
+#include "ThreadPool.hpp"
 #include <algorithm>
 #include <chrono>
 #include <thread>
@@ -31,6 +32,8 @@ class GameLogic {
         bool _isRunning;
         float _timePerTick;
         float _totalTime;
+        ThreadPool _threadPool;
+        std::mutex _mutex;
         void update();
 
         void client(const ecs::Entity& entity);
