@@ -88,8 +88,8 @@ jobs:
 #            .\vcpkg\bootstrap-vcpkg.bat
 #          }
 #          C:\vcpkg\vcpkg install
+      - uses: ilammy/msvc-dev-cmd@v1.4.1
       - name: Compilation
-        uses: ilammy/msvc-dev-cmd@v1.4.1
         run: |
           mkdir cmake-build-windows
           cd cmake-build-windows
