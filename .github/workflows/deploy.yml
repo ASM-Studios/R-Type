@@ -89,11 +89,11 @@ jobs:
 #          }
 #          C:\vcpkg\vcpkg install
       - name: Compilation
+        uses: ilammy/msvc-dev-cmd@v1.4.1
         run: |
-          Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_buildtools.exe -OutFile vs_buildtools.exe
-          Start-Process -FilePath vs_buildtools.exe -ArgumentList '--quiet --wait --norestart --include Recommended' -NoNewWindow -Wait
-          $MSVC = "C:\"
-          D:\a\R-Type\R-Type\windows.bat
+          mkdir cmake-build-windows
+          cd cmake-build-windows
+          cmake .. --preset=windows-from-windows
       - name: Create archive
         run: |
           Compress-Archive -Path r-type_client.exe, r-type_server.exe -DestinationPath windows_executables.zip
