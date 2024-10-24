@@ -7,5 +7,6 @@ Checks: "bugprone-*,cppcoreguidelines-*,clang-analyzer-*,readability-*,misc-*,mo
   -readability-magic-numbers,
   -unused-includes,
   -bugprone-easily-swappable-parameters,
-  -readability-braces-around-statements
+  -readability-braces-around-statements,
+  -readability-convert-member-functions-to-static
 "

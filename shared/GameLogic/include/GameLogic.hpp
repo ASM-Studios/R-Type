@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Animation.hpp"
+#include "Clock.hpp"
 #include "Collision.hpp"
 #include "Entity.hpp"
 #include "EntitySchematic.hpp"
@@ -31,6 +32,8 @@ class GameLogic {
         bool _isRunning;
         float _timePerTick;
         float _totalTime;
+        Clock _clock;
+
         void update();
 
         void client(const ecs::Entity& entity);

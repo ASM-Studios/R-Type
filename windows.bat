@@ -10,5 +10,6 @@ CALL "%MSVC%\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 mkdir cmake-build-windows
 cd cmake-build-windows
-cmake .. --preset=windows-from-windows
+cmake --preset=windows-from-windows ..
+cmake --build .
 pause
