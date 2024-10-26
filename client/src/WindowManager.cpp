@@ -1,4 +1,5 @@
 #include "WindowManager.hpp"
+#include "Clock.hpp"
 #include "GameLogicMode.hpp"
 #include "QueryHandler.hpp"
 #include "socket/ServerManager.hpp"
@@ -18,7 +19,8 @@
  */
 GUI::WindowManager::WindowManager()
     : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)),
-    _gameLogic(GameLogicMode::CLIENT)
+    _gameLogic(GameLogicMode::CLIENT),
+    _isRunning(true)
 {
     network::socket::udp::ServerManager::getInstance().init();
     const Config &config = Config::getInstance("client/config.json");
@@ -53,23 +55,29 @@ GUI::WindowManager::WindowManager()
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
 }
 
+static void ping() {
+    static Clock clock;
+    if (clock.get() < 1000) {
+        return;
+    }
+    auto timestamp = std::chrono::system_clock::now().time_since_epoch();
+    TypedQuery typedQuery{RequestType::PING, timestamp};
+    network::socket::udp::ServerManager::getInstance().getServer().send("192.168.1.2", 8080, RawRequest(typedQuery));
+    clock.reset();
+}
+
 /**
  * \brief Sets the game state.
  */
-void GUI::WindowManager::readServer() {
-    auto& server = network::socket::udp::ServerManager::getInstance().getServer();
-    if (server.availableRequest()) {
-        auto query = server.recv<RawRequest>();
-        network::QueryHandler::getInstance().addQuery(query);
-    }
-    network::QueryHandler::getInstance().executeQueries();
-}
-
 void GUI::WindowManager::run() {
     _gameLogic.start();
-    while (_window->isOpen() && _gameState != gameState::QUITING) {
-        std::this_thread::sleep_for(std::chrono::microseconds(50));
-        this->readServer();
+    network::socket::udp::ServerManager::getInstance().getServer().read();
+    std::thread thread([]() {
+        network::socket::udp::ServerManager::getInstance().getServer().getContext().run();
+    });
+
+    while (this->_isRunning && _gameState != gameState::QUITING) {
+        ping();
         _window->clear();
         _eventsHandler();
         _displayBackground();
@@ -84,6 +92,14 @@ void GUI::WindowManager::run() {
 
         _window->display();
     }
+    thread.join();
+}
+
+void GUI::WindowManager::_exit() {
+    setGameState(gameState::QUITING);
+    this->_window->close();
+    this->_isRunning = false;
+    network::socket::udp::ServerManager::getInstance().getServer().getContext().stop();
 }
 
 /**
@@ -92,12 +108,12 @@ void GUI::WindowManager::run() {
 void GUI::WindowManager::_eventsHandler() {
     while (_window->pollEvent(_event)) {
         if (_event.type == sf::Event::Closed) {
-            _window->close();
+            this->_exit();
         }
 
         if (_event.type == sf::Event::KeyPressed) {
             if (_event.key.code == sf::Keyboard::Q) {
-                setGameState(gameState::QUITING);
+                this->_exit();
             }
             if (_event.key.code == sf::Keyboard::Escape) {
                 if (_gameState == gameState::MENUS) continue;

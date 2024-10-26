@@ -36,10 +36,19 @@ static void createEntity(network::Client client, RawRequest request) {
     }
 }
 
+static void pingHandle(network::Client client, RawRequest request) {
+    auto timestamp = std::chrono::system_clock::now().time_since_epoch();
+    TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
+    timestamp = timestamp - typedQuery.getPayload();
+    int ping = std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count();
+    std::cout << "Ping: " << ping << "ms" << std::endl; //TODO CHANGE FOR THE FUTURE
+}
+
 const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
     {RequestType::UPDATE_PLAYER, &updatePlayer},
     {RequestType::UPDATE_TEAM_PLAYER, &updateTeamPlayer},
-    {RequestType::CREATE_ENTITY, &createEntity}
+    {RequestType::CREATE_ENTITY, &createEntity},
+    {RequestType::PING, &pingHandle}
 };
 
 int main() {
