@@ -100,18 +100,18 @@ $(document).ready(function(){initNavTree('classnetwork_1_1socket_1_1udp_1_1Serve
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a022837b9ae0e29dfbc2e48879cf10a76"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#a022837b9ae0e29dfbc2e48879cf10a76">Server</a> (int port)</td></tr>
 <tr class="separator:a022837b9ae0e29dfbc2e48879cf10a76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ccfdbd5945b61a141257a21111a5d84"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a9ccfdbd5945b61a141257a21111a5d84"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a>, T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#a9ccfdbd5945b61a141257a21111a5d84">recv</a> ()</td></tr>
-<tr class="separator:a9ccfdbd5945b61a141257a21111a5d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a488b250b54591dc4593b3f87290760f5"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a488b250b54591dc4593b3f87290760f5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#a488b250b54591dc4593b3f87290760f5">send</a> (std::string hostname, int port, T payload)</td></tr>
-<tr class="separator:a488b250b54591dc4593b3f87290760f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab73a2e9e55f3f628a6177e6fd9d39054"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#ab73a2e9e55f3f628a6177e6fd9d39054">availableRequest</a> ()</td></tr>
-<tr class="separator:ab73a2e9e55f3f628a6177e6fd9d39054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68ba8f4b986a65a263cb1344c0c4b4ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#a68ba8f4b986a65a263cb1344c0c4b4ab">read</a> ()</td></tr>
+<tr class="separator:a68ba8f4b986a65a263cb1344c0c4b4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae67c6c427691776e7e984c91fe3b3d09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#ae67c6c427691776e7e984c91fe3b3d09">send</a> (std::string hostname, int port, <a class="el" href="classRawRequest.html">RawRequest</a> request)</td></tr>
+<tr class="separator:ae67c6c427691776e7e984c91fe3b3d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ce9c31ec86d6d9822a9530c3ba9a243"><td class="memItemLeft" align="right" valign="top">boost::asio::io_context &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#a6ce9c31ec86d6d9822a9530c3ba9a243">getContext</a> ()</td></tr>
+<tr class="separator:a6ce9c31ec86d6d9822a9530c3ba9a243"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecc20eca060b3098271e40652cc47087"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::udp::socket &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1socket_1_1udp_1_1Server.html#aecc20eca060b3098271e40652cc47087">getSocket</a> ()</td></tr>
+<tr class="separator:aecc20eca060b3098271e40652cc47087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00010">10</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00012">12</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae0fac6ebd486b5c6c4099c0ff195e124" name="ae0fac6ebd486b5c6c4099c0ff195e124"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae0fac6ebd486b5c6c4099c0ff195e124">&#9670;&#160;</a></span>Server() <span class="overload">[1/2]</span></h2>
@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00005">5</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00006">6</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>
@@ -164,43 +164,22 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00008">8</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00009">9</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab73a2e9e55f3f628a6177e6fd9d39054" name="ab73a2e9e55f3f628a6177e6fd9d39054"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab73a2e9e55f3f628a6177e6fd9d39054">&#9670;&#160;</a></span>availableRequest()</h2>
+<a id="a6ce9c31ec86d6d9822a9530c3ba9a243" name="a6ce9c31ec86d6d9822a9530c3ba9a243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ce9c31ec86d6d9822a9530c3ba9a243">&#9670;&#160;</a></span>getContext()</h2>
 
 <div class="memitem">
 <div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool network::socket::udp::Server::availableRequest </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00011">11</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a9ccfdbd5945b61a141257a21111a5d84" name="a9ccfdbd5945b61a141257a21111a5d84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ccfdbd5945b61a141257a21111a5d84">&#9670;&#160;</a></span>recv()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::pair&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a>, T &gt; network::socket::udp::Server::recv </td>
+          <td class="memname">boost::asio::io_context &amp; network::socket::udp::Server::getContext </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -213,20 +192,61 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00021">21</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00025">25</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a488b250b54591dc4593b3f87290760f5" name="a488b250b54591dc4593b3f87290760f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a488b250b54591dc4593b3f87290760f5">&#9670;&#160;</a></span>send()</h2>
+<a id="aecc20eca060b3098271e40652cc47087" name="aecc20eca060b3098271e40652cc47087"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecc20eca060b3098271e40652cc47087">&#9670;&#160;</a></span>getSocket()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::ip::udp::socket &amp; network::socket::udp::Server::getSocket </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00029">29</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
+
+</div>
+</div>
+<a id="a68ba8f4b986a65a263cb1344c0c4b4ab" name="a68ba8f4b986a65a263cb1344c0c4b4ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68ba8f4b986a65a263cb1344c0c4b4ab">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::socket::udp::Server::read </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00012">12</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ae67c6c427691776e7e984c91fe3b3d09" name="ae67c6c427691776e7e984c91fe3b3d09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae67c6c427691776e7e984c91fe3b3d09">&#9670;&#160;</a></span>send()</h2>
+
+<div class="memitem">
+<div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void network::socket::udp::Server::send </td>
@@ -243,8 +263,8 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>payload</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classRawRequest.html">RawRequest</a>&#160;</td>
+          <td class="paramname"><em>request</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -252,14 +272,9 @@ template&lt;typename T &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Server_8hpp_source.html#l00035">35</a> of file <a class="el" href="Server_8hpp_source.html">Server.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Server_8cpp_source.html#l00028">28</a> of file <a class="el" href="Server_8cpp_source.html">Server.cpp</a>.</p>
 
 </div>
 </div>

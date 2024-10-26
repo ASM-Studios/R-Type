@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"structcmd_8h.html#a2c4414339f388561554c2deab11a1a07":[22,0,1,0,31,3],
+"structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90":[22,0,1,0,31,4],
+"structcmd_8h.html#ad65a8842cc674e3ddf69355898c0ecbf":[22,0,1,0,31,6],
 "structcmd_8h.html#ae152484c890a24e4d9b4980e7b965be0":[22,0,1,0,31,2],
 "structcmd_8h.html#ae1e6edbbc26d6fbc71a90190d0266018":[22,0,1,0,31,1],
 "structcmd_8h.html#af2a3ea719b83f672637febdd87c36c36":[22,0,1,0,31,5],

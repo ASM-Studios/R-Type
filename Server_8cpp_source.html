@@ -95,18 +95,38 @@ $(document).ready(function(){initNavTree('Server_8cpp_source.html',''); initResi
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;socket/Server.hpp&quot;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;boost/array.hpp&gt;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span>network::socket::udp {</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>    Server::Server() :</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>        _socket(_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0)) {}</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    Server::Server(<span class="keywordtype">int</span> port) :</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        _socket(_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port)) {}</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">bool</span> Server::availableRequest() {</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <span class="keywordflow">return</span> this-&gt;_socket.available() &gt; 0;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    }</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span>network::socket::udp {</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    Server::Server() :</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>        _socket(this-&gt;_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), 0)) {}</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    Server::Server(<span class="keywordtype">int</span> port) :</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        _socket(_context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port)) {}</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">void</span> Server::read() {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <a class="code hl_class" href="classRawRequest.html">RawRequest</a> *request = <span class="keyword">new</span> <a class="code hl_class" href="classRawRequest.html">RawRequest</a>();</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        boost::asio::ip::udp::endpoint *remoteEndpoint = <span class="keyword">new</span> boost::asio::ip::udp::endpoint();</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        this-&gt;_socket.async_receive_from(boost::asio::buffer(request, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classRawRequest.html">RawRequest</a>)), *remoteEndpoint, [<span class="keyword">this</span>, remoteEndpoint, request](<span class="keyword">const</span> boost::system::error_code&amp; error, std::size_t bytes_transferred) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            <span class="keywordflow">if</span> (error) {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            }</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            Client client(remoteEndpoint-&gt;address().to_v4(), remoteEndpoint-&gt;port());</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            QueryHandler::getInstance().addQuery({client, *request});</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keyword">delete</span> request;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <span class="keyword">delete</span> remoteEndpoint;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            this-&gt;<a class="code hl_function" href="structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90">read</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        });</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> Server::send(std::string hostname, <span class="keywordtype">int</span> port, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> request) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        boost::asio::ip::udp::endpoint endpoint(boost::asio::ip::address::from_string(hostname), port);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        this-&gt;_socket.send_to(boost::asio::buffer(request), endpoint);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
+<div class="ttc" id="aclassRawRequest_html"><div class="ttname"><a href="classRawRequest.html">RawRequest</a></div><div class="ttdef"><b>Definition:</b> <a href="RawRequest_8hpp_source.html#l00009">RawRequest.hpp:9</a></div></div>
+<div class="ttc" id="astructcmd_8h_html_a9c7b76d5266903891c803132d51ccb90"><div class="ttname"><a href="structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90">read</a></div><div class="ttdeci">int read(int, char *, size_t)</div><div class="ttdoc">Read bytes from a file descriptor.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

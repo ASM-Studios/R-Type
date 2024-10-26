@@ -119,27 +119,36 @@ $(document).ready(function(){initNavTree('server_2src_2main_8cpp_source.html',''
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    ecs::RegistryManager::getInstance().getRegistry().<a class="code hl_function" href="classecs_1_1Registry.html#a1677669e09dd58d81cb368863ae2f451">setComponent</a>(entity, query.getPayload());</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">const</span> std::map&lt;RequestType, void (*)(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> rawRequest)&gt; requestAction = {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {RequestType::INPUT, &amp;handleInput}};</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span> hexDisplay(<span class="keyword">const</span> <span class="keywordtype">char</span> *ptr, std::size_t n) {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">if</span> ((i &gt; 0) &amp;&amp; (i % 20 == 0)) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            std::cout &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        }</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        std::cout &lt;&lt; std::setbase(16) &lt;&lt; std::setw(2) &lt;&lt; std::setfill(&#39;0&#39;) &lt;&lt; static_cast&lt;int&gt;(ptr[i] &amp; 0xff) &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::cout &lt;&lt; std::endl</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>              &lt;&lt; std::endl;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> ac, <span class="keywordtype">char</span> **av) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">auto</span> args = std::span&lt;char *&gt;(av, ac);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_class" href="classCore.html">Core</a> core;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    core.init(args);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> core.run();</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> ping(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> request) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">auto</span> timestamp = std::chrono::system_clock::now().time_since_epoch();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="classTypedQuery.html">TypedQuery</a>&lt;<span class="keyword">decltype</span>(timestamp)&gt; typedQuery = request.getQuery();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    timestamp = timestamp - typedQuery.getPayload();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    Logger::log(LogLevel::INFO, std::format(<span class="stringliteral">&quot;Ping: {} ms&quot;</span>, std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(timestamp).count()));</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), <a class="code hl_class" href="classRawRequest.html">RawRequest</a>(request.getQuery()));</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">const</span> std::map&lt;RequestType, void (*)(<a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a> client, <a class="code hl_class" href="classRawRequest.html">RawRequest</a> rawRequest)&gt; requestAction = {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {RequestType::INPUT, &amp;handleInput},</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {RequestType::PING, &amp;ping}};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">void</span> hexDisplay(<span class="keyword">const</span> <span class="keywordtype">char</span> *ptr, std::size_t n) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">if</span> ((i &gt; 0) &amp;&amp; (i % 20 == 0)) {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        std::cout &lt;&lt; std::setbase(16) &lt;&lt; std::setw(2) &lt;&lt; std::setfill(&#39;0&#39;) &lt;&lt; static_cast&lt;int&gt;(ptr[i] &amp; 0xff) &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::cout &lt;&lt; std::endl</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>              &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> ac, <span class="keywordtype">char</span> **av) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">auto</span> args = std::span&lt;char *&gt;(av, ac);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_class" href="classCore.html">Core</a> core;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    core.init(args);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">return</span> core.run();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
 <div class="ttc" id="aclassCore_html"><div class="ttname"><a href="classCore.html">Core</a></div><div class="ttdef"><b>Definition:</b> <a href="Core_8hpp_source.html#l00016">Core.hpp:16</a></div></div>
 <div class="ttc" id="aclassRawRequest_html"><div class="ttname"><a href="classRawRequest.html">RawRequest</a></div><div class="ttdef"><b>Definition:</b> <a href="RawRequest_8hpp_source.html#l00009">RawRequest.hpp:9</a></div></div>
 <div class="ttc" id="aclassTypedQuery_html"><div class="ttname"><a href="classTypedQuery.html">TypedQuery</a></div><div class="ttdef"><b>Definition:</b> <a href="TypedQuery_8hpp_source.html#l00011">TypedQuery.hpp:11</a></div></div>
