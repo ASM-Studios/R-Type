@@ -9,6 +9,7 @@ find_package(Boost COMPONENTS filesystem property_tree algorithm CONFIG REQUIRED
 set(SOURCE_FILE
         src/main.cpp
         src/WindowManager.cpp
+        src/udpCallback.cpp
         src/SpriteManager.cpp
         src/MusicManager.cpp
 )

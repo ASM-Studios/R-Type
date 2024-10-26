@@ -8,6 +8,7 @@ find_package(Boost COMPONENTS stacktrace_basic CONFIG REQUIRED)
 set(SOURCE_FILE src/main.cpp
     src/ScopeDuration.cpp
     src/Core.cpp
+    src/udpCallback.cpp
     src/registerClient.cpp
 )
 
