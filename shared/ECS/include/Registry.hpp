@@ -76,6 +76,8 @@ namespace ecs {
 
             template <typename Component>
             [[nodiscard]] Component& getComponent(const Entity& entity);
+            template <typename Component>
+            [[nodiscard]] std::vector<Component> getComponents();
 
             [[nodiscard]] std::size_t getNoComponent(const Entity& entity);
 

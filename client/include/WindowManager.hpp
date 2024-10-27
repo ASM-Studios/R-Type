@@ -69,7 +69,6 @@ namespace GUI {
             std::atomic<bool> _isRunning;
 
             ecs::Entity _player;
-            GameLogic _gameLogic;
 
             void _exit();
 

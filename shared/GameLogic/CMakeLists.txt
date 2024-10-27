@@ -4,6 +4,7 @@ project(r-type-shared)
 include_directories(include)
 
 set(SOURCE_FILE src/GameLogic.cpp
+        src/GameLogicManager.cpp
         src/EntitySchematic.cpp
         src/BehaviorFunc.cpp
         src/EnemyBehavior.cpp

@@ -2,6 +2,7 @@
 #include "Core.hpp"
 #include "Entity.hpp"
 #include "EntitySchematic.hpp"
+#include "GameLogicMode.hpp"
 #include "Logger.hpp"
 #include "RegistryManager.hpp"
 #include "Tags.hpp"
@@ -15,6 +16,8 @@
 #include <cstdio>
 #include <iomanip>
 #include <iostream>
+
+constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::SERVER);
 
 void hexDisplay(const char *ptr, std::size_t n) {
     for (int i = 0; i < n; i++) {

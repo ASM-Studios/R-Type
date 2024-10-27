@@ -20,14 +20,19 @@ namespace network::socket::udp {
             ~Server() = default;
 
             void read();
+
             void send(std::string hostname, int port, RawRequest request);
+            void send(const Client& client, RawRequest request);
+            void sendAll(std::vector<Client> clients, RawRequest request);
 
-            boost::asio::io_context& getContext() {
-                return this->_context;
-            }
-
-            boost::asio::ip::udp::socket& getSocket() {
-                return this->_socket;
-            }
+            boost::asio::io_context& getContext();
+            boost::asio::ip::udp::socket& getSocket();
     };
+}
+
+static inline network::Client getServer() {
+    const Config& config = Config::getInstance("server/config.json");
+    std::string hostname = config.get("hostname").value_or("127.0.0.1");
+    int port = std::stoi(config.get("port").value_or("8080"));
+    return network::Client(boost::asio::ip::address_v4::from_string(hostname), port);
 }

@@ -1,7 +1,9 @@
 #include "WindowManager.hpp"
 #include "Clock.hpp"
+#include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
 #include "QueryHandler.hpp"
+#include "socket/Server.hpp"
 #include "socket/ServerManager.hpp"
 #include <chrono>
 #include <thread>
@@ -19,7 +21,6 @@
  */
 GUI::WindowManager::WindowManager()
     : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)),
-    _gameLogic(GameLogicMode::CLIENT),
     _isRunning(true)
 {
     network::socket::udp::ServerManager::getInstance().init();
@@ -62,7 +63,7 @@ static void ping() {
     }
     auto timestamp = std::chrono::system_clock::now().time_since_epoch();
     TypedQuery typedQuery{RequestType::PING, timestamp};
-    network::socket::udp::ServerManager::getInstance().getServer().send("192.168.1.2", 8080, RawRequest(typedQuery));
+    network::socket::udp::ServerManager::getInstance().getServer().send(getServer(), RawRequest(typedQuery));
     clock.reset();
 }
 
@@ -70,7 +71,6 @@ static void ping() {
  * \brief Sets the game state.
  */
 void GUI::WindowManager::run() {
-    _gameLogic.start();
     network::socket::udp::ServerManager::getInstance().getServer().read();
     std::thread thread([]() {
         network::socket::udp::ServerManager::getInstance().getServer().getContext().run();
@@ -85,7 +85,7 @@ void GUI::WindowManager::run() {
             _displayMenu();
         }
         if (_gameState == gameState::GAMES) {
-            _gameLogic.updateTimed();
+            GameLogicManager::getInstance().get().updateTimed();
             _displayGame();
         }
         _fpsCounter();

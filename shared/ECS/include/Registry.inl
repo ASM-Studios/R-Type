@@ -102,4 +102,14 @@ namespace ecs {
         std::lock_guard<std::mutex> lock(this->_mutex);
         return std::any_cast<Component&>(_components[typeid(Component)][entity]);
     }
+
+    template <typename Component>
+    std::vector<Component> Registry::getComponents() {
+        std::vector<Component> components;
+
+        for (const auto& [entity, component]: this->_components[typeid(Component)]) {
+            components.push_back(std::any_cast<Component>(component));
+        }
+        return components;
+    }
 }

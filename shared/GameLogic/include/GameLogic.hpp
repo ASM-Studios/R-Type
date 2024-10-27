@@ -31,8 +31,8 @@ class GameLogic {
         GameLogicMode _mode;
         bool _isRunning;
         float _timePerTick;
-        float _totalTime;
         Clock _clock;
+        Clock _total;
 
         void update();
 
@@ -43,4 +43,5 @@ class GameLogic {
         void server(const ecs::Entity& entity);
         void sendPlayerPosition(const ecs::Entity& entity);
         void sendTeamPosition(const ecs::Entity& entity);
+        void sendEntityPosition(const ecs::Entity& entity);
 };

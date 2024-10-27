@@ -5,7 +5,6 @@
 #include <boost/asio/thread_pool.hpp>
 #include <memory>
 #include <mutex>
-#include <queue>
 
 namespace network {
     class QueryHandler {
@@ -14,7 +13,6 @@ namespace network {
             static std::mutex _mutex;
 
             boost::asio::thread_pool _pool;
-            std::queue<std::pair<Client, RawRequest>> _pendingQueries;
 
             QueryHandler();
 

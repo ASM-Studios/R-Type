@@ -1,6 +1,7 @@
 #include "Core.hpp"
 #include "Client.hpp"
 #include "Config.hpp"
+#include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
 #include "Logger.hpp"
 #include "QueryHandler.hpp"
@@ -10,18 +11,27 @@
 #include "query/RawRequest.hpp"
 #include "socket/Server.hpp"
 #include "socket/ServerManager.hpp"
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
 #include <cstdlib>
 #include <iostream>
 
-void Core::_exit() {
+void Core::_exit(std::vector<std::string> args) {
     this->_isRunning = false;
     network::socket::udp::ServerManager::getInstance().getServer().getSocket().cancel();
 }
 
-void Core::_info() {
+void Core::_info(std::vector<std::string> args) {
     for (auto& client: ecs::RegistryManager::getInstance().getRegistry().getEntities<network::Client>()) {
         Logger::log(LogLevel::INFO, std::format("{} {}", client.second.getIP().to_string(), client.second.getPort()));
     }
+}
+
+void Core::_start(std::vector<std::string> args) {
+    Logger::log(LogLevel::ERR, "Starting");
+    GameLogicManager::getInstance().get().start();
+    TypedQuery<Empty> tq(RequestType::START, {});
+    network::socket::udp::ServerManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
 }
 
 void Core::_readStdin() {
@@ -29,13 +39,15 @@ void Core::_readStdin() {
         std::string line;
         std::getline(std::cin, line);
         if (line.length() == 0) {
-            this->_exit();
+            this->_exit(std::vector<std::string>());
             return;
         }
         line = line.substr(0, line.find('\n'));
         auto pair = this->_stdinMap.find(line);
         if (pair != this->_stdinMap.end()) {
-            (*this.*pair->second)();
+            std::vector<std::string> args;
+            boost::split(args, line, boost::is_any_of(" "));
+            (*this.*pair->second)(args);
         } else {
             Logger::log(LogLevel::ERR, std::format("Command '{0}' does not exist", line));
         }

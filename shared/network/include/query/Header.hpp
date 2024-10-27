@@ -10,6 +10,8 @@ enum class RequestType {
     CREATE_ENTITY = 0x0003,
     UPDATE_ENTITY = 0x0004,
     DESTROY_ENTITY = 0x0005,
+    START = 0x0006,
+    END = 0x0007,
     // Client to server
     INPUT = 0x0010,
     // Shared

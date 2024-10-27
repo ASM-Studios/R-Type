@@ -1,6 +1,8 @@
 #include "GameLogic.hpp"
+#include "Client.hpp"
 #include "Clock.hpp"
 #include "Collision.hpp"
+#include "Factories/LevelFactory.hpp"
 #include "GameLogicMode.hpp"
 #include "Input.hpp"
 #include "Position.hpp"
@@ -18,8 +20,7 @@
  */
 GameLogic::GameLogic(const GameLogicMode mode) :
     _mode(mode), _isRunning(false),
-    _timePerTick(1.0F / 60.0f),
-    _totalTime(0) {
+    _timePerTick(1.0F / 60.0f) {
     const Config& config = Config::getInstance("server/config.json");
     int _tps = std::stoi(config.get("tps").value_or("60"));
     _timePerTick = 1.0F / static_cast<float>(_tps);
@@ -41,6 +42,7 @@ GameLogic::GameLogic(const GameLogicMode mode) :
  * @brief Start the game logic
  */
 void GameLogic::start() {
+    this->_total.reset();
     this->_isRunning = true;
 }
 
@@ -82,7 +84,7 @@ void GameLogic::update() {
         this->client(entity);
     }
     auto& factory = ecs::factory::LevelFactory::getInstance();
-    factory.updateEntities(_totalTime);
+    factory.updateEntities(static_cast<float>(this->_total.get()) / 1000);
 }
 
 /**
@@ -101,8 +103,6 @@ void GameLogic::client(const ecs::Entity& entity) {
     if (registry.contains<ecs::component::Animation>(entity) && registry.contains<ecs::component::Sprite>(entity)) {
         this->updateAnimation(entity);
     }
-    auto& factory = ecs::factory::LevelFactory::getInstance();
-    factory.updateEntities(_totalTime);
 }
 
 /**
@@ -111,15 +111,12 @@ void GameLogic::client(const ecs::Entity& entity) {
  * @param entity The entity to send the input
  */
 void GameLogic::sendInput(const ecs::Entity& entity) {
-    const Config& config = Config::getInstance("server/config.json");
-    std::string hostname = config.get("hostname").value_or("127.0.0.1");
-    int port = std::stoi(config.get("port").value_or("8080"));
     auto input = ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Input>(entity);
     if (input.inputFlags == input.oldInputFlags) {
         return;
     }
     TypedQuery<ecs::component::Input> typedQuery(RequestType::INPUT, input);
-    network::socket::udp::ServerManager::getInstance().getServer().send(hostname, port, RawRequest(typedQuery));
+
 }
 
 /**
@@ -163,6 +160,7 @@ void GameLogic::server(const ecs::Entity& entity) {
     if (registry.contains<network::Client>(entity)) {
         this->sendPlayerPosition(entity);
         this->sendTeamPosition(entity);
+        this->sendEntityPosition(entity);
     }
 }
 
@@ -193,5 +191,12 @@ void GameLogic::sendTeamPosition(const ecs::Entity& entity) {
         UpdateTeamPlayer payload{entity.getID(), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Input>(entity), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(entity)};
         TypedQuery<UpdateTeamPlayer> typedQuery(RequestType::UPDATE_TEAM_PLAYER, payload);
         network::socket::udp::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(typedQuery));
+    }
+}
+
+void GameLogic::sendEntityPosition(const ecs::Entity& entity) {
+    for (const auto& NPEntity: ecs::RegistryManager::getInstance().getRegistry().getEntities()) {
+        TypedQuery<UpdateEntity> tq(RequestType::UPDATE_ENTITY, {NPEntity.getID(), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(NPEntity)});
+        network::socket::udp::ServerManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
     }
 }

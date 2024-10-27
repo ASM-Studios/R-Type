@@ -1,4 +1,5 @@
 #include "EntitySchematic.hpp"
+#include "GameLogicManager.hpp"
 #include "RegistryManager.hpp"
 #include "Tags.hpp"
 #include "WindowManager.hpp"
@@ -44,9 +45,15 @@ static void handlePing(network::Client client, RawRequest request) {
     Logger::log(LogLevel::INFO, std::format("Ping {} ms", ping)); //TODO CHANGE FOR THE FUTURE
 }
 
+static void handleStart(network::Client client, RawRequest request) {
+    Logger::log(LogLevel::ERR, "STARTING");
+    GameLogicManager::getInstance().get().start();
+}
+
 const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
     {RequestType::UPDATE_PLAYER, &handleUpdatePlayer},
     {RequestType::UPDATE_TEAM_PLAYER, &handleUpdateTeamPlayer},
     {RequestType::CREATE_ENTITY, &handleCreateEntity},
-    {RequestType::PING, &handlePing}
+    {RequestType::PING, &handlePing},
+    {RequestType::START, &handleStart}
 };

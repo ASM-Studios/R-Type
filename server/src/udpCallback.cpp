@@ -27,8 +27,8 @@ void handleInput(network::Client client, RawRequest request) {
 void handlePing(network::Client client, RawRequest request) {
     auto timestamp = std::chrono::system_clock::now().time_since_epoch();
     TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
+
     timestamp = timestamp - typedQuery.getPayload();
-    Logger::log(LogLevel::INFO, std::format("Ping: {} ms", std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count()));
     network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(request.getQuery()));
 }
 

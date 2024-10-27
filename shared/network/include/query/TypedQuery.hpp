@@ -12,6 +12,7 @@ class TypedQuery {
     private:
         RequestType _requestType;
         Payload _payload;
+        static_assert(sizeof(Payload) <= MAX_PAYLOAD_SIZE, "Payload size is too big");
         std::array<char, MAX_PAYLOAD_SIZE - sizeof(Payload)> _fill;
 
         friend class NonTypedQuery;

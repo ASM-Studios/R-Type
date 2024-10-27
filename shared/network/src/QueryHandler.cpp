@@ -32,11 +32,9 @@ namespace network {
     }
 
     void QueryHandler::addQuery(std::pair<Client, RawRequest> query) {
-        Logger::log(LogLevel::INFO, std::format("Receiving {}", to_string(query.second.getQuery().getRequestType())));
         boost::asio::post(this->_pool, [query]() {
             execute(query);
         });
-        this->_pendingQueries.push(query);
     }
 
     std::unique_ptr<QueryHandler> QueryHandler::_instance(nullptr);
