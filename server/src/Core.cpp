@@ -1,5 +1,5 @@
 #include "Core.hpp"
-#include "Client.hpp"
+#include "socket/Client.hpp"
 #include "Config.hpp"
 #include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
@@ -9,29 +9,32 @@
 #include "ScopeDuration.hpp"
 #include "TextureLoader.hpp"
 #include "query/RawRequest.hpp"
+#include "socket/NRegistry.hpp"
 #include "socket/Server.hpp"
-#include "socket/ServerManager.hpp"
+#include "socket/NetworkManager.hpp"
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <cstdlib>
 #include <iostream>
 
 void Core::_exit(std::vector<std::string> args) {
+    network::socket::NetworkManager::getInstance().getContext().stop();
     this->_isRunning = false;
-    network::socket::ServerManager::getInstance().getServer().getSocket().cancel();
 }
 
 void Core::_info(std::vector<std::string> args) {
-    for (auto& client: ecs::RegistryManager::getInstance().getRegistry().getEntities<network::Client>()) {
-        Logger::log(LogLevel::INFO, std::format("{} {}", client.second.getIP().to_string(), client.second.getPort()));
+    Singleton<network::Registry>::getInstance().lock();
+    for (auto& [uuid, client]: Singleton<network::Registry>::getInstance().get().getClients()) {
+        Logger::log(LogLevel::INFO, std::format("{} {}", client->getUdpIP().to_string(), client->getUdpPort()));
     }
+    Singleton<network::Registry>::getInstance().unlock();
 }
 
 void Core::_start(std::vector<std::string> args) {
     Logger::log(LogLevel::ERR, "Starting");
     GameLogicManager::getInstance().get().start();
     TypedQuery<Empty> tq(RequestType::START, {});
-    network::socket::ServerManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
+    //network::socket::NetworkManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
 }
 
 void Core::_readStdin() {
@@ -55,12 +58,8 @@ void Core::_readStdin() {
 }
 
 void Core::_loop() {
-    auto& server = network::socket::ServerManager::getInstance().getServer();
-    server.read();
-
     std::thread runServer([]() {
-        auto& server = network::socket::ServerManager::getInstance().getServer();
-        server.getContext().run();
+        network::socket::NetworkManager::getInstance().getContext().run();
     });
 
     while (this->_isRunning) {
@@ -73,18 +72,19 @@ void Core::_loop() {
 Core::Core() :
     _tps(20), _tickTime(1000 / _tps),
     _gameLogic(GameLogicMode::SERVER),
-    _isRunning(true),
-    _port(8080) {}
+    _isRunning(true) {}
 
 void Core::init(const std::span<char *>& args [[maybe_unused]]) {
     Config& config = Config::getInstance("server/config.json");
 
     this->_tps = std::atoi(config.get("tps").value_or("20").c_str());
     _tickTime = 1000 / _tps;
-    this->_port = std::atoi(config.get("port").value_or("8080").c_str());
+    int udpPort = std::atoi(config.get("udp_port").value_or("8080").c_str());
+    int tcpPort = std::atoi(config.get("tcp_port").value_or("8081").c_str());
     this->_hitboxes_config_file = config.get("hitboxes_config_file").value_or("");
-    Logger::log(LogLevel::INFO, std::format("Server running on port {0}", this->_port));
-    network::socket::ServerManager::getInstance().init(this->_port);
+    Logger::log(LogLevel::INFO, std::format("Server running on port {0}", udpPort));
+
+    network::socket::NetworkManager::getInstance().init(udpPort, tcpPort);
 }
 
 int Core::run() {

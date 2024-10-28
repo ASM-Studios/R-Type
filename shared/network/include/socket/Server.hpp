@@ -1,38 +1,50 @@
 #pragma once
 
-#include "../Client.hpp"
+#include "Client.hpp"
 #include "QueryHandler.hpp"
 #include "query/RawRequest.hpp"
 #include <boost/asio.hpp>
 #include <boost/asio/buffer.hpp>
+#include <functional>
 #include <set>
 #include <utility>
+#include "Singleton.hpp"
 
 namespace network::socket::udp {
     class Server {
         private:
-            boost::asio::io_context _context;
             boost::asio::ip::udp::socket _socket;
 
         public:
-            explicit Server();
-            explicit Server(int port);
+            explicit Server(boost::asio::io_context& context);
+            explicit Server(boost::asio::io_context& context, int port);
             ~Server() = default;
 
             void read();
 
-            void send(std::string hostname, int port, RawRequest request);
-            void send(const Client& client, RawRequest request);
-            void sendAll(std::vector<Client> clients, RawRequest request);
-
-            boost::asio::io_context& getContext();
             boost::asio::ip::udp::socket& getSocket();
     };
 }
 
-static inline network::Client getServer() {
-    const Config& config = Config::getInstance("server/config.json");
+namespace network::socket::tcp {
+    class Server {
+        private:
+            boost::asio::ip::tcp::acceptor _acceptor;
+
+        public:
+            explicit Server(boost::asio::io_context& context, int port);
+            ~Server() = default;
+
+            void read();
+ 
+            boost::asio::ip::tcp::acceptor& getAcceptor();
+    };
+}
+
+static inline Singleton<std::shared_ptr<network::Client>>& getServer() {
+    const Config& config = Config::getInstance("client/config.json");
     std::string hostname = config.get("hostname").value_or("127.0.0.1");
-    int port = std::stoi(config.get("port").value_or("8080"));
-    return network::Client(boost::asio::ip::address_v4::from_string(hostname), port);
+    int udpPort = std::stoi(config.get("udp_port").value_or("8080"));
+    int tcpPort = std::stoi(config.get("tcp_port").value_or("8081"));
+    return Singleton<std::shared_ptr<network::Client>>::wrap(std::make_shared<network::Client>(hostname, tcpPort, udpPort));
 }

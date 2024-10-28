@@ -1,5 +1,5 @@
 #include "Collision.hpp"
-#include "Client.hpp"
+#include "socket/Client.hpp"
 #include "Tags.hpp"
 
 bool checkAABBCollision(const ecs::component::Position& pos1, const std::pair<int, int>& size1,

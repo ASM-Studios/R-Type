@@ -8,10 +8,16 @@
 #include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
+#include "socket/NRegistry.hpp"
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/random_generator.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::CLIENT);
 
 int main() {
+    Singleton<network::Registry>::wrap();
+    Singleton<boost::uuids::uuid>::wrap(boost::uuids::random_generator()());
     try {
         GUI::WindowManager windowManager;
         windowManager.run();

@@ -3,9 +3,13 @@
 #include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
 #include "QueryHandler.hpp"
+#include "query/Header.hpp"
+#include "query/Payloads.hpp"
+#include "query/TypedQuery.hpp"
 #include "socket/Server.hpp"
-#include "socket/ServerManager.hpp"
+#include "socket/NetworkManager.hpp"
 #include <chrono>
+#include <memory>
 #include <thread>
 
 /**
@@ -23,7 +27,6 @@ GUI::WindowManager::WindowManager()
     : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)),
     _isRunning(true)
 {
-    network::socket::ServerManager::getInstance().init();
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     _hostname = config.get("hostname").value_or("127.0.0.1");
@@ -54,8 +57,19 @@ GUI::WindowManager::WindowManager()
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
+
+    /* Network Inits */
+
+    network::socket::NetworkManager::getInstance().init();
+    getServer();
+    TypedQuery<Empty> tq(RequestType::INIT, {});
+    auto client = Singleton<std::shared_ptr<network::Client>>::getInstance().get();
+    network::socket::NetworkManager::getInstance().send(client, RawRequest(tq), network::socket::Mode::TCP);
 }
 
+/**
+ * \brief Send ping to server
+ */
 static void ping() {
     static Clock clock;
     if (clock.get() < 1000) {
@@ -63,7 +77,8 @@ static void ping() {
     }
     auto timestamp = std::chrono::system_clock::now().time_since_epoch();
     TypedQuery typedQuery{RequestType::PING, timestamp};
-    network::socket::ServerManager::getInstance().getServer().send(getServer(), RawRequest(typedQuery));
+    auto& clientSocket = Singleton<std::shared_ptr<network::Client>>::getInstance();
+    network::socket::NetworkManager::getInstance().send(clientSocket.get(), RawRequest(typedQuery), network::socket::Mode::UDP);
     clock.reset();
 }
 
@@ -71,9 +86,8 @@ static void ping() {
  * \brief Sets the game state.
  */
 void GUI::WindowManager::run() {
-    network::socket::ServerManager::getInstance().getServer().read();
     std::thread thread([]() {
-        network::socket::ServerManager::getInstance().getServer().getContext().run();
+        network::socket::NetworkManager::getInstance().getContext().run();
     });
 
     while (this->_isRunning && _gameState != gameState::QUITING) {
@@ -99,7 +113,7 @@ void GUI::WindowManager::_exit() {
     setGameState(gameState::QUITING);
     this->_window->close();
     this->_isRunning = false;
-    network::socket::ServerManager::getInstance().getServer().getContext().stop();
+    network::socket::NetworkManager::getInstance().getContext().stop();
 }
 
 /**

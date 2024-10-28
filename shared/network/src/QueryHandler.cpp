@@ -1,21 +1,35 @@
 #include "QueryHandler.hpp"
 #include "Logger.hpp"
+#include "query/RawRequest.hpp"
 #include <format>
 #include <mutex>
 #include <stdexcept>
 
 #define NO_WORKER 10
 
-void execute(std::pair<network::Client, RawRequest> request) {
-    try {
-        auto callback = requestAction.at(request.second.getQuery().getRequestType());
-        callback(request.first, request.second);
-    } catch (const std::out_of_range& e) {
-        Logger::log(LogLevel::ERR, std::format("Callback not found"));
-    }
-}
-
 namespace network {
+    void QueryHandler::executeUdp(std::pair<std::shared_ptr<network::Client>, RawRequest> request) {
+        try {
+            this->_callbackMutex.lock();
+            auto callback = udpRequestAction.at(request.second.getQuery().getRequestType());
+            this->_callbackMutex.unlock();
+            callback(request.first, request.second);
+        } catch (const std::out_of_range& e) {
+            Logger::log(LogLevel::ERR, std::format("Callback not found"));
+        }
+    }
+
+    void QueryHandler::executeTcp(std::pair<std::shared_ptr<Client>, RawRequest> request) {
+        try {
+            this->_callbackMutex.lock();
+            auto callback = tcpRequestAction.at(request.second.getQuery().getRequestType());
+            this->_callbackMutex.unlock();
+            callback(request.first, request.second);
+        } catch (const std::out_of_range& e) {
+            Logger::log(LogLevel::ERR, std::format("Callback not found"));
+        }
+    }
+
     QueryHandler::QueryHandler() :
         _pool(boost::asio::thread_pool(NO_WORKER)) {}
 
@@ -31,10 +45,18 @@ namespace network {
         return *_instance;
     }
 
-    void QueryHandler::addQuery(std::pair<Client, RawRequest> query) {
-        boost::asio::post(this->_pool, [query]() {
-            execute(query);
-        });
+    void QueryHandler::addUdpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query) {
+        this->executeUdp(query);
+        /*std::lock_guard<std::mutex> lock(this->_poolMutex);
+        boost::asio::post(this->_pool, [this, query]() {
+        });*/
+    }
+
+    void QueryHandler::addTcpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query) {
+        this->executeTcp(query);
+        /*std::lock_guard<std::mutex> lock(this->_poolMutex);
+        boost::asio::post(this->_pool, [this, query]() {
+        });*/
     }
 
     std::unique_ptr<QueryHandler> QueryHandler::_instance(nullptr);

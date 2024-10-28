@@ -38,8 +38,8 @@ namespace ecs {
     std::unordered_map<Entity, Component> Registry::getEntities() {
         std::lock_guard<std::mutex> lock(this->_mutex);
         std::unordered_map<Entity, Component> castedMap;
-        for (const auto& [entity, component]: _components[typeid(Component)]) {
-            castedMap.insert({entity, std::any_cast<Component>(component)});
+        for (auto pair: _components[typeid(Component)]) {
+            castedMap.insert({pair.first, std::any_cast<Component>(pair.second)});
         }
         return castedMap;
     }

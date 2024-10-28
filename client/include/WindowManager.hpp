@@ -17,7 +17,7 @@
 #include "GameLogic.hpp"
 #include "socket/Server.hpp"
 #include "BehaviorFunc.hpp"
-#include "socket/ServerManager.hpp"
+#include "socket/NetworkManager.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/FFFFORWA.TTF";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -91,10 +91,6 @@ namespace GUI {
             void _scenarioSelectionInit();
             void _settingsMenuInit();
             void _pauseMenuInit();
-
-            void send(const RawRequest& request) {
-                network::socket::ServerManager::getInstance().getServer().send(_hostname, _port, request);
-            }
 
         public:
             WindowManager();

@@ -10,7 +10,7 @@
  *
  * \throws GuiException if there is an error reading the config file.
  */
-GUI::MusicManager::MusicManager() : _volume(50.0f), _isMuted(false) {
+GUI::MusicManager::MusicManager() : _volume(0.0f), _isMuted(false) { //TODO RESTORE OLD VALUE
     try {
         Config &config = Config::getInstance("client/config.json");
         loadMusic(config.get("musics_config_path").value_or(DEFAULT_MUSIC_CONFIG));

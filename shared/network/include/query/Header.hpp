@@ -13,7 +13,8 @@ enum class RequestType {
     START = 0x0006,
     END = 0x0007,
     // Client to server
-    INPUT = 0x0010,
+    INIT = 0x0010,
+    INPUT = 0x0011,
     // Shared
     PING = 0x0020
 };

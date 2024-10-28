@@ -6,7 +6,7 @@
 #include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
-#include "socket/ServerManager.hpp"
+#include "socket/NetworkManager.hpp"
 #include <array>
 #include <optional>
 
@@ -36,7 +36,7 @@ void BehaviorFunc::updateBullet(GameLogicMode mode, const ecs::Entity& bullet, f
  *
  * @param mode The game logic mode
  * @param player The player entity
- * @param timePerTick The time per tick
+* @param timePerTick The time per tick
  */
 void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity& entity, float deltaTime) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
@@ -86,7 +86,7 @@ void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity
  * @param entity The entity that shot the bullet
  */
 static void sendBullet(const ecs::Entity& entity) {
-    for (const auto& [destEntity, destClient]: ecs::RegistryManager::getInstance().getRegistry().getEntities<network::Client>()) {
+    for (const auto& [destEntity, destClient]: ecs::RegistryManager::getInstance().getRegistry().getEntities<std::shared_ptr<network::Client>>()) {
         const ecs::Entity& bullet = EntitySchematic::createBullet(entity);
 
         auto position = ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(bullet);
@@ -94,7 +94,7 @@ static void sendBullet(const ecs::Entity& entity) {
 
         CreateEntity payload{entity.getID(), 13, position, tags};
         TypedQuery tq(RequestType::CREATE_ENTITY, payload);
-        network::socket::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(tq));
+        network::socket::NetworkManager::getInstance().send(destClient, RawRequest(tq), network::socket::Mode::UDP);
     }
 }
 

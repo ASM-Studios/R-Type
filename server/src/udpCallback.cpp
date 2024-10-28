@@ -1,4 +1,4 @@
-#include "Client.hpp"
+#include "socket/Client.hpp"
 #include "Core.hpp"
 #include "Entity.hpp"
 #include "EntitySchematic.hpp"
@@ -9,29 +9,33 @@
 #include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
-#include "socket/ServerManager.hpp"
+#include "socket/NetworkManager.hpp"
 #include <boost/asio/buffer.hpp>
 #include <csignal>
 #include <cstdio>
 #include <iomanip>
 #include <iostream>
 
-ecs::Entity registerClientEntity(network::Client client);
+ecs::Entity registerClientEntity(std::shared_ptr<network::Client> client);
 
-void handleInput(network::Client client, RawRequest request) {
-    ecs::Entity entity = registerClientEntity(client);
+void handleInput(std::shared_ptr<network::Client> client, RawRequest request) {
+    auto map = ecs::RegistryManager::getInstance().getRegistry().getEntities<std::shared_ptr<network::Client>>();
+    if (map.size() != 1) {
+        return;
+    }
+    auto entity = (*map.begin()).first;
     TypedQuery<ecs::component::Input> query = request.getQuery();
     ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload());
 }
 
-void handlePing(network::Client client, RawRequest request) {
+void handlePing(std::shared_ptr<network::Client> client, RawRequest request) {
     auto timestamp = std::chrono::system_clock::now().time_since_epoch();
     TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
 
     timestamp = timestamp - typedQuery.getPayload();
-    network::socket::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(request.getQuery()));
+    network::socket::NetworkManager::getInstance().send(client, RawRequest(request.getQuery()), network::socket::Mode::UDP);
 }
 
-const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
+const std::map<RequestType, void (*)(std::shared_ptr<network::Client> client, RawRequest rawRequest)> udpRequestAction = {
     {RequestType::INPUT, &handleInput},
     {RequestType::PING, &handlePing}};

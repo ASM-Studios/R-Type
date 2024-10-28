@@ -5,6 +5,7 @@
 #include "Tags.hpp"
 #include <cstdint>
 #include <optional>
+#include <boost/asio.hpp>
 
 struct UpdatePlayer {
         ecs::component::Position position;

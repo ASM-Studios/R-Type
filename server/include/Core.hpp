@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Client.hpp"
+#include "socket/Client.hpp"
 #include "Clock.hpp"
 #include "Entity.hpp"
 #include "GameLogic.hpp"
@@ -20,7 +20,6 @@ class Core {
         int _tickTime;
         Clock _tpsClock;
         std::atomic<bool> _isRunning;
-        int _port;
         std::string _hitboxes_config_file;
         GameLogic _gameLogic;
 
