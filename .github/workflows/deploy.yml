@@ -93,10 +93,10 @@ jobs:
         run: |
           mkdir cmake-build-windows
           cd cmake-build-windows
-          cmake .. --preset=windows-from-windows -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
       - uses: ilammy/msvc-dev-cmd@v1.4.1
       - name: Compilation
         run: |
+          cmake .. --preset=windows-from-windows -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
           cmake --build .
       - name: Create archive
         run: |
