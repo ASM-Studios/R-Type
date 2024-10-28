@@ -94,7 +94,7 @@ static void sendBullet(const ecs::Entity& entity) {
 
         CreateEntity payload{entity.getID(), 13, position, tags};
         TypedQuery tq(RequestType::CREATE_ENTITY, payload);
-        network::socket::udp::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(tq));
+        network::socket::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(tq));
     }
 }
 

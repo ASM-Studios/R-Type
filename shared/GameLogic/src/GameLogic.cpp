@@ -175,7 +175,7 @@ void GameLogic::sendPlayerPosition(const ecs::Entity& entity) {
 
     RawRequest request(TypedQuery(RequestType::UPDATE_PLAYER, payload));
     auto client = ecs::RegistryManager::getInstance().getRegistry().getComponent<network::Client>(entity);
-    network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), request);
+    network::socket::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), request);
 }
 
 /**
@@ -190,13 +190,13 @@ void GameLogic::sendTeamPosition(const ecs::Entity& entity) {
         }
         UpdateTeamPlayer payload{entity.getID(), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Input>(entity), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(entity)};
         TypedQuery<UpdateTeamPlayer> typedQuery(RequestType::UPDATE_TEAM_PLAYER, payload);
-        network::socket::udp::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(typedQuery));
+        network::socket::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(typedQuery));
     }
 }
 
 void GameLogic::sendEntityPosition(const ecs::Entity& entity) {
     for (const auto& NPEntity: ecs::RegistryManager::getInstance().getRegistry().getEntities()) {
         TypedQuery<UpdateEntity> tq(RequestType::UPDATE_ENTITY, {NPEntity.getID(), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(NPEntity)});
-        network::socket::udp::ServerManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
+        network::socket::ServerManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
     }
 }

@@ -93,8 +93,7 @@ namespace GUI {
             void _pauseMenuInit();
 
             void send(const RawRequest& request) {
-                network::socket::udp::ServerManager::getInstance().getServer().send(_hostname, _port, request);
-            network::socket::udp::Server _server;
+                network::socket::ServerManager::getInstance().getServer().send(_hostname, _port, request);
             }
 
         public:

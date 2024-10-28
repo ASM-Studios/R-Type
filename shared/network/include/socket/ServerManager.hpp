@@ -4,7 +4,7 @@
 #include <exception>
 #include <mutex>
 
-namespace network::socket::udp {
+namespace network::socket {
     class ServerManager {
         private:
             static std::unique_ptr<ServerManager> _instance;
@@ -12,7 +12,7 @@ namespace network::socket::udp {
 
             explicit ServerManager();
 
-            std::optional<Server> _server;
+            std::optional<udp::Server> _server;
 
         public:
             class NotInitialized : public std::exception {
@@ -34,6 +34,6 @@ namespace network::socket::udp {
             void init();
             void init(int port);
 
-            Server& getServer();
+            udp::Server& getServer();
     };
 }

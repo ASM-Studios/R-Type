@@ -29,7 +29,7 @@ void handlePing(network::Client client, RawRequest request) {
     TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
 
     timestamp = timestamp - typedQuery.getPayload();
-    network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(request.getQuery()));
+    network::socket::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(request.getQuery()));
 }
 
 const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {

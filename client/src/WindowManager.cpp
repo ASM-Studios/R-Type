@@ -23,7 +23,7 @@ GUI::WindowManager::WindowManager()
     : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)),
     _isRunning(true)
 {
-    network::socket::udp::ServerManager::getInstance().init();
+    network::socket::ServerManager::getInstance().init();
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     _hostname = config.get("hostname").value_or("127.0.0.1");
@@ -63,7 +63,7 @@ static void ping() {
     }
     auto timestamp = std::chrono::system_clock::now().time_since_epoch();
     TypedQuery typedQuery{RequestType::PING, timestamp};
-    network::socket::udp::ServerManager::getInstance().getServer().send(getServer(), RawRequest(typedQuery));
+    network::socket::ServerManager::getInstance().getServer().send(getServer(), RawRequest(typedQuery));
     clock.reset();
 }
 
@@ -71,9 +71,9 @@ static void ping() {
  * \brief Sets the game state.
  */
 void GUI::WindowManager::run() {
-    network::socket::udp::ServerManager::getInstance().getServer().read();
+    network::socket::ServerManager::getInstance().getServer().read();
     std::thread thread([]() {
-        network::socket::udp::ServerManager::getInstance().getServer().getContext().run();
+        network::socket::ServerManager::getInstance().getServer().getContext().run();
     });
 
     while (this->_isRunning && _gameState != gameState::QUITING) {
@@ -99,7 +99,7 @@ void GUI::WindowManager::_exit() {
     setGameState(gameState::QUITING);
     this->_window->close();
     this->_isRunning = false;
-    network::socket::udp::ServerManager::getInstance().getServer().getContext().stop();
+    network::socket::ServerManager::getInstance().getServer().getContext().stop();
 }
 
 /**

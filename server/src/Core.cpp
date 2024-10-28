@@ -18,7 +18,7 @@
 
 void Core::_exit(std::vector<std::string> args) {
     this->_isRunning = false;
-    network::socket::udp::ServerManager::getInstance().getServer().getSocket().cancel();
+    network::socket::ServerManager::getInstance().getServer().getSocket().cancel();
 }
 
 void Core::_info(std::vector<std::string> args) {
@@ -31,7 +31,7 @@ void Core::_start(std::vector<std::string> args) {
     Logger::log(LogLevel::ERR, "Starting");
     GameLogicManager::getInstance().get().start();
     TypedQuery<Empty> tq(RequestType::START, {});
-    network::socket::udp::ServerManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
+    network::socket::ServerManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
 }
 
 void Core::_readStdin() {
@@ -55,11 +55,11 @@ void Core::_readStdin() {
 }
 
 void Core::_loop() {
-    auto& server = network::socket::udp::ServerManager::getInstance().getServer();
+    auto& server = network::socket::ServerManager::getInstance().getServer();
     server.read();
 
     std::thread runServer([]() {
-        auto& server = network::socket::udp::ServerManager::getInstance().getServer();
+        auto& server = network::socket::ServerManager::getInstance().getServer();
         server.getContext().run();
     });
 
@@ -84,7 +84,7 @@ void Core::init(const std::span<char *>& args [[maybe_unused]]) {
     this->_port = std::atoi(config.get("port").value_or("8080").c_str());
     this->_hitboxes_config_file = config.get("hitboxes_config_file").value_or("");
     Logger::log(LogLevel::INFO, std::format("Server running on port {0}", this->_port));
-    network::socket::udp::ServerManager::getInstance().init(this->_port);
+    network::socket::ServerManager::getInstance().init(this->_port);
 }
 
 int Core::run() {

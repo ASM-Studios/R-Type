@@ -3,7 +3,7 @@
 #include <format>
 #include <mutex>
 
-namespace network::socket::udp {
+namespace network::socket {
     ServerManager::NotInitialized::NotInitialized() :
         _message(std::format("Server must be initialized")) {}
 
@@ -30,7 +30,7 @@ namespace network::socket::udp {
         this->_server.emplace(port);
     }
 
-    Server& ServerManager::getServer() {
+    udp::Server& ServerManager::getServer() {
         if (!this->_server.has_value()) {
             throw NotInitialized();
         }

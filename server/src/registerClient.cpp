@@ -16,13 +16,13 @@
 static void getInfo(ecs::Entity entity, network::Client client, ecs::Entity destEntity, network::Client destClient) {
     CreateEntity payload{destEntity.getID(), 23, ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(destEntity), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Tags>(destEntity)};
     TypedQuery typedQuery(RequestType::CREATE_ENTITY, payload);
-    network::socket::udp::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(typedQuery));
+    network::socket::ServerManager::getInstance().getServer().send(client.getIP().to_string(), client.getPort(), RawRequest(typedQuery));
 }
 
 static void sendInfo(ecs::Entity entity, network::Client client, ecs::Entity destEntity, network::Client destClient) {
     CreateEntity payload{entity.getID(), 23, ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(entity), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Tags>(entity)};
     TypedQuery typedQuery(RequestType::CREATE_ENTITY, payload);
-    network::socket::udp::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(typedQuery));
+    network::socket::ServerManager::getInstance().getServer().send(destClient.getIP().to_string(), destClient.getPort(), RawRequest(typedQuery));
 }
 
 static void broadcastCreation(ecs::Entity entity, network::Client client) {
