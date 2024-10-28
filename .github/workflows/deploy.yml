@@ -51,16 +51,12 @@ jobs:
             ./vcpkg/bootstrap-vcpkg.sh
           fi
           ./vcpkg/vcpkg install
-      - name: Setup CMake
-        uses: jwlawson/actions-setup-cmake@v2
-        with:
-          cmake-version: '3.27.4'
       - name: Compilation
         run: |
           ./release.sh
       - name: Create archive
         run: |
-          zip -r linux_executables.zip r-type_client r-type_server
+          zip -r linux_executables.zip r-type_client r-type_server assets server/config.json client/config.json shared/Scenarios
       - name: Upload Release Asset
         id: upload-release-asset-linux
         uses: actions/upload-release-asset@v1
@@ -72,39 +68,48 @@ jobs:
           asset_name: linux_executables.zip
           asset_content_type: application/zip
 
-#  build_and_deploy_windows:
-#    name: Build and deploy (Windows)
-#    runs-on: windows-latest
-#    needs: create_release
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-#      - name: Cache vcpkg
-#        uses: actions/cache@v4
-#        with:
-#          path: C:\Users\runneradmin\AppData\Local\vcpkg\archives
-#          key: ${{ hashFiles('vcpkg.json') }}
-#      - name: Setup vcpkg
-#        run: |
-#          if (-not (Test-Path -Path "C:\vcpkg")) {
-#            git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
-#            .\vcpkg\bootstrap-vcpkg.bat
-#          }
-#          C:\vcpkg\vcpkg install
-#      - name: Compilation # ne fonctionne pas encore
-#        run: |
-#          cmake -S . -B build -G "Ninja" -DCMAKE_TOOLCHAIN_FILE="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg\scripts\buildsystems\vcpkg.cmake" -DCMAKE_BUILD_TYPE=Release
-#          cmake --build .
-#      - name: Create archive
-#        run: |
-#          Compress-Archive -Path r-type_client.exe, r-type_server.exe -DestinationPath windows_executables.zip
-#      - name: Upload Release Asset
-#        id: upload-release-asset-windows
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ needs.create_release.outputs.upload_url }}
-#          asset_path: ./windows_executables.zip
-#          asset_name: windows_executables.zip
-#          asset_content_type: application/zip
+  build_and_deploy_windows:
+    name: Build and deploy (Windows)
+    runs-on: windows-latest
+    needs: create_release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Cache vcpkg
+        uses: actions/cache@v4
+        with:
+          path: C:\Users\runneradmin\AppData\Local\vcpkg\archives
+          key: ${{ hashFiles('vcpkg.json') }}
+      - name: Setup vcpkg
+        run: |
+          if (-not (Test-Path -Path "C:\vcpkg")) {
+            git clone https://github.com/microsoft/vcpkg.git C:\vcpkg
+            .\vcpkg\bootstrap-vcpkg.bat
+          }
+          C:\vcpkg\vcpkg install
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@master
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1.4.1
+      - name: Compilation
+        run: |
+          mkdir cmake-build-windows
+          cd cmake-build-windows
+          cmake .. --preset=windows-from-windows -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+          cmake --build .
+      - name: Create archive
+        run: |
+          Get-ChildItem -Path .\server\* | Where-Object { $_.Name -ne 'config.json' } | Remove-Item -Recurse -Force
+          Get-ChildItem -Path .\client\* | Where-Object { $_.Name -ne 'config.json' } | Remove-Item -Recurse -Force
+          Get-ChildItem -Path .\shared\* | Where-Object { $_.Name -ne 'Scenarios' } | Remove-Item -Recurse -Force
+          Compress-Archive -Path r-type_client.exe, r-type_server.exe, *.dll, assets, server, client, shared -DestinationPath windows_executables.zip
+      - name: Upload Release Asset
+        id: upload-release-asset-windows
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: ./windows_executables.zip
+          asset_name: windows_executables.zip
+          asset_content_type: application/zip
