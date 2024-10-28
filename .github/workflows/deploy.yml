@@ -57,7 +57,7 @@ jobs:
           ./release.sh
       - name: Create archive
         run: |
-          zip -r linux_executables.zip r-type_client r-type_server assets
+          zip -r linux_executables.zip r-type_client r-type_server assets server/config.json client/config.json
       - name: Upload Release Asset
         id: upload-release-asset-linux
         uses: actions/upload-release-asset@v1
@@ -100,7 +100,7 @@ jobs:
           cmake --build .
       - name: Create archive
         run: |
-          Compress-Archive -Path r-type_client.exe, r-type_server.exe, *.dll, assets -DestinationPath windows_executables.zip
+          Compress-Archive -Path r-type_client.exe, r-type_server.exe, *.dll, assets, server/config.json, client/config.json -DestinationPath windows_executables.zip
       - name: Upload Release Asset
         id: upload-release-asset-windows
         uses: actions/upload-release-asset@v1
