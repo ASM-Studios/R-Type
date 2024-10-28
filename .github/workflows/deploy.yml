@@ -89,16 +89,19 @@ jobs:
           }
           C:\vcpkg\vcpkg install
       - uses: seanmiddleditch/gha-setup-ninja@master
-      - run: |
-          mkdir build
-          cd build
-          cmake -G Ninja ..
-      - uses: ilammy/msvc-dev-cmd@v1.4.1
-      - name: Compilation
+      - name: Configure CMake
         run: |
           mkdir cmake-build-windows
           cd cmake-build-windows
+          cmake .. -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+      - run: |
+          mkdir cmake-build-windows
+          cd cmake-build-windows
           cmake .. --preset=windows-from-windows
+      - uses: ilammy/msvc-dev-cmd@v1.4.1
+      - name: Compilation
+        run: |
+          cmake --build .
       - name: Create archive
         run: |
           Compress-Archive -Path r-type_client.exe, r-type_server.exe -DestinationPath windows_executables.zip
