@@ -100,8 +100,8 @@ jobs:
           cmake --build .
       - name: Create archive
         run: |
-          Get-ChildItem -Path .\server\* -File | Where-Object { $_.Name -ne 'config.json' } | Remove-Item -Force
-          Get-ChildItem -Path .\client\* -File | Where-Object { $_.Name -ne 'config.json' } | Remove-Item -Force
+          Get-ChildItem -Path .\server\* | Where-Object { $_.Name -ne 'config.json' } | Remove-Item -Recurse -Force
+          Get-ChildItem -Path .\client\* | Where-Object { $_.Name -ne 'config.json' } | Remove-Item -Recurse -Force
           Compress-Archive -Path r-type_client.exe, r-type_server.exe, *.dll, assets, server, client -DestinationPath windows_executables.zip
       - name: Upload Release Asset
         id: upload-release-asset-windows
