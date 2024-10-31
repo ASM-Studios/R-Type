@@ -36,7 +36,7 @@ void BehaviorFunc::updateBullet(GameLogicMode mode, const ecs::Entity& bullet, f
  *
  * @param mode The game logic mode
  * @param player The player entity
-* @param timePerTick The time per tick
+ * @param timePerTick The time per tick
  */
 void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity& entity, float deltaTime) {
     ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
@@ -45,7 +45,7 @@ void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity
     static float upDuration = 0.0F;
     static float downDuration = 0.0F;
     int spriteSheetID = 2;
-
+ 
     if (input.isFlagSet(ecs::component::Input::MoveUp) && input.isFlagSet(ecs::component::Input::MoveDown)) {
         upDuration = std::max(0.0F, upDuration - deltaTime);
         downDuration = std::max(0.0F, downDuration - deltaTime);

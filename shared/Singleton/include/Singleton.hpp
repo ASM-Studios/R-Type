@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Mutex.hpp"
 #include <memory>
 #include <mutex>
 #include <optional>
@@ -10,7 +11,7 @@ class Singleton {
         static std::unique_ptr<Singleton> _instance;
         static std::mutex _mutex;
 
-        std::mutex _accessMutex;
+        StatusMutex _accessMutex;
 
         std::optional<T> _data;
 
@@ -35,10 +36,6 @@ class Singleton {
 
         void unlock() {
             this->_accessMutex.unlock();
-        }
-
-        std::mutex& getMutex() {
-            return this->_accessMutex;
         }
 
         T& get();

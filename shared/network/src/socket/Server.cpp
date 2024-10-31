@@ -16,21 +16,22 @@ namespace network::socket::udp {
         auto *remoteEndpoint = new boost::asio::ip::udp::endpoint(); // NOLINT
                                                                      
         this->_socket.async_receive_from(boost::asio::buffer(request, sizeof(RawRequest)), *remoteEndpoint, [this, request, remoteEndpoint](const boost::system::error_code& error, std::size_t bytes) {
+            this->read();
             if (error) {
                 Logger::log(LogLevel::ERR, error.message());
                 return;
             }
             {
-                std::lock_guard<std::mutex> lock(Singleton<network::Registry>::getInstance().getMutex());
+                Singleton<network::Registry>::getInstance().lock();
                 auto client = Singleton<network::Registry>::getInstance().get().getClient(request->getUuid());
                 if (client.has_value()) {
                     client->get()->init(remoteEndpoint->address().to_v4(), remoteEndpoint->port());
                     QueryHandler::getInstance().addUdpQuery({client.value(), *request});
                 }
+                Singleton<network::Registry>::getInstance().unlock();
             }
             delete request; // NOLINT
             delete remoteEndpoint; // NOLINT
-            this->read();
         });
     }
 
@@ -53,10 +54,11 @@ namespace network::socket::tcp {
                 return;
             }
             {
-                std::lock_guard<std::mutex> lock(Singleton<network::Registry>::getInstance().getMutex());
+                Singleton<network::Registry>::getInstance().lock();
                 auto client = std::make_shared<network::Client>(socket);
                 Singleton<network::Registry>::getInstance().get().addClient(client);
                 client->read();
+                Singleton<network::Registry>::getInstance().unlock();
             }
             this->read();
         });

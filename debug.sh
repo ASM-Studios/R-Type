@@ -8,3 +8,7 @@ fi
 cd $BUILD_FOLDER
 cmake --preset=debug ..
 cmake --build .
+
+if [ "$?" -ne "0" ]; then
+    cowsay "rip bozo"
+fi

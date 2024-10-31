@@ -32,7 +32,7 @@ class GameLogic {
         bool _isRunning;
         float _timePerTick;
         Clock _clock;
-        Clock _total;
+        float _totalTime;
 
         void update();
 
@@ -45,3 +45,5 @@ class GameLogic {
         void sendTeamPosition(const ecs::Entity& entity);
         void sendEntityPosition(const ecs::Entity& entity);
 };
+
+using GameIllogic = GameLogic; // PARSEKE C PA FO

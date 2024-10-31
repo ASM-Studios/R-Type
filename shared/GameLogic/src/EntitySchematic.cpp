@@ -148,7 +148,7 @@ ecs::Entity EntitySchematic::createEnemy(std::size_t id, int16_t x, int16_t y, i
     registry.setComponent<ecs::component::Tags>(enemy, ecs::component::Tags({ecs::component::Tag::Enemy}));
     registry.setComponent<ecs::component::Position>(enemy, {x, y, static_cast<size_t>(static_cast<int16_t>(screenSize.first)), static_cast<size_t>(static_cast<int16_t>(screenSize.second))});
     registry.setComponent<ecs::component::Sprite>(enemy, {spriteID, stateID});
-    //registry.setComponent<ecs::component::Behavior>(enemy, ecs::component::Behavior::stringToBehaviorModel(model));
+    registry.setComponent<ecs::component::Behavior>(enemy, ecs::component::Behavior::stringToBehaviorModel(model));
     registry.setComponent<ecs::component::Animation>(enemy, {});
     return enemy;
 }

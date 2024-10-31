@@ -41,10 +41,14 @@ namespace network::socket::tcp {
     };
 }
 
-static inline Singleton<std::shared_ptr<network::Client>>& getServer() {
+static inline Singleton<std::shared_ptr<network::Client>>& initServer() {
     const Config& config = Config::getInstance("client/config.json");
     std::string hostname = config.get("hostname").value_or("127.0.0.1");
     int udpPort = std::stoi(config.get("udp_port").value_or("8080"));
     int tcpPort = std::stoi(config.get("tcp_port").value_or("8081"));
     return Singleton<std::shared_ptr<network::Client>>::wrap(std::make_shared<network::Client>(hostname, tcpPort, udpPort));
+}
+
+static inline Singleton<std::shared_ptr<network::Client>>& getServer() {
+    return Singleton<std::shared_ptr<network::Client>>::getInstance();
 }

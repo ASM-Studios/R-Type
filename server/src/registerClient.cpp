@@ -42,6 +42,7 @@ ecs::Entity registerClientEntity(std::shared_ptr<network::Client> client) {
             return entity.first;
         }
     }
+    Logger::log(LogLevel::INFO, std::format("{}", client->getID()));
     ecs::Entity entity = EntitySchematic::createTeamPlayer(client->getID(), 50, 50, 22);
     registry.setComponent(entity, client);
     broadcastCreation(entity, client);

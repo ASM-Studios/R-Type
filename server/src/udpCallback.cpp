@@ -1,3 +1,4 @@
+#include "Input.hpp"
 #include "socket/Client.hpp"
 #include "Core.hpp"
 #include "Entity.hpp"
@@ -19,11 +20,7 @@
 ecs::Entity registerClientEntity(std::shared_ptr<network::Client> client);
 
 void handleInput(std::shared_ptr<network::Client> client, RawRequest request) {
-    auto map = ecs::RegistryManager::getInstance().getRegistry().getEntities<std::shared_ptr<network::Client>>();
-    if (map.size() != 1) {
-        return;
-    }
-    auto entity = (*map.begin()).first;
+    auto entity = registerClientEntity(client);
     TypedQuery<ecs::component::Input> query = request.getQuery();
     ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload());
 }

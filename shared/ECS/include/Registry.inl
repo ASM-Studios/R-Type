@@ -28,6 +28,7 @@ namespace ecs {
         const Entity entity(id, *this);
         _entities.insert(entity);
         Registry::addComponents<Components...>(entity);
+        std::cout << "Registring entity" << std::endl;
         return entity;
     }
 

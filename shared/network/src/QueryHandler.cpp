@@ -15,7 +15,7 @@ namespace network {
             this->_callbackMutex.unlock();
             callback(request.first, request.second);
         } catch (const std::out_of_range& e) {
-            Logger::log(LogLevel::ERR, std::format("Callback not found"));
+            Logger::log(LogLevel::ERR, std::format("Callback not found: {}", to_string(request.second.getQuery().getRequestType())));
         }
     }
 
@@ -26,7 +26,7 @@ namespace network {
             this->_callbackMutex.unlock();
             callback(request.first, request.second);
         } catch (const std::out_of_range& e) {
-            Logger::log(LogLevel::ERR, std::format("Callback not found"));
+            Logger::log(LogLevel::ERR, std::format("Callback not found: {}", to_string(request.second.getQuery().getRequestType())));
         }
     }
 
@@ -49,6 +49,7 @@ namespace network {
         this->executeUdp(query);
         /*std::lock_guard<std::mutex> lock(this->_poolMutex);
         boost::asio::post(this->_pool, [this, query]() {
+            this->executeUdp(query);
         });*/
     }
 
@@ -56,6 +57,7 @@ namespace network {
         this->executeTcp(query);
         /*std::lock_guard<std::mutex> lock(this->_poolMutex);
         boost::asio::post(this->_pool, [this, query]() {
+            this->executeTcp(query);
         });*/
     }
 

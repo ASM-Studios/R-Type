@@ -8,6 +8,7 @@
 #include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
+#include <cstdio>
 
 static void handleUpdatePlayer(std::shared_ptr<network::Client> client, RawRequest request) {
     TypedQuery<UpdatePlayer> query = request.getQuery();
@@ -18,7 +19,7 @@ static void handleUpdatePlayer(std::shared_ptr<network::Client> client, RawReque
 static void handleUpdateTeamPlayer(std::shared_ptr<network::Client> client, RawRequest request) {
     TypedQuery<UpdateTeamPlayer> query = request.getQuery();
     ecs::Entity entity(query.getPayload().id, ecs::RegistryManager::getInstance().getRegistry());
-    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().input);
+    //ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().input);
     ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload().position);
 }
 
@@ -26,6 +27,7 @@ static void handleCreateEntity(std::shared_ptr<network::Client> client, RawReque
     TypedQuery<CreateEntity> tq = request.getQuery();
     auto payload = tq.getPayload();
     if (ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Ally) && ecs::component::Tags::hasTag(payload.tags, ecs::component::Tag::Player)) {
+        Logger::log(LogLevel::INFO, std::format("Creating new entity of id {}", payload.id));
         ecs::Entity entity = EntitySchematic::createTeamPlayerClient(payload.id, payload.position.x, payload.position.y, payload.spriteID);
         return;
     }
@@ -39,10 +41,10 @@ static void handleCreateEntity(std::shared_ptr<network::Client> client, RawReque
 
 static void handlePing(std::shared_ptr<network::Client> client, RawRequest request) {
    auto timestamp = std::chrono::system_clock::now().time_since_epoch();
-    TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
-    timestamp = timestamp - typedQuery.getPayload();
-    int ping = std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count();
-    Logger::log(LogLevel::INFO, std::format("Ping {} ms", ping)); //TODO CHANGE FOR THE FUTURE
+   TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
+   timestamp = timestamp - typedQuery.getPayload();
+   int ping = std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count();
+   Logger::log(LogLevel::INFO, std::format("Ping {} ms", ping)); //TODO CHANGE FOR THE FUTURE
 }
 
 static void handleStart(std::shared_ptr<network::Client> client, RawRequest request) {

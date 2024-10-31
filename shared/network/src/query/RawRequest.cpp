@@ -8,8 +8,9 @@ RawRequest::RawRequest(NonTypedQuery query) :
     _uuid(),
     _query(query) {
 
-    std::lock_guard<std::mutex> lock(Singleton<boost::uuids::uuid>::getInstance().getMutex());
+    Singleton<boost::uuids::uuid>::getInstance().lock();
     this->_uuid = Singleton<boost::uuids::uuid>::getInstance().get(); // NOLINT
+    Singleton<boost::uuids::uuid>::getInstance().unlock();
 }
 
 RawRequest::operator boost::asio::const_buffer() {

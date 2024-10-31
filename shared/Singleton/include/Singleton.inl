@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Singleton.hpp"
+#include <cassert>
 #include <utility>
 
 template <typename T>
@@ -29,11 +30,13 @@ Singleton<T>& Singleton<T>::wrap(T& data) {
 
 template <typename T>
 T& Singleton<T>::get() {
+    assert(this->_accessMutex.isLocked());
     return this->_data.value();
 }
 
 template <typename T>
 bool Singleton<T>::has_value() {
+    assert(this->_accessMutex.isLocked());
     return this->_data.has_value();
 }
 

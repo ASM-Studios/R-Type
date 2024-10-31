@@ -61,10 +61,9 @@ GUI::WindowManager::WindowManager()
     /* Network Inits */
 
     network::socket::NetworkManager::getInstance().init();
-    getServer();
     TypedQuery<Empty> tq(RequestType::INIT, {});
-    auto client = Singleton<std::shared_ptr<network::Client>>::getInstance().get();
-    network::socket::NetworkManager::getInstance().send(client, RawRequest(tq), network::socket::Mode::TCP);
+    initServer();
+    network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
 }
 
 /**

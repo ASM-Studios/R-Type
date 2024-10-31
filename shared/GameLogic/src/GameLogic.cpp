@@ -1,4 +1,5 @@
 #include "GameLogic.hpp"
+#include "Singleton.hpp"
 #include "socket/Client.hpp"
 #include "Clock.hpp"
 #include "Collision.hpp"
@@ -19,8 +20,9 @@
  * @param mode The game logic mode
  */
 GameLogic::GameLogic(const GameLogicMode mode) :
-    _mode(mode), _isRunning(false),
-    _timePerTick(1.0F / 60.0f) {
+    _mode(mode), _isRunning(true),
+    _timePerTick(1.0F / 60.0f),
+    _totalTime(0) {
     const Config& config = Config::getInstance("server/config.json");
     int _tps = std::stoi(config.get("tps").value_or("60"));
     _timePerTick = 1.0F / static_cast<float>(_tps);
@@ -42,7 +44,7 @@ GameLogic::GameLogic(const GameLogicMode mode) :
  * @brief Start the game logic
  */
 void GameLogic::start() {
-    this->_total.reset();
+    this->_totalTime = 0;
     this->_isRunning = true;
 }
 
@@ -64,6 +66,7 @@ void GameLogic::updateTimed() {
     if (this->_clock.get() < this->_timePerTick) {
         return;
     }
+    _totalTime += this->_clock.get() / 1000;
     this->_clock.reset();
     this->update();
 }
@@ -84,7 +87,7 @@ void GameLogic::update() {
         this->client(entity);
     }
     auto& factory = ecs::factory::LevelFactory::getInstance();
-    factory.updateEntities(static_cast<float>(this->_total.get()) / 1000);
+    factory.updateEntities(_totalTime);
 }
 
 /**
@@ -115,8 +118,12 @@ void GameLogic::sendInput(const ecs::Entity& entity) {
     if (input.inputFlags == input.oldInputFlags) {
         return;
     }
-    TypedQuery<ecs::component::Input> typedQuery(RequestType::INPUT, input);
-
+    TypedQuery<ecs::component::Input> tq(RequestType::INPUT, input);
+    {
+        getServer().lock();
+        network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::UDP);
+        getServer().unlock();
+    }
 }
 
 /**
@@ -197,6 +204,6 @@ void GameLogic::sendTeamPosition(const ecs::Entity& entity) {
 void GameLogic::sendEntityPosition(const ecs::Entity& entity) {
     for (const auto& NPEntity: ecs::RegistryManager::getInstance().getRegistry().getEntities()) {
         TypedQuery<UpdateEntity> tq(RequestType::UPDATE_ENTITY, {NPEntity.getID(), ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(NPEntity)});
-        network::socket::NetworkManager::getInstance().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<std::shared_ptr<network::Client>>(), RawRequest(tq), network::socket::Mode::UDP);
+        //network::socket::NetworkManager::getInstance().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<std::shared_ptr<network::Client>>(), RawRequest(tq), network::socket::Mode::UDP);
     }
 }
