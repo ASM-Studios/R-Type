@@ -9,9 +9,9 @@ static const std::map<RequestType, std::string_view> binding = {
     {RequestType::CREATE_ENTITY, "CREATE_ENTITY"},
     {RequestType::UPDATE_ENTITY, "UPDATE_ENTITY"},
     {RequestType::DESTROY_ENTITY, "DESTROY_ENTITY"},
-    {RequestType::START, "DESTROY_ENTITY"},
-    {RequestType::END, "DESTROY_ENTITY"},
 
+    {RequestType::CONNECT, "CONNECT"},
+    {RequestType::DISCONNECT, "DISCONNECT"},
     {RequestType::INIT, "INIT"},
     {RequestType::INPUT, "INPUT"},
 

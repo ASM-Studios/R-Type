@@ -1,11 +1,12 @@
 #pragma once
 
+#include "Behavior.hpp"
 #include "Input.hpp"
 #include "Position.hpp"
 #include "Tags.hpp"
+#include <boost/asio.hpp>
 #include <cstdint>
 #include <optional>
-#include <boost/asio.hpp>
 
 struct UpdatePlayer {
         ecs::component::Position position;
@@ -19,12 +20,21 @@ struct UpdateTeamPlayer {
 
 struct CreateEntity {
         uint64_t id;
-        uint8_t spriteID;
+        int spriteID;
+        int stateID;
         ecs::component::Position position;
         std::array<std::optional<ecs::component::Tag>, 5> tags;
+};
+
+struct CreateEnemyEntity : CreateEntity {
+        ecs::component::AIModel model;
 };
 
 struct UpdateEntity {
         uint64_t id;
         ecs::component::Position position;
+};
+
+struct Connect {
+        int id;
 };

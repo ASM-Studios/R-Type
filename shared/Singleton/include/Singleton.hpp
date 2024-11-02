@@ -11,11 +11,13 @@ class Singleton {
         static std::unique_ptr<Singleton> _instance;
         static std::mutex _mutex;
 
+        std::atomic<bool> _isSafe;
         StatusMutex _accessMutex;
 
         std::optional<T> _data;
 
         explicit Singleton() :
+            _isSafe(true),
             _data(std::nullopt) {}
 
     public:
@@ -23,10 +25,10 @@ class Singleton {
         Singleton(const Singleton& other) = delete;
 
         Singleton& operator=(const Singleton& other) = delete;
-        
+
         static Singleton& getInstance();
 
-        template <typename ...Args>
+        template <typename... Args>
         static Singleton<T>& wrap(Args... args);
         static Singleton<T>& wrap(T& data);
 
@@ -36,6 +38,10 @@ class Singleton {
 
         void unlock() {
             this->_accessMutex.unlock();
+        }
+
+        void setSafe(bool safe) {
+            this->_isSafe = safe;
         }
 
         T& get();

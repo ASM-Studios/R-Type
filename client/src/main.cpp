@@ -16,6 +16,7 @@
 constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::CLIENT);
 
 int main() {
+    ecs::RegistryManager::getInstance().createRegistry();
     Singleton<network::Registry>::wrap();
     Singleton<boost::uuids::uuid>::wrap(boost::uuids::random_generator()());
     try {

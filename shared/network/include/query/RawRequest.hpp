@@ -1,11 +1,11 @@
 #pragma once
 
-#include "socket/Client.hpp"
 #include "NonTypedQuery.hpp"
+#include "socket/Client.hpp"
 #include <boost/asio/buffer.hpp>
+#include <boost/uuid/uuid.hpp>
 #include <cstdint>
 #include <map>
-#include <boost/uuid/uuid.hpp>
 
 class RawRequest {
     private:

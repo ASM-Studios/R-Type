@@ -2,9 +2,9 @@
 #include "Registry.hpp"
 
 namespace ecs {
-    Entity::Entity(uint64_t id, Registry& registry) :
+    Entity::Entity(uint64_t id, std::shared_ptr<Registry> registry) :
         _id(id),
-        _registry(std::ref(registry)) {}
+        _registry(registry) {}
 
     [[nodiscard]] uint64_t Entity::getID() const {
         return this->_id;
@@ -16,5 +16,9 @@ namespace ecs {
 
     bool Entity::operator<(const Entity& other) const {
         return _id < other._id;
+    }
+
+    std::shared_ptr<Registry> Entity::getRegistry() const {
+        return this->_registry;
     }
 }

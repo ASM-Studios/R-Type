@@ -42,7 +42,7 @@ namespace network::socket {
 
             static NetworkManager& getInstance();
 
-            void init(); // AS CLIENT
+            void init();                           // AS CLIENT
             void init(int _udpPort, int _tcpPort); // AS SERVER
 
             void send(std::shared_ptr<Client> client, RawRequest request, Mode mode);

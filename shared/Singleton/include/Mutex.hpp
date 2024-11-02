@@ -9,16 +9,17 @@ class StatusMutex {
         std::atomic<bool> _isLocked;
 
     public:
-        explicit StatusMutex() : _isLocked(false) {}
+        explicit StatusMutex() :
+            _isLocked(false) {}
 
         void lock() {
-            this->_isLocked = true;
             this->_mutex.lock();
+            this->_isLocked = true;
         }
 
         void unlock() {
-            this->_isLocked = false;
             this->_mutex.unlock();
+            this->_isLocked = false;
         }
 
         bool isLocked() {

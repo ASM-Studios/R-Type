@@ -23,12 +23,12 @@ namespace network {
         private:
             std::optional<boost::asio::ip::address_v4> _udpIP;
             std::optional<boost::asio::ip::port_type> _udpPort;
-            
+
             boost::asio::ip::tcp::socket _tcpSocket;
 
         public:
             explicit Client(std::string hostname, int tcpPort, int udpPort); // FOR CLIENT
-            explicit Client(boost::asio::ip::tcp::socket& socket); // FOR SERVER
+            explicit Client(boost::asio::ip::tcp::socket& socket);           // FOR SERVER
             ~Client() = default;
 
             bool operator==(const Client& other) const;

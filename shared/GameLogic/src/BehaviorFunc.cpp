@@ -20,14 +20,14 @@ constexpr auto SPEED = 400;
  * @param timePerTick The time per tick
  */
 void BehaviorFunc::updateBullet(GameLogicMode mode, const ecs::Entity& bullet, float timePerTick) {
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    auto registry = bullet.getRegistry();
     int16_t speed = SPEED * 10 * timePerTick;
-    auto& position = registry.getComponent<ecs::component::Position>(bullet);
+    auto& position = registry->getComponent<ecs::component::Position>(bullet);
     ecs::component::Position const offset(speed, 0);
 
     position.move(offset);
     if (position.x >= position.screenWidth - 1) {
-        registry.removeEntity(bullet);
+        registry->removeEntity(bullet);
     }
 }
 
@@ -39,13 +39,13 @@ void BehaviorFunc::updateBullet(GameLogicMode mode, const ecs::Entity& bullet, f
  * @param timePerTick The time per tick
  */
 void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity& entity, float deltaTime) {
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    auto& input = registry.getComponent<ecs::component::Input>(entity);
-    auto& sprite = registry.getComponent<ecs::component::Sprite>(entity);
+    auto registry = entity.getRegistry();
+    auto& input = registry->getComponent<ecs::component::Input>(entity);
+    auto& sprite = registry->getComponent<ecs::component::Sprite>(entity);
     static float upDuration = 0.0F;
     static float downDuration = 0.0F;
     int spriteSheetID = 2;
- 
+
     if (input.isFlagSet(ecs::component::Input::MoveUp) && input.isFlagSet(ecs::component::Input::MoveDown)) {
         upDuration = std::max(0.0F, upDuration - deltaTime);
         downDuration = std::max(0.0F, downDuration - deltaTime);
@@ -86,13 +86,14 @@ void BehaviorFunc::setSpriteSheetFromInput(GameLogicMode mode, const ecs::Entity
  * @param entity The entity that shot the bullet
  */
 static void sendBullet(const ecs::Entity& entity) {
-    for (const auto& [destEntity, destClient]: ecs::RegistryManager::getInstance().getRegistry().getEntities<std::shared_ptr<network::Client>>()) {
-        const ecs::Entity& bullet = EntitySchematic::createBullet(entity);
+    auto registry = entity.getRegistry();
+    for (const auto& [destEntity, destClient]: registry->getEntities<std::shared_ptr<network::Client>>()) {
+        const ecs::Entity& bullet = EntitySchematic::createBullet(entity.getRegistry(), entity);
 
-        auto position = ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Position>(bullet);
-        auto tags = static_cast<std::array<std::optional<ecs::component::Tag>, 5>>(ecs::RegistryManager::getInstance().getRegistry().getComponent<ecs::component::Tags>(bullet));
+        auto position = registry->getComponent<ecs::component::Position>(bullet);
+        auto tags = static_cast<std::array<std::optional<ecs::component::Tag>, 5>>(registry->getComponent<ecs::component::Tags>(bullet));
 
-        CreateEntity payload{entity.getID(), 13, position, tags};
+        CreateEntity payload{entity.getID(), 13, 0, position, tags};
         TypedQuery tq(RequestType::CREATE_ENTITY, payload);
         network::socket::NetworkManager::getInstance().send(destClient, RawRequest(tq), network::socket::Mode::UDP);
     }
@@ -106,15 +107,15 @@ static void sendBullet(const ecs::Entity& entity) {
  * @param timePerTick The time per tick
  */
 void BehaviorFunc::handleInput(GameLogicMode mode, const ecs::Entity& entity, float timePerTick) {
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    auto& input = registry.getComponent<ecs::component::Input>(entity);
+    auto registry = entity.getRegistry();
+    auto& input = registry->getComponent<ecs::component::Input>(entity);
     if (input.inputFlags == 0) {
         setSpriteSheetFromInput(mode, entity, timePerTick);
         return;
     }
 
-    auto& position = registry.getComponent<ecs::component::Position>(entity);
-    auto& lastShot = registry.getComponent<ecs::component::LastShot>(entity);
+    auto& position = registry->getComponent<ecs::component::Position>(entity);
+    auto& lastShot = registry->getComponent<ecs::component::LastShot>(entity);
     int16_t speed = SPEED * timePerTick;
 
     ecs::component::Position offset(0, 0);
@@ -135,7 +136,7 @@ void BehaviorFunc::handleInput(GameLogicMode mode, const ecs::Entity& entity, fl
     auto currentTime = std::chrono::steady_clock::now();
     float const deltaTimeShot = std::chrono::duration<float>(currentTime - lastShot.lastShotTime).count();
 
-    if (input.isFlagSet(ecs::component::Input::ReleaseShoot) && deltaTimeShot >= SHOOT_COOLDOWN && registry.contains<ecs::component::LastShot>(entity)) {
+    if (input.isFlagSet(ecs::component::Input::ReleaseShoot) && deltaTimeShot >= SHOOT_COOLDOWN && registry->contains<ecs::component::LastShot>(entity)) {
         if (isPureServer(mode)) {
             sendBullet(entity);
         }

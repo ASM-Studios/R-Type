@@ -1,8 +1,7 @@
-#include "Input.hpp"
-#include "socket/Client.hpp"
 #include "Core.hpp"
 #include "Entity.hpp"
 #include "EntitySchematic.hpp"
+#include "Input.hpp"
 #include "Logger.hpp"
 #include "RegistryManager.hpp"
 #include "Tags.hpp"
@@ -10,6 +9,7 @@
 #include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
+#include "socket/Client.hpp"
 #include "socket/NetworkManager.hpp"
 #include <boost/asio/buffer.hpp>
 #include <csignal>
@@ -17,12 +17,13 @@
 #include <iomanip>
 #include <iostream>
 
-ecs::Entity registerClientEntity(std::shared_ptr<network::Client> client);
-
 void handleInput(std::shared_ptr<network::Client> client, RawRequest request) {
-    auto entity = registerClientEntity(client);
+    auto entity = ecs::getEntity(client);
     TypedQuery<ecs::component::Input> query = request.getQuery();
-    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload());
+    auto registry = ecs::RegistryManager::getInstance().get(client);
+    if (registry.has_value() && entity.has_value()) {
+        registry.value()->setComponent(entity.value(), query.getPayload());
+    }
 }
 
 void handlePing(std::shared_ptr<network::Client> client, RawRequest request) {

@@ -2,13 +2,13 @@
 
 #include "Client.hpp"
 #include "QueryHandler.hpp"
+#include "Singleton.hpp"
 #include "query/RawRequest.hpp"
 #include <boost/asio.hpp>
 #include <boost/asio/buffer.hpp>
 #include <functional>
 #include <set>
 #include <utility>
-#include "Singleton.hpp"
 
 namespace network::socket::udp {
     class Server {
@@ -36,7 +36,7 @@ namespace network::socket::tcp {
             ~Server() = default;
 
             void read();
- 
+
             boost::asio::ip::tcp::acceptor& getAcceptor();
     };
 }

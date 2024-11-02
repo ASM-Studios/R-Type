@@ -1,7 +1,7 @@
 #pragma once
 
-#include "socket/Client.hpp"
 #include "query/RawRequest.hpp"
+#include "socket/Client.hpp"
 #include <boost/asio/thread_pool.hpp>
 #include <memory>
 #include <mutex>

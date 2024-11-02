@@ -1,11 +1,11 @@
 #pragma once
 
-#include "socket/Client.hpp"
 #include "Clock.hpp"
 #include "Entity.hpp"
 #include "GameLogic.hpp"
 #include "Registry.hpp"
 #include "query/RawRequest.hpp"
+#include "socket/Client.hpp"
 #include "socket/Server.hpp"
 #include <array>
 #include <atomic>
@@ -21,20 +21,16 @@ class Core {
         Clock _tpsClock;
         std::atomic<bool> _isRunning;
         std::string _hitboxes_config_file;
-        GameLogic _gameLogic;
 
         void _exit(std::vector<std::string> args);
         void _info(std::vector<std::string> args);
-        void _start(std::vector<std::string> args);
 
         void _readStdin();
         void _loop();
 
         const std::map<std::string_view, void (Core::*)(std::vector<std::string> args)> _stdinMap = {
             {"/exit", &Core::_exit},
-            {"/info", &Core::_info},
-            {"/start", &Core::_start}
-        };
+            {"/info", &Core::_info}};
 
     public:
         explicit Core();

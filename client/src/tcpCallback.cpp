@@ -1,3 +1,5 @@
+#include "Factories/LevelFactory.hpp"
+#include "GameLogicManager.hpp"
 #include "query/Header.hpp"
 #include "query/RawRequest.hpp"
 #include "socket/Client.hpp"

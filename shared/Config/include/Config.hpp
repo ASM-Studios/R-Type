@@ -25,3 +25,10 @@ class Config {
         static Config& getInstance(const std::string& filePath);
         std::optional<std::string> get(const std::string& field) const;
 };
+
+static inline std::pair<std::size_t, std::size_t> getResolution() {
+    auto& config = Config::getInstance("config/client.json");
+    int width = std::stoi(config.get("width").value_or("1920"));
+    int height = std::stoi(config.get("height").value_or("1080"));
+    return {width, height};
+}

@@ -1,6 +1,6 @@
 #include "Collision.hpp"
-#include "socket/Client.hpp"
 #include "Tags.hpp"
+#include "socket/Client.hpp"
 
 bool checkAABBCollision(const ecs::component::Position& pos1, const std::pair<int, int>& size1,
                         const ecs::component::Position& pos2, const std::pair<int, int>& size2) {
@@ -23,25 +23,25 @@ bool checkCircleCollision(const ecs::component::Position& pos1, const std::pair<
 }
 
 void ecs::component::Collision::checkCollision(const ecs::Entity& self) {
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    if (!registry.contains<Position>(self) || !registry.contains<Sprite>(self) || !registry.contains<Tags>(self)) {
+    auto registry = self.getRegistry();
+    if (!registry->contains<Position>(self) || !registry->contains<Sprite>(self) || !registry->contains<Tags>(self)) {
         return;
     }
 
-    auto& selfPosition = registry.getComponent<Position>(self);
-    auto& selfSprite = registry.getComponent<Sprite>(self);
-    ecs::component::Tags tags = registry.getComponent<Tags>(self);
+    auto& selfPosition = registry->getComponent<Position>(self);
+    auto& selfSprite = registry->getComponent<Sprite>(self);
+    ecs::component::Tags tags = registry->getComponent<Tags>(self);
     std::pair<int, int> selfSize = TextureLoader::getInstance().getTexture(selfSprite.getSpriteID()).getSize();
-    for (const auto& other: registry.getEntities()) {
+    for (const auto& other: registry->getEntities()) {
         if (self == other)
             continue;
-        if (!registry.contains<Tags>(other) || !registry.contains<Position>(other) || !registry.contains<Sprite>(other)) {
+        if (!registry->contains<Tags>(other) || !registry->contains<Position>(other) || !registry->contains<Sprite>(other)) {
             continue;
         }
-        if (registry.contains<network::Client>(other) && tags.hasTag(Tag::Ally)) {
+        if (registry->contains<network::Client>(other) && tags.hasTag(Tag::Ally)) {
             continue;
         }
-        ecs::component::Tags otherTags = registry.getComponent<Tags>(other);
+        ecs::component::Tags otherTags = registry->getComponent<Tags>(other);
         if (otherTags.hasTag(Tag::Player)) {
             continue;
         }
@@ -50,23 +50,23 @@ void ecs::component::Collision::checkCollision(const ecs::Entity& self) {
         }
         if (tags.hasTag(Tag::Bullet) && otherTags.hasTag(Tag::Bullet))
             continue;
-        auto& otherPosition = registry.getComponent<Position>(other);
-        auto& otherSprite = registry.getComponent<Sprite>(other);
+        auto& otherPosition = registry->getComponent<Position>(other);
+        auto& otherSprite = registry->getComponent<Sprite>(other);
         std::pair<int, int> otherSize = TextureLoader::getInstance().getTexture(otherSprite.getSpriteID()).getSize();
         switch (algo) {
             case CollisionAlgorithm::AABB:
 
                 if (checkAABBCollision(selfPosition, selfSize, otherPosition, otherSize)) {
-                    EntitySchematic::createExplosion(other);
-                    registry.removeEntity(self);
-                    registry.removeEntity(other);
+                    EntitySchematic::createExplosion(registry, other);
+                    registry->removeEntity(self);
+                    registry->removeEntity(other);
                 }
                 break;
             case CollisionAlgorithm::Circle:
                 if (checkCircleCollision(selfPosition, selfSize, otherPosition, otherSize)) {
-                    EntitySchematic::createExplosion(other);
-                    registry.removeEntity(self);
-                    registry.removeEntity(other);
+                    EntitySchematic::createExplosion(registry, other);
+                    registry->removeEntity(self);
+                    registry->removeEntity(other);
                 }
                 break;
             case CollisionAlgorithm::Custom:

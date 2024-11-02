@@ -1,7 +1,8 @@
-#include "socket/Client.hpp"
 #include "Core.hpp"
 #include "Entity.hpp"
 #include "EntitySchematic.hpp"
+#include "GameLogic.hpp"
+#include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
 #include "Logger.hpp"
 #include "RegistryManager.hpp"
@@ -10,15 +11,16 @@
 #include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
+#include "socket/Client.hpp"
 #include "socket/NRegistry.hpp"
 #include "socket/NetworkManager.hpp"
 #include <boost/asio/buffer.hpp>
 #include <boost/uuid/random_generator.hpp>
+#include <boost/uuid/uuid_io.hpp>
 #include <csignal>
 #include <cstdio>
 #include <iomanip>
 #include <iostream>
-#include <boost/uuid/uuid_io.hpp>
 #include <memory>
 
 constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::SERVER);
@@ -37,13 +39,16 @@ void hexDisplay(const char *ptr, std::size_t n) {
 static void initSingleton() {
     Singleton<network::Registry>::wrap();
     Singleton<boost::uuids::uuid>::wrap();
+
+    Singleton<boost::uuids::uuid>::getInstance().lock();
     auto& uuid = Singleton<boost::uuids::uuid>::getInstance().get();
     std::fill(uuid.begin(), uuid.end(), 0);
-
+    Singleton<boost::uuids::uuid>::getInstance().unlock();
 }
 
 int main(int ac, char **av) {
     initSingleton();
+    GameLogicManager::getInstance();
     auto args = std::span<char *>(av, ac);
     Core core;
 

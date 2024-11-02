@@ -20,11 +20,11 @@ namespace network {
         _udpIP(boost::asio::ip::address_v4::from_string(hostname)),
         _udpPort(udpPort),
         _tcpSocket(socket::NetworkManager::getInstance().getContext()) {
-        
+
         try {
             this->_tcpSocket.connect(boost::asio::ip::tcp::endpoint(boost::asio::ip::address_v4::from_string(hostname), tcpPort));
             Logger::log(LogLevel::INFO, "Connected");
-        } catch (std::exception &e) {
+        } catch (std::exception& e) {
             Logger::log(LogLevel::ERR, e.what());
         }
     }
@@ -39,7 +39,7 @@ namespace network {
     }
 
     void Client::read() {
-        auto *request = new RawRequest(); // NOLINT
+        auto *request = new RawRequest();                            // NOLINT
         auto *remoteEndpoint = new boost::asio::ip::udp::endpoint(); // NOLINT
 
         this->_tcpSocket.async_receive(boost::asio::buffer(request, sizeof(RawRequest)), [this, request, remoteEndpoint](auto error, auto bytes) {
@@ -47,10 +47,19 @@ namespace network {
                 Logger::log(LogLevel::ERR, error.what());
                 return;
             }
-            Singleton<network::Registry>::getInstance().get().registerClient(this, request->getUuid());
-            delete request; // NOLINT
-            delete remoteEndpoint; // NOLINT
             this->read();
+            {
+                Singleton<network::Registry>::getInstance().lock();
+                Singleton<network::Registry>::getInstance().get().registerClient(this, request->getUuid());
+
+                auto client = Singleton<network::Registry>::getInstance().get().getClient(request->getUuid());
+                if (client.has_value()) {
+                    QueryHandler::getInstance().addTcpQuery({client.value(), *request});
+                }
+                Singleton<network::Registry>::getInstance().unlock();
+            }
+            delete request;        // NOLINT
+            delete remoteEndpoint; // NOLINT
         });
     }
 

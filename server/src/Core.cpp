@@ -1,5 +1,4 @@
 #include "Core.hpp"
-#include "socket/Client.hpp"
 #include "Config.hpp"
 #include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
@@ -9,9 +8,10 @@
 #include "ScopeDuration.hpp"
 #include "TextureLoader.hpp"
 #include "query/RawRequest.hpp"
+#include "socket/Client.hpp"
 #include "socket/NRegistry.hpp"
-#include "socket/Server.hpp"
 #include "socket/NetworkManager.hpp"
+#include "socket/Server.hpp"
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <cstdlib>
@@ -28,13 +28,6 @@ void Core::_info(std::vector<std::string> args) {
         Logger::log(LogLevel::INFO, std::format("{} {}", client->getUdpIP().to_string(), client->getUdpPort()));
     }
     Singleton<network::Registry>::getInstance().unlock();
-}
-
-void Core::_start(std::vector<std::string> args) {
-    Logger::log(LogLevel::ERR, "Starting");
-    GameLogicManager::getInstance().get().start();
-    TypedQuery<Empty> tq(RequestType::START, {});
-    //network::socket::NetworkManager::getInstance().getServer().sendAll(ecs::RegistryManager::getInstance().getRegistry().getComponents<network::Client>(), RawRequest(tq));
 }
 
 void Core::_readStdin() {
@@ -64,14 +57,13 @@ void Core::_loop() {
 
     while (this->_isRunning) {
         ScopeDuration duration(50);
-        this->_gameLogic.updateTimed();
+        GameLogicManager::getInstance().get().updateTimed();
     }
     runServer.join();
 }
 
 Core::Core() :
     _tps(20), _tickTime(1000 / _tps),
-    _gameLogic(GameLogicMode::SERVER),
     _isRunning(true) {}
 
 void Core::init(const std::span<char *>& args [[maybe_unused]]) {
@@ -88,7 +80,6 @@ void Core::init(const std::span<char *>& args [[maybe_unused]]) {
 }
 
 int Core::run() {
-    this->_gameLogic.start();
     std::thread stdinThread(&Core::_readStdin, this);
 
     this->_loop();

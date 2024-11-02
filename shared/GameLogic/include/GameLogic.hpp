@@ -22,17 +22,15 @@ class GameLogic {
     public:
         GameLogic(GameLogicMode mode);
 
-        void start();
-        void stop();
-
         void updateTimed();
 
     private:
         GameLogicMode _mode;
-        bool _isRunning;
         float _timePerTick;
-        Clock _clock;
         float _totalTime;
+        Clock _clock;
+
+        std::vector<ecs::factory::LevelFactory> _levels;
 
         void update();
 
@@ -43,7 +41,4 @@ class GameLogic {
         void server(const ecs::Entity& entity);
         void sendPlayerPosition(const ecs::Entity& entity);
         void sendTeamPosition(const ecs::Entity& entity);
-        void sendEntityPosition(const ecs::Entity& entity);
 };
-
-using GameIllogic = GameLogic; // PARSEKE C PA FO

@@ -1,6 +1,6 @@
 #include "socket/Server.hpp"
-#include "socket/NetworkManager.hpp"
 #include "socket/NRegistry.hpp"
+#include "socket/NetworkManager.hpp"
 #include <boost/array.hpp>
 #include <memory>
 
@@ -12,15 +12,15 @@ namespace network::socket::udp {
         _socket(context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port)) {}
 
     void Server::read() {
-        auto *request = new RawRequest(); // NOLINT
+        auto *request = new RawRequest();                            // NOLINT
         auto *remoteEndpoint = new boost::asio::ip::udp::endpoint(); // NOLINT
-                                                                     
+
         this->_socket.async_receive_from(boost::asio::buffer(request, sizeof(RawRequest)), *remoteEndpoint, [this, request, remoteEndpoint](const boost::system::error_code& error, std::size_t bytes) {
-            this->read();
             if (error) {
                 Logger::log(LogLevel::ERR, error.message());
                 return;
             }
+            this->read();
             {
                 Singleton<network::Registry>::getInstance().lock();
                 auto client = Singleton<network::Registry>::getInstance().get().getClient(request->getUuid());
@@ -30,7 +30,7 @@ namespace network::socket::udp {
                 }
                 Singleton<network::Registry>::getInstance().unlock();
             }
-            delete request; // NOLINT
+            delete request;        // NOLINT
             delete remoteEndpoint; // NOLINT
         });
     }
@@ -48,11 +48,12 @@ namespace network::socket::tcp {
     }
 
     void Server::read() {
-        this->_acceptor.async_accept([this](const boost::system::error_code &error, boost::asio::ip::tcp::socket socket) {
+        this->_acceptor.async_accept([this](const boost::system::error_code& error, boost::asio::ip::tcp::socket socket) {
             if (error) {
                 Logger::log(LogLevel::ERR, error.message());
                 return;
             }
+            this->read();
             {
                 Singleton<network::Registry>::getInstance().lock();
                 auto client = std::make_shared<network::Client>(socket);
@@ -60,7 +61,6 @@ namespace network::socket::tcp {
                 client->read();
                 Singleton<network::Registry>::getInstance().unlock();
             }
-            this->read();
         });
     }
 

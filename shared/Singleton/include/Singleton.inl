@@ -30,13 +30,17 @@ Singleton<T>& Singleton<T>::wrap(T& data) {
 
 template <typename T>
 T& Singleton<T>::get() {
-    assert(this->_accessMutex.isLocked());
+    if (this->_isSafe) {
+        assert(this->_accessMutex.isLocked());
+    }
     return this->_data.value();
 }
 
 template <typename T>
 bool Singleton<T>::has_value() {
-    assert(this->_accessMutex.isLocked());
+    if (this->_isSafe) {
+        assert(this->_accessMutex.isLocked());
+    }
     return this->_data.has_value();
 }
 

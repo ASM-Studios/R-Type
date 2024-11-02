@@ -9,7 +9,7 @@ namespace network {
         this->_clients.emplace_back(std::nullopt, client);
     }
 
-    void Registry::registerClient(network::Client* client, boost::uuids::uuid uuid) {
+    void Registry::registerClient(network::Client *client, boost::uuids::uuid uuid) {
         for (auto& [_uuid, _client]: this->_clients) {
             if (_client.get() == client) {
                 _uuid = uuid;
@@ -38,7 +38,10 @@ namespace network {
 
     std::optional<std::shared_ptr<network::Client>> Registry::getClient(boost::uuids::uuid uuid) {
         if (uuid.is_nil()) {
-            return Singleton<std::shared_ptr<network::Client>>::getInstance().get();
+            Singleton<std::shared_ptr<network::Client>>::getInstance().lock();
+            auto client = Singleton<std::shared_ptr<network::Client>>::getInstance().get();
+            Singleton<std::shared_ptr<network::Client>>::getInstance().unlock();
+            return client;
         }
         for (auto& [_uuid, client]: this->_clients) {
             if (_uuid == uuid) {

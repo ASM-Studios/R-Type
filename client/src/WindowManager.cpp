@@ -3,6 +3,7 @@
 #include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
 #include "QueryHandler.hpp"
+#include "RegistryManager.hpp"
 #include "query/Header.hpp"
 #include "query/Payloads.hpp"
 #include "query/TypedQuery.hpp"
@@ -24,7 +25,7 @@
  * \throws GuiException if there is an error reading the config file.
  */
 GUI::WindowManager::WindowManager()
-    : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)),
+    : _player(ecs::Registry::createEntity(ecs::RegistryManager::getInstance().getRegistry(0), 0)),
     _isRunning(true)
 {
     const Config &config = Config::getInstance("client/config.json");
@@ -52,18 +53,20 @@ GUI::WindowManager::WindowManager()
 
     /* ECS Inits */
 
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 2});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Sprite>(_player, {22, 2});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::LastShot>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Input>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
 
     /* Network Inits */
 
     network::socket::NetworkManager::getInstance().init();
     TypedQuery<Empty> tq(RequestType::INIT, {});
     initServer();
+    getServer().lock();
     network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
+    getServer().unlock();
 }
 
 /**
@@ -76,8 +79,11 @@ static void ping() {
     }
     auto timestamp = std::chrono::system_clock::now().time_since_epoch();
     TypedQuery typedQuery{RequestType::PING, timestamp};
-    auto& clientSocket = Singleton<std::shared_ptr<network::Client>>::getInstance();
-    network::socket::NetworkManager::getInstance().send(clientSocket.get(), RawRequest(typedQuery), network::socket::Mode::UDP);
+
+    Singleton<std::shared_ptr<network::Client>>::getInstance().lock();
+    network::socket::NetworkManager::getInstance().send(Singleton<std::shared_ptr<network::Client>>::getInstance().get(), RawRequest(typedQuery), network::socket::Mode::UDP);
+    Singleton<std::shared_ptr<network::Client>>::getInstance().unlock();
+
     clock.reset();
 }
 
@@ -139,10 +145,10 @@ void GUI::WindowManager::_eventsHandler() {
         }
     }
 
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
+    auto registry = ecs::RegistryManager::getInstance().getRegistry(0);
     if (_gameState == gameState::GAMES) {
-        ecs::component::Input newInput = registry.getComponent<ecs::component::Input>(_player);
-        auto& entityInput = registry.getComponent<ecs::component::Input>(_player);
+        ecs::component::Input newInput = registry->getComponent<ecs::component::Input>(_player);
+        auto& entityInput = registry->getComponent<ecs::component::Input>(_player);
 
         newInput.clearFlag(ecs::component::Input::MoveLeft | ecs::component::Input::MoveRight |
                         ecs::component::Input::MoveUp | ecs::component::Input::MoveDown | ecs::component::Input::ReleaseShoot);
@@ -309,11 +315,11 @@ void GUI::WindowManager::_deleteButton(const std::string &id) {
  * \brief Displays the game.
  */
 void GUI::WindowManager::_displayGame() const {
-    for (ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry(); const auto& entity : registry.getEntities()) {
-        if (registry.contains<ecs::component::Sprite>(entity) && registry.contains<ecs::component::Position>(entity)) {
-            const auto [spriteID, stateID] = registry.getComponent<ecs::component::Sprite>(entity).getSpriteState();
+    for (auto registry = ecs::RegistryManager::getInstance().getRegistry(0); const auto& entity : registry->getEntities()) {
+        if (registry->contains<ecs::component::Sprite>(entity) && registry->contains<ecs::component::Position>(entity)) {
+            const auto [spriteID, stateID] = registry->getComponent<ecs::component::Sprite>(entity).getSpriteState();
             const auto sprite = _spriteManager.getSprite(spriteID, stateID);
-            const auto [x, y] = registry.getComponent<ecs::component::Position>(entity).get();
+            const auto [x, y] = registry->getComponent<ecs::component::Position>(entity).get();
             sprite->setPosition(x, y);
             _window->draw(*sprite);
         }
@@ -391,9 +397,14 @@ void GUI::WindowManager::_scenarioSelectionInit() {
     for (std::size_t i = 0; i < planetNames.size(); ++i) {
         const auto buttonSprites = _spriteManager.getSprites("buttons/planets/" + planetNames[i]);
         const Button<> planetButton(buttonSprites, [this, i]() {
-            // TODO:  Add level loading here where i is the scenario number
             this->setGameState(gameState::GAMES);
             this->setMenuState(menuState::NO_MENU);
+
+            TypedQuery<Connect> tq(RequestType::CONNECT, {static_cast<int>(i)});
+            getServer().lock();
+            network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
+            getServer().unlock();
+
         }, {centerX, startY + i * buttonSpacing});
         _currentButtons.emplace("scenario:" + planetNames[i], planetButton);
     }

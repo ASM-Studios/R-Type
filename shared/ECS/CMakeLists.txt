@@ -4,6 +4,8 @@ project(r-type-shared)
 include_directories(include)
 include_directories(src/Factories)
 
+find_package(Boost COMPONENTS stacktrace_basic CONFIG REQUIRED)
+
 set(SOURCE_FILE src/Registry.cpp
     src/RegistryManager.cpp
     src/Entity.cpp
@@ -15,4 +17,7 @@ set(SOURCE_FILE src/Registry.cpp
 )
 
 add_library(ECS ${SOURCE_FILE})
-target_link_libraries(ECS GameLogic Texture)
+
+target_link_libraries(ECS
+    Boost::stacktrace_basic
+    GameLogic Texture)
