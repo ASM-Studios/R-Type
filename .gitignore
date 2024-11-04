@@ -23,6 +23,7 @@ docs/docs/html/*
 
 # CMake
 
+tags
 .cache
 build
 cmake-build-debug
