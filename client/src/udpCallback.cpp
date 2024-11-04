@@ -9,6 +9,9 @@
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
 #include <cstdio>
+#include "SystemMetrics.hpp"
+
+int pingValue = 0;
 
 static void handleUpdatePlayer(std::shared_ptr<network::Client> client, RawRequest request) {
     TypedQuery<UpdatePlayer> query = request.getQuery();
@@ -50,8 +53,7 @@ static void handlePing(std::shared_ptr<network::Client> client, RawRequest reque
    auto timestamp = std::chrono::system_clock::now().time_since_epoch();
    TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
    timestamp = timestamp - typedQuery.getPayload();
-   int ping = std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count();
-   Logger::log(LogLevel::INFO, std::format("Ping {} ms", ping)); //TODO CHANGE FOR THE FUTURE
+    pingValue = std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count();
 }
 
 const std::map<RequestType, void (*)(std::shared_ptr<network::Client> client, RawRequest rawRequest)> udpRequestAction = {

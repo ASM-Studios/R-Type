@@ -13,6 +13,7 @@ set(SOURCE_FILES
         src/tcpCallback.cpp
         src/SpriteManager.cpp
         src/MusicManager.cpp
+        src/SystemMetrics.cpp
 )
 
 add_executable(runner_client ${SOURCE_FILES})
