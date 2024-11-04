@@ -107,6 +107,7 @@ void GUI::WindowManager::run() {
         if (_gameState == GAMES) {
             GameLogicManager::getInstance().get().updateTimed();
             _displayGame();
+            _displayFrontLayer();
         }
         _fpsCounter();
 
@@ -191,16 +192,40 @@ void GUI::WindowManager::_displayBackground() {
         }
     }
     if (_gameState == GAMES) {
-        const auto background = _spriteManager.getSprite("backgrounds/scifi_labs", 0);
-        background->setOrigin(0, 0);
-        background->setPosition(-_backgroundOffset, 0);
-        _window->draw(*background);
+        const auto labs_back = _spriteManager.getSprite("backgrounds/scifi_labs_back", 0);
+        labs_back->setOrigin(0, 0);
+        labs_back->setPosition(-_backgroundOffset, 0);
+        _window->draw(*labs_back);
 
-        _backgroundOffset += 10.0f;
+        const auto labs_mid = _spriteManager.getSprite("backgrounds/scifi_labs_mid", 0);
+        labs_mid->setOrigin(0, 0);
+        labs_mid->setPosition(-_midLayerOffset, 0);
+        _window->draw(*labs_mid);
 
-        if (_backgroundOffset >= 7200.0f - _window->getSize().x) {
+        _backgroundOffset += 5.0f / 2;
+        _midLayerOffset += 7.5f / 2;
+
+        if (_backgroundOffset >= labs_back->getGlobalBounds().width - _window->getSize().x) {
             _backgroundOffset = 0.0f;
         }
+        if (_midLayerOffset >= labs_mid->getGlobalBounds().width - _window->getSize().x) {
+            _midLayerOffset = 0.0f;
+        }
+
+        _displayFrontLayer();
+    }
+}
+
+void GUI::WindowManager::_displayFrontLayer() const {
+    const auto labs_front = _spriteManager.getSprite("backgrounds/scifi_labs_front", 0);
+    labs_front->setOrigin(0, 0);
+    labs_front->setPosition(-_frontLayerOffset, 0);
+    _window->draw(*labs_front);
+
+    _frontLayerOffset += 10.0f / 2;
+
+    if (_frontLayerOffset >= labs_front->getGlobalBounds().width - _window->getSize().x) {
+        _frontLayerOffset = 0.0f;
     }
 }
 

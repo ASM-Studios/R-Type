@@ -66,6 +66,8 @@ namespace GUI {
             std::unordered_map<std::string, Button<>> _currentButtons;
             std::vector<sf::Keyboard::Key> _pressedKeys;
             float _backgroundOffset;
+            float _midLayerOffset;
+            mutable float _frontLayerOffset;
 
             std::atomic<bool> _isRunning;
 
@@ -84,6 +86,7 @@ namespace GUI {
             void _deleteButton(const std::string& id);
 
             void _displayBackground();
+            void _displayFrontLayer() const;
             void _fpsCounter();
 
             void _displayGame() const;
