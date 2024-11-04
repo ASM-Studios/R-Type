@@ -1,0 +1,6 @@
+<map id="CreateEnemyEntity" name="CreateEnemyEntity">
+<area shape="rect" id="node1" title=" " alt="" coords="136,183,284,208"/>
+<area shape="rect" id="node2" href="$structCreateEntity.html" title=" " alt="" coords="159,108,261,133"/>
+<area shape="rect" id="node3" href="$structecs_1_1component_1_1Position.html" title=" " alt="" coords="5,13,191,38"/>
+<area shape="rect" id="node4" title=" " alt="" coords="215,5,431,45"/>
+</map>

@@ -200,8 +200,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Animation_8hpp_source.html",
-"define_8h.html",
-"structcmd_8h.html#a2c4414339f388561554c2deab11a1a07"
+"classpyexample_1_1PyClass.html",
+"structCoordStruct.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

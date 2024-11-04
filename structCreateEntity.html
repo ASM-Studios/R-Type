@@ -96,6 +96,15 @@ $(document).ready(function(){initNavTree('structCreateEntity.html',''); initResi
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
+Inheritance diagram for CreateEntity:</div>
+<div class="dyncontent">
+<div class="center"><img src="structCreateEntity__inherit__graph.png" border="0" usemap="#aCreateEntity_inherit__map" alt="Inheritance graph"/></div>
+<map name="aCreateEntity_inherit__map" id="aCreateEntity_inherit__map">
+<area shape="rect" title=" " alt="" coords="28,5,131,31"/>
+<area shape="rect" href="structCreateEnemyEntity.html" title=" " alt="" coords="5,79,153,104"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
 Collaboration diagram for CreateEntity:</div>
 <div class="dyncontent">
 <div class="center"><img src="structCreateEntity__coll__graph.png" border="0" usemap="#aCreateEntity_coll__map" alt="Collaboration graph"/></div>
@@ -110,8 +119,10 @@ Collaboration diagram for CreateEntity:</div>
 Data Fields</h2></td></tr>
 <tr class="memitem:a73d4311d1c9bb06ebcb6432ae203bcd2"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCreateEntity.html#a73d4311d1c9bb06ebcb6432ae203bcd2">id</a></td></tr>
 <tr class="separator:a73d4311d1c9bb06ebcb6432ae203bcd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ea86849caa8897684d363768095727c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCreateEntity.html#a3ea86849caa8897684d363768095727c">spriteID</a></td></tr>
-<tr class="separator:a3ea86849caa8897684d363768095727c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59eb11174be7dbab3f6b03386fa43d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCreateEntity.html#ae59eb11174be7dbab3f6b03386fa43d9">spriteID</a></td></tr>
+<tr class="separator:ae59eb11174be7dbab3f6b03386fa43d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c197d859cb27fd7e14fc4961d75f30"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCreateEntity.html#ad3c197d859cb27fd7e14fc4961d75f30">stateID</a></td></tr>
+<tr class="separator:ad3c197d859cb27fd7e14fc4961d75f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e9d61910e57d4d37d1574e7c75e3e9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structecs_1_1component_1_1Position.html">ecs::component::Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCreateEntity.html#a9e9d61910e57d4d37d1574e7c75e3e9b">position</a></td></tr>
 <tr class="separator:a9e9d61910e57d4d37d1574e7c75e3e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1a92ff77f7a9127d052efbbfc1c428b"><td class="memItemLeft" align="right" valign="top">std::array&lt; std::optional&lt; ecs::component::Tag &gt;, 5 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCreateEntity.html#ad1a92ff77f7a9127d052efbbfc1c428b">tags</a></td></tr>
@@ -119,7 +130,7 @@ Data Fields</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00019">19</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00021">21</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a73d4311d1c9bb06ebcb6432ae203bcd2" name="a73d4311d1c9bb06ebcb6432ae203bcd2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a73d4311d1c9bb06ebcb6432ae203bcd2">&#9670;&#160;</a></span>id</h2>
@@ -133,7 +144,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00020">20</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00022">22</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
 
 </div>
 </div>
@@ -149,23 +160,39 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00022">22</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00025">25</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a3ea86849caa8897684d363768095727c" name="a3ea86849caa8897684d363768095727c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ea86849caa8897684d363768095727c">&#9670;&#160;</a></span>spriteID</h2>
+<a id="ae59eb11174be7dbab3f6b03386fa43d9" name="ae59eb11174be7dbab3f6b03386fa43d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59eb11174be7dbab3f6b03386fa43d9">&#9670;&#160;</a></span>spriteID</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">uint8_t CreateEntity::spriteID</td>
+          <td class="memname">int CreateEntity::spriteID</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00021">21</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00023">23</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
+
+</div>
+</div>
+<a id="ad3c197d859cb27fd7e14fc4961d75f30" name="ad3c197d859cb27fd7e14fc4961d75f30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3c197d859cb27fd7e14fc4961d75f30">&#9670;&#160;</a></span>stateID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CreateEntity::stateID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00024">24</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
 
 </div>
 </div>
@@ -181,7 +208,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00023">23</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Payloads_8hpp_source.html#l00026">26</a> of file <a class="el" href="Payloads_8hpp_source.html">Payloads.hpp</a>.</p>
 
 </div>
 </div>

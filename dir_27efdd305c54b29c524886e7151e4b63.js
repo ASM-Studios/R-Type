@@ -4,5 +4,6 @@ var dir_27efdd305c54b29c524886e7151e4b63 =
     [ "EnemyBehavior.hpp", "EnemyBehavior_8hpp_source.html", null ],
     [ "EntitySchematic.hpp", "EntitySchematic_8hpp_source.html", null ],
     [ "GameLogic.hpp", "GameLogic_8hpp_source.html", null ],
+    [ "GameLogicManager.hpp", "GameLogicManager_8hpp_source.html", null ],
     [ "GameLogicMode.hpp", "GameLogicMode_8hpp_source.html", null ]
 ];

@@ -105,8 +105,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad232f0050bf95be5776743dfaa359340"><td class="memItemLeft" align="right" valign="top"><a id="ad232f0050bf95be5776743dfaa359340" name="ad232f0050bf95be5776743dfaa359340"></a>
 <a class="el" href="classecs_1_1RegistryManager.html">RegistryManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classecs_1_1RegistryManager.html">RegistryManager</a> &amp;other)=delete</td></tr>
 <tr class="separator:ad232f0050bf95be5776743dfaa359340"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab61c8784abdd9ab989a7d22dca7132de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1Registry.html">Registry</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1RegistryManager.html#ab61c8784abdd9ab989a7d22dca7132de">getRegistry</a> ()</td></tr>
-<tr class="separator:ab61c8784abdd9ab989a7d22dca7132de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f69b63c3b2b3abbaf038bb1b3dea0b0"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1RegistryManager.html#a8f69b63c3b2b3abbaf038bb1b3dea0b0">getRegistry</a> (int id)</td></tr>
+<tr class="separator:a8f69b63c3b2b3abbaf038bb1b3dea0b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9950a1bbb10aa3c18aa017b5f9079ec"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1RegistryManager.html#ad9950a1bbb10aa3c18aa017b5f9079ec">getRegistries</a> ()</td></tr>
+<tr class="separator:ad9950a1bbb10aa3c18aa017b5f9079ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66b72f56a44b7c4ab9b65afef15cc8d"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1RegistryManager.html#af66b72f56a44b7c4ab9b65afef15cc8d">createRegistry</a> ()</td></tr>
+<tr class="separator:af66b72f56a44b7c4ab9b65afef15cc8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a464f1742c4e9999ce9990771a84de998"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1RegistryManager.html#a464f1742c4e9999ce9990771a84de998">bind</a> (std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; client, int id)</td></tr>
+<tr class="separator:a464f1742c4e9999ce9990771a84de998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a593811f76e3f51a79ad571bf7a8ab778"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1RegistryManager.html#a593811f76e3f51a79ad571bf7a8ab778">unbind</a> (std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; client)</td></tr>
+<tr class="separator:a593811f76e3f51a79ad571bf7a8ab778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f3caa2162c24b8237b26b31963cb61"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1RegistryManager.html#a20f3caa2162c24b8237b26b31963cb61">get</a> (std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; client)</td></tr>
+<tr class="separator:a20f3caa2162c24b8237b26b31963cb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -115,8 +125,77 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="RegistryManager_8hpp_source.html#l00008">8</a> of file <a class="el" href="RegistryManager_8hpp_source.html">RegistryManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8hpp_source.html#l00009">9</a> of file <a class="el" href="RegistryManager_8hpp_source.html">RegistryManager.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a464f1742c4e9999ce9990771a84de998" name="a464f1742c4e9999ce9990771a84de998"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a464f1742c4e9999ce9990771a84de998">&#9670;&#160;</a></span>bind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ecs::RegistryManager::bind </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt;&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00031">31</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af66b72f56a44b7c4ab9b65afef15cc8d" name="af66b72f56a44b7c4ab9b65afef15cc8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66b72f56a44b7c4ab9b65afef15cc8d">&#9670;&#160;</a></span>createRegistry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; ecs::RegistryManager::createRegistry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00024">24</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a20f3caa2162c24b8237b26b31963cb61" name="a20f3caa2162c24b8237b26b31963cb61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20f3caa2162c24b8237b26b31963cb61">&#9670;&#160;</a></span>get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; &gt; ecs::RegistryManager::get </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt;&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00041">41</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a8f976be7302cc9f09f1c295e3e0278c7" name="a8f976be7302cc9f09f1c295e3e0278c7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f976be7302cc9f09f1c295e3e0278c7">&#9670;&#160;</a></span>getInstance()</h2>
 
@@ -140,18 +219,18 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00006">6</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00007">7</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ab61c8784abdd9ab989a7d22dca7132de" name="ab61c8784abdd9ab989a7d22dca7132de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab61c8784abdd9ab989a7d22dca7132de">&#9670;&#160;</a></span>getRegistry()</h2>
+<a id="ad9950a1bbb10aa3c18aa017b5f9079ec" name="ad9950a1bbb10aa3c18aa017b5f9079ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9950a1bbb10aa3c18aa017b5f9079ec">&#9670;&#160;</a></span>getRegistries()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classecs_1_1Registry.html">Registry</a> &amp; ecs::RegistryManager::getRegistry </td>
+          <td class="memname">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; &gt; ecs::RegistryManager::getRegistries </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -159,7 +238,47 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00014">14</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00020">20</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8f69b63c3b2b3abbaf038bb1b3dea0b0" name="a8f69b63c3b2b3abbaf038bb1b3dea0b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f69b63c3b2b3abbaf038bb1b3dea0b0">&#9670;&#160;</a></span>getRegistry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; ecs::RegistryManager::getRegistry </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00015">15</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a593811f76e3f51a79ad571bf7a8ab778" name="a593811f76e3f51a79ad571bf7a8ab778"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a593811f76e3f51a79ad571bf7a8ab778">&#9670;&#160;</a></span>unbind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ecs::RegistryManager::unbind </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt;&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="RegistryManager_8cpp_source.html#l00036">36</a> of file <a class="el" href="RegistryManager_8cpp_source.html">RegistryManager.cpp</a>.</p>
 
 </div>
 </div>

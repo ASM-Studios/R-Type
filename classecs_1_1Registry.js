@@ -8,8 +8,6 @@ var classecs_1_1Registry =
     [ "addComponents", "classecs_1_1Registry.html#aab5726f65acd59e42d67a47a483910c7", null ],
     [ "contains", "classecs_1_1Registry.html#a3b99491cbecd467e4e3dc27043674614", null ],
     [ "contains", "classecs_1_1Registry.html#aca5421dcb2fc0693d19192aa6902aa0b", null ],
-    [ "createEntity", "classecs_1_1Registry.html#aa204a3f8f58b7961089b6c183f59b88d", null ],
-    [ "createEntity", "classecs_1_1Registry.html#a17a73126ebb444b0e50a35412f2f8c24", null ],
     [ "getComponent", "classecs_1_1Registry.html#aa59f7e4a82043ecd87a778549df87ec6", null ],
     [ "getEntities", "classecs_1_1Registry.html#a0a2f6023ca391529e991c24e83223117", null ],
     [ "getEntities", "classecs_1_1Registry.html#a6809747441e01405d85efdf16ee26b10", null ],

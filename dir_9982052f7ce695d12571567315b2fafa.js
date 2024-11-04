@@ -7,5 +7,6 @@ var dir_9982052f7ce695d12571567315b2fafa =
     [ "Logger", "dir_96140159c91e5bb9f38976695c210aa8.html", "dir_96140159c91e5bb9f38976695c210aa8" ],
     [ "network", "dir_622369d1458a557e5b65c83dd0a4caa3.html", "dir_622369d1458a557e5b65c83dd0a4caa3" ],
     [ "Scenarios", "dir_5f94918987730c7b90a84abb923b7587.html", "dir_5f94918987730c7b90a84abb923b7587" ],
+    [ "Singleton", "dir_5a0de61ca7f40622ccae4e26fae90b85.html", "dir_5a0de61ca7f40622ccae4e26fae90b85" ],
     [ "Texture", "dir_9d9b599f0d89df184b1128916e14639b.html", "dir_9d9b599f0d89df184b1128916e14639b" ]
 ];

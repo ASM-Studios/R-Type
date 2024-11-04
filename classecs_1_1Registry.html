@@ -92,7 +92,8 @@ $(document).ready(function(){initNavTree('classecs_1_1Registry.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle"><div class="title">ecs::Registry Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -112,14 +113,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae98d1e17683b60a5de0ca527e957a165"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#ae98d1e17683b60a5de0ca527e957a165">Registry</a> (uint8_t id=0)</td></tr>
 <tr class="memdesc:ae98d1e17683b60a5de0ca527e957a165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a registry with a unique ID.  <br /></td></tr>
 <tr class="separator:ae98d1e17683b60a5de0ca527e957a165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa204a3f8f58b7961089b6c183f59b88d"><td class="memTemplParams" colspan="2">template&lt;typename... Components&gt; </td></tr>
-<tr class="memitem:aa204a3f8f58b7961089b6c183f59b88d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1Entity.html">Entity</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#aa204a3f8f58b7961089b6c183f59b88d">createEntity</a> ()</td></tr>
-<tr class="memdesc:aa204a3f8f58b7961089b6c183f59b88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an entity with a unique ID.  <br /></td></tr>
-<tr class="separator:aa204a3f8f58b7961089b6c183f59b88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17a73126ebb444b0e50a35412f2f8c24"><td class="memTemplParams" colspan="2">template&lt;typename... Components&gt; </td></tr>
-<tr class="memitem:a17a73126ebb444b0e50a35412f2f8c24"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classecs_1_1Entity.html">Entity</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a17a73126ebb444b0e50a35412f2f8c24">createEntity</a> (uint64_t id)</td></tr>
-<tr class="memdesc:a17a73126ebb444b0e50a35412f2f8c24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an entity with a specific ID.  <br /></td></tr>
-<tr class="separator:a17a73126ebb444b0e50a35412f2f8c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a2f6023ca391529e991c24e83223117"><td class="memItemLeft" align="right" valign="top">std::set&lt; <a class="el" href="classecs_1_1Entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a0a2f6023ca391529e991c24e83223117">getEntities</a> ()</td></tr>
 <tr class="memdesc:a0a2f6023ca391529e991c24e83223117"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all entities of the registry.  <br /></td></tr>
 <tr class="separator:a0a2f6023ca391529e991c24e83223117"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +150,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa59f7e4a82043ecd87a778549df87ec6"><td class="memTemplItemLeft" align="right" valign="top">Component &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#aa59f7e4a82043ecd87a778549df87ec6">getComponent</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
 <tr class="memdesc:aa59f7e4a82043ecd87a778549df87ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a component from an entity.  <br /></td></tr>
 <tr class="separator:aa59f7e4a82043ecd87a778549df87ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a387a2e114f223cb6e7c861fddf92d875"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
+<tr class="memitem:a387a2e114f223cb6e7c861fddf92d875"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; Component &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a387a2e114f223cb6e7c861fddf92d875">getComponents</a> ()</td></tr>
+<tr class="separator:a387a2e114f223cb6e7c861fddf92d875"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d8e5bd6e86b27ba2531cf1dc5b3ffb2"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a7d8e5bd6e86b27ba2531cf1dc5b3ffb2">getNoComponent</a> (const <a class="el" href="classecs_1_1Entity.html">Entity</a> &amp;entity)</td></tr>
 <tr class="memdesc:a7d8e5bd6e86b27ba2531cf1dc5b3ffb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of components of an entity.  <br /></td></tr>
 <tr class="separator:a7d8e5bd6e86b27ba2531cf1dc5b3ffb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +162,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a684716316fe9096a85894fb2d7e3d91a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#a684716316fe9096a85894fb2d7e3d91a">resetAll</a> ()</td></tr>
 <tr class="memdesc:a684716316fe9096a85894fb2d7e3d91a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all entities and components.  <br /></td></tr>
 <tr class="separator:a684716316fe9096a85894fb2d7e3d91a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af79311b397837c1f270654f0581e9080"><td class="memTemplParams" colspan="2">template&lt;typename... Components&gt; </td></tr>
+<tr class="memitem:af79311b397837c1f270654f0581e9080"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="classecs_1_1Entity.html">Entity</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#af79311b397837c1f270654f0581e9080">createEntity</a> (std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; registry)</td></tr>
+<tr class="memdesc:af79311b397837c1f270654f0581e9080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an entity with a unique ID.  <br /></td></tr>
+<tr class="separator:af79311b397837c1f270654f0581e9080"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaa7817243c9a818e3029e34be63077e"><td class="memTemplParams" colspan="2">template&lt;typename... Components&gt; </td></tr>
+<tr class="memitem:afaa7817243c9a818e3029e34be63077e"><td class="memTemplItemLeft" align="right" valign="top">static <a class="el" href="classecs_1_1Entity.html">Entity</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classecs_1_1Registry.html#afaa7817243c9a818e3029e34be63077e">createEntity</a> (std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt; registry, uint64_t id)</td></tr>
+<tr class="memdesc:afaa7817243c9a818e3029e34be63077e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an entity with a specific ID.  <br /></td></tr>
+<tr class="separator:afaa7817243c9a818e3029e34be63077e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
@@ -243,7 +250,7 @@ template&lt;typename Component &gt; </div>
 
 <p>Add a component to an entity. </p>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00051">51</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00053">53</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
@@ -267,7 +274,7 @@ template&lt;typename... Components&gt; </div>
 
 <p>Add multiple components to an entity. </p>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00060">60</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00062">62</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
@@ -291,7 +298,7 @@ template&lt;typename Component &gt; </div>
 
 <p>Check if an entity has a component. </p>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00080">80</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00082">82</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
@@ -325,51 +332,81 @@ template&lt;typename Component &gt; </div>
 
 <p>Check if an entity has a component with a specific value. </p>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00089">89</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00091">91</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
-<a id="aa204a3f8f58b7961089b6c183f59b88d" name="aa204a3f8f58b7961089b6c183f59b88d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa204a3f8f58b7961089b6c183f59b88d">&#9670;&#160;</a></span>createEntity() <span class="overload">[1/2]</span></h2>
+<a id="af79311b397837c1f270654f0581e9080" name="af79311b397837c1f270654f0581e9080"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af79311b397837c1f270654f0581e9080">&#9670;&#160;</a></span>createEntity() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename... Components&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classecs_1_1Entity.html">Entity</a> ecs::Registry::createEntity</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create an entity with a unique ID. </p>
-
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00012">12</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
-
-</div>
-</div>
-<a id="a17a73126ebb444b0e50a35412f2f8c24" name="a17a73126ebb444b0e50a35412f2f8c24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17a73126ebb444b0e50a35412f2f8c24">&#9670;&#160;</a></span>createEntity() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename... Components&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classecs_1_1Entity.html">Entity</a> ecs::Registry::createEntity </td>
           <td>(</td>
-          <td class="paramtype">uint64_t&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt;&#160;</td>
+          <td class="paramname"><em>registry</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create an entity with a unique ID. </p>
+
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00013">13</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+
+</div>
+</div>
+<a id="afaa7817243c9a818e3029e34be63077e" name="afaa7817243c9a818e3029e34be63077e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afaa7817243c9a818e3029e34be63077e">&#9670;&#160;</a></span>createEntity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Components&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classecs_1_1Entity.html">Entity</a> ecs::Registry::createEntity </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classecs_1_1Registry.html">Registry</a> &gt;&#160;</td>
+          <td class="paramname"><em>registry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Create an entity with a specific ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00021">21</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00023">23</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
@@ -399,7 +436,25 @@ template&lt;typename Component &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00098">98</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00100">100</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+
+</div>
+</div>
+<a id="a387a2e114f223cb6e7c861fddf92d875" name="a387a2e114f223cb6e7c861fddf92d875"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a387a2e114f223cb6e7c861fddf92d875">&#9670;&#160;</a></span>getComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Component &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; Component &gt; ecs::Registry::getComponents</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00109">109</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
@@ -440,7 +495,7 @@ template&lt;typename Component &gt; </div>
 
 <p>Get all entities with component. </p>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00038">38</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00040">40</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>
@@ -584,7 +639,7 @@ template&lt;typename Component &gt; </div>
 <p>Set a component to an entity. </p>
 <p>Set a component to an entity. If the entity already has a component of the same type, it will be replaced. If the entity does not have a component of the same type, it will be added. </p>
 
-<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00071">71</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Registry_8inl_source.html#l00073">73</a> of file <a class="el" href="Registry_8inl_source.html">Registry.inl</a>.</p>
 
 </div>
 </div>

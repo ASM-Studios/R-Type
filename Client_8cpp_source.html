@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: shared/network/src/Client.cpp Source File</title>
+<title>R-Type: shared/network/src/socket/Client.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -93,51 +93,122 @@ $(document).ready(function(){initNavTree('Client_8cpp_source.html',''); initResi
   <div class="headertitle"><div class="title">Client.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;Client.hpp&quot;</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;socket/Client.hpp&quot;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;Logger.hpp&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span>network {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    Client::Client(<span class="keyword">const</span> boost::asio::ip::address_v4&amp; ip, <span class="keyword">const</span> boost::asio::ip::port_type&amp; port) :</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        _ip(std::move(ip)),</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        _port(std::move(port)) {}</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">bool</span> Client::operator==(<span class="keyword">const</span> Client&amp; other)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keywordflow">return</span> this-&gt;_ip == other._ip &amp;&amp; this-&gt;_port == other._port;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    uint64_t Client::getID()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        uint64_t <span class="keywordtype">id</span> = 0;</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;socket/NRegistry.hpp&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;socket/NetworkManager.hpp&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;boost/asio.hpp&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;boost/asio/ip/address_v4.hpp&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>network {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    Client::NotInitialized::NotInitialized() :</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        _message(std::format(<span class="stringliteral">&quot;UDP Client is not init&quot;</span>)) {}</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *Client::NotInitialized::NotInitialized::what() const noexcept {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordflow">return</span> this-&gt;_message.c_str();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; 4; i++) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            <span class="keywordtype">id</span> = (<span class="keywordtype">id</span> &lt;&lt; 8) | this-&gt;_ip.to_bytes().at(i);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        }</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordtype">id</span> = (<span class="keywordtype">id</span> &lt;&lt; 16) | this-&gt;_port;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordflow">return</span> id;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    boost::asio::ip::address_v4 Client::getIP()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">return</span> this-&gt;_ip;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    boost::asio::ip::port_type Client::getPort()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> this-&gt;_port;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a>&amp; client) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    os &lt;&lt; client.getIP() &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; client.getPort();</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">return</span> os;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
-<div class="ttc" id="aclassnetwork_1_1Client_html"><div class="ttname"><a href="classnetwork_1_1Client.html">network::Client</a></div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00008">Client.hpp:8</a></div></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    Client::Client(std::string hostname, <span class="keywordtype">int</span> tcpPort, <span class="keywordtype">int</span> udpPort) :</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        _udpIP(boost::asio::ip::address_v4::from_string(hostname)),</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        _udpPort(udpPort),</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        _tcpSocket(socket::NetworkManager::getInstance().getContext()) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            this-&gt;_tcpSocket.connect(boost::asio::ip::tcp::endpoint(boost::asio::ip::address_v4::from_string(hostname), tcpPort));</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            Logger::log(LogLevel::INFO, <span class="stringliteral">&quot;Connected&quot;</span>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        } <span class="keywordflow">catch</span> (std::exception&amp; e) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            Logger::log(LogLevel::ERR, e.what());</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    Client::Client(boost::asio::ip::tcp::socket&amp; socket) :</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        _udpIP(std::nullopt),</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        _udpPort(std::nullopt),</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        _tcpSocket(std::move(socket)) {}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">bool</span> Client::operator==(<span class="keyword">const</span> Client&amp; other)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">return</span> this-&gt;_udpIP == other._udpIP &amp;&amp; this-&gt;_udpPort == other._udpPort;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> Client::read() {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">auto</span> *request = <span class="keyword">new</span> <a class="code hl_class" href="classRawRequest.html">RawRequest</a>();                            <span class="comment">// NOLINT</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keyword">auto</span> *remoteEndpoint = <span class="keyword">new</span> boost::asio::ip::udp::endpoint(); <span class="comment">// NOLINT</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        this-&gt;_tcpSocket.async_receive(boost::asio::buffer(request, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classRawRequest.html">RawRequest</a>)), [<span class="keyword">this</span>, request, remoteEndpoint](<span class="keyword">auto</span> error, <span class="keyword">auto</span> bytes) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">if</span> (error) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                Logger::log(LogLevel::ERR, error.what());</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            this-&gt;<a class="code hl_function" href="structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90">read</a>();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                <a class="code hl_class" href="classSingleton.html">Singleton&lt;network::Registry&gt;::getInstance</a>().lock();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                <a class="code hl_class" href="classSingleton.html">Singleton&lt;network::Registry&gt;::getInstance</a>().get().registerClient(<span class="keyword">this</span>, request-&gt;getUuid());</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                <span class="keyword">auto</span> client = <a class="code hl_class" href="classSingleton.html">Singleton&lt;network::Registry&gt;::getInstance</a>().get().getClient(request-&gt;getUuid());</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                <span class="keywordflow">if</span> (client.has_value()) {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                    QueryHandler::getInstance().addTcpQuery({client.value(), *request});</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                <a class="code hl_class" href="classSingleton.html">Singleton&lt;network::Registry&gt;::getInstance</a>().unlock();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keyword">delete</span> request;        <span class="comment">// NOLINT</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keyword">delete</span> remoteEndpoint; <span class="comment">// NOLINT</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        });</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> Client::init(boost::asio::ip::address_v4 udpIP, boost::asio::ip::port_type udpPort) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        this-&gt;_udpIP.emplace(udpIP);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        this-&gt;_udpPort.emplace(udpPort);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    uint64_t Client::getID()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">if</span> (!this-&gt;_udpIP.has_value() || !this-&gt;_udpPort.has_value()) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        uint64_t <span class="keywordtype">id</span> = 0;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; 4; i++) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="keywordtype">id</span> = (<span class="keywordtype">id</span> &lt;&lt; 8) | this-&gt;_udpIP-&gt;to_bytes().at(i);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordtype">id</span> = (<span class="keywordtype">id</span> &lt;&lt; 16) | this-&gt;_udpPort.value();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">return</span> id;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    boost::asio::ip::address_v4 Client::getUdpIP()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">if</span> (!this-&gt;_udpIP.has_value()) {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keywordflow">throw</span> NotInitialized();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">return</span> this-&gt;_udpIP.value();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    boost::asio::ip::port_type Client::getUdpPort()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">if</span> (!this-&gt;_udpPort.has_value()) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="keywordflow">throw</span> NotInitialized();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> this-&gt;_udpPort.value();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    boost::asio::ip::tcp::socket&amp; Client::getSocket() {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordflow">return</span> this-&gt;_tcpSocket;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, <span class="keyword">const</span> <a class="code hl_class" href="classnetwork_1_1Client.html">network::Client</a>&amp; client) {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    os &lt;&lt; client.getUdpIP() &lt;&lt; <span class="stringliteral">&quot; - &quot;</span> &lt;&lt; client.getUdpPort();</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
+<div class="ttc" id="aclassRawRequest_html"><div class="ttname"><a href="classRawRequest.html">RawRequest</a></div><div class="ttdef"><b>Definition:</b> <a href="RawRequest_8hpp_source.html#l00010">RawRequest.hpp:10</a></div></div>
+<div class="ttc" id="aclassSingleton_html"><div class="ttname"><a href="classSingleton.html">Singleton</a></div><div class="ttdef"><b>Definition:</b> <a href="Singleton_8hpp_source.html#l00009">Singleton.hpp:9</a></div></div>
+<div class="ttc" id="aclassnetwork_1_1Client_html"><div class="ttname"><a href="classnetwork_1_1Client.html">network::Client</a></div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00010">Client.hpp:10</a></div></div>
+<div class="ttc" id="astructcmd_8h_html_a9c7b76d5266903891c803132d51ccb90"><div class="ttname"><a href="structcmd_8h.html#a9c7b76d5266903891c803132d51ccb90">read</a></div><div class="ttdeci">int read(int, char *, size_t)</div><div class="ttdoc">Read bytes from a file descriptor.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_9982052f7ce695d12571567315b2fafa.html">shared</a></li><li class="navelem"><a class="el" href="dir_622369d1458a557e5b65c83dd0a4caa3.html">network</a></li><li class="navelem"><a class="el" href="dir_fcaa3267aefd62cfafbe5e35c05533b7.html">src</a></li><li class="navelem"><b>Client.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_9982052f7ce695d12571567315b2fafa.html">shared</a></li><li class="navelem"><a class="el" href="dir_622369d1458a557e5b65c83dd0a4caa3.html">network</a></li><li class="navelem"><a class="el" href="dir_fcaa3267aefd62cfafbe5e35c05533b7.html">src</a></li><li class="navelem"><a class="el" href="dir_800fdf108e6cf578b117cbd974975779.html">socket</a></li><li class="navelem"><b>Client.cpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

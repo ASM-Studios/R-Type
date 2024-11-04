@@ -35,20 +35,23 @@ var annotated_dup =
     ] ],
     [ "network", null, [
       [ "socket", null, [
+        [ "tcp", null, [
+          [ "Server", "classnetwork_1_1socket_1_1tcp_1_1Server.html", null ]
+        ] ],
         [ "udp", null, [
-          [ "Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ],
-          [ "ServerManager", "classnetwork_1_1socket_1_1udp_1_1ServerManager.html", "classnetwork_1_1socket_1_1udp_1_1ServerManager" ]
-        ] ]
+          [ "Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ]
+        ] ],
+        [ "NetworkManager", "classnetwork_1_1socket_1_1NetworkManager.html", "classnetwork_1_1socket_1_1NetworkManager" ]
       ] ],
-      [ "Client", "classnetwork_1_1Client.html", null ],
-      [ "QueryHandler", "classnetwork_1_1QueryHandler.html", null ]
+      [ "Client", "classnetwork_1_1Client.html", "classnetwork_1_1Client" ],
+      [ "QueryHandler", "classnetwork_1_1QueryHandler.html", null ],
+      [ "Registry", "classnetwork_1_1Registry.html", null ]
     ] ],
     [ "pyexample", "namespacepyexample.html", [
       [ "PyClass", "classpyexample_1_1PyClass.html", "classpyexample_1_1PyClass" ]
     ] ],
     [ "std", null, [
-      [ "hash< ecs::Entity >", "structstd_1_1hash_3_01ecs_1_1Entity_01_4.html", null ],
-      [ "less< network::Client >", "structstd_1_1less_3_01network_1_1Client_01_4.html", null ]
+      [ "hash< ecs::Entity >", "structstd_1_1hash_3_01ecs_1_1Entity_01_4.html", null ]
     ] ],
     [ "A", "classA.html", null ],
     [ "Afterdoc_Test", "classAfterdoc__Test.html", "classAfterdoc__Test" ],
@@ -64,8 +67,10 @@ var annotated_dup =
     [ "Car", "structCar.html", "structCar" ],
     [ "Clock", "classClock.html", null ],
     [ "Config", "classConfig.html", null ],
+    [ "Connect", "structConnect.html", null ],
     [ "CoordStruct", "structCoordStruct.html", "structCoordStruct" ],
     [ "Core", "classCore.html", null ],
+    [ "CreateEnemyEntity", "structCreateEnemyEntity.html", null ],
     [ "CreateEntity", "structCreateEntity.html", null ],
     [ "D", "classD.html", null ],
     [ "E", "classE.html", null ],
@@ -76,6 +81,7 @@ var annotated_dup =
     [ "Example_Test", "classExample__Test.html", "classExample__Test" ],
     [ "Fn_Test", "classFn__Test.html", "classFn__Test" ],
     [ "GameLogic", "classGameLogic.html", "classGameLogic" ],
+    [ "GameLogicManager", "classGameLogicManager.html", null ],
     [ "Include_Test", "classInclude__Test.html", "classInclude__Test" ],
     [ "Javadoc_Test", "classJavadoc__Test.html", "classJavadoc__Test" ],
     [ "Logger", "classLogger.html", null ],
@@ -88,7 +94,9 @@ var annotated_dup =
     [ "QTstyle_Test", "classQTstyle__Test.html", "classQTstyle__Test" ],
     [ "RawRequest", "classRawRequest.html", null ],
     [ "ScopeDuration", "classScopeDuration.html", null ],
+    [ "Singleton", "classSingleton.html", null ],
     [ "SomeNiceClass", "classSomeNiceClass.html", null ],
+    [ "StatusMutex", "classStatusMutex.html", null ],
     [ "String", "classString.html", "classString" ],
     [ "Tag", "classTag.html", "classTag" ],
     [ "Test", "classTest.html", "classTest" ],

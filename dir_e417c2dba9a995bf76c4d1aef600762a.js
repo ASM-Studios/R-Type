@@ -3,5 +3,6 @@ var dir_e417c2dba9a995bf76c4d1aef600762a =
     [ "BehaviorFunc.cpp", "BehaviorFunc_8cpp_source.html", null ],
     [ "EnemyBehavior.cpp", "EnemyBehavior_8cpp_source.html", null ],
     [ "EntitySchematic.cpp", "EntitySchematic_8cpp_source.html", null ],
-    [ "GameLogic.cpp", "GameLogic_8cpp_source.html", null ]
+    [ "GameLogic.cpp", "GameLogic_8cpp_source.html", null ],
+    [ "GameLogicManager.cpp", "GameLogicManager_8cpp_source.html", null ]
 ];

@@ -105,8 +105,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab54f8d246d342b03cf54705c8bd3ce8c"><td class="memItemLeft" align="right" valign="top"><a id="ab54f8d246d342b03cf54705c8bd3ce8c" name="ab54f8d246d342b03cf54705c8bd3ce8c"></a>
 <a class="el" href="classnetwork_1_1QueryHandler.html">QueryHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classnetwork_1_1QueryHandler.html">QueryHandler</a> &amp;other)=delete</td></tr>
 <tr class="separator:ab54f8d246d342b03cf54705c8bd3ce8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad62525f328a6cfe3be420131c7277d01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1QueryHandler.html#ad62525f328a6cfe3be420131c7277d01">addQuery</a> (std::pair&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a>, <a class="el" href="classRawRequest.html">RawRequest</a> &gt; query)</td></tr>
-<tr class="separator:ad62525f328a6cfe3be420131c7277d01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a879a1e89fe3eb9eee1cbb296eb2687bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1QueryHandler.html#a879a1e89fe3eb9eee1cbb296eb2687bc">addUdpQuery</a> (std::pair&lt; std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a> &gt;, <a class="el" href="classRawRequest.html">RawRequest</a> &gt; query)</td></tr>
+<tr class="separator:a879a1e89fe3eb9eee1cbb296eb2687bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8db0f78cb1992efef107f95aa90cb609"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1QueryHandler.html#a8db0f78cb1992efef107f95aa90cb609">addTcpQuery</a> (std::pair&lt; std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a> &gt;, <a class="el" href="classRawRequest.html">RawRequest</a> &gt; query)</td></tr>
+<tr class="separator:a8db0f78cb1992efef107f95aa90cb609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -115,7 +117,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="QueryHandler_8hpp_source.html#l00011">11</a> of file <a class="el" href="QueryHandler_8hpp_source.html">QueryHandler.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QueryHandler_8hpp_source.html#l00010">10</a> of file <a class="el" href="QueryHandler_8hpp_source.html">QueryHandler.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adeb16d9ba07b53ff53716c9a5e4b671b" name="adeb16d9ba07b53ff53716c9a5e4b671b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adeb16d9ba07b53ff53716c9a5e4b671b">&#9670;&#160;</a></span>~QueryHandler()</h2>
@@ -132,28 +134,48 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QueryHandler_8cpp_source.html#l00022">22</a> of file <a class="el" href="QueryHandler_8cpp_source.html">QueryHandler.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QueryHandler_8cpp_source.html#l00036">36</a> of file <a class="el" href="QueryHandler_8cpp_source.html">QueryHandler.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad62525f328a6cfe3be420131c7277d01" name="ad62525f328a6cfe3be420131c7277d01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad62525f328a6cfe3be420131c7277d01">&#9670;&#160;</a></span>addQuery()</h2>
+<a id="a8db0f78cb1992efef107f95aa90cb609" name="a8db0f78cb1992efef107f95aa90cb609"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8db0f78cb1992efef107f95aa90cb609">&#9670;&#160;</a></span>addTcpQuery()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void network::QueryHandler::addQuery </td>
+          <td class="memname">void network::QueryHandler::addTcpQuery </td>
           <td>(</td>
-          <td class="paramtype">std::pair&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a>, <a class="el" href="classRawRequest.html">RawRequest</a> &gt;&#160;</td>
+          <td class="paramtype">std::pair&lt; std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a> &gt;, <a class="el" href="classRawRequest.html">RawRequest</a> &gt;&#160;</td>
           <td class="paramname"><em>query</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QueryHandler_8cpp_source.html#l00034">34</a> of file <a class="el" href="QueryHandler_8cpp_source.html">QueryHandler.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QueryHandler_8cpp_source.html#l00056">56</a> of file <a class="el" href="QueryHandler_8cpp_source.html">QueryHandler.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a879a1e89fe3eb9eee1cbb296eb2687bc" name="a879a1e89fe3eb9eee1cbb296eb2687bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a879a1e89fe3eb9eee1cbb296eb2687bc">&#9670;&#160;</a></span>addUdpQuery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::QueryHandler::addUdpQuery </td>
+          <td>(</td>
+          <td class="paramtype">std::pair&lt; std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a> &gt;, <a class="el" href="classRawRequest.html">RawRequest</a> &gt;&#160;</td>
+          <td class="paramname"><em>query</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="QueryHandler_8cpp_source.html#l00048">48</a> of file <a class="el" href="QueryHandler_8cpp_source.html">QueryHandler.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +202,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="QueryHandler_8cpp_source.html#l00026">26</a> of file <a class="el" href="QueryHandler_8cpp_source.html">QueryHandler.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="QueryHandler_8cpp_source.html#l00040">40</a> of file <a class="el" href="QueryHandler_8cpp_source.html">QueryHandler.cpp</a>.</p>
 
 </div>
 </div>
