@@ -1,33 +1,54 @@
 #pragma once
 
-#include "../Client.hpp"
+#include "Client.hpp"
 #include "QueryHandler.hpp"
+#include "Singleton.hpp"
 #include "query/RawRequest.hpp"
 #include <boost/asio.hpp>
 #include <boost/asio/buffer.hpp>
+#include <functional>
 #include <set>
 #include <utility>
 
 namespace network::socket::udp {
     class Server {
         private:
-            boost::asio::io_context _context;
             boost::asio::ip::udp::socket _socket;
 
         public:
-            explicit Server();
-            explicit Server(int port);
+            explicit Server(boost::asio::io_context& context);
+            explicit Server(boost::asio::io_context& context, int port);
             ~Server() = default;
 
             void read();
-            void send(std::string hostname, int port, RawRequest request);
 
-            boost::asio::io_context& getContext() {
-                return this->_context;
-            }
-
-            boost::asio::ip::udp::socket& getSocket() {
-                return this->_socket;
-            }
+            boost::asio::ip::udp::socket& getSocket();
     };
+}
+
+namespace network::socket::tcp {
+    class Server {
+        private:
+            boost::asio::ip::tcp::acceptor _acceptor;
+
+        public:
+            explicit Server(boost::asio::io_context& context, int port);
+            ~Server() = default;
+
+            void read();
+
+            boost::asio::ip::tcp::acceptor& getAcceptor();
+    };
+}
+
+static inline Singleton<std::shared_ptr<network::Client>>& initServer() {
+    const Config& config = Config::getInstance("client/config.json");
+    std::string hostname = config.get("hostname").value_or("127.0.0.1");
+    int udpPort = std::stoi(config.get("udp_port").value_or("8080"));
+    int tcpPort = std::stoi(config.get("tcp_port").value_or("8081"));
+    return Singleton<std::shared_ptr<network::Client>>::wrap(std::make_shared<network::Client>(hostname, tcpPort, udpPort));
+}
+
+static inline Singleton<std::shared_ptr<network::Client>>& getServer() {
+    return Singleton<std::shared_ptr<network::Client>>::getInstance();
 }

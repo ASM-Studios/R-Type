@@ -5,15 +5,18 @@
 enum class RequestType {
     NOTHING = 0x0000,
     // Server to client
-    UPDATE_PLAYER = 0x0001,
-    UPDATE_TEAM_PLAYER = 0x0002,
-    CREATE_ENTITY = 0x0003,
-    UPDATE_ENTITY = 0x0004,
-    DESTROY_ENTITY = 0x0005,
+    UPDATE_PLAYER = 0x0001,      // UDP
+    UPDATE_TEAM_PLAYER = 0x0002, // UDP
+    CREATE_ENTITY = 0x0003,      // UDP
+    UPDATE_ENTITY = 0x0004,      // UDP
+    DESTROY_ENTITY = 0x0005,     // UDP
     // Client to server
-    INPUT = 0x0010,
+    CONNECT = 0x0010,    // TCP
+    DISCONNECT = 0x0011, // TCP
+    INIT = 0x0011,       // TCP
+    INPUT = 0x0012,      // UDP
     // Shared
-    PING = 0x0020
+    PING = 0x0020 // UDP
 };
 
 std::ostream& operator<<(std::ostream& os, RequestType requestType);

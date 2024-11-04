@@ -9,6 +9,8 @@ find_package(Boost COMPONENTS filesystem property_tree algorithm CONFIG REQUIRED
 set(SOURCE_FILE
         src/main.cpp
         src/WindowManager.cpp
+        src/udpCallback.cpp
+        src/tcpCallback.cpp
         src/SpriteManager.cpp
         src/MusicManager.cpp
 )
@@ -19,5 +21,5 @@ target_link_libraries(
         r-type_client
         sfml-system sfml-window sfml-graphics sfml-network sfml-audio
         Boost::filesystem Boost::property_tree Boost::algorithm
-        Clock network ECS GameLogic Config Logger Texture
+        Clock GameLogic ECS network Config Logger Texture
 )

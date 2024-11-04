@@ -7,9 +7,10 @@ include_directories(../../include)
 find_package(Boost COMPONENTS asio CONFIG REQUIRED)
 
 set(SOURCE_FILE src/QueryHandler.cpp
-    src/Client.cpp
+    src/socket/Client.cpp
     src/socket/Server.cpp
-    src/socket/ServerManager.cpp
+    src/socket/NetworkManager.cpp
+    src/socket/NRegistry.cpp
     src/query/RawRequest.cpp
     src/query/Header.cpp)
 

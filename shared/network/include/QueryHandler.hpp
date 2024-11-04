@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Client.hpp"
 #include "query/RawRequest.hpp"
+#include "socket/Client.hpp"
 #include <boost/asio/thread_pool.hpp>
 #include <memory>
 #include <mutex>
-#include <queue>
 
 namespace network {
     class QueryHandler {
@@ -14,7 +13,11 @@ namespace network {
             static std::mutex _mutex;
 
             boost::asio::thread_pool _pool;
-            std::queue<std::pair<Client, RawRequest>> _pendingQueries;
+            std::mutex _poolMutex;
+
+            std::mutex _callbackMutex;
+            void executeUdp(std::pair<std::shared_ptr<network::Client>, RawRequest> request);
+            void executeTcp(std::pair<std::shared_ptr<network::Client>, RawRequest> request);
 
             QueryHandler();
 
@@ -26,6 +29,7 @@ namespace network {
 
             static QueryHandler& getInstance();
 
-            void addQuery(std::pair<Client, RawRequest> query);
+            void addUdpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query);
+            void addTcpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query);
     };
 }

@@ -22,17 +22,15 @@ class GameLogic {
     public:
         GameLogic(GameLogicMode mode);
 
-        void start();
-        void stop();
-
         void updateTimed();
 
     private:
         GameLogicMode _mode;
-        bool _isRunning;
         float _timePerTick;
         float _totalTime;
         Clock _clock;
+
+        std::vector<ecs::factory::LevelFactory> _levels;
 
         void update();
 

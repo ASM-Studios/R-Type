@@ -3,31 +3,33 @@
 #include "Entity.hpp"
 #include "Registry.hpp"
 #include <unordered_map>
+#include <boost/stacktrace.hpp>
 
 namespace ecs {
     /**
      *  \brief Create an entity with a unique ID.
      */
     template <typename... Components>
-    Entity Registry::createEntity() {
-        int id = this->_generateID();
-        return this->createEntity(id);
+    Entity Registry::createEntity(std::shared_ptr<Registry> registry) {
+        int id = registry->_generateID();
+        return createEntity(registry, id);
     }
+
 
     /**
      *  \brief Create an entity with a specific ID.
      */
     template <typename... Components>
-    Entity Registry::createEntity(uint64_t id) {
-        std::lock_guard<std::mutex> lock(this->_mutex);
-        for (auto entity: this->_entities) {
+    Entity Registry::createEntity(std::shared_ptr<Registry> registry, uint64_t id) {
+        std::lock_guard<std::mutex> lock(registry->_mutex);
+        for (auto entity: registry->_entities) {
             if (entity.getID() == id) {
                 throw AlreadyExist(id);
             }
         }
-        const Entity entity(id, *this);
-        _entities.insert(entity);
-        Registry::addComponents<Components...>(entity);
+        Entity entity(id, registry);
+        registry->_entities.insert(entity);
+        registry->addComponents<Components...>(entity);
         return entity;
     }
 
@@ -38,8 +40,8 @@ namespace ecs {
     std::unordered_map<Entity, Component> Registry::getEntities() {
         std::lock_guard<std::mutex> lock(this->_mutex);
         std::unordered_map<Entity, Component> castedMap;
-        for (const auto& [entity, component]: _components[typeid(Component)]) {
-            castedMap.insert({entity, std::any_cast<Component>(component)});
+        for (auto pair: _components[typeid(Component)]) {
+            castedMap.insert({pair.first, std::any_cast<Component>(pair.second)});
         }
         return castedMap;
     }
@@ -101,5 +103,15 @@ namespace ecs {
         }
         std::lock_guard<std::mutex> lock(this->_mutex);
         return std::any_cast<Component&>(_components[typeid(Component)][entity]);
+    }
+
+    template <typename Component>
+    std::vector<Component> Registry::getComponents() {
+        std::vector<Component> components;
+
+        for (const auto& [entity, component]: this->_components[typeid(Component)]) {
+            components.push_back(std::any_cast<Component>(component));
+        }
+        return components;
     }
 }
