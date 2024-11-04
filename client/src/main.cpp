@@ -25,6 +25,9 @@ int main() {
     } catch (const GUI::GuiException& e) {
         Logger::log(LogLevel::ERR, e.what());
         return 1;
+    } catch (const libconfig::ParseException &pex) {
+        Logger::log(LogLevel::ERR, "Parse error at " + std::string(pex.getFile()) + ":" + std::to_string(pex.getLine()) + " - " + pex.getError());
+        return 1;
     }
     return 0;
 }

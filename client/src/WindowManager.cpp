@@ -379,7 +379,7 @@ void GUI::WindowManager::_mainMenuInit() {
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
-        this->setGameState(QUITING);
+        _exit();
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
     _currentButtons.emplace("main:quit", quitButton);
 }
