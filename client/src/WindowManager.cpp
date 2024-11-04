@@ -95,15 +95,15 @@ void GUI::WindowManager::run() {
         network::socket::NetworkManager::getInstance().getContext().run();
     });
 
-    while (this->_isRunning && _gameState != gameState::QUITING) {
+    while (this->_isRunning && _gameState != QUITING) {
         ping();
         _window->clear();
         _eventsHandler();
         _displayBackground();
-        if (_gameState == gameState::MENUS || _menuState == menuState::PAUSE_MENU) {
+        if (_gameState == MENUS || _menuState == PAUSE_MENU) {
             _displayMenu();
         }
-        if (_gameState == gameState::GAMES) {
+        if (_gameState == GAMES) {
             GameLogicManager::getInstance().get().updateTimed();
             _displayGame();
         }
@@ -115,7 +115,7 @@ void GUI::WindowManager::run() {
 }
 
 void GUI::WindowManager::_exit() {
-    setGameState(gameState::QUITING);
+    setGameState(QUITING);
     this->_window->close();
     this->_isRunning = false;
     network::socket::NetworkManager::getInstance().getContext().stop();
@@ -135,8 +135,8 @@ void GUI::WindowManager::_eventsHandler() {
                 this->_exit();
             }
             if (_event.key.code == sf::Keyboard::Escape) {
-                if (_gameState == gameState::MENUS) continue;
-                _menuState = _menuState == menuState::NO_MENU ? menuState::PAUSE_MENU : menuState::NO_MENU;
+                if (_gameState == MENUS) continue;
+                _menuState = _menuState == NO_MENU ? PAUSE_MENU : NO_MENU;
             }
         }
 
@@ -145,9 +145,9 @@ void GUI::WindowManager::_eventsHandler() {
         }
     }
 
-    auto registry = ecs::RegistryManager::getInstance().getRegistry(0);
-    if (_gameState == gameState::GAMES) {
-        ecs::component::Input newInput = registry->getComponent<ecs::component::Input>(_player);
+    const auto registry = ecs::RegistryManager::getInstance().getRegistry(0);
+    if (_gameState == GAMES) {
+        auto newInput = registry->getComponent<ecs::component::Input>(_player);
         auto& entityInput = registry->getComponent<ecs::component::Input>(_player);
 
         newInput.clearFlag(ecs::component::Input::MoveLeft | ecs::component::Input::MoveRight |
@@ -182,7 +182,7 @@ void GUI::WindowManager::_displayBackground() const {
     if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
         _window->draw(*background);
     }
-    if (_menuState == menuState::PAUSE_MENU) {
+    if (_menuState == PAUSE_MENU) {
         if (const auto popup = _spriteManager.getSprite("backgrounds/gray_mask", 0)) {
             _window->draw(*popup);
         }
@@ -365,21 +365,21 @@ void GUI::WindowManager::_mainMenuInit() {
 
     const auto playButtonSprites = _spriteManager.getSprites("buttons/play");
     const Button<> playButton(playButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::SCENARIO_SELECTION_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(SCENARIO_SELECTION_MENU);
     }, {_window->getSize().x / 2, startY});
     _currentButtons.emplace("main:play", playButton);
 
     const auto settingsButtonSprites = _spriteManager.getSprites("buttons/settings");
     const Button<> settingsButton(settingsButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::SETTINGS_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(SETTINGS_MENU);
     }, {_window->getSize().x / 2, startY + buttonSpacing});
     _currentButtons.emplace("main:settings", settingsButton);
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
-        this->setGameState(gameState::QUITING);
+        this->setGameState(QUITING);
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
     _currentButtons.emplace("main:quit", quitButton);
 }
@@ -397,8 +397,8 @@ void GUI::WindowManager::_scenarioSelectionInit() {
     for (std::size_t i = 0; i < planetNames.size(); ++i) {
         const auto buttonSprites = _spriteManager.getSprites("buttons/planets/" + planetNames[i]);
         const Button<> planetButton(buttonSprites, [this, i]() {
-            this->setGameState(gameState::GAMES);
-            this->setMenuState(menuState::NO_MENU);
+            this->setGameState(GAMES);
+            this->setMenuState(NO_MENU);
 
             TypedQuery<Connect> tq(RequestType::CONNECT, {static_cast<int>(i)});
             getServer().lock();
@@ -448,8 +448,8 @@ void GUI::WindowManager::_settingsMenuInit() {
 
     const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
     const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::MAIN_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(MAIN_MENU);
     }, {centerX, startY + 2 * buttonSpacing});
     _currentButtons.emplace("settings:main_menu", mainMenuButton);
 }
@@ -464,20 +464,20 @@ void GUI::WindowManager::_pauseMenuInit() {
 
     const auto resumeButtonSprites = _spriteManager.getSprites("buttons/resume");
     const Button<> resumeButton(resumeButtonSprites, [this]() {
-        this->setMenuState(menuState::NO_MENU);
+        this->setMenuState(NO_MENU);
     }, {_window->getSize().x / 2, startY});
     _currentButtons.emplace("pause:resume", resumeButton);
 
     const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
     const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::MAIN_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(MAIN_MENU);
     }, {_window->getSize().x / 2, startY + buttonSpacing});
     _currentButtons.emplace("pause:main_menu", mainMenuButton);
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
-        this->setGameState(gameState::QUITING);
+        _exit();
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
     _currentButtons.emplace("pause:quit", quitButton);
 }
