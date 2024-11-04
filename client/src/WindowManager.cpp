@@ -25,8 +25,8 @@
  * \throws GuiException if there is an error reading the config file.
  */
 GUI::WindowManager::WindowManager()
-    : _player(ecs::Registry::createEntity(ecs::RegistryManager::getInstance().getRegistry(0), 0)),
-    _isRunning(true)
+    : _isRunning(true),
+    _player(ecs::Registry::createEntity(ecs::RegistryManager::getInstance().getRegistry(0), 0))
 {
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
@@ -46,6 +46,7 @@ GUI::WindowManager::WindowManager()
     _spriteManager.updateWindowSize(width, height);
     _spriteManager.init();
     _event = sf::Event();
+    _backgroundOffset = 0.0f;
 
     _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 150, 10));
 
@@ -178,13 +179,27 @@ void GUI::WindowManager::_eventsHandler() {
 /**
  * \brief Sets the game state.
  */
-void GUI::WindowManager::_displayBackground() const {
-    if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
-        _window->draw(*background);
+void GUI::WindowManager::_displayBackground() {
+    if (_gameState == MENUS) {
+        if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
+            _window->draw(*background);
+        }
     }
     if (_menuState == PAUSE_MENU) {
         if (const auto popup = _spriteManager.getSprite("backgrounds/gray_mask", 0)) {
             _window->draw(*popup);
+        }
+    }
+    if (_gameState == GAMES) {
+        const auto background = _spriteManager.getSprite("backgrounds/scifi_labs", 0);
+        background->setOrigin(0, 0);
+        background->setPosition(-_backgroundOffset, 0);
+        _window->draw(*background);
+
+        _backgroundOffset += 10.0f;
+
+        if (_backgroundOffset >= 7200.0f - _window->getSize().x) {
+            _backgroundOffset = 0.0f;
         }
     }
 }
