@@ -120,12 +120,15 @@ $(document).ready(function(){initNavTree('client_2src_2main_8cpp_source.html',''
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code hl_class" href="classGUI_1_1GuiException.html">GUI::GuiException</a>&amp; e) {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        Logger::log(LogLevel::ERR, e.what());</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    } <span class="keywordflow">catch</span> (<span class="keyword">const</span> libconfig::ParseException &amp;pex) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        Logger::log(LogLevel::ERR, <span class="stringliteral">&quot;Parse error at &quot;</span> + std::string(pex.getFile()) + <span class="stringliteral">&quot;:&quot;</span> + std::to_string(pex.getLine()) + <span class="stringliteral">&quot; - &quot;</span> + pex.getError());</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
 <div class="ttc" id="aclassGUI_1_1GuiException_html"><div class="ttname"><a href="classGUI_1_1GuiException.html">GUI::GuiException</a></div><div class="ttdef"><b>Definition:</b> <a href="GuiException_8hpp_source.html#l00008">GuiException.hpp:8</a></div></div>
 <div class="ttc" id="aclassGUI_1_1WindowManager_html"><div class="ttname"><a href="classGUI_1_1WindowManager.html">GUI::WindowManager</a></div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8hpp_source.html#l00049">WindowManager.hpp:49</a></div></div>
-<div class="ttc" id="aclassGUI_1_1WindowManager_html_a27a2c900553a216913a9debbd5fca14c"><div class="ttname"><a href="classGUI_1_1WindowManager.html#a27a2c900553a216913a9debbd5fca14c">GUI::WindowManager::run</a></div><div class="ttdeci">void run()</div><div class="ttdoc">Sets the game state.</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8cpp_source.html#l00093">WindowManager.cpp:93</a></div></div>
+<div class="ttc" id="aclassGUI_1_1WindowManager_html_a27a2c900553a216913a9debbd5fca14c"><div class="ttname"><a href="classGUI_1_1WindowManager.html#a27a2c900553a216913a9debbd5fca14c">GUI::WindowManager::run</a></div><div class="ttdeci">void run()</div><div class="ttdoc">Sets the game state.</div><div class="ttdef"><b>Definition:</b> <a href="WindowManager_8cpp_source.html#l00094">WindowManager.cpp:94</a></div></div>
 <div class="ttc" id="aclassSingleton_html"><div class="ttname"><a href="classSingleton.html">Singleton</a></div><div class="ttdef"><b>Definition:</b> <a href="Singleton_8hpp_source.html#l00009">Singleton.hpp:9</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
