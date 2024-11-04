@@ -3,6 +3,7 @@
 # Executables
 r-type_server
 r-type_client
+runner_client
 
 # Secrets
 note

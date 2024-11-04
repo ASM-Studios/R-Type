@@ -6,7 +6,7 @@ include_directories(include)
 find_package(SFML COMPONENTS system window graphics network audio CONFIG REQUIRED)
 find_package(Boost COMPONENTS filesystem property_tree algorithm CONFIG REQUIRED)
 
-set(SOURCE_FILE
+set(SOURCE_FILES
         src/main.cpp
         src/WindowManager.cpp
         src/udpCallback.cpp
@@ -15,8 +15,17 @@ set(SOURCE_FILE
         src/MusicManager.cpp
 )
 
-add_executable(r-type_client ${SOURCE_FILE})
+add_executable(runner_client ${SOURCE_FILES})
+target_compile_definitions(runner_client PRIVATE RUNNER)
+target_link_libraries(
+        runner_client
+        sfml-system sfml-window sfml-graphics sfml-network sfml-audio
+        Boost::filesystem Boost::property_tree Boost::algorithm
+        Clock GameLogic ECS network Config Logger Texture
+)
 
+add_executable(r-type_client ${SOURCE_FILES})
+target_compile_definitions(r-type_client PRIVATE RTYPE)
 target_link_libraries(
         r-type_client
         sfml-system sfml-window sfml-graphics sfml-network sfml-audio
