@@ -81,6 +81,8 @@ For developers, refer to the [Developers.md](docs/Developers.md) file.
 
 This project is under the GNU General Public License v3.0.
 
+All assets used in this project are under the Creative Commons License.
+
 ## Assets
 
 All assets used in this project are under the Creative Commons License.
@@ -90,3 +92,4 @@ Here are the authors of some of the assets:
 - [helianthus-games](https://helianthus-games.itch.io/)
 - [kayillustrations](https://kayillustrations.itch.io/)
 - [ansimuz](https://ansimuz.itch.io/)
+- [foozlecc](https://foozlecc.itch.io/)

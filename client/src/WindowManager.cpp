@@ -25,8 +25,8 @@
  * \throws GuiException if there is an error reading the config file.
  */
 GUI::WindowManager::WindowManager()
-    : _player(ecs::Registry::createEntity(ecs::RegistryManager::getInstance().getRegistry(0), 0)),
-    _isRunning(true)
+    : _isRunning(true),
+    _player(ecs::Registry::createEntity(ecs::RegistryManager::getInstance().getRegistry(0), 0))
 {
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
@@ -46,6 +46,7 @@ GUI::WindowManager::WindowManager()
     _spriteManager.updateWindowSize(width, height);
     _spriteManager.init();
     _event = sf::Event();
+    _backgroundOffset = 0.0f;
 
     _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 150, 10));
 
@@ -106,6 +107,7 @@ void GUI::WindowManager::run() {
         if (_gameState == GAMES) {
             GameLogicManager::getInstance().get().updateTimed();
             _displayGame();
+            _displayFrontLayer();
         }
         _fpsCounter();
 
@@ -178,14 +180,52 @@ void GUI::WindowManager::_eventsHandler() {
 /**
  * \brief Sets the game state.
  */
-void GUI::WindowManager::_displayBackground() const {
-    if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
-        _window->draw(*background);
+void GUI::WindowManager::_displayBackground() {
+    if (_gameState == MENUS) {
+        if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
+            _window->draw(*background);
+        }
     }
     if (_menuState == PAUSE_MENU) {
         if (const auto popup = _spriteManager.getSprite("backgrounds/gray_mask", 0)) {
             _window->draw(*popup);
         }
+    }
+    if (_gameState == GAMES) {
+        const auto labs_back = _spriteManager.getSprite("backgrounds/scifi_labs_back", 0);
+        labs_back->setOrigin(0, 0);
+        labs_back->setPosition(-_backgroundOffset, 0);
+        _window->draw(*labs_back);
+
+        const auto labs_mid = _spriteManager.getSprite("backgrounds/scifi_labs_mid", 0);
+        labs_mid->setOrigin(0, 0);
+        labs_mid->setPosition(-_midLayerOffset, 0);
+        _window->draw(*labs_mid);
+
+        _backgroundOffset += 5.0f / 2;
+        _midLayerOffset += 7.5f / 2;
+
+        if (_backgroundOffset >= labs_back->getGlobalBounds().width - _window->getSize().x) {
+            _backgroundOffset = 0.0f;
+        }
+        if (_midLayerOffset >= labs_mid->getGlobalBounds().width - _window->getSize().x) {
+            _midLayerOffset = 0.0f;
+        }
+
+        _displayFrontLayer();
+    }
+}
+
+void GUI::WindowManager::_displayFrontLayer() const {
+    const auto labs_front = _spriteManager.getSprite("backgrounds/scifi_labs_front", 0);
+    labs_front->setOrigin(0, 0);
+    labs_front->setPosition(-_frontLayerOffset, 0);
+    _window->draw(*labs_front);
+
+    _frontLayerOffset += 10.0f / 2;
+
+    if (_frontLayerOffset >= labs_front->getGlobalBounds().width - _window->getSize().x) {
+        _frontLayerOffset = 0.0f;
     }
 }
 
@@ -379,7 +419,7 @@ void GUI::WindowManager::_mainMenuInit() {
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
-        this->setGameState(QUITING);
+        _exit();
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
     _currentButtons.emplace("main:quit", quitButton);
 }
