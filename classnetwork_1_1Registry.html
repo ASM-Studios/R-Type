@@ -100,10 +100,12 @@ $(document).ready(function(){initNavTree('classnetwork_1_1Registry.html',''); in
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0424d76d9622f20a13a5a1df7f5d54ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Registry.html#a0424d76d9622f20a13a5a1df7f5d54ef">addClient</a> (std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; client)</td></tr>
 <tr class="separator:a0424d76d9622f20a13a5a1df7f5d54ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38274cd2571f62fe5b006cf484e3f247"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Registry.html#a38274cd2571f62fe5b006cf484e3f247">registerClient</a> (<a class="el" href="classnetwork_1_1Client.html">network::Client</a> *client, boost::uuids::uuid uuid)</td></tr>
-<tr class="separator:a38274cd2571f62fe5b006cf484e3f247"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b62650909ccb2a655239db44ef2dbf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Registry.html#a9b62650909ccb2a655239db44ef2dbf7">registerClient</a> (std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; client, boost::uuids::uuid uuid)</td></tr>
 <tr class="separator:a9b62650909ccb2a655239db44ef2dbf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69618e4cfa622b72dad60a11f9eb71b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Registry.html#a69618e4cfa622b72dad60a11f9eb71b0">unregisterClient</a> (boost::uuids::uuid uuid)</td></tr>
+<tr class="separator:a69618e4cfa622b72dad60a11f9eb71b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03208c4521ef0e8129cb265af07c08d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Registry.html#af03208c4521ef0e8129cb265af07c08d">unregisterClient</a> (std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; client)</td></tr>
+<tr class="separator:af03208c4521ef0e8129cb265af07c08d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad94bb8e9e7931e9357614bd9d536c20d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; boost::uuids::uuid, std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Registry.html#ad94bb8e9e7931e9357614bd9d536c20d">getClients</a> () const</td></tr>
 <tr class="separator:ad94bb8e9e7931e9357614bd9d536c20d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac99976a0a15555aafd68ae8efdaac437"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Registry.html#ac99976a0a15555aafd68ae8efdaac437">getClient</a> (boost::uuids::uuid uuid)</td></tr>
@@ -149,7 +151,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00039">39</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00053">53</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
 
 </div>
 </div>
@@ -168,42 +170,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00028">28</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
-
-</div>
-</div>
-<a id="a38274cd2571f62fe5b006cf484e3f247" name="a38274cd2571f62fe5b006cf484e3f247"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38274cd2571f62fe5b006cf484e3f247">&#9670;&#160;</a></span>registerClient() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void network::Registry::registerClient </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classnetwork_1_1Client.html">network::Client</a> *&#160;</td>
-          <td class="paramname"><em>client</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">boost::uuids::uuid&#160;</td>
-          <td class="paramname"><em>uuid</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00012">12</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00042">42</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
 
 </div>
 </div>
 <a id="a9b62650909ccb2a655239db44ef2dbf7" name="a9b62650909ccb2a655239db44ef2dbf7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b62650909ccb2a655239db44ef2dbf7">&#9670;&#160;</a></span>registerClient() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b62650909ccb2a655239db44ef2dbf7">&#9670;&#160;</a></span>registerClient()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,7 +200,47 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00012">12</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a69618e4cfa622b72dad60a11f9eb71b0" name="a69618e4cfa622b72dad60a11f9eb71b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69618e4cfa622b72dad60a11f9eb71b0">&#9670;&#160;</a></span>unregisterClient() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::Registry::unregisterClient </td>
+          <td>(</td>
+          <td class="paramtype">boost::uuids::uuid&#160;</td>
+          <td class="paramname"><em>uuid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 <p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00020">20</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af03208c4521ef0e8129cb265af07c08d" name="af03208c4521ef0e8129cb265af07c08d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03208c4521ef0e8129cb265af07c08d">&#9670;&#160;</a></span>unregisterClient() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void network::Registry::unregisterClient </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">network::Client</a> &gt;&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="NRegistry_8cpp_source.html#l00031">31</a> of file <a class="el" href="NRegistry_8cpp_source.html">NRegistry.cpp</a>.</p>
 
 </div>
 </div>

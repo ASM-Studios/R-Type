@@ -42,9 +42,9 @@ var annotated_dup =
         [ "udp", null, [
           [ "Server", "classnetwork_1_1socket_1_1udp_1_1Server.html", null ]
         ] ],
-        [ "NetworkManager", "classnetwork_1_1socket_1_1NetworkManager.html", "classnetwork_1_1socket_1_1NetworkManager" ]
+        [ "NetworkManager", "classnetwork_1_1socket_1_1NetworkManager.html", null ]
       ] ],
-      [ "Client", "classnetwork_1_1Client.html", "classnetwork_1_1Client" ],
+      [ "Client", "classnetwork_1_1Client.html", null ],
       [ "QueryHandler", "classnetwork_1_1QueryHandler.html", null ],
       [ "Registry", "classnetwork_1_1Registry.html", null ]
     ] ],

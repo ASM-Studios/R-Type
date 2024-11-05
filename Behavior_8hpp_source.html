@@ -110,23 +110,21 @@ $(document).ready(function(){initNavTree('Behavior_8hpp_source.html',''); initRe
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        {<span class="stringliteral">&quot;none&quot;</span>, AIModel::NONE},</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        {<span class="stringliteral">&quot;classic&quot;</span>, AIModel::CLASSIC},</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        {<span class="stringliteral">&quot;sinusoidal&quot;</span>, AIModel::SINUSOIDAL},</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        {<span class="stringliteral">&quot;zig-zag&quot;</span>, AIModel::ZIG_ZAG}</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    };</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">const</span> std::map&lt;AIModel, std::string&gt; AIModelToString = {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        {AIModel::NONE, <span class="stringliteral">&quot;none&quot;</span>},</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        {AIModel::CLASSIC, <span class="stringliteral">&quot;classic&quot;</span>},</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {AIModel::SINUSOIDAL, <span class="stringliteral">&quot;sinusoidal&quot;</span>},</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        {AIModel::ZIG_ZAG, <span class="stringliteral">&quot;zig-zag&quot;</span>}</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structecs_1_1component_1_1Behavior.html">   28</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structecs_1_1component_1_1Behavior.html">Behavior</a> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            std::function&lt;void(GameLogicMode mode, <span class="keyword">const</span> <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> entity, <span class="keywordtype">float</span> timePerTick)&gt; func;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keyword">static</span> <a class="code hl_struct" href="structecs_1_1component_1_1Behavior.html">Behavior</a> stringToBehaviorModel(<span class="keyword">const</span> std::string&amp; modelStr);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    };</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        {<span class="stringliteral">&quot;zig-zag&quot;</span>, AIModel::ZIG_ZAG}};</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">const</span> std::map&lt;AIModel, std::string&gt; AIModelToString = {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        {AIModel::NONE, <span class="stringliteral">&quot;none&quot;</span>},</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        {AIModel::CLASSIC, <span class="stringliteral">&quot;classic&quot;</span>},</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        {AIModel::SINUSOIDAL, <span class="stringliteral">&quot;sinusoidal&quot;</span>},</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {AIModel::ZIG_ZAG, <span class="stringliteral">&quot;zig-zag&quot;</span>}};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structecs_1_1component_1_1Behavior.html">   26</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structecs_1_1component_1_1Behavior.html">Behavior</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            std::function&lt;void(GameLogicMode mode, <span class="keyword">const</span> <a class="code hl_class" href="classecs_1_1Entity.html">ecs::Entity</a> entity, <span class="keywordtype">float</span> timePerTick)&gt; func;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="keyword">static</span> <a class="code hl_struct" href="structecs_1_1component_1_1Behavior.html">Behavior</a> stringToBehaviorModel(<span class="keyword">const</span> std::string&amp; modelStr);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    };</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
 <div class="ttc" id="aclassecs_1_1Entity_html"><div class="ttname"><a href="classecs_1_1Entity.html">ecs::Entity</a></div><div class="ttdef"><b>Definition:</b> <a href="Entity_8hpp_source.html#l00010">Entity.hpp:10</a></div></div>
-<div class="ttc" id="astructecs_1_1component_1_1Behavior_html"><div class="ttname"><a href="structecs_1_1component_1_1Behavior.html">ecs::component::Behavior</a></div><div class="ttdef"><b>Definition:</b> <a href="Behavior_8hpp_source.html#l00028">Behavior.hpp:28</a></div></div>
+<div class="ttc" id="astructecs_1_1component_1_1Behavior_html"><div class="ttname"><a href="structecs_1_1component_1_1Behavior.html">ecs::component::Behavior</a></div><div class="ttdef"><b>Definition:</b> <a href="Behavior_8hpp_source.html#l00026">Behavior.hpp:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

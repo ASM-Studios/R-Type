@@ -136,24 +136,22 @@ $(document).ready(function(){initNavTree('RegistryManager_8cpp_source.html','');
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::optional&lt;std::shared_ptr&lt;Registry&gt;&gt; RegistryManager::get(std::shared_ptr&lt;network::Client&gt; client) {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        std::lock_guard&lt;std::mutex&gt; _lock(this-&gt;_accessMutex);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (this-&gt;_bindings.contains(client)) {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            Logger::log(LogLevel::INFO, <span class="stringliteral">&quot;Found client&quot;</span>);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <span class="keywordflow">return</span> this-&gt;_bindings.at(client);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        Logger::log(LogLevel::ERR, <span class="stringliteral">&quot;Client not found&quot;</span>);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">return</span> std::nullopt;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    std::unique_ptr&lt;RegistryManager&gt; RegistryManager::_instance(<span class="keyword">nullptr</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::mutex RegistryManager::_mutex;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    std::optional&lt;ecs::Entity&gt; getEntity(std::shared_ptr&lt;network::Client&gt; client) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keyword">auto</span> registry = RegistryManager::getInstance().get(client);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">if</span> (!registry.has_value()) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keywordflow">return</span> std::nullopt;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> Entity(client-&gt;getID(), registry.value());</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">return</span> this-&gt;_bindings.at(client);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::unique_ptr&lt;RegistryManager&gt; RegistryManager::_instance(<span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    std::mutex RegistryManager::_mutex;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    std::optional&lt;ecs::Entity&gt; getEntity(std::shared_ptr&lt;network::Client&gt; client) {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keyword">auto</span> registry = RegistryManager::getInstance().get(client);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span> (!registry.has_value()) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> Entity(client-&gt;getID(), registry.value());</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

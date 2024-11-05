@@ -212,8 +212,8 @@ var NAVTREEINDEX0 =
 "classTexture_1_1LoadFailed.html":[21,0,55,0],
 "classTypedQuery.html":[21,0,58],
 "class_8h_source.html":[22,0,1,0,3],
-"classdocstring_1_1PyClass.html":[20,0,0,0],
 "classdocstring_1_1PyClass.html":[21,0,0,0],
+"classdocstring_1_1PyClass.html":[20,0,0,0],
 "classdocstring_1_1PyClass.html#a00dd800dc15e2b727e2a37c6f6c40e8b":[20,0,0,0,0],
 "classdocstring_1_1PyClass.html#a00dd800dc15e2b727e2a37c6f6c40e8b":[21,0,0,0,0],
 "classdocstring_1_1PyClass.html#af092e1eacc10334e0e8630531a3473b4":[20,0,0,0,1],
@@ -248,6 +248,6 @@ var NAVTREEINDEX0 =
 "classmux__using__with.html#ac474329b8f25c575e4376d65f6a3e43f":[21,0,39,4],
 "classmux__using__with.html#ae984d6918908b859c4f9c9a950a0cfee":[21,0,39,5],
 "classnetwork_1_1Client.html":[21,0,3,1],
-"classnetwork_1_1Client_1_1NotInitialized.html":[21,0,3,1,0],
-"classnetwork_1_1QueryHandler.html":[21,0,3,2]
+"classnetwork_1_1QueryHandler.html":[21,0,3,2],
+"classnetwork_1_1Registry.html":[21,0,3,3]
 };

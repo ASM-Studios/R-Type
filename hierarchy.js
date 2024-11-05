@@ -49,9 +49,7 @@ var hierarchy =
       [ "GUI::guiActionException", "classGUI_1_1guiActionException.html", null ],
       [ "Texture::LoadFailed", "classTexture_1_1LoadFailed.html", null ],
       [ "ecs::Registry::AlreadyExist", "classecs_1_1Registry_1_1AlreadyExist.html", null ],
-      [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ],
-      [ "network::Client::NotInitialized", "classnetwork_1_1Client_1_1NotInitialized.html", null ],
-      [ "network::socket::NetworkManager::NotInitialized", "classnetwork_1_1socket_1_1NetworkManager_1_1NotInitialized.html", null ]
+      [ "ecs::Registry::ComponentNotFound", "classecs_1_1Registry_1_1ComponentNotFound.html", null ]
     ] ],
     [ "ecs::factory::FactoryEntity", "structecs_1_1factory_1_1FactoryEntity.html", null ],
     [ "Fn_Test", "classFn__Test.html", null ],

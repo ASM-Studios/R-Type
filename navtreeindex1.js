@@ -1,14 +1,12 @@
 var NAVTREEINDEX1 =
 {
-"classnetwork_1_1Registry.html":[21,0,3,3],
 "classnetwork_1_1socket_1_1NetworkManager.html":[21,0,3,0,2],
-"classnetwork_1_1socket_1_1NetworkManager_1_1NotInitialized.html":[21,0,3,0,2,0],
 "classnetwork_1_1socket_1_1tcp_1_1Server.html":[21,0,3,0,0,0],
 "classnetwork_1_1socket_1_1udp_1_1Server.html":[21,0,3,0,1,0],
 "classpyexample_1_1PyClass.html":[21,0,4,0],
 "classpyexample_1_1PyClass.html":[20,0,2,0],
-"classpyexample_1_1PyClass.html#a654596774eb28a0c6d26eea565de3a9d":[21,0,4,0,1],
 "classpyexample_1_1PyClass.html#a654596774eb28a0c6d26eea565de3a9d":[20,0,2,0,1],
+"classpyexample_1_1PyClass.html#a654596774eb28a0c6d26eea565de3a9d":[21,0,4,0,1],
 "classpyexample_1_1PyClass.html#a87e20fe7e81cb5a1c04e620c076ab8ac":[20,0,2,0,0],
 "classpyexample_1_1PyClass.html#a87e20fe7e81cb5a1c04e620c076ab8ac":[21,0,4,0,0],
 "classpyexample_1_1PyClass.html#a9165738cd516769e4fcd274219e9d255":[20,0,2,0,2],
@@ -249,5 +247,7 @@ var NAVTREEINDEX1 =
 "restypedef_8cpp.html#a102acaaa258e937adf910898c6133545":[22,0,1,0,29,2],
 "restypedef_8cpp_source.html":[22,0,1,0,29],
 "server_2src_2main_8cpp_source.html":[22,0,2,1,1],
-"server_2src_2tcpCallback_8cpp_source.html":[22,0,2,1,4]
+"server_2src_2tcpCallback_8cpp_source.html":[22,0,2,1,4],
+"server_2src_2udpCallback_8cpp_source.html":[22,0,2,1,5],
+"strip__example_8py_source.html":[22,0,1,0,30]
 };

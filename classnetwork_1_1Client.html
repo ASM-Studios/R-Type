@@ -91,44 +91,69 @@ $(document).ready(function(){initNavTree('classnetwork_1_1Client.html',''); init
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle"><div class="title">network::Client Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client_1_1NotInitialized.html">NotInitialized</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a32be72172f4094a4c3243f515d9e6a86"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a32be72172f4094a4c3243f515d9e6a86">Client</a> (std::string hostname, int tcpPort, int udpPort)</td></tr>
 <tr class="separator:a32be72172f4094a4c3243f515d9e6a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a149213a6e72cade2e3786ae2f48a4a0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a149213a6e72cade2e3786ae2f48a4a0d">Client</a> (boost::asio::ip::tcp::socket &amp;socket)</td></tr>
 <tr class="separator:a149213a6e72cade2e3786ae2f48a4a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a094919264691dc6b468f9557405b0e1a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a094919264691dc6b468f9557405b0e1a">operator==</a> (const <a class="el" href="classnetwork_1_1Client.html">Client</a> &amp;other) const</td></tr>
-<tr class="separator:a094919264691dc6b468f9557405b0e1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1d24c8eac887988e7186193aa73c0a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#ad1d24c8eac887988e7186193aa73c0a1">read</a> ()</td></tr>
-<tr class="separator:ad1d24c8eac887988e7186193aa73c0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9495f5a2754a3bf7f1f3b0213be584f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a9495f5a2754a3bf7f1f3b0213be584f0">operator==</a> (const <a class="el" href="classnetwork_1_1Client.html">Client</a> &amp;other)</td></tr>
+<tr class="separator:a9495f5a2754a3bf7f1f3b0213be584f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0edc63b46f17308c95fa2a309dfa5aab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a0edc63b46f17308c95fa2a309dfa5aab">init</a> (boost::asio::ip::address_v4 udpIP, boost::asio::ip::port_type udpPort)</td></tr>
 <tr class="separator:a0edc63b46f17308c95fa2a309dfa5aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a392750e479f29d12b64edf707e3ba0e9"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a392750e479f29d12b64edf707e3ba0e9">getID</a> () const</td></tr>
-<tr class="separator:a392750e479f29d12b64edf707e3ba0e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a4db9079e1dd1c1689c77037d30aeb5"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::address_v4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a4a4db9079e1dd1c1689c77037d30aeb5">getUdpIP</a> () const</td></tr>
-<tr class="separator:a4a4db9079e1dd1c1689c77037d30aeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acde76690485ca4646228282ed6657af1"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::port_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#acde76690485ca4646228282ed6657af1">getUdpPort</a> () const</td></tr>
-<tr class="separator:acde76690485ca4646228282ed6657af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcfa5b0a92e33b3435baec81706b9057"><td class="memItemLeft" align="right" valign="top">boost::asio::ip::tcp::socket &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#afcfa5b0a92e33b3435baec81706b9057">getSocket</a> ()</td></tr>
-<tr class="separator:afcfa5b0a92e33b3435baec81706b9057"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19197a6134c2b6f7984bd59d3365dd3"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#ac19197a6134c2b6f7984bd59d3365dd3">getID</a> ()</td></tr>
+<tr class="separator:ac19197a6134c2b6f7984bd59d3365dd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43d2a3ec890857cb580878cf0e0f0990"><td class="memItemLeft" align="right" valign="top">std::optional&lt; boost::asio::ip::address_v4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a43d2a3ec890857cb580878cf0e0f0990">getUdpIP</a> ()</td></tr>
+<tr class="separator:a43d2a3ec890857cb580878cf0e0f0990"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36869b919c363c0e7418397d0772b0ec"><td class="memItemLeft" align="right" valign="top">std::optional&lt; boost::asio::ip::port_type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#a36869b919c363c0e7418397d0772b0ec">getUdpPort</a> ()</td></tr>
+<tr class="separator:a36869b919c363c0e7418397d0772b0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17f206a30bec5ea75577b6e94af4719"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::reference_wrapper&lt; boost::asio::ip::tcp::socket &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#ae17f206a30bec5ea75577b6e94af4719">getSocket</a> ()</td></tr>
+<tr class="separator:ae17f206a30bec5ea75577b6e94af4719"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:acd523743eeb6edd7a480c170b43901bb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnetwork_1_1Client.html#acd523743eeb6edd7a480c170b43901bb">read</a> (std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a> &gt; client)</td></tr>
+<tr class="separator:acd523743eeb6edd7a480c170b43901bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="Client_8hpp_source.html#l00010">10</a> of file <a class="el" href="Client_8hpp_source.html">Client.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a497a0a1c6e560a87db262f265ee09d3b" name="a497a0a1c6e560a87db262f265ee09d3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a497a0a1c6e560a87db262f265ee09d3b">&#9670;&#160;</a></span>Client() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">network::Client::Client </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00014">14</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
+
+</div>
+</div>
 <a id="a32be72172f4094a4c3243f515d9e6a86" name="a32be72172f4094a4c3243f515d9e6a86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32be72172f4094a4c3243f515d9e6a86">&#9670;&#160;</a></span>Client() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a32be72172f4094a4c3243f515d9e6a86">&#9670;&#160;</a></span>Client() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +197,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a149213a6e72cade2e3786ae2f48a4a0d" name="a149213a6e72cade2e3786ae2f48a4a0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a149213a6e72cade2e3786ae2f48a4a0d">&#9670;&#160;</a></span>Client() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a149213a6e72cade2e3786ae2f48a4a0d">&#9670;&#160;</a></span>Client() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,8 +225,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a392750e479f29d12b64edf707e3ba0e9" name="a392750e479f29d12b64edf707e3ba0e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a392750e479f29d12b64edf707e3ba0e9">&#9670;&#160;</a></span>getID()</h2>
+<a id="ac19197a6134c2b6f7984bd59d3365dd3" name="ac19197a6134c2b6f7984bd59d3365dd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19197a6134c2b6f7984bd59d3365dd3">&#9670;&#160;</a></span>getID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,23 +235,23 @@ Public Member Functions</h2></td></tr>
           <td class="memname">uint64_t network::Client::getID </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00071">71</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00075">75</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
 
 </div>
 </div>
-<a id="afcfa5b0a92e33b3435baec81706b9057" name="afcfa5b0a92e33b3435baec81706b9057"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcfa5b0a92e33b3435baec81706b9057">&#9670;&#160;</a></span>getSocket()</h2>
+<a id="ae17f206a30bec5ea75577b6e94af4719" name="ae17f206a30bec5ea75577b6e94af4719"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae17f206a30bec5ea75577b6e94af4719">&#9670;&#160;</a></span>getSocket()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boost::asio::ip::tcp::socket &amp; network::Client::getSocket </td>
+          <td class="memname">std::optional&lt; std::reference_wrapper&lt; boost::asio::ip::tcp::socket &gt; &gt; network::Client::getSocket </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -234,45 +259,45 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00098">98</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00099">99</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a4a4db9079e1dd1c1689c77037d30aeb5" name="a4a4db9079e1dd1c1689c77037d30aeb5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a4db9079e1dd1c1689c77037d30aeb5">&#9670;&#160;</a></span>getUdpIP()</h2>
+<a id="a43d2a3ec890857cb580878cf0e0f0990" name="a43d2a3ec890857cb580878cf0e0f0990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43d2a3ec890857cb580878cf0e0f0990">&#9670;&#160;</a></span>getUdpIP()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boost::asio::ip::address_v4 network::Client::getUdpIP </td>
+          <td class="memname">std::optional&lt; boost::asio::ip::address_v4 &gt; network::Client::getUdpIP </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00084">84</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00089">89</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
 
 </div>
 </div>
-<a id="acde76690485ca4646228282ed6657af1" name="acde76690485ca4646228282ed6657af1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acde76690485ca4646228282ed6657af1">&#9670;&#160;</a></span>getUdpPort()</h2>
+<a id="a36869b919c363c0e7418397d0772b0ec" name="a36869b919c363c0e7418397d0772b0ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36869b919c363c0e7418397d0772b0ec">&#9670;&#160;</a></span>getUdpPort()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">boost::asio::ip::port_type network::Client::getUdpPort </td>
+          <td class="memname">std::optional&lt; boost::asio::ip::port_type &gt; network::Client::getUdpPort </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00091">91</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00094">94</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
 
 </div>
 </div>
@@ -302,12 +327,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00066">66</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00069">69</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a094919264691dc6b468f9557405b0e1a" name="a094919264691dc6b468f9557405b0e1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a094919264691dc6b468f9557405b0e1a">&#9670;&#160;</a></span>operator==()</h2>
+<a id="a9495f5a2754a3bf7f1f3b0213be584f0" name="a9495f5a2754a3bf7f1f3b0213be584f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9495f5a2754a3bf7f1f3b0213be584f0">&#9670;&#160;</a></span>operator==()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -317,7 +342,7 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classnetwork_1_1Client.html">Client</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -326,22 +351,31 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad1d24c8eac887988e7186193aa73c0a1" name="ad1d24c8eac887988e7186193aa73c0a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1d24c8eac887988e7186193aa73c0a1">&#9670;&#160;</a></span>read()</h2>
+<a id="acd523743eeb6edd7a480c170b43901bb" name="acd523743eeb6edd7a480c170b43901bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd523743eeb6edd7a480c170b43901bb">&#9670;&#160;</a></span>read()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void network::Client::read </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classnetwork_1_1Client.html">Client</a> &gt;&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00041">41</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Client_8cpp_source.html#l00042">42</a> of file <a class="el" href="Client_8cpp_source.html">Client.cpp</a>.</p>
 
 </div>
 </div>
