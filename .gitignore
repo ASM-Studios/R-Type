@@ -23,6 +23,7 @@ docs/docs/html/*
 
 # CMake
 
+tags
 .cache
 build
 cmake-build-debug
@@ -121,6 +122,7 @@ dkms.conf
 *.app
 
 ### IDE ###
+.gdbinit
 .obsidian
 compile_flags.txt
 *.lock

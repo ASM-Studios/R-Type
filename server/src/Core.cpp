@@ -25,7 +25,9 @@ void Core::_exit(std::vector<std::string> args) {
 void Core::_info(std::vector<std::string> args) {
     Singleton<network::Registry>::getInstance().lock();
     for (auto& [uuid, client]: Singleton<network::Registry>::getInstance().get().getClients()) {
-        Logger::log(LogLevel::INFO, std::format("{} {}", client->getUdpIP().to_string(), client->getUdpPort()));
+        if (client->getUdpIP().has_value() && client->getUdpPort().has_value()) {
+            Logger::log(LogLevel::INFO, std::format("{} {}", client->getUdpIP().value().to_string(), client->getUdpPort().value()));
+        }
     }
     Singleton<network::Registry>::getInstance().unlock();
 }

@@ -12,10 +12,10 @@ namespace network::socket::udp {
         _socket(context, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port)) {}
 
     void Server::read() {
-        auto *request = new RawRequest();                            // NOLINT
-        auto *remoteEndpoint = new boost::asio::ip::udp::endpoint(); // NOLINT
+        auto request = std::make_shared<RawRequest>();
+        auto remoteEndpoint = std::make_shared<boost::asio::ip::udp::endpoint>();
 
-        this->_socket.async_receive_from(boost::asio::buffer(request, sizeof(RawRequest)), *remoteEndpoint, [this, request, remoteEndpoint](const boost::system::error_code& error, std::size_t bytes) {
+        this->_socket.async_receive_from(boost::asio::buffer(request.get(), sizeof(RawRequest)), *remoteEndpoint, [this, request, remoteEndpoint](const boost::system::error_code& error, std::size_t bytes) {
             if (error) {
                 Logger::log(LogLevel::ERR, error.message());
                 return;
@@ -27,11 +27,11 @@ namespace network::socket::udp {
                 if (client.has_value()) {
                     client->get()->init(remoteEndpoint->address().to_v4(), remoteEndpoint->port());
                     QueryHandler::getInstance().addUdpQuery({client.value(), *request});
+                } else {
+                    Logger::log(LogLevel::WARNING, "Client must be init before sending udp request");
                 }
                 Singleton<network::Registry>::getInstance().unlock();
             }
-            delete request;        // NOLINT
-            delete remoteEndpoint; // NOLINT
         });
     }
 
@@ -58,7 +58,7 @@ namespace network::socket::tcp {
                 Singleton<network::Registry>::getInstance().lock();
                 auto client = std::make_shared<network::Client>(socket);
                 Singleton<network::Registry>::getInstance().get().addClient(client);
-                client->read();
+                Client::read(client);
                 Singleton<network::Registry>::getInstance().unlock();
             }
         });

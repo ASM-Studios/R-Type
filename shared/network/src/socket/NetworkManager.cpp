@@ -1,5 +1,8 @@
 #include "socket/NetworkManager.hpp"
 #include "Logger.hpp"
+#include "RegistryManager.hpp"
+#include "Singleton.hpp"
+#include "socket/NRegistry.hpp"
 #include <format>
 #include <mutex>
 
@@ -34,10 +37,15 @@ namespace network::socket {
 
     void NetworkManager::send(std::shared_ptr<Client> client, RawRequest request, Mode mode) {
         if (mode == Mode::UDP) {
-            boost::asio::ip::udp::endpoint endpoint(client->getUdpIP(), client->getUdpPort());
-            this->_udpServer->getSocket().send_to(boost::asio::buffer(request), endpoint);
+            if (client->getUdpIP().has_value() && client->getUdpPort().has_value()) {
+                boost::asio::ip::udp::endpoint endpoint(client->getUdpIP().value(), client->getUdpPort().value());
+                this->_udpServer->getSocket().send_to(boost::asio::buffer(request), endpoint);
+            }
         } else {
-            client->getSocket().send(boost::asio::buffer(request));
+            auto socket = client->getSocket();
+            if (socket.has_value()) {
+                client->getSocket().value().get().send(boost::asio::buffer(request));
+            }
         }
     }
 
@@ -49,4 +57,11 @@ namespace network::socket {
 
     std::unique_ptr<NetworkManager> NetworkManager::_instance;
     std::mutex NetworkManager::_mutex;
+
+    void disconnectClient(std::shared_ptr<network::Client> client) {
+        Singleton<network::Registry>::getInstance().lock();
+        Singleton<network::Registry>::getInstance().get().unregisterClient(client);
+        Singleton<network::Registry>::getInstance().unlock();
+        ecs::RegistryManager::getInstance().unbind(client);
+    }
 }

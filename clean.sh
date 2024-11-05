@@ -12,5 +12,6 @@ rm -rf cmake-build-release
 rm -rf cmake-build-debug
 rm -rf cmake-build-windows
 rm -rf vgcore*
+rm -rf tags
 rm -rf $CLIENT
 rm -rf $SERVER

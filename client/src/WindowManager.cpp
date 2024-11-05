@@ -532,4 +532,3 @@ void GUI::WindowManager::_pauseMenuInit() {
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
     _currentButtons.emplace("pause:quit", quitButton);
 }
-
