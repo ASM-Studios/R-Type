@@ -291,13 +291,13 @@ $(document).ready(function(){initNavTree('WindowManager_8cpp_source.html',''); i
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keywordtype">void</span> GUI::WindowManager::_displayFrontLayer()<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">const</span> <span class="keyword">auto</span> labs_front = _spriteManager.getSprite(<span class="stringliteral">&quot;backgrounds/scifi_labs_front&quot;</span>, 0);</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    labs_front-&gt;setOrigin(0, 0);</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    labs_front-&gt;setPosition(-_frontLayerOffset, 0);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    labs_front-&gt;setPosition(_frontLayerOffset, 0);</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    _window-&gt;draw(*labs_front);</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    _frontLayerOffset += 10.0f / 2;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    _frontLayerOffset += 8.0f / 2;</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordflow">if</span> (_frontLayerOffset &gt;= labs_front-&gt;getGlobalBounds().width - _window-&gt;getSize().x) {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        _frontLayerOffset = 0.0f;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordflow">if</span> (_frontLayerOffset &gt;= _window-&gt;getSize().x) {</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        _frontLayerOffset = -labs_front-&gt;getGlobalBounds().width;</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    }</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>}</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
