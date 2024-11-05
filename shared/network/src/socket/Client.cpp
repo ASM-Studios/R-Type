@@ -25,7 +25,8 @@ namespace network {
             this->_tcpSocket.value().connect(boost::asio::ip::tcp::endpoint(boost::asio::ip::address_v4::from_string(hostname), tcpPort));
             Logger::log(LogLevel::INFO, "Connected");
         } catch (std::exception& e) {
-            Logger::log(LogLevel::ERR, e.what());
+            this->_tcpSocket = std::nullopt;
+            Logger::log(LogLevel::ERR, "Failed to connect to server");
         }
     }
 
