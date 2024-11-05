@@ -219,13 +219,13 @@ void GUI::WindowManager::_displayBackground() {
 void GUI::WindowManager::_displayFrontLayer() const {
     const auto labs_front = _spriteManager.getSprite("backgrounds/scifi_labs_front", 0);
     labs_front->setOrigin(0, 0);
-    labs_front->setPosition(-_frontLayerOffset, 0);
+    labs_front->setPosition(_frontLayerOffset, 0);
     _window->draw(*labs_front);
 
-    _frontLayerOffset += 10.0f / 2;
+    _frontLayerOffset += 8.0f / 2;
 
-    if (_frontLayerOffset >= labs_front->getGlobalBounds().width - _window->getSize().x) {
-        _frontLayerOffset = 0.0f;
+    if (_frontLayerOffset >= _window->getSize().x) {
+        _frontLayerOffset = -labs_front->getGlobalBounds().width;
     }
 }
 
