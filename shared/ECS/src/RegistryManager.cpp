@@ -41,10 +41,8 @@ namespace ecs {
     std::optional<std::shared_ptr<Registry>> RegistryManager::get(std::shared_ptr<network::Client> client) {
         std::lock_guard<std::mutex> _lock(this->_accessMutex);
         if (this->_bindings.contains(client)) {
-            Logger::log(LogLevel::INFO, "Found client");
             return this->_bindings.at(client);
         }
-        Logger::log(LogLevel::ERR, "Client not found");
         return std::nullopt;
     }
 

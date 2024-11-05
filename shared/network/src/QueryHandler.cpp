@@ -9,25 +9,25 @@
 
 namespace network {
     void QueryHandler::executeUdp(std::pair<std::shared_ptr<network::Client>, RawRequest> request) {
+        this->_callbackMutex.lock();
         try {
-            this->_callbackMutex.lock();
             auto callback = udpRequestAction.at(request.second.getQuery().getRequestType());
-            this->_callbackMutex.unlock();
             callback(request.first, request.second);
         } catch (const std::out_of_range& e) {
             Logger::log(LogLevel::ERR, std::format("Callback not found: {}", to_string(request.second.getQuery().getRequestType())));
         }
+        this->_callbackMutex.unlock();
     }
 
     void QueryHandler::executeTcp(std::pair<std::shared_ptr<Client>, RawRequest> request) {
+        this->_callbackMutex.lock();
         try {
-            this->_callbackMutex.lock();
             auto callback = tcpRequestAction.at(request.second.getQuery().getRequestType());
-            this->_callbackMutex.unlock();
             callback(request.first, request.second);
         } catch (const std::out_of_range& e) {
             Logger::log(LogLevel::ERR, std::format("Callback not found: {}", to_string(request.second.getQuery().getRequestType())));
         }
+        this->_callbackMutex.unlock();
     }
 
     QueryHandler::QueryHandler() :

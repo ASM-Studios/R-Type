@@ -122,6 +122,7 @@ dkms.conf
 *.app
 
 ### IDE ###
+.gdbinit
 .obsidian
 compile_flags.txt
 *.lock

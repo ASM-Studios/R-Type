@@ -1,5 +1,8 @@
 #include "socket/NetworkManager.hpp"
 #include "Logger.hpp"
+#include "RegistryManager.hpp"
+#include "Singleton.hpp"
+#include "socket/NRegistry.hpp"
 #include <format>
 #include <mutex>
 
@@ -54,4 +57,11 @@ namespace network::socket {
 
     std::unique_ptr<NetworkManager> NetworkManager::_instance;
     std::mutex NetworkManager::_mutex;
+
+    void disconnectClient(std::shared_ptr<network::Client> client) {
+        Singleton<network::Registry>::getInstance().lock();
+        Singleton<network::Registry>::getInstance().get().unregisterClient(client);
+        Singleton<network::Registry>::getInstance().unlock();
+        ecs::RegistryManager::getInstance().unbind(client);
+    }
 }

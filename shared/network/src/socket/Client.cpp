@@ -8,6 +8,7 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <mutex>
 
 namespace network {
     Client::Client() :
@@ -33,26 +34,28 @@ namespace network {
         _udpPort(std::nullopt),
         _tcpSocket(std::move(socket)) {}
 
-    bool Client::operator==(const Client& other) const {
+    bool Client::operator==(const Client& other) {
+        std::lock_guard<std::mutex> lock(this->_accessMutex);
         return this->_udpIP.value() == other._udpIP.value() && this->_udpPort.value() == other._udpPort.value();
     }
 
-    void Client::read() {
-        if (!this->_tcpSocket.has_value()) {
+    void Client::read(std::shared_ptr<Client> client) {
+        if (!client->_tcpSocket.has_value()) {
             return;
         }
-        auto *request = new RawRequest();                            // NOLINT
-        auto *remoteEndpoint = new boost::asio::ip::udp::endpoint(); // NOLINT
+        auto request = std::make_shared<RawRequest>();
+        auto remoteEndpoint = std::make_shared<boost::asio::ip::udp::endpoint>();
 
-        this->_tcpSocket->async_receive(boost::asio::buffer(request, sizeof(RawRequest)), [this, request, remoteEndpoint](auto error, auto bytes) {
+        client->_tcpSocket->async_receive(boost::asio::buffer(request.get(), sizeof(RawRequest)), [client, request, remoteEndpoint](auto error, auto bytes) {
             if (error) {
+                socket::disconnectClient(client);
                 Logger::log(LogLevel::ERR, error.what());
                 return;
             }
-            this->read();
+            Client::read(client);
             {
                 Singleton<network::Registry>::getInstance().lock();
-                Singleton<network::Registry>::getInstance().get().registerClient(this, request->getUuid());
+                Singleton<network::Registry>::getInstance().get().registerClient(client, request->getUuid());
 
                 auto client = Singleton<network::Registry>::getInstance().get().getClient(request->getUuid());
                 if (client.has_value()) {
@@ -60,17 +63,17 @@ namespace network {
                 }
                 Singleton<network::Registry>::getInstance().unlock();
             }
-            delete request;        // NOLINT
-            delete remoteEndpoint; // NOLINT
         });
     }
 
     void Client::init(boost::asio::ip::address_v4 udpIP, boost::asio::ip::port_type udpPort) {
+        std::lock_guard<std::mutex> lock(this->_accessMutex);
         this->_udpIP.emplace(udpIP);
         this->_udpPort.emplace(udpPort);
     }
 
-    uint64_t Client::getID() const {
+    uint64_t Client::getID() {
+        std::lock_guard<std::mutex> lock(this->_accessMutex);
         if (!this->_udpIP.has_value() || !this->_udpPort.has_value()) {
             return -1;
         }
@@ -83,25 +86,21 @@ namespace network {
         return id;
     }
 
-    std::optional<boost::asio::ip::address_v4> Client::getUdpIP() const {
+    std::optional<boost::asio::ip::address_v4> Client::getUdpIP() {
+        std::lock_guard<std::mutex> lock(this->_accessMutex);
         return this->_udpIP;
     }
 
-    std::optional<boost::asio::ip::port_type> Client::getUdpPort() const {
+    std::optional<boost::asio::ip::port_type> Client::getUdpPort() {
+        std::lock_guard<std::mutex> lock(this->_accessMutex);
         return this->_udpPort;
     }
 
     std::optional<std::reference_wrapper<boost::asio::ip::tcp::socket>> Client::getSocket() {
+        std::lock_guard<std::mutex> lock(this->_accessMutex);
         if (this->_tcpSocket.has_value()) {
             return std::ref(this->_tcpSocket.value());
         }
         return std::nullopt;
     }
-}
-
-std::ostream& operator<<(std::ostream& os, const network::Client& client) {
-    if (client.getUdpIP().has_value() && client.getUdpPort().has_value()) {
-        os << client.getUdpIP().value() << " - " << client.getUdpPort().value();
-    }
-    return os;
 }

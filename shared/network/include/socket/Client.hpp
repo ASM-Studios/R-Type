@@ -14,22 +14,22 @@ namespace network {
 
             std::optional<boost::asio::ip::tcp::socket> _tcpSocket;
 
+            std::mutex _accessMutex;
+
         public:
             explicit Client();
             explicit Client(std::string hostname, int tcpPort, int udpPort); // FOR CLIENT
             explicit Client(boost::asio::ip::tcp::socket& socket);           // FOR SERVER
             ~Client() = default;
 
-            bool operator==(const Client& other) const;
+            bool operator==(const Client& other);
 
-            void read();
+            static void read(std::shared_ptr<Client> client);
             void init(boost::asio::ip::address_v4 udpIP, boost::asio::ip::port_type udpPort);
 
-            [[nodiscard]] uint64_t getID() const;
-            [[nodiscard]] std::optional<boost::asio::ip::address_v4> getUdpIP() const;
-            [[nodiscard]] std::optional<boost::asio::ip::port_type> getUdpPort() const;
+            [[nodiscard]] uint64_t getID();
+            [[nodiscard]] std::optional<boost::asio::ip::address_v4> getUdpIP();
+            [[nodiscard]] std::optional<boost::asio::ip::port_type> getUdpPort();
             [[nodiscard]] std::optional<std::reference_wrapper<boost::asio::ip::tcp::socket>> getSocket();
     };
 }
-
-std::ostream& operator<<(std::ostream& os, const network::Client& client);

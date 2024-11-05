@@ -26,16 +26,6 @@ namespace network::socket {
             std::optional<tcp::Server> _tcpServer;
 
         public:
-            class NotInitialized : public std::exception {
-                private:
-                    std::string _message;
-
-                public:
-                    explicit NotInitialized();
-                    ~NotInitialized() override = default;
-
-                    [[nodiscard]] const char *what() const noexcept override;
-            };
             NetworkManager(const NetworkManager& other) = delete;
             NetworkManager& operator=(const NetworkManager& other) = delete;
             ~NetworkManager() = default;
@@ -50,4 +40,6 @@ namespace network::socket {
 
             boost::asio::io_context& getContext();
     };
+
+    void disconnectClient(std::shared_ptr<Client> client);
 }

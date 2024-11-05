@@ -19,6 +19,7 @@
 #include <boost/uuid/uuid_io.hpp>
 #include <csignal>
 #include <cstdio>
+#include <format>
 #include <iomanip>
 #include <iostream>
 #include <memory>

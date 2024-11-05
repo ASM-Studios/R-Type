@@ -9,18 +9,32 @@ namespace network {
         this->_clients.emplace_back(std::nullopt, client);
     }
 
-    void Registry::registerClient(network::Client *client, boost::uuids::uuid uuid) {
+    void Registry::registerClient(std::shared_ptr<network::Client> client, boost::uuids::uuid uuid) {
         for (auto& [_uuid, _client]: this->_clients) {
-            if (_client.get() == client) {
+            if (_client == client) {
                 _uuid = uuid;
             }
         }
     }
 
-    void Registry::registerClient(std::shared_ptr<network::Client> client, boost::uuids::uuid uuid) {
-        for (auto& [_uuid, _client]: this->_clients) {
-            if (_client == client) {
-                _uuid = uuid;
+    void Registry::unregisterClient(boost::uuids::uuid uuid) {
+        for (auto it = this->_clients.begin(); it != this->_clients.end();) {
+            auto value = *it;
+            if (value.first.has_value() && value.first.value() == uuid) {
+                this->_clients.erase(it);
+            } else {
+                ++it;
+            }
+        }
+    }
+    
+    void Registry::unregisterClient(std::shared_ptr<network::Client> client) {
+        for (auto it = this->_clients.begin(); it != this->_clients.end();) {
+            auto value = *it;
+            if (value.second == client) {
+                this->_clients.erase(it);
+            } else {
+                ++it;
             }
         }
     }

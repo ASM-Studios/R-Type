@@ -5,8 +5,6 @@ if (WIN32 OR MSVC)
 	add_definitions(-D_WIN32_WINNT=0x0601)
 endif()
 
-add_compile_options(-Wall -fdiagnostics-color=always)
-
 include_directories(shared/Singleton/include)
 include_directories(shared/Clock/include)
 include_directories(shared/network/include)

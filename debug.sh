@@ -9,5 +9,5 @@ if  command -v ctags >/dev/null; then
     ctags -R server shared client
 fi
 cd $BUILD_FOLDER
-cmake --preset=debug ..
+cmake --preset=debug  ..
 cmake --build .
