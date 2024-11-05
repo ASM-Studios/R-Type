@@ -7,5 +7,6 @@ var searchData=
   ['sprite_4',['Sprite',['../structecs_1_1component_1_1Sprite.html',1,'ecs::component']]],
   ['spritemanager_5',['SpriteManager',['../classGUI_1_1SpriteManager.html',1,'GUI']]],
   ['statusmutex_6',['StatusMutex',['../classStatusMutex.html',1,'']]],
-  ['string_7',['String',['../classString.html',1,'']]]
+  ['string_7',['String',['../classString.html',1,'']]],
+  ['systemmetrics_8',['SystemMetrics',['../classGUI_1_1SystemMetrics.html',1,'GUI']]]
 ];

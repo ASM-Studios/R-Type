@@ -95,6 +95,7 @@ var hierarchy =
     [ "ecs::component::Sprite", "structecs_1_1component_1_1Sprite.html", null ],
     [ "StatusMutex", "classStatusMutex.html", null ],
     [ "String", "classString.html", null ],
+    [ "GUI::SystemMetrics", "classGUI_1_1SystemMetrics.html", null ],
     [ "ecs::component::Tags", "structecs_1_1component_1_1Tags.html", null ],
     [ "Test< T, i >", "classTest.html", null ],
     [ "Test< void *, 200 >", "classTest_3_01void_01_5_00_01200_01_4.html", [

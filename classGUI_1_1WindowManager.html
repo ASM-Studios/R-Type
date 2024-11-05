@@ -122,6 +122,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a27a2c900553a216913a9debbd5fca14c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1WindowManager.html#a27a2c900553a216913a9debbd5fca14c">run</a> ()</td></tr>
 <tr class="memdesc:a27a2c900553a216913a9debbd5fca14c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the game state.  <br /></td></tr>
 <tr class="separator:a27a2c900553a216913a9debbd5fca14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeac2d721281d028d6c31e9c451128fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1WindowManager.html#aaeac2d721281d028d6c31e9c451128fe">_addText</a> (const std::string &amp;id, const std::string &amp;text, const sf::Vector2f &amp;position)</td></tr>
+<tr class="memdesc:aaeac2d721281d028d6c31e9c451128fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a text to the window. The text is identified by its id. The text is stored and does not need to be recreated every frame.  <br /></td></tr>
+<tr class="separator:aaeac2d721281d028d6c31e9c451128fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fa5048bd32500c3fad8b43d46ee5d4c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; sf::Text &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1WindowManager.html#a2fa5048bd32500c3fad8b43d46ee5d4c">_getText</a> (const std::string &amp;id) const</td></tr>
+<tr class="memdesc:a2fa5048bd32500c3fad8b43d46ee5d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the text with the specified id.  <br /></td></tr>
+<tr class="separator:a2fa5048bd32500c3fad8b43d46ee5d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac96c264e4d4d76add4a0e04988416774"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1WindowManager.html#ac96c264e4d4d76add4a0e04988416774">setGameState</a> (const gameState state)</td></tr>
 <tr class="separator:ac96c264e4d4d76add4a0e04988416774"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4458e8a5dee4f0dd6a902d529c54236"><td class="memItemLeft" align="right" valign="top">gameState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1WindowManager.html#ab4458e8a5dee4f0dd6a902d529c54236">getGameState</a> () const</td></tr>
@@ -133,7 +139,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00049">49</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00051">51</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a820ad725d2a2264f93e56b6a5460a726" name="a820ad725d2a2264f93e56b6a5460a726"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a820ad725d2a2264f93e56b6a5460a726">&#9670;&#160;</a></span>WindowManager()</h2>
@@ -164,6 +170,81 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aaeac2d721281d028d6c31e9c451128fe" name="aaeac2d721281d028d6c31e9c451128fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaeac2d721281d028d6c31e9c451128fe">&#9670;&#160;</a></span>_addText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GUI::WindowManager::_addText </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const sf::Vector2f &amp;&#160;</td>
+          <td class="paramname"><em>position</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a text to the window. The text is identified by its id. The text is stored and does not need to be recreated every frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The id of the text. </td></tr>
+    <tr><td class="paramname">text</td><td>The text to be displayed. </td></tr>
+    <tr><td class="paramname">position</td><td>The position of the text. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="WindowManager_8cpp_source.html#l00244">244</a> of file <a class="el" href="WindowManager_8cpp_source.html">WindowManager.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2fa5048bd32500c3fad8b43d46ee5d4c" name="a2fa5048bd32500c3fad8b43d46ee5d4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fa5048bd32500c3fad8b43d46ee5d4c">&#9670;&#160;</a></span>_getText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; sf::Text &gt; GUI::WindowManager::_getText </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the text with the specified id. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The id of the text.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The text with the specified id. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="WindowManager_8cpp_source.html#l00264">264</a> of file <a class="el" href="WindowManager_8cpp_source.html">WindowManager.cpp</a>.</p>
+
+</div>
+</div>
 <a id="ab4458e8a5dee4f0dd6a902d529c54236" name="ab4458e8a5dee4f0dd6a902d529c54236"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab4458e8a5dee4f0dd6a902d529c54236">&#9670;&#160;</a></span>getGameState()</h2>
 
@@ -187,7 +268,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00109">109</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00114">114</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
 
 </div>
 </div>
@@ -214,7 +295,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00114">114</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00119">119</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
 
 </div>
 </div>
@@ -235,7 +316,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Sets the game state. </p>
 
-<p class="definition">Definition at line <a class="el" href="WindowManager_8cpp_source.html#l00094">94</a> of file <a class="el" href="WindowManager_8cpp_source.html">WindowManager.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WindowManager_8cpp_source.html#l00095">95</a> of file <a class="el" href="WindowManager_8cpp_source.html">WindowManager.cpp</a>.</p>
 
 </div>
 </div>
@@ -263,7 +344,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00105">105</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00110">110</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
 
 </div>
 </div>
@@ -291,7 +372,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00110">110</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00115">115</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
 
 </div>
 </div>

@@ -16,5 +16,6 @@ var searchData=
   ['strcmp_13',['strcmp',['../classString.html#ae3c243f0bc797b9e4b15d2ef5e5aaa7c',1,'String']]],
   ['string_14',['String',['../classString.html',1,'']]],
   ['stringdebug_15',['stringDebug',['../classString.html#a5c07384b505d25ae6f61fc7abf0b0e61',1,'String']]],
-  ['structcmd_2eh_16',['structcmd.h',['../structcmd_8h.html',1,'']]]
+  ['structcmd_2eh_16',['structcmd.h',['../structcmd_8h.html',1,'']]],
+  ['systemmetrics_17',['SystemMetrics',['../classGUI_1_1SystemMetrics.html',1,'GUI']]]
 ];

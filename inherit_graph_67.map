@@ -1,3 +1,10 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structstd_1_1hash_3_01ecs_1_1Entity_01_4.html" title=" " alt="" coords="5,5,184,31"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,153,120,179"/>
+<area shape="rect" id="node2" href="$classGUI_1_1GuiException.html" title=" " alt="" coords="206,5,346,31"/>
+<area shape="rect" id="node3" href="$classGUI_1_1guiActionException.html" title=" " alt="" coords="187,55,365,80"/>
+<area shape="rect" id="node4" href="$classTexture_1_1LoadFailed.html" title=" " alt="" coords="203,104,349,129"/>
+<area shape="rect" id="node5" href="$classecs_1_1Registry_1_1AlreadyExist.html" title=" " alt="" coords="179,153,373,179"/>
+<area shape="rect" id="node6" href="$classecs_1_1Registry_1_1ComponentNotFound.html" title=" " alt="" coords="182,203,370,243"/>
+<area shape="rect" id="node7" href="$classnetwork_1_1Client_1_1NotInitialized.html" title=" " alt="" coords="168,268,384,293"/>
+<area shape="rect" id="node8" href="$classnetwork_1_1socket_1_1NetworkManager_1_1NotInitialized.html" title=" " alt="" coords="182,318,370,358"/>
 </map>

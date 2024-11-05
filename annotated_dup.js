@@ -31,6 +31,7 @@ var annotated_dup =
       [ "MessagePopup", "classGUI_1_1MessagePopup.html", null ],
       [ "MusicManager", "classGUI_1_1MusicManager.html", "classGUI_1_1MusicManager" ],
       [ "SpriteManager", "classGUI_1_1SpriteManager.html", "classGUI_1_1SpriteManager" ],
+      [ "SystemMetrics", "classGUI_1_1SystemMetrics.html", null ],
       [ "WindowManager", "classGUI_1_1WindowManager.html", "classGUI_1_1WindowManager" ]
     ] ],
     [ "network", null, [

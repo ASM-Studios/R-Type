@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>R-Type: GUI::MessagePopup Class Reference</title>
+<title>R-Type: GUI::SystemMetrics Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classGUI_1_1MessagePopup.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classGUI_1_1SystemMetrics.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -92,23 +92,23 @@ $(document).ready(function(){initNavTree('classGUI_1_1MessagePopup.html',''); in
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a>  </div>
-  <div class="headertitle"><div class="title">GUI::MessagePopup Class Reference</div></div>
+  <div class="headertitle"><div class="title">GUI::SystemMetrics Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae5a9b38dfc9b5afe43f5320dde2317f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1MessagePopup.html#ae5a9b38dfc9b5afe43f5320dde2317f9">MessagePopup</a> (std::string message)</td></tr>
-<tr class="separator:ae5a9b38dfc9b5afe43f5320dde2317f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63c63f02a54e34a27978d1f6c9e2b5c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1MessagePopup.html#a63c63f02a54e34a27978d1f6c9e2b5c2">run</a> () const</td></tr>
-<tr class="separator:a63c63f02a54e34a27978d1f6c9e2b5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec3cf5efbf752231dcf11b7dbe42e73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1SystemMetrics.html#a9ec3cf5efbf752231dcf11b7dbe42e73">SystemMetrics</a> (<a class="el" href="classGUI_1_1WindowManager.html">GUI::WindowManager</a> &amp;windowManager, const sf::RenderWindow *window)</td></tr>
+<tr class="separator:a9ec3cf5efbf752231dcf11b7dbe42e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefc07bf320a7a5973d04a4b323c4bd8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGUI_1_1SystemMetrics.html#aefc07bf320a7a5973d04a4b323c4bd8e">update</a> ()</td></tr>
+<tr class="separator:aefc07bf320a7a5973d04a4b323c4bd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00122">122</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SystemMetrics_8hpp_source.html#l00020">20</a> of file <a class="el" href="SystemMetrics_8hpp_source.html">SystemMetrics.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae5a9b38dfc9b5afe43f5320dde2317f9" name="ae5a9b38dfc9b5afe43f5320dde2317f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5a9b38dfc9b5afe43f5320dde2317f9">&#9670;&#160;</a></span>MessagePopup()</h2>
+<a id="a9ec3cf5efbf752231dcf11b7dbe42e73" name="a9ec3cf5efbf752231dcf11b7dbe42e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ec3cf5efbf752231dcf11b7dbe42e73">&#9670;&#160;</a></span>SystemMetrics()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,61 +117,83 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">GUI::MessagePopup::MessagePopup </td>
+          <td class="memname">GUI::SystemMetrics::SystemMetrics </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>message</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classGUI_1_1WindowManager.html">GUI::WindowManager</a> &amp;&#160;</td>
+          <td class="paramname"><em>windowManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const sf::RenderWindow *&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00128">128</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SystemMetrics_8cpp_source.html#l00004">4</a> of file <a class="el" href="SystemMetrics_8cpp_source.html">SystemMetrics.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af929bc05e40e8e3fbfc735b401bb0291" name="af929bc05e40e8e3fbfc735b401bb0291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af929bc05e40e8e3fbfc735b401bb0291">&#9670;&#160;</a></span>~SystemMetrics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GUI::SystemMetrics::~SystemMetrics </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="SystemMetrics_8cpp_source.html#l00011">11</a> of file <a class="el" href="SystemMetrics_8cpp_source.html">SystemMetrics.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a63c63f02a54e34a27978d1f6c9e2b5c2" name="a63c63f02a54e34a27978d1f6c9e2b5c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63c63f02a54e34a27978d1f6c9e2b5c2">&#9670;&#160;</a></span>run()</h2>
+<a id="aefc07bf320a7a5973d04a4b323c4bd8e" name="aefc07bf320a7a5973d04a4b323c4bd8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefc07bf320a7a5973d04a4b323c4bd8e">&#9670;&#160;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void GUI::MessagePopup::run </td>
+          <td class="memname">void GUI::SystemMetrics::update </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowManager_8hpp_source.html#l00133">133</a> of file <a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SystemMetrics_8cpp_source.html#l00013">13</a> of file <a class="el" href="SystemMetrics_8cpp_source.html">SystemMetrics.cpp</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>client/include/<a class="el" href="WindowManager_8hpp_source.html">WindowManager.hpp</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>client/include/<a class="el" href="SystemMetrics_8hpp_source.html">SystemMetrics.hpp</a></li>
+<li>client/src/<a class="el" href="SystemMetrics_8cpp_source.html">SystemMetrics.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>GUI</b></li><li class="navelem"><a class="el" href="classGUI_1_1MessagePopup.html">MessagePopup</a></li>
+    <li class="navelem"><b>GUI</b></li><li class="navelem"><a class="el" href="classGUI_1_1SystemMetrics.html">SystemMetrics</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
