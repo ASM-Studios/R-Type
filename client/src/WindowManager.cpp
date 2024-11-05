@@ -48,7 +48,8 @@ GUI::WindowManager::WindowManager()
     _event = sf::Event();
     _backgroundOffset = 0.0f;
 
-    _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 150, 10));
+    _systemMetrics = std::make_unique<SystemMetrics>(*this, _window.get());
+    _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 250, 10));
 
     _musicManager.setMusic(MAIN_THEME_MUSIC);
 
@@ -101,7 +102,7 @@ void GUI::WindowManager::run() {
         _window->clear();
         _eventsHandler();
         _displayBackground();
-        if (_gameState == MENUS || _menuState == PAUSE_MENU) {
+        if (_gameState == gameState::MENUS || _menuState == menuState::PAUSE_MENU) {
             _displayMenu();
         }
         if (_gameState == GAMES) {
@@ -109,7 +110,7 @@ void GUI::WindowManager::run() {
             _displayGame();
             _displayFrontLayer();
         }
-        _fpsCounter();
+        _infoCounter();
 
         _window->display();
     }
@@ -279,8 +280,9 @@ void GUI::WindowManager::_deleteText(const std::string& id) {
 /**
  * \brief Updates the FPS counter.
  */
-void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
-    if (!_showFps) return;
+void GUI::WindowManager::_infoCounter() { // Sponsored by Yohan
+    if (!_showInfo)
+        return;
     static sf::Clock clock;
     static int frameCount = 0;
 
@@ -292,16 +294,25 @@ void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
 
         auto fpsText = _getText("fps");
         if (!fpsText) {
-            _addText("fps", "FPS: 0", sf::Vector2f(_window->getSize().x - 150, 10));
+            _addText("fps", "FPS: 0", sf::Vector2f(_window->getSize().x - 250, 10));
             fpsText = _getText("fps");
         }
         if (fpsText) {
             fpsText->setString("FPS: " + std::to_string(static_cast<int>(fps)));
         }
     }
-
+    _systemMetrics->update();
     if (const auto fpsText = _getText("fps")) {
         _window->draw(*fpsText);
+    }
+    if (const auto pingText = _getText("ping")) {
+        _window->draw(*pingText);
+    }
+    if (const auto memoryText = _getText("memoryUsage")) {
+        _window->draw(*memoryText);
+    }
+    if (const auto cpuText = _getText("cpuUsage")) {
+        _window->draw(*cpuText);
     }
 }
 
@@ -462,7 +473,7 @@ void GUI::WindowManager::_settingsMenuInit() {
 
     const auto fpsButtonSprites = _spriteManager.getSprites("buttons/settings_btn/fps");
     const Button<> fpsButton(fpsButtonSprites, [this]() {
-        _showFps = !_showFps;
+        _showInfo = !_showInfo;
     }, {centerX, startY});
     _currentButtons.emplace("settings:fps", fpsButton);
 
