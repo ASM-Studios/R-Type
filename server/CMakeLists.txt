@@ -20,5 +20,9 @@ add_executable(r-type_server ${SOURCE_FILE})
 target_link_libraries(
     r-type_server
     Boost::stacktrace_basic
-    Clock GameLogic ECS network Config Logger Texture dl
+    Clock GameLogic ECS network Config Logger Texture
 )
+
+if (UNIX)
+    target_link_libraries(r-type_server dl)
+endif()

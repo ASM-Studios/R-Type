@@ -1,5 +1,6 @@
 #pragma once
 
+#include <boost/asio.hpp>
 #include "Entity.hpp"
 #include "RegistryManager.hpp"
 #include "Server.hpp"
