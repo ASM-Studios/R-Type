@@ -49,10 +49,17 @@ static void handleCreateEntity(std::shared_ptr<network::Client> client, RawReque
     }
 }
 
+static void handleDestroyEntity(std::shared_ptr<network::Client> client, RawRequest request) {
+    TypedQuery<DestroyEntity> tq = request.getQuery();
+    auto registry = ecs::RegistryManager::getInstance().getRegistry(0);
+    ecs::Entity entity(tq.getPayload().id, registry);
+    registry->removeEntity(entity);
+}
+
 static void handlePing(std::shared_ptr<network::Client> client, RawRequest request) {
-   auto timestamp = std::chrono::system_clock::now().time_since_epoch();
-   TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
-   timestamp = timestamp - typedQuery.getPayload();
+    auto timestamp = std::chrono::system_clock::now().time_since_epoch();
+    TypedQuery<decltype(timestamp)> typedQuery = request.getQuery();
+    timestamp = timestamp - typedQuery.getPayload();
     pingValue = std::chrono::duration_cast<std::chrono::milliseconds>(timestamp).count();
 }
 
@@ -60,5 +67,6 @@ const std::map<RequestType, void (*)(std::shared_ptr<network::Client> client, Ra
     {RequestType::UPDATE_PLAYER, &handleUpdatePlayer},
     {RequestType::UPDATE_TEAM_PLAYER, &handleUpdateTeamPlayer},
     {RequestType::CREATE_ENTITY, &handleCreateEntity},
+    {RequestType::DESTROY_ENTITY, &handleDestroyEntity},
     {RequestType::PING, &handlePing}
 };

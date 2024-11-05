@@ -26,7 +26,9 @@ namespace network {
             Logger::log(LogLevel::INFO, "Connected");
         } catch (std::exception& e) {
             this->_tcpSocket = std::nullopt;
-            Logger::log(LogLevel::ERR, "Failed to connect to server");
+            this->_udpIP = std::nullopt;
+            this->_udpPort = std::nullopt;
+            Logger::log(LogLevel::ERR, "Failed to connect to server, going offline");
         }
     }
 
@@ -50,7 +52,7 @@ namespace network {
         client->_tcpSocket->async_receive(boost::asio::buffer(request.get(), sizeof(RawRequest)), [client, request, remoteEndpoint](auto error, auto bytes) {
             if (error) {
                 socket::disconnectClient(client);
-                Logger::log(LogLevel::ERR, error.what());
+                Logger::log(LogLevel::WARNING, error.what());
                 return;
             }
             Client::read(client);

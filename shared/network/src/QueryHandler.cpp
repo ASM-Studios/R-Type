@@ -30,13 +30,6 @@ namespace network {
         this->_callbackMutex.unlock();
     }
 
-    QueryHandler::QueryHandler() :
-        _pool(boost::asio::thread_pool(NO_WORKER)) {}
-
-    QueryHandler::~QueryHandler() {
-        this->_pool.join();
-    }
-
     QueryHandler& QueryHandler::getInstance() {
         std::lock_guard<std::mutex> lock(_mutex);
         if (_instance == nullptr) {
@@ -47,18 +40,10 @@ namespace network {
 
     void QueryHandler::addUdpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query) {
         this->executeUdp(query);
-        /*std::lock_guard<std::mutex> lock(this->_poolMutex);
-        boost::asio::post(this->_pool, [this, query]() {
-            this->executeUdp(query);
-        });*/
     }
 
     void QueryHandler::addTcpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query) {
         this->executeTcp(query);
-        /*std::lock_guard<std::mutex> lock(this->_poolMutex);
-        boost::asio::post(this->_pool, [this, query]() {
-            this->executeTcp(query);
-        });*/
     }
 
     std::unique_ptr<QueryHandler> QueryHandler::_instance(nullptr);
