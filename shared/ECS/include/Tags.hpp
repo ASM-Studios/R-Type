@@ -13,6 +13,7 @@ namespace ecs::component {
         Enemy,
         Ally,
         Explosion,
+        Plat
     };
 
     struct Tags {

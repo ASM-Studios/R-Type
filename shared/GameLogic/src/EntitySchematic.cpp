@@ -145,3 +145,19 @@ ecs::Entity EntitySchematic::createEnemy(std::shared_ptr<ecs::Registry> registry
     registry->setComponent<ecs::component::Animation>(enemy, {});
     return enemy;
 }
+
+
+ecs::Entity EntitySchematic::createPlatform(std::shared_ptr<ecs::Registry> registry, std::size_t id, int16_t x, int16_t y, int spriteID, int stateID, const std::pair<std::size_t, std::size_t>& screenSize)
+{
+    if (!registry) {
+        Logger::log(LogLevel::ERR, "Registry is null in createPlatform");
+    }
+
+    auto platform = ecs::Registry::createEntity(registry, id);
+    Logger::log(LogLevel::INFO, "Creating platform at x: " + std::to_string(x) + " y: " + std::to_string(y));
+    registry->setComponent<ecs::component::Tags>(platform, ecs::component::Tags({ecs::component::Tag::Plat}));
+    registry->setComponent<ecs::component::Position>(platform, {x, y, static_cast<size_t>(static_cast<int16_t>(screenSize.first)), static_cast<size_t>(static_cast<int16_t>(screenSize.second))});
+    registry->setComponent<ecs::component::Sprite>(platform, {spriteID, stateID});
+    registry->setComponent<ecs::component::Behavior>(platform,{&BehaviorFunc::handlePlatform});
+    return platform;
+}

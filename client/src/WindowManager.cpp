@@ -54,21 +54,31 @@ GUI::WindowManager::WindowManager()
     _musicManager.setMusic(MAIN_THEME_MUSIC);
 
     /* ECS Inits */
-
-    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
-    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Sprite>(_player, {22, 2});
     ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::LastShot>(_player, {});
     ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Input>(_player, {});
-    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
+    #ifdef RTYPE
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Sprite>(_player, {22, 2});
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
+    #elif defined(RUNNER)
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Tags>(_player, ecs::component::Tags({ecs::component::Tag::Player}));
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Position>(_player, {static_cast<int16_t>(width / 3), static_cast<int16_t>(height / 2), width, height});
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Sprite>(_player, {61, 2});
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleRunner});
+    #endif
+
+
+
 
     /* Network Inits */
-
-    network::socket::NetworkManager::getInstance().init();
-    TypedQuery<Empty> tq(RequestType::INIT, {});
-    initServer();
-    getServer().lock();
-    network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
-    getServer().unlock();
+    #ifdef RTYPE
+        network::socket::NetworkManager::getInstance().init();
+        TypedQuery<Empty> tq(RequestType::INIT, {});
+        initServer();
+        getServer().lock();
+        network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
+        getServer().unlock();
+    #endif
 }
 
 /**
@@ -93,12 +103,16 @@ static void ping() {
  * \brief Sets the game state.
  */
 void GUI::WindowManager::run() {
-    std::thread thread([]() {
-        network::socket::NetworkManager::getInstance().getContext().run();
-    });
+    #ifdef RTYPE
+        std::thread thread([]() {
+            network::socket::NetworkManager::getInstance().getContext().run();
+        });
+    #endif
 
     while (this->_isRunning && _gameState != QUITING) {
-        ping();
+        #ifdef RTYPE
+            ping();
+        #endif
         _window->clear();
         _eventsHandler();
         _displayBackground();
@@ -107,6 +121,7 @@ void GUI::WindowManager::run() {
         }
         if (_gameState == GAMES) {
             GameLogicManager::getInstance().get().updateTimed();
+
             _displayGame();
             _displayFrontLayer();
         }
@@ -114,14 +129,18 @@ void GUI::WindowManager::run() {
 
         _window->display();
     }
-    thread.join();
+    #ifdef RTYPE
+        thread.join();
+    #endif
 }
 
 void GUI::WindowManager::_exit() {
     setGameState(QUITING);
     this->_window->close();
     this->_isRunning = false;
-    network::socket::NetworkManager::getInstance().getContext().stop();
+    #ifdef RTYPE
+        network::socket::NetworkManager::getInstance().getContext().stop();
+    #endif
 }
 
 /**
@@ -370,6 +389,13 @@ void GUI::WindowManager::_displayGame() const {
         if (registry->contains<ecs::component::Sprite>(entity) && registry->contains<ecs::component::Position>(entity)) {
             const auto [spriteID, stateID] = registry->getComponent<ecs::component::Sprite>(entity).getSpriteState();
             const auto sprite = _spriteManager.getSprite(spriteID, stateID);
+            if (sprite) {
+                const auto [x, y] = registry->getComponent<ecs::component::Position>(entity).get();
+                sprite->setPosition(x, y);
+                _window->draw(*sprite);
+            } else {
+                Logger::log(LogLevel::ERR, "Failed to retrieve sprite for entity.");
+            }
             const auto [x, y] = registry->getComponent<ecs::component::Position>(entity).get();
             sprite->setPosition(x, y);
             _window->draw(*sprite);
@@ -450,12 +476,12 @@ void GUI::WindowManager::_scenarioSelectionInit() {
         const Button<> planetButton(buttonSprites, [this, i]() {
             this->setGameState(GAMES);
             this->setMenuState(NO_MENU);
-
-            TypedQuery<Connect> tq(RequestType::CONNECT, {static_cast<int>(i)});
-            getServer().lock();
-            network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
-            getServer().unlock();
-
+            #ifdef RTYPE
+                TypedQuery<Connect> tq(RequestType::CONNECT, {static_cast<int>(i)});
+                getServer().lock();
+                network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
+                getServer().unlock();
+            #endif
         }, {centerX, startY + i * buttonSpacing});
         _currentButtons.emplace("scenario:" + planetNames[i], planetButton);
     }

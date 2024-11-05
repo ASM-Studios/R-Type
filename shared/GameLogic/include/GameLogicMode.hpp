@@ -4,7 +4,8 @@
 
 enum class GameLogicMode {
     SERVER,
-    CLIENT
+    CLIENT,
+    RUNNERG
 };
 
 extern const GameLogicMode GAMELOGICMODE;
@@ -17,6 +18,9 @@ static inline std::ostream& operator<<(std::ostream& os, GameLogicMode mode) {
         case GameLogicMode::CLIENT:
             os << "CLIENT";
             break;
+        case GameLogicMode::RUNNERG:
+            os << "RUNNERG";
+            break;
     }
     return os;
 }
@@ -27,4 +31,8 @@ static inline bool isPureServer(GameLogicMode mode) {
 
 static inline bool isPureClient(GameLogicMode mode) {
     return mode == GameLogicMode::CLIENT;
+}
+
+static inline bool isPureRunner(GameLogicMode mode) {
+    return mode == GameLogicMode::RUNNERG;
 }

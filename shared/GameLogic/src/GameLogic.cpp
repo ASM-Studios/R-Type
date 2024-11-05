@@ -33,6 +33,9 @@ GameLogic::GameLogic(const GameLogicMode mode) :
     TextureLoader::getInstance().loadTextures("enemies", TextureLoader::Type::ENEMY);
     TextureLoader::getInstance().loadTextures("ships", TextureLoader::Type::SHIP);
     TextureLoader::getInstance().loadTextures("explosions", TextureLoader::Type::EXPLOSION);
+    TextureLoader::getInstance().loadTextures("player", TextureLoader::Type::PLAYER);
+    TextureLoader::getInstance().loadTextures("platforms", TextureLoader::Type::PLATFORM);
+    TextureLoader::getInstance().loadTextures("traps", TextureLoader::Type::TRAP);
     Logger::log(LogLevel::INFO, std::format("{0} textures have been loaded", TextureLoader::getInstance().getNoTexture()));
 
     int const width = std::stoi(config.get("width").value_or("1920"));
@@ -42,6 +45,10 @@ GameLogic::GameLogic(const GameLogicMode mode) :
             ecs::factory::LevelFactory factory({width, height}, ecs::factory::getScenarioPath(i));
             this->_levels.push_back(factory);
         }
+    }
+    if (isPureRunner(this->_mode)) {
+        Logger::log(LogLevel::INFO, "Creating procedural generator");
+        _proceduralGenerator = std::make_unique<ProceduralGenerator>((std::make_pair(width, height)));
     }
 }
 
@@ -66,15 +73,26 @@ void GameLogic::update() {
             if (registry->contains<ecs::component::Behavior>(entity)) {
                 registry->getComponent<ecs::component::Behavior>(entity).func(this->_mode, entity, _timePerTick);
             }
-            if (isPureClient(this->_mode) && registry->contains<ecs::component::Collision>(entity)) {
-                registry->getComponent<ecs::component::Collision>(entity).checkCollision(entity);
+            if(!isPureRunner(this->_mode)) {
+                if (isPureClient(this->_mode) && registry->contains<ecs::component::Collision>(entity)) {
+                    registry->getComponent<ecs::component::Collision>(entity).checkCollision(entity);
+                }
+                this->server(entity);
+                this->client(entity);
             }
-            this->server(entity);
-            this->client(entity);
+            else {
+                if (registry->contains<ecs::component::Collision>(entity)) {
+                    registry->getComponent<ecs::component::Collision>(entity).checkCollision(entity);
+                }
+            }
         }
     }
-    for (auto& levelFactory: this->_levels) {
-        levelFactory.updateEntities(this->_totalTime);
+    if(!isPureRunner(this->_mode)) {
+        for (auto& levelFactory: this->_levels) {
+            levelFactory.updateEntities(this->_totalTime);
+        }
+    } else {
+        _proceduralGenerator->update(_timePerTick);
     }
 }
 

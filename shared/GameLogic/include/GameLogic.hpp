@@ -15,9 +15,10 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include "ProceduralGenerator.hpp"
 
 constexpr auto SHOOT_COOLDOWN = 0.2F;
-
+class ProceduralGenerator;
 class GameLogic {
     public:
         GameLogic(GameLogicMode mode);
@@ -29,6 +30,8 @@ class GameLogic {
         float _timePerTick;
         float _totalTime;
         Clock _clock;
+
+        std::unique_ptr<ProceduralGenerator> _proceduralGenerator;
 
         std::vector<ecs::factory::LevelFactory> _levels;
 
