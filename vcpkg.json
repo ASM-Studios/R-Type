@@ -3,6 +3,7 @@
     "boost",
     "libconfig",
     "libpng",
-    "sfml"
+    "sfml",
+    "criterion"
   ]
 }
