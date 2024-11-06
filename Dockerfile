@@ -6,6 +6,7 @@ RUN apt-get update && \
     apt-get install git curl zip unzip tar cmake ninja-build g++ -y && \
     apt-get install autoconf autoconf-archive libtool pkg-config automake -y && \
     apt-get install libx11-dev libxrandr-dev libxcursor-dev libxi-dev libudev-dev libgl1-mesa-dev -y
+    apt-get install libcriterion-dev
 
 RUN git clone https://github.com/Microsoft/vcpkg.git /root/vcpkg
 
