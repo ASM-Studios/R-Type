@@ -35,6 +35,10 @@ struct UpdateEntity {
         ecs::component::Position position;
 };
 
+struct DestroyEntity {
+        uint64_t id;
+};
+
 struct Connect {
         int id;
 };

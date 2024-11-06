@@ -12,18 +12,15 @@ namespace network {
             static std::unique_ptr<QueryHandler> _instance;
             static std::mutex _mutex;
 
-            boost::asio::thread_pool _pool;
-            std::mutex _poolMutex;
-
             std::mutex _callbackMutex;
             void executeUdp(std::pair<std::shared_ptr<network::Client>, RawRequest> request);
             void executeTcp(std::pair<std::shared_ptr<network::Client>, RawRequest> request);
 
-            QueryHandler();
+            explicit QueryHandler() = default;
 
         public:
             QueryHandler(const QueryHandler& other) = delete;
-            ~QueryHandler();
+            ~QueryHandler() = default;
 
             QueryHandler& operator=(const QueryHandler& other) = delete;
 
