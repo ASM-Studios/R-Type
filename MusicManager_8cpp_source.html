@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('MusicManager_8cpp_source.html',''); in
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;GuiException.hpp&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classGUI_1_1MusicManager.html#a8225b68506e1556c8cebbd74c17b33cd">   13</a></span><a class="code hl_function" href="classGUI_1_1MusicManager.html#a8225b68506e1556c8cebbd74c17b33cd">GUI::MusicManager::MusicManager</a>() : _volume(0.0f), _isMuted(false) {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classGUI_1_1MusicManager.html#a8225b68506e1556c8cebbd74c17b33cd">   13</a></span><a class="code hl_function" href="classGUI_1_1MusicManager.html#a8225b68506e1556c8cebbd74c17b33cd">GUI::MusicManager::MusicManager</a>() : _volume(50.0f), _isMuted(false) {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">try</span> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <a class="code hl_class" href="classConfig.html">Config</a> &amp;config = Config::getInstance(<span class="stringliteral">&quot;client/config.json&quot;</span>);</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        loadMusic(config.get(<span class="stringliteral">&quot;musics_config_path&quot;</span>).value_or(DEFAULT_MUSIC_CONFIG));</div>
