@@ -84,6 +84,9 @@ void GameLogic::update() {
                 if (registry->contains<ecs::component::Collision>(entity)) {
                     registry->getComponent<ecs::component::Collision>(entity).checkCollision(entity);
                 }
+                if (registry->contains<ecs::component::Animation>(entity) && registry->contains<ecs::component::Sprite>(entity)) {
+                    this->updateAnimation(entity);
+                }
             }
         }
     }

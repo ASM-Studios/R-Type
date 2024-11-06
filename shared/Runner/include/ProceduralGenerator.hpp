@@ -14,5 +14,10 @@ class ProceduralGenerator {
     std::pair<std::size_t, std::size_t> _screenSize;
     float _spawnInterval;
     float _distanceSinceLastSpawn;
+    std::string _roomsDirectory;
+    int _lastRoomEndX;
+
+    void _generateInitialPlatforms();
+    void _generatePlatform();
 };
 

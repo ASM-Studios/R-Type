@@ -1,52 +1,60 @@
 #include "ProceduralGenerator.hpp"
+#include "Logger.hpp"
+#include "Texture.hpp"
+#include "TextureLoader.hpp"
+#include <format>
 #include <random>
+#include <vector>
+#include <memory>
 
 ProceduralGenerator::ProceduralGenerator(const std::pair<std::size_t, std::size_t>& screenSize)
-    : _screenSize(screenSize), _spawnInterval(2), _distanceSinceLastSpawn(0)
+    : _screenSize(screenSize), _lastRoomEndX(screenSize.first)
 {
-    const int spriteID = 66;
-    const int stateID = 0;
-    std::pair<int, int> platformSize = TextureLoader::getInstance().getTexture(spriteID).getSize();
+    _generateInitialPlatforms();
+}
 
-    int numPlatforms = _screenSize.first / platformSize.first;
-    int16_t yPosition = _screenSize.second;
+void ProceduralGenerator::_generateInitialPlatforms()
+{
+    for (int i = 0; i < 5; ++i) {
+        _generatePlatform();
+    }
+}
+
+void ProceduralGenerator::_generatePlatform()
+{
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    static std::uniform_int_distribution<> platformTypeDist(1, 2);
+    int platformHeightMin = _screenSize.second / 2;
+    int platformHeightMax = _screenSize.second - TextureLoader::getInstance().getSizeFromId(65).second;
+    static std::uniform_int_distribution<> heightDist(platformHeightMin / TextureLoader::getInstance().getSizeFromId(65).second,
+                                                  platformHeightMax / TextureLoader::getInstance().getSizeFromId(65).second);
+    static std::uniform_int_distribution<> gapDist( TextureLoader::getInstance().getSizeFromId(65).first, 300);
 
     std::shared_ptr<ecs::Registry> registry = ecs::RegistryManager::getInstance().getRegistry(0);
     if (!registry) {
         Logger::log(LogLevel::ERR, "Registry not initialized in ProceduralGenerator!");
         return;
     }
-    for (int i = 0; i < numPlatforms * 2; ++i) {
-        int16_t xPosition = i * platformSize.first;
-        EntitySchematic::createPlatform(registry, registry->_generateID(), xPosition, yPosition, spriteID, stateID, _screenSize);
+
+    int platformType = platformTypeDist(gen);
+    int platformHeight = heightDist(gen) * TextureLoader::getInstance().getSizeFromId(65).second;
+    int gap = gapDist(gen);
+    int16_t xPosition = _lastRoomEndX + gap;
+    _lastRoomEndX = xPosition + (platformType == 1 ? TextureLoader::getInstance().getSizeFromId(65).first
+                                                   : TextureLoader::getInstance().getSizeFromId(66).first);
+
+    if (platformType == 1) {
+        EntitySchematic::createPlatform(registry, registry->_generateID(), xPosition, platformHeight, 65, 0, _screenSize);
+    } else {
+        EntitySchematic::createPlatform(registry, registry->_generateID(), xPosition, platformHeight, 66, 0, _screenSize);
     }
 }
 
 void ProceduralGenerator::update(float timePerTick)
 {
-    _distanceSinceLastSpawn += timePerTick;
-    if (_distanceSinceLastSpawn >= _spawnInterval) {
-        _distanceSinceLastSpawn = 0;
-        Logger::log(LogLevel::INFO, "Spawning platform");
-        spawnPlatform();
+    _lastRoomEndX += -400 / 2 * timePerTick;
+    if (_lastRoomEndX <= _screenSize.first + 100) {
+        _generatePlatform();
     }
 }
-
-void ProceduralGenerator::spawnPlatform()
-{
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-
-    std::uniform_int_distribution<> platformTypeDist(0, 1);
-    bool const isLargePlatform = platformTypeDist(gen) == 1;
-
-    int16_t const platformWidth = isLargePlatform ? 3 : 1;
-    int const spriteID = isLargePlatform ? 66 : 65;
-    int const stateID = 0;
-    std::uniform_int_distribution<> yPosDist(_screenSize.second / 2, _screenSize.second - 50);
-    int16_t const yPosition = yPosDist(gen);
-    int16_t const xPosition = _screenSize.first + (TextureLoader::getInstance().getTexture(spriteID).getSize().first);
-    std::shared_ptr<ecs::Registry> const registry = ecs::RegistryManager::getInstance().getRegistry(0);
-    EntitySchematic::createPlatform(registry, registry->_generateID(), xPosition, yPosition, spriteID, stateID, _screenSize);
-}
-

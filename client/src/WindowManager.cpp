@@ -1,9 +1,11 @@
 #include "WindowManager.hpp"
+#include "Animation.hpp"
 #include "Clock.hpp"
 #include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
 #include "QueryHandler.hpp"
 #include "RegistryManager.hpp"
+#include "Tags.hpp"
 #include "query/Header.hpp"
 #include "query/Payloads.hpp"
 #include "query/TypedQuery.hpp"
@@ -65,6 +67,7 @@ GUI::WindowManager::WindowManager()
         ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Position>(_player, {static_cast<int16_t>(width / 3), static_cast<int16_t>(height / 2), width, height});
         ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Sprite>(_player, {61, 2});
         ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleRunner});
+        ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Animation>(_player, {});
     #endif
 
 
@@ -112,6 +115,10 @@ void GUI::WindowManager::run() {
     while (this->_isRunning && _gameState != QUITING) {
         #ifdef RTYPE
             ping();
+        #elif defined (RUNNER)
+            if (!ecs::RegistryManager::getInstance().getRegistry(0)->isEntityValid(_player)) {
+                _gameState = QUITING;
+            }
         #endif
         _window->clear();
         _eventsHandler();
@@ -121,7 +128,6 @@ void GUI::WindowManager::run() {
         }
         if (_gameState == GAMES) {
             GameLogicManager::getInstance().get().updateTimed();
-
             _displayGame();
             _displayFrontLayer();
         }
@@ -396,9 +402,6 @@ void GUI::WindowManager::_displayGame() const {
             } else {
                 Logger::log(LogLevel::ERR, "Failed to retrieve sprite for entity.");
             }
-            const auto [x, y] = registry->getComponent<ecs::component::Position>(entity).get();
-            sprite->setPosition(x, y);
-            _window->draw(*sprite);
         }
     }
 }

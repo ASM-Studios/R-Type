@@ -154,7 +154,6 @@ ecs::Entity EntitySchematic::createPlatform(std::shared_ptr<ecs::Registry> regis
     }
 
     auto platform = ecs::Registry::createEntity(registry, id);
-    Logger::log(LogLevel::INFO, "Creating platform at x: " + std::to_string(x) + " y: " + std::to_string(y));
     registry->setComponent<ecs::component::Tags>(platform, ecs::component::Tags({ecs::component::Tag::Plat}));
     registry->setComponent<ecs::component::Position>(platform, {x, y, static_cast<size_t>(static_cast<int16_t>(screenSize.first)), static_cast<size_t>(static_cast<int16_t>(screenSize.second))});
     registry->setComponent<ecs::component::Sprite>(platform, {spriteID, stateID});
