@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Animation.hpp"
+#include "Clock.hpp"
 #include "Collision.hpp"
 #include "Entity.hpp"
 #include "EntitySchematic.hpp"
@@ -21,16 +22,16 @@ class GameLogic {
     public:
         GameLogic(GameLogicMode mode);
 
-        void start();
-        void stop();
-
         void updateTimed();
 
     private:
         GameLogicMode _mode;
-        bool _isRunning;
         float _timePerTick;
         float _totalTime;
+        Clock _clock;
+
+        std::vector<ecs::factory::LevelFactory> _levels;
+
         void update();
 
         void client(const ecs::Entity& entity);

@@ -9,5 +9,7 @@
   "logLevel": "INFO",
   "frameRateLimit": 60,
   "hostname": "127.0.0.1",
-  "port": 8080
+  "udp_port": 8080,
+  "tcp_port": 8081,
+  "online": true
 }

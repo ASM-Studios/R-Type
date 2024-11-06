@@ -1,7 +1,9 @@
-#include "Client.hpp"
 #include "Core.hpp"
 #include "Entity.hpp"
 #include "EntitySchematic.hpp"
+#include "GameLogic.hpp"
+#include "GameLogicManager.hpp"
+#include "GameLogicMode.hpp"
 #include "Logger.hpp"
 #include "RegistryManager.hpp"
 #include "Tags.hpp"
@@ -9,23 +11,20 @@
 #include "query/Payloads.hpp"
 #include "query/RawRequest.hpp"
 #include "query/TypedQuery.hpp"
-#include "socket/ServerManager.hpp"
+#include "socket/Client.hpp"
+#include "socket/NRegistry.hpp"
+#include "socket/NetworkManager.hpp"
 #include <boost/asio/buffer.hpp>
+#include <boost/uuid/random_generator.hpp>
+#include <boost/uuid/uuid_io.hpp>
 #include <csignal>
 #include <cstdio>
+#include <format>
 #include <iomanip>
 #include <iostream>
+#include <memory>
 
-ecs::Entity registerClientEntity(network::Client client);
-
-void handleInput(network::Client client, RawRequest request) {
-    ecs::Entity entity = registerClientEntity(client);
-    TypedQuery<ecs::component::Input> query = request.getQuery();
-    ecs::RegistryManager::getInstance().getRegistry().setComponent(entity, query.getPayload());
-}
-
-const std::map<RequestType, void (*)(network::Client client, RawRequest rawRequest)> requestAction = {
-    {RequestType::INPUT, &handleInput}};
+constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::SERVER);
 
 void hexDisplay(const char *ptr, std::size_t n) {
     for (int i = 0; i < n; i++) {
@@ -38,7 +37,19 @@ void hexDisplay(const char *ptr, std::size_t n) {
               << std::endl;
 }
 
+static void initSingleton() {
+    Singleton<network::Registry>::wrap();
+    Singleton<boost::uuids::uuid>::wrap();
+
+    Singleton<boost::uuids::uuid>::getInstance().lock();
+    auto& uuid = Singleton<boost::uuids::uuid>::getInstance().get();
+    std::fill(uuid.begin(), uuid.end(), 0);
+    Singleton<boost::uuids::uuid>::getInstance().unlock();
+}
+
 int main(int ac, char **av) {
+    initSingleton();
+    GameLogicManager::getInstance();
     auto args = std::span<char *>(av, ac);
     Core core;
 

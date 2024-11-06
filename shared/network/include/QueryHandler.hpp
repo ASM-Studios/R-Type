@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Client.hpp"
-#include "Worker.hpp"
 #include "query/RawRequest.hpp"
+#include "socket/Client.hpp"
+#include <boost/asio/thread_pool.hpp>
 #include <memory>
 #include <mutex>
-#include <queue>
 
 namespace network {
     class QueryHandler {
@@ -13,22 +12,21 @@ namespace network {
             static std::unique_ptr<QueryHandler> _instance;
             static std::mutex _mutex;
 
-            std::queue<std::pair<Client, RawRequest>> _pendingQueries;
-            std::vector<std::shared_ptr<Worker>> _workers;
+            std::mutex _callbackMutex;
+            void executeUdp(std::pair<std::shared_ptr<network::Client>, RawRequest> request);
+            void executeTcp(std::pair<std::shared_ptr<network::Client>, RawRequest> request);
 
-            QueryHandler() = default;
+            explicit QueryHandler() = default;
 
         public:
             QueryHandler(const QueryHandler& other) = delete;
-            ~QueryHandler();
+            ~QueryHandler() = default;
 
             QueryHandler& operator=(const QueryHandler& other) = delete;
 
             static QueryHandler& getInstance();
 
-            void addQuery(std::pair<Client, RawRequest> query);
-            void executeQuery(std::pair<Client, RawRequest> query);
-            void executeQueries();
-            void checkWorkers();
+            void addUdpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query);
+            void addTcpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query);
     };
 }

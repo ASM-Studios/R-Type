@@ -15,4 +15,6 @@ set(SOURCE_FILE src/Registry.cpp
 )
 
 add_library(ECS ${SOURCE_FILE})
-target_link_libraries(ECS GameLogic Texture)
+
+target_link_libraries(ECS
+    GameLogic Texture)

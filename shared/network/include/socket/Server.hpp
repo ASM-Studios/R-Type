@@ -1,44 +1,60 @@
 #pragma once
 
-#include "../Client.hpp"
+#include "Client.hpp"
+#include "QueryHandler.hpp"
+#include "Singleton.hpp"
+#include "query/RawRequest.hpp"
 #include <boost/asio.hpp>
 #include <boost/asio/buffer.hpp>
+#include <functional>
 #include <set>
 #include <utility>
 
 namespace network::socket::udp {
     class Server {
         private:
-            boost::asio::io_context _context;
             boost::asio::ip::udp::socket _socket;
 
         public:
-            explicit Server();
-            explicit Server(int port);
+            explicit Server(boost::asio::io_context& context);
+            explicit Server(boost::asio::io_context& context, int port);
             ~Server() = default;
 
-            template <typename T>
-            [[nodiscard]] std::pair<Client, T> recv() {
-                T buffer;
-                boost::asio::ip::udp::endpoint remoteEndpoint;
-                boost::system::error_code error;
+            void read();
 
-                this->_socket.receive_from(boost::asio::buffer(&buffer, sizeof(T)), remoteEndpoint, 0, error);
-                if (error) {
-                    throw boost::system::system_error(error);
-                }
-                Client client(remoteEndpoint.address().to_v4(), remoteEndpoint.port());
-                return {client, buffer};
-            }
-
-            template <typename T>
-            void send(std::string hostname, int port, T payload) {
-                std::array<T, 1> arr;
-                arr[0] = payload;
-                boost::asio::ip::udp::endpoint endpoint(boost::asio::ip::address::from_string(hostname), port);
-                this->_socket.send_to(boost::asio::buffer(arr), endpoint);
-            }
-
-            bool availableRequest();
+            boost::asio::ip::udp::socket& getSocket();
     };
+}
+
+namespace network::socket::tcp {
+    class Server {
+        private:
+            boost::asio::ip::tcp::acceptor _acceptor;
+
+        public:
+            explicit Server(boost::asio::io_context& context, int port);
+            ~Server() = default;
+
+            void read();
+
+            boost::asio::ip::tcp::acceptor& getAcceptor();
+    };
+}
+
+static inline Singleton<std::shared_ptr<network::Client>>& initServer() {
+    const Config& config = Config::getInstance("client/config.json");
+    std::string online = config.get("online").value_or("true");
+    if (online == "true") {
+        std::string hostname = config.get("hostname").value_or("127.0.0.1");
+        int udpPort = std::stoi(config.get("udp_port").value_or("8080"));
+        int tcpPort = std::stoi(config.get("tcp_port").value_or("8081"));
+        auto client = std::make_shared<network::Client>(hostname, tcpPort, udpPort);
+        network::Client::read(client);
+        return Singleton<std::shared_ptr<network::Client>>::wrap(client);
+    }
+    return Singleton<std::shared_ptr<network::Client>>::wrap(std::make_shared<network::Client>());
+}
+
+static inline Singleton<std::shared_ptr<network::Client>>& getServer() {
+    return Singleton<std::shared_ptr<network::Client>>::getInstance();
 }

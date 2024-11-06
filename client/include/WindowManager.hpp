@@ -1,5 +1,6 @@
 #pragma once
 
+#include <atomic>
 #include <memory>
 #include <string>
 #include <thread>
@@ -16,7 +17,8 @@
 #include "GameLogic.hpp"
 #include "socket/Server.hpp"
 #include "BehaviorFunc.hpp"
-#include "socket/ServerManager.hpp"
+#include "socket/NetworkManager.hpp"
+#include "SystemMetrics.hpp"
 
 constexpr auto FONT_FILENAME = "assets/fonts/FFFFORWA.TTF";
 constexpr auto MAIN_THEME_MUSIC = "main_theme";
@@ -45,6 +47,7 @@ namespace GUI {
         SETTINGS_MENU,
         PAUSE_MENU,
     };
+    class SystemMetrics;
     class WindowManager : public std::enable_shared_from_this<WindowManager> {
         private:
             std::unique_ptr<sf::RenderWindow> _window;
@@ -59,27 +62,34 @@ namespace GUI {
             menuState _previousMenuState = menuState::NO_MENU;
             gameState _gameState = gameState::MENUS;
             menuState _menuState = MAIN_MENU;
-            bool _showFps = false;
+            bool _showInfo = false;
             std::unordered_map<std::string, std::shared_ptr<sf::Text>> _texts;
             std::unordered_map<std::string, Button<>> _buttons;
             std::unordered_map<std::string, Button<>> _currentButtons;
             std::vector<sf::Keyboard::Key> _pressedKeys;
+            float _backgroundOffset;
+            float _midLayerOffset;
+            mutable float _frontLayerOffset;
+
+            std::unique_ptr<GUI::SystemMetrics> _systemMetrics;
+
+            std::atomic<bool> _isRunning;
 
             ecs::Entity _player;
-            GameLogic _gameLogic;
+
+            void _exit();
 
             void _eventsHandler();
 
-            void _addText(const std::string& id, const std::string& text, const sf::Vector2f& position);
-            std::shared_ptr<sf::Text> _getText(const std::string& id) const;
             void _deleteText(const std::string& id);
 
             void _addButton(const std::string& id, const Button<>& button);
             GUI::Button<> _getButton(const std::string& id) const;
             void _deleteButton(const std::string& id);
 
-            void _displayBackground() const;
-            void _fpsCounter();
+            void _displayBackground();
+            void _displayFrontLayer() const;
+            void _infoCounter();
 
             void _displayGame() const;
             void _displayMenu();
@@ -88,17 +98,14 @@ namespace GUI {
             void _settingsMenuInit();
             void _pauseMenuInit();
 
-            void send(const RawRequest& request) {
-                network::socket::udp::ServerManager::getInstance().getServer().send(_hostname, _port, request);
-            network::socket::udp::Server _server;
-            }
-
         public:
             WindowManager();
             ~WindowManager() = default;
 
-            void readServer();
             void run();
+
+            void _addText(const std::string& id, const std::string& text, const sf::Vector2f& position);
+            std::shared_ptr<sf::Text> _getText(const std::string& id) const;
 
             void setGameState(const gameState state) {
                 _previousGameState = _gameState;

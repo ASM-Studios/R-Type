@@ -1,12 +1,15 @@
 #include "Factories/LevelFactory.hpp"
+#include "Behavior.hpp"
+#include "EntitySchematic.hpp"
+#include "query/Payloads.hpp"
+#include "query/TypedQuery.hpp"
+#include "socket/NetworkManager.hpp"
 
 namespace ecs::factory {
-    LevelFactory& LevelFactory::getInstance() {
-        std::lock_guard<std::mutex> lock(_mutex);
-        if (_instance == nullptr) {
-            _instance = std::unique_ptr<LevelFactory>(new LevelFactory());
-        }
-        return *_instance;
+    LevelFactory::LevelFactory(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename) {
+        Logger::log(LogLevel::INFO, "Loading level from file: " + filename);
+        this->_associatedRegistry = RegistryManager::getInstance().createRegistry();
+        this->load(screenSize, filename);
     }
 
     void LevelFactory::load(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename) {
@@ -137,10 +140,15 @@ namespace ecs::factory {
             y = std::rand() % _screenSize.second;
             x = _screenSize.first;
         }
-        EntitySchematic::createEnemy(entity.id, x, y, spriteID, stateID, model, _screenSize);
+
+        auto enemyEntity = EntitySchematic::createEnemy(this->_associatedRegistry, entity.id, x, y, spriteID, stateID, model, _screenSize);
+
+        CreateEnemyEntity payload{enemyEntity.getID(), spriteID, stateID, enemyEntity.getRegistry()->getComponent<ecs::component::Position>(enemyEntity), enemyEntity.getRegistry()->getComponent<ecs::component::Tags>(enemyEntity), ecs::component::stringToAIModel.at(model)};
+        TypedQuery<CreateEnemyEntity> tq(RequestType::CREATE_ENTITY, payload);
+        {
+            for (auto client: this->_associatedRegistry->getComponents<std::shared_ptr<network::Client>>()) {
+                network::socket::NetworkManager::getInstance().send(client, RawRequest(tq), network::socket::Mode::UDP);
+            }
+        }
     }
-    std::unique_ptr<LevelFactory> LevelFactory::_instance(nullptr);
-    std::mutex LevelFactory::_mutex;
-    std::vector<FactoryEntity> LevelFactory::pendingEntities;
-    std::pair<std::size_t, std::size_t> LevelFactory::_screenSize;
 }

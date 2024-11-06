@@ -50,9 +50,9 @@ namespace ecs {
             explicit Registry(uint8_t id = 0);
 
             template <typename... Components>
-            Entity createEntity();
+            static Entity createEntity(std::shared_ptr<Registry> registry);
             template <typename... Components>
-            Entity createEntity(uint64_t id);
+            static Entity createEntity(std::shared_ptr<Registry> registry, uint64_t id);
 
             [[nodiscard]] std::set<Entity> getEntities();
             template <typename Component>
@@ -76,6 +76,8 @@ namespace ecs {
 
             template <typename Component>
             [[nodiscard]] Component& getComponent(const Entity& entity);
+            template <typename Component>
+            [[nodiscard]] std::vector<Component> getComponents();
 
             [[nodiscard]] std::size_t getNoComponent(const Entity& entity);
 

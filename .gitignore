@@ -3,6 +3,7 @@
 # Executables
 r-type_server
 r-type_client
+runner_client
 
 # Secrets
 note
@@ -22,10 +23,12 @@ docs/docs/html/*
 
 # CMake
 
+tags
 .cache
 build
 cmake-build-debug
 cmake-build-release
+cmake-build-windows
 
 ### C ###
 
@@ -119,6 +122,7 @@ dkms.conf
 *.app
 
 ### IDE ###
+.gdbinit
 .obsidian
 compile_flags.txt
 *.lock

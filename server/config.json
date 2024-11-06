@@ -1,5 +1,6 @@
 {
-  "port": 8080,
+  "udp_port": 8080,
+  "tcp_port": 8081,
   "tps": 20,
   "hitboxes_config_file": "",
   "logLevel": "INFO"

@@ -7,7 +7,6 @@
 #include <string>
 #include <vector>
 
-#include "EntitySchematic.hpp"
 #include "Logger.hpp"
 #include "Registry.hpp"
 #include "RegistryManager.hpp"
@@ -65,18 +64,18 @@ namespace ecs::factory {
     class LevelFactory {
         public:
             explicit LevelFactory() = default;
-            static LevelFactory& getInstance();
-            static void load(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename);
-            static Component parsePosition(const libconfig::Setting& componentSetting, const std::string& type);
-            static Component parseSprite(const libconfig::Setting& componentSetting, const std::string& type);
-            static Component parseModel(const libconfig::Setting& componentSetting, const std::string& type);
-            static void createRegistryEntity(FactoryEntity& entity);
-            static void updateEntities(float elapsedTime);
+            explicit LevelFactory(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename);
+
+            void load(const std::pair<std::size_t, std::size_t>& screenSize, const std::string& filename);
+            Component parsePosition(const libconfig::Setting& componentSetting, const std::string& type);
+            Component parseSprite(const libconfig::Setting& componentSetting, const std::string& type);
+            Component parseModel(const libconfig::Setting& componentSetting, const std::string& type);
+            void createRegistryEntity(FactoryEntity& entity);
+            void updateEntities(float elapsedTime);
 
         private:
-            static std::vector<FactoryEntity> pendingEntities;
-            static std::unique_ptr<LevelFactory> _instance;
-            static std::mutex _mutex;
-            static std::pair<std::size_t, std::size_t> _screenSize;
+            std::shared_ptr<ecs::Registry> _associatedRegistry;
+            std::vector<FactoryEntity> pendingEntities;
+            std::pair<std::size_t, std::size_t> _screenSize;
     };
 }

@@ -1,8 +1,16 @@
 #include "WindowManager.hpp"
+#include "Clock.hpp"
+#include "GameLogicManager.hpp"
 #include "GameLogicMode.hpp"
 #include "QueryHandler.hpp"
-#include "socket/ServerManager.hpp"
+#include "RegistryManager.hpp"
+#include "query/Header.hpp"
+#include "query/Payloads.hpp"
+#include "query/TypedQuery.hpp"
+#include "socket/Server.hpp"
+#include "socket/NetworkManager.hpp"
 #include <chrono>
+#include <memory>
 #include <thread>
 
 /**
@@ -17,10 +25,9 @@
  * \throws GuiException if there is an error reading the config file.
  */
 GUI::WindowManager::WindowManager()
-    : _player(ecs::RegistryManager::getInstance().getRegistry().createEntity<>(0)),
-    _gameLogic(GameLogicMode::CLIENT)
+    : _isRunning(true),
+    _player(ecs::Registry::createEntity(ecs::RegistryManager::getInstance().getRegistry(0), 0))
 {
-    network::socket::udp::ServerManager::getInstance().init();
     const Config &config = Config::getInstance("client/config.json");
     sf::VideoMode const desktop = sf::VideoMode::getDesktopMode();
     _hostname = config.get("hostname").value_or("127.0.0.1");
@@ -39,52 +46,82 @@ GUI::WindowManager::WindowManager()
     _spriteManager.updateWindowSize(width, height);
     _spriteManager.init();
     _event = sf::Event();
+    _backgroundOffset = 0.0f;
 
-    _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 150, 10));
+    _systemMetrics = std::make_unique<SystemMetrics>(*this, _window.get());
+    _addText("fps", "FPS: " + std::to_string(static_cast<int>(frameRateLimit)), sf::Vector2f(_window->getSize().x - 250, 10));
 
     _musicManager.setMusic(MAIN_THEME_MUSIC);
 
     /* ECS Inits */
 
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Sprite>(_player, {22, 2});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::LastShot>(_player, {});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Input>(_player, {});
-    ecs::RegistryManager::getInstance().getRegistry().setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Position>(_player, {50, static_cast<int16_t>(height / 2), width, height});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Sprite>(_player, {22, 2});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::LastShot>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Input>(_player, {});
+    ecs::RegistryManager::getInstance().getRegistry(0)->setComponent<ecs::component::Behavior>(_player, {&BehaviorFunc::handleInput});
+
+    /* Network Inits */
+
+    network::socket::NetworkManager::getInstance().init();
+    TypedQuery<Empty> tq(RequestType::INIT, {});
+    initServer();
+    getServer().lock();
+    network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
+    getServer().unlock();
+}
+
+/**
+ * \brief Send ping to server
+ */
+static void ping() {
+    static Clock clock;
+    if (clock.get() < 1000) {
+        return;
+    }
+    auto timestamp = std::chrono::system_clock::now().time_since_epoch();
+    TypedQuery typedQuery{RequestType::PING, timestamp};
+
+    Singleton<std::shared_ptr<network::Client>>::getInstance().lock();
+    network::socket::NetworkManager::getInstance().send(Singleton<std::shared_ptr<network::Client>>::getInstance().get(), RawRequest(typedQuery), network::socket::Mode::UDP);
+    Singleton<std::shared_ptr<network::Client>>::getInstance().unlock();
+
+    clock.reset();
 }
 
 /**
  * \brief Sets the game state.
  */
-void GUI::WindowManager::readServer() {
-    auto& server = network::socket::udp::ServerManager::getInstance().getServer();
-    if (server.availableRequest()) {
-        auto query = server.recv<RawRequest>();
-        network::QueryHandler::getInstance().addQuery(query);
-    }
-    network::QueryHandler::getInstance().executeQueries();
-    network::QueryHandler::getInstance().checkWorkers();
-}
-
 void GUI::WindowManager::run() {
-    _gameLogic.start();
-    while (_window->isOpen() && _gameState != gameState::QUITING) {
-        std::this_thread::sleep_for(std::chrono::microseconds(50));
-        this->readServer();
+    std::thread thread([]() {
+        network::socket::NetworkManager::getInstance().getContext().run();
+    });
+
+    while (this->_isRunning && _gameState != QUITING) {
+        ping();
         _window->clear();
         _eventsHandler();
         _displayBackground();
         if (_gameState == gameState::MENUS || _menuState == menuState::PAUSE_MENU) {
             _displayMenu();
         }
-        if (_gameState == gameState::GAMES) {
-            _gameLogic.updateTimed();
+        if (_gameState == GAMES) {
+            GameLogicManager::getInstance().get().updateTimed();
             _displayGame();
+            _displayFrontLayer();
         }
-        _fpsCounter();
+        _infoCounter();
 
         _window->display();
     }
+    thread.join();
+}
+
+void GUI::WindowManager::_exit() {
+    setGameState(QUITING);
+    this->_window->close();
+    this->_isRunning = false;
+    network::socket::NetworkManager::getInstance().getContext().stop();
 }
 
 /**
@@ -93,16 +130,16 @@ void GUI::WindowManager::run() {
 void GUI::WindowManager::_eventsHandler() {
     while (_window->pollEvent(_event)) {
         if (_event.type == sf::Event::Closed) {
-            _window->close();
+            this->_exit();
         }
 
         if (_event.type == sf::Event::KeyPressed) {
             if (_event.key.code == sf::Keyboard::Q) {
-                setGameState(gameState::QUITING);
+                this->_exit();
             }
             if (_event.key.code == sf::Keyboard::Escape) {
-                if (_gameState == gameState::MENUS) continue;
-                _menuState = _menuState == menuState::NO_MENU ? menuState::PAUSE_MENU : menuState::NO_MENU;
+                if (_gameState == MENUS) continue;
+                _menuState = _menuState == NO_MENU ? PAUSE_MENU : NO_MENU;
             }
         }
 
@@ -111,10 +148,10 @@ void GUI::WindowManager::_eventsHandler() {
         }
     }
 
-    ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry();
-    if (_gameState == gameState::GAMES) {
-        ecs::component::Input newInput = registry.getComponent<ecs::component::Input>(_player);
-        auto& entityInput = registry.getComponent<ecs::component::Input>(_player);
+    const auto registry = ecs::RegistryManager::getInstance().getRegistry(0);
+    if (_gameState == GAMES) {
+        auto newInput = registry->getComponent<ecs::component::Input>(_player);
+        auto& entityInput = registry->getComponent<ecs::component::Input>(_player);
 
         newInput.clearFlag(ecs::component::Input::MoveLeft | ecs::component::Input::MoveRight |
                         ecs::component::Input::MoveUp | ecs::component::Input::MoveDown | ecs::component::Input::ReleaseShoot);
@@ -144,14 +181,52 @@ void GUI::WindowManager::_eventsHandler() {
 /**
  * \brief Sets the game state.
  */
-void GUI::WindowManager::_displayBackground() const {
-    if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
-        _window->draw(*background);
+void GUI::WindowManager::_displayBackground() {
+    if (_gameState == MENUS) {
+        if (const auto background = _spriteManager.getSprite(_currentBackground, 0)) {
+            _window->draw(*background);
+        }
     }
-    if (_menuState == menuState::PAUSE_MENU) {
+    if (_menuState == PAUSE_MENU) {
         if (const auto popup = _spriteManager.getSprite("backgrounds/gray_mask", 0)) {
             _window->draw(*popup);
         }
+    }
+    if (_gameState == GAMES) {
+        const auto labs_back = _spriteManager.getSprite("backgrounds/scifi_labs_back", 0);
+        labs_back->setOrigin(0, 0);
+        labs_back->setPosition(-_backgroundOffset, 0);
+        _window->draw(*labs_back);
+
+        const auto labs_mid = _spriteManager.getSprite("backgrounds/scifi_labs_mid", 0);
+        labs_mid->setOrigin(0, 0);
+        labs_mid->setPosition(-_midLayerOffset, 0);
+        _window->draw(*labs_mid);
+
+        _backgroundOffset += 5.0f / 2;
+        _midLayerOffset += 7.5f / 2;
+
+        if (_backgroundOffset >= labs_back->getGlobalBounds().width - _window->getSize().x) {
+            _backgroundOffset = 0.0f;
+        }
+        if (_midLayerOffset >= labs_mid->getGlobalBounds().width - _window->getSize().x) {
+            _midLayerOffset = 0.0f;
+        }
+
+        _displayFrontLayer();
+    }
+}
+
+void GUI::WindowManager::_displayFrontLayer() const {
+    const auto labs_front = _spriteManager.getSprite("backgrounds/scifi_labs_front", 0);
+    labs_front->setOrigin(0, 0);
+    labs_front->setPosition(_frontLayerOffset, 0);
+    _window->draw(*labs_front);
+
+    _frontLayerOffset += 8.0f / 2;
+
+    if (_frontLayerOffset >= _window->getSize().x) {
+        _frontLayerOffset = -labs_front->getGlobalBounds().width;
     }
 }
 
@@ -205,8 +280,9 @@ void GUI::WindowManager::_deleteText(const std::string& id) {
 /**
  * \brief Updates the FPS counter.
  */
-void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
-    if (!_showFps) return;
+void GUI::WindowManager::_infoCounter() { // Sponsored by Yohan
+    if (!_showInfo)
+        return;
     static sf::Clock clock;
     static int frameCount = 0;
 
@@ -218,16 +294,25 @@ void GUI::WindowManager::_fpsCounter() { // Sponsored by Yohan
 
         auto fpsText = _getText("fps");
         if (!fpsText) {
-            _addText("fps", "FPS: 0", sf::Vector2f(_window->getSize().x - 150, 10));
+            _addText("fps", "FPS: 0", sf::Vector2f(_window->getSize().x - 250, 10));
             fpsText = _getText("fps");
         }
         if (fpsText) {
             fpsText->setString("FPS: " + std::to_string(static_cast<int>(fps)));
         }
     }
-
+    _systemMetrics->update();
     if (const auto fpsText = _getText("fps")) {
         _window->draw(*fpsText);
+    }
+    if (const auto pingText = _getText("ping")) {
+        _window->draw(*pingText);
+    }
+    if (const auto memoryText = _getText("memoryUsage")) {
+        _window->draw(*memoryText);
+    }
+    if (const auto cpuText = _getText("cpuUsage")) {
+        _window->draw(*cpuText);
     }
 }
 
@@ -281,11 +366,11 @@ void GUI::WindowManager::_deleteButton(const std::string &id) {
  * \brief Displays the game.
  */
 void GUI::WindowManager::_displayGame() const {
-    for (ecs::Registry& registry = ecs::RegistryManager::getInstance().getRegistry(); const auto& entity : registry.getEntities()) {
-        if (registry.contains<ecs::component::Sprite>(entity) && registry.contains<ecs::component::Position>(entity)) {
-            const auto [spriteID, stateID] = registry.getComponent<ecs::component::Sprite>(entity).getSpriteState();
+    for (auto registry = ecs::RegistryManager::getInstance().getRegistry(0); const auto& entity : registry->getEntities()) {
+        if (registry->contains<ecs::component::Sprite>(entity) && registry->contains<ecs::component::Position>(entity)) {
+            const auto [spriteID, stateID] = registry->getComponent<ecs::component::Sprite>(entity).getSpriteState();
             const auto sprite = _spriteManager.getSprite(spriteID, stateID);
-            const auto [x, y] = registry.getComponent<ecs::component::Position>(entity).get();
+            const auto [x, y] = registry->getComponent<ecs::component::Position>(entity).get();
             sprite->setPosition(x, y);
             _window->draw(*sprite);
         }
@@ -331,21 +416,21 @@ void GUI::WindowManager::_mainMenuInit() {
 
     const auto playButtonSprites = _spriteManager.getSprites("buttons/play");
     const Button<> playButton(playButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::SCENARIO_SELECTION_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(SCENARIO_SELECTION_MENU);
     }, {_window->getSize().x / 2, startY});
     _currentButtons.emplace("main:play", playButton);
 
     const auto settingsButtonSprites = _spriteManager.getSprites("buttons/settings");
     const Button<> settingsButton(settingsButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::SETTINGS_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(SETTINGS_MENU);
     }, {_window->getSize().x / 2, startY + buttonSpacing});
     _currentButtons.emplace("main:settings", settingsButton);
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
-        this->setGameState(gameState::QUITING);
+        _exit();
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
     _currentButtons.emplace("main:quit", quitButton);
 }
@@ -363,9 +448,14 @@ void GUI::WindowManager::_scenarioSelectionInit() {
     for (std::size_t i = 0; i < planetNames.size(); ++i) {
         const auto buttonSprites = _spriteManager.getSprites("buttons/planets/" + planetNames[i]);
         const Button<> planetButton(buttonSprites, [this, i]() {
-            // TODO:  Add level loading here where i is the scenario number
-            this->setGameState(gameState::GAMES);
-            this->setMenuState(menuState::NO_MENU);
+            this->setGameState(GAMES);
+            this->setMenuState(NO_MENU);
+
+            TypedQuery<Connect> tq(RequestType::CONNECT, {static_cast<int>(i)});
+            getServer().lock();
+            network::socket::NetworkManager::getInstance().send(getServer().get(), RawRequest(tq), network::socket::Mode::TCP);
+            getServer().unlock();
+
         }, {centerX, startY + i * buttonSpacing});
         _currentButtons.emplace("scenario:" + planetNames[i], planetButton);
     }
@@ -383,7 +473,7 @@ void GUI::WindowManager::_settingsMenuInit() {
 
     const auto fpsButtonSprites = _spriteManager.getSprites("buttons/settings_btn/fps");
     const Button<> fpsButton(fpsButtonSprites, [this]() {
-        _showFps = !_showFps;
+        _showInfo = !_showInfo;
     }, {centerX, startY});
     _currentButtons.emplace("settings:fps", fpsButton);
 
@@ -409,8 +499,8 @@ void GUI::WindowManager::_settingsMenuInit() {
 
     const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
     const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::MAIN_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(MAIN_MENU);
     }, {centerX, startY + 2 * buttonSpacing});
     _currentButtons.emplace("settings:main_menu", mainMenuButton);
 }
@@ -425,21 +515,20 @@ void GUI::WindowManager::_pauseMenuInit() {
 
     const auto resumeButtonSprites = _spriteManager.getSprites("buttons/resume");
     const Button<> resumeButton(resumeButtonSprites, [this]() {
-        this->setMenuState(menuState::NO_MENU);
+        this->setMenuState(NO_MENU);
     }, {_window->getSize().x / 2, startY});
     _currentButtons.emplace("pause:resume", resumeButton);
 
     const auto mainMenuButtonSprites = _spriteManager.getSprites("buttons/main_menu");
     const Button<> mainMenuButton(mainMenuButtonSprites, [this]() {
-        this->setGameState(gameState::MENUS);
-        this->setMenuState(menuState::MAIN_MENU);
+        this->setGameState(MENUS);
+        this->setMenuState(MAIN_MENU);
     }, {_window->getSize().x / 2, startY + buttonSpacing});
     _currentButtons.emplace("pause:main_menu", mainMenuButton);
 
     const auto quitButtonSprites = _spriteManager.getSprites("buttons/quit");
     const Button<> quitButton(quitButtonSprites, [this]() {
-        this->setGameState(gameState::QUITING);
+        _exit();
     }, {_window->getSize().x / 2, startY + 2 * buttonSpacing});
     _currentButtons.emplace("pause:quit", quitButton);
 }
-

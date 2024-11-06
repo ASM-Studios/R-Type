@@ -1,16 +1,33 @@
 #include "QueryHandler.hpp"
 #include "Logger.hpp"
+#include "query/RawRequest.hpp"
 #include <format>
 #include <mutex>
+#include <stdexcept>
+
+#define NO_WORKER 10
 
 namespace network {
-    QueryHandler::~QueryHandler() {
-        if (this->_workers.size() > 0) {
-            Logger::log(LogLevel::INFO, std::format("Waiting for {0} workers", this->_workers.size()));
+    void QueryHandler::executeUdp(std::pair<std::shared_ptr<network::Client>, RawRequest> request) {
+        this->_callbackMutex.lock();
+        try {
+            auto callback = udpRequestAction.at(request.second.getQuery().getRequestType());
+            callback(request.first, request.second);
+        } catch (const std::out_of_range& e) {
+            Logger::log(LogLevel::ERR, std::format("Callback not found: {}", to_string(request.second.getQuery().getRequestType())));
         }
-        for (auto& worker: this->_workers) {
-            worker->join();
+        this->_callbackMutex.unlock();
+    }
+
+    void QueryHandler::executeTcp(std::pair<std::shared_ptr<Client>, RawRequest> request) {
+        this->_callbackMutex.lock();
+        try {
+            auto callback = tcpRequestAction.at(request.second.getQuery().getRequestType());
+            callback(request.first, request.second);
+        } catch (const std::out_of_range& e) {
+            Logger::log(LogLevel::ERR, std::format("Callback not found: {}", to_string(request.second.getQuery().getRequestType())));
         }
+        this->_callbackMutex.unlock();
     }
 
     QueryHandler& QueryHandler::getInstance() {
@@ -21,34 +38,12 @@ namespace network {
         return *_instance;
     }
 
-    void QueryHandler::addQuery(std::pair<Client, RawRequest> query) {
-        this->_pendingQueries.push(query);
+    void QueryHandler::addUdpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query) {
+        this->executeUdp(query);
     }
 
-    void QueryHandler::executeQuery(std::pair<Client, RawRequest> query) {
-        auto worker = std::make_shared<Worker>(query);
-        this->_workers.push_back(worker);
-    }
-
-    void QueryHandler::executeQueries() {
-        const std::size_t size = this->_pendingQueries.size();
-        for (std::size_t i = 0; i < size; i++) {
-            auto query = this->_pendingQueries.front();
-            this->_pendingQueries.pop();
-            this->executeQuery(query);
-        }
-    }
-
-    void QueryHandler::checkWorkers() {
-        for (auto it = this->_workers.begin(); it != this->_workers.end();) {
-            auto worker = *it;
-            if (worker->isReady()) {
-                worker->join();
-                it = this->_workers.erase(it);
-            } else {
-                it++;
-            }
-        }
+    void QueryHandler::addTcpQuery(std::pair<std::shared_ptr<Client>, RawRequest> query) {
+        this->executeTcp(query);
     }
 
     std::unique_ptr<QueryHandler> QueryHandler::_instance(nullptr);
