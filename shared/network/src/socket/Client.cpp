@@ -52,7 +52,7 @@ namespace network {
         client->_tcpSocket->async_receive(boost::asio::buffer(request.get(), sizeof(RawRequest)), [client, request, remoteEndpoint](auto error, auto bytes) {
             if (error) {
                 socket::disconnectClient(client);
-                Logger::log(LogLevel::WARNING, error.what());
+                Logger::log(LogLevel::WARNING, "TCP connection has been interrupt");
                 return;
             }
             Client::read(client);
@@ -105,5 +105,11 @@ namespace network {
             return std::ref(this->_tcpSocket.value());
         }
         return std::nullopt;
+    }
+
+    void Client::close() {
+        this->_tcpSocket = std::nullopt;
+        this->_udpIP = std::nullopt;
+        this->_udpPort = std::nullopt;
     }
 }
