@@ -13,7 +13,6 @@
 #include "socket/Client.hpp"
 #include "socket/NetworkManager.hpp"
 #include <algorithm>
-#include <boost/stacktrace/stacktrace.hpp>
 
 /**
  * @brief Construct a new GameLogic object

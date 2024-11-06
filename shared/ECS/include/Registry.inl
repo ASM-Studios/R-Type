@@ -3,7 +3,6 @@
 #include "Entity.hpp"
 #include "Registry.hpp"
 #include <unordered_map>
-#include <boost/stacktrace.hpp>
 
 namespace ecs {
     /**
