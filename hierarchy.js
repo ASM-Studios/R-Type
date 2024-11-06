@@ -32,6 +32,7 @@ var hierarchy =
     [ "CreateEntity", "structCreateEntity.html", [
       [ "CreateEnemyEntity", "structCreateEnemyEntity.html", null ]
     ] ],
+    [ "DestroyEntity", "structDestroyEntity.html", null ],
     [ "Empty", "structEmpty.html", null ],
     [ "std::enable_shared_from_this", null, [
       [ "GUI::SpriteManager", "classGUI_1_1SpriteManager.html", null ],

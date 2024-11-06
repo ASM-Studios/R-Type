@@ -74,6 +74,7 @@ var annotated_dup =
     [ "CreateEnemyEntity", "structCreateEnemyEntity.html", null ],
     [ "CreateEntity", "structCreateEntity.html", null ],
     [ "D", "classD.html", null ],
+    [ "DestroyEntity", "structDestroyEntity.html", null ],
     [ "E", "classE.html", null ],
     [ "Empty", "structEmpty.html", null ],
     [ "EnemyBehavior", "classEnemyBehavior.html", null ],
