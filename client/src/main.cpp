@@ -13,7 +13,11 @@
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::CLIENT);
+#ifdef RTYPE
+    constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::CLIENT);
+#elif defined(RUNNER)
+    constexpr GameLogicMode GAMELOGICMODE(GameLogicMode::RUNNERG);
+#endif
 
 int main() {
     ecs::RegistryManager::getInstance().createRegistry();

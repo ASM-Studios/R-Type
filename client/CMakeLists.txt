@@ -17,7 +17,7 @@ set(SOURCE_FILES
 )
 
 add_executable(runner_client ${SOURCE_FILES})
-target_compile_definitions(runner_client PRIVATE RUNNER)
+target_compile_definitions(runner_client PUBLIC RUNNER)
 target_link_libraries(
         runner_client
         sfml-system sfml-window sfml-graphics sfml-network sfml-audio
@@ -26,7 +26,7 @@ target_link_libraries(
 )
 
 add_executable(r-type_client ${SOURCE_FILES})
-target_compile_definitions(r-type_client PRIVATE RTYPE)
+target_compile_definitions(r-type_client PUBLIC RTYPE)
 target_link_libraries(
         r-type_client
         sfml-system sfml-window sfml-graphics sfml-network sfml-audio

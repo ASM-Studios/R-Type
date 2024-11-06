@@ -3,6 +3,8 @@ project(r-type-shared)
 
 include_directories(include)
 
-set(SOURCE_FILE src/Clock.cpp)
+set(SOURCE_FILE src/Clock.cpp
+        ../Runner/src/ProceduralGenerator.cpp
+        ../Runner/include/ProceduralGenerator.hpp)
 
 add_library(Clock ${SOURCE_FILE})

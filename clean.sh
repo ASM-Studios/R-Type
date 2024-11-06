@@ -4,6 +4,10 @@ if [ -z "$CLIENT" ]; then
     CLIENT=r-type_client
 fi
 
+if [ -z "$RUNNER" ]; then
+    RUNNER=runner_client
+fi
+
 if [ -z "$SERVER" ]; then
     SERVER=r-type_server
 fi
@@ -15,3 +19,4 @@ rm -rf vgcore*
 rm -rf tags
 rm -rf $CLIENT
 rm -rf $SERVER
+rm -rf $RUNNER

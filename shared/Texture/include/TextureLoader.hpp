@@ -14,7 +14,10 @@ class TextureLoader {
             BULLET,
             ENEMY,
             SHIP,
-            EXPLOSION
+            EXPLOSION,
+            PLAYER,
+            TRAP,
+            PLATFORM
         };
 
     private:

@@ -28,4 +28,5 @@ class EntitySchematic {
 
         static ecs::Entity createExplosion(std::shared_ptr<ecs::Registry> registry, const ecs::Entity& destroyed);
         static ecs::Entity createEnemy(std::shared_ptr<ecs::Registry> registry, std::size_t id, int16_t x, int16_t y, int spriteID, int stateID, const std::string& model, const std::pair<std::size_t, std::size_t>& screenSize);
+        static ecs::Entity createPlatform(std::shared_ptr<ecs::Registry> registry, std::size_t id, int16_t x, int16_t y, int spriteID, int stateID, const std::pair<std::size_t, std::size_t>& screenSize);
 };

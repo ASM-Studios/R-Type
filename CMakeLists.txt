@@ -14,6 +14,7 @@ include_directories(shared/Config/include)
 include_directories(shared/Logger/include)
 include_directories(shared/Texture/include)
 include_directories(shared/GameLogic/include)
+include_directories(shared/Runner/include)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
