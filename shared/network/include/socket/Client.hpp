@@ -31,5 +31,7 @@ namespace network {
             [[nodiscard]] std::optional<boost::asio::ip::address_v4> getUdpIP();
             [[nodiscard]] std::optional<boost::asio::ip::port_type> getUdpPort();
             [[nodiscard]] std::optional<std::reference_wrapper<boost::asio::ip::tcp::socket>> getSocket();
+
+            void close();
     };
 }

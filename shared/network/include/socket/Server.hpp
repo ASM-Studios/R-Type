@@ -48,7 +48,9 @@ static inline Singleton<std::shared_ptr<network::Client>>& initServer() {
         std::string hostname = config.get("hostname").value_or("127.0.0.1");
         int udpPort = std::stoi(config.get("udp_port").value_or("8080"));
         int tcpPort = std::stoi(config.get("tcp_port").value_or("8081"));
-        return Singleton<std::shared_ptr<network::Client>>::wrap(std::make_shared<network::Client>(hostname, tcpPort, udpPort));
+        auto client = std::make_shared<network::Client>(hostname, tcpPort, udpPort);
+        network::Client::read(client);
+        return Singleton<std::shared_ptr<network::Client>>::wrap(client);
     }
     return Singleton<std::shared_ptr<network::Client>>::wrap(std::make_shared<network::Client>());
 }

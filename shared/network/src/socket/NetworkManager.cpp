@@ -1,4 +1,5 @@
 #include "socket/NetworkManager.hpp"
+#include "GameLogicMode.hpp"
 #include "Logger.hpp"
 #include "RegistryManager.hpp"
 #include "Singleton.hpp"
@@ -75,14 +76,19 @@ namespace network::socket {
     }
 
     void disconnectClient(std::shared_ptr<network::Client> client) {
-        sendDisconnection(client);
-        auto registry = ecs::RegistryManager::getInstance().get(client);
-        if (registry.has_value()) {
-            registry.value()->removeEntity(ecs::Entity(client->getID(), registry.value()));
+        if (GAMELOGICMODE == GameLogicMode::SERVER) {
+            sendDisconnection(client);
+            auto registry = ecs::RegistryManager::getInstance().get(client);
+            if (registry.has_value()) {
+                registry.value()->removeEntity(ecs::Entity(client->getID(), registry.value()));
+            }
+            Singleton<network::Registry>::getInstance().lock();
+            Singleton<network::Registry>::getInstance().get().unregisterClient(client);
+            Singleton<network::Registry>::getInstance().unlock();
+            ecs::RegistryManager::getInstance().unbind(client);
+        } else {
+            Logger::log(LogLevel::WARNING, "Server disconnected, going offline");
         }
-        Singleton<network::Registry>::getInstance().lock();
-        Singleton<network::Registry>::getInstance().get().unregisterClient(client);
-        Singleton<network::Registry>::getInstance().unlock();
-        ecs::RegistryManager::getInstance().unbind(client);
+        client->close();
     }
 }
